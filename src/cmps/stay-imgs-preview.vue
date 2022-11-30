@@ -58,19 +58,10 @@ import 'vue3-carousel/dist/carousel.css'
     box-sizing: content-box;
     border: 5px solid white;
   }
-<<<<<<< HEAD
-
-  .carousel__item img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-=======
   .carousel__item img{
     height: 100%;
     width: 100%;
     object-fit: cover;
   }
   
->>>>>>> 7ca1ea60c0d728287dc26fbcd6a7abf9221337bc
 </style>
