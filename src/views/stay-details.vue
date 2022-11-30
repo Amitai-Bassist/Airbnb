@@ -1,13 +1,14 @@
 <template>
-  <section v-if="stay" class="stay-details flex flex-col items-center gap-2">
-    <article>
-      <p><span class="fw-bold">Reviews</span> {{ reviewScore }}</p>
-      <p><span class="fw-bold">Name:</span> {{ stay.name }}</p>
-      <p><span class="fw-bold">address:</span> {{ stay.loc }}</p>
-      <p><span class="fw-bold">Price:</span> ${{ stay.price }}</p>
-      <img :src="stay.imgUrls[0]" alt="">
-    </article>
-    <button @click="goBack" class="btn btn-primary">go back</button>
+  <section v-if="stay" class="stay-details">
+    <h1>{{ stay.name }} </h1>
+    <p>{{ reviewScore }} <span>{{ stay.reviews.length }} reviews</span> . Superhost . <span>{{ stay.loc.city }}, {{ stay.loc.country }}</span></p>
+    <div class="img-container">
+    <img :src="stay.imgUrls[0]" alt="">
+    <img :src="stay.imgUrls[0]" alt="">
+    <img :src="stay.imgUrls[0]" alt="">
+    <img :src="stay.imgUrls[0]" alt="">
+    <img :src="stay.imgUrls[0]" alt="">
+    </div>
 
     <!-- reviews -->
     <h2>Reviews</h2>
@@ -35,6 +36,10 @@ export default {
     stayService.getById(id).then((stay) => {
       this.stay = stay
     })
+    setTimeout(() => {
+      this.getReviewScore()
+    },500)
+      
   },
   methods: {
     updateReview({ target }, idx) {
@@ -47,6 +52,9 @@ export default {
     goBack() {
       this.$router.push('/stay')
     },
+    getReviewScore(){
+      this.$store.commit({ type: 'getReviewScore', stayReviews: this.stay.reviews})
+    }
   },
   computed: {
     formattedDate() {
@@ -55,7 +63,7 @@ export default {
       return formatedDate
     },
     reviewScore(){
-      return this.$store.dispatch({ type: 'getReviewScore', stayReviews: this.stay.reviews})
+      return this.$store.getters.reviewScore
     }
   },
   components: {

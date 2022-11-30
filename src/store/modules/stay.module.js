@@ -34,6 +34,7 @@ export const stayModule = {
     },
     getters: {
         stays({stays}) { return stays },
+        reviewScore({stayReveiwScore}) {return stayReveiwScore}
     },
     mutations: {
         setStays(state, { stays }) {
@@ -54,6 +55,15 @@ export const stayModule = {
             if (!stay.msgs) stay.msgs = []
             stay.msgs.push(msg)
         },
+        getReviewScore(state,{stayReviews}){
+            let reviewNum = 0
+            let stayReveiwScore = 0 
+            stayReviews.forEach(review => {
+                reviewNum++
+                stayReveiwScore += review.rate
+            })
+            state.stayReveiwScore = (stayReveiwScore/reviewNum).toFixed(1)
+        }
     },
     actions: {
         async addStay(context, { stay }) {
@@ -104,15 +114,6 @@ export const stayModule = {
                 throw err
             }
         },
-        getReviewScore(context,{stayReviews}){
-            let reviewNum = 0
-            let stayReveiwScore = 0 
-            stayReviews.forEach(review => {
-                reviewNum++
-                stayReveiwScore += review.rate
-            })
-            return stayReveiwScore/reviewNum
-        }
 
     }
 }
