@@ -1,3 +1,7 @@
+.stay-list {
+    margin-top: 200px;
+}
+
 .cards-layout {
   font-family:Airbnb-Cereal-Book;
   display: grid;
@@ -13,6 +17,9 @@
 }
 @include for-normal-layout {
     grid-template-columns: repeat(4, 1fr);
+    .card{
+        width: 300px;
+    }
 }
 @include for-wide-layout {
     grid-template-columns: repeat(5, 1fr);

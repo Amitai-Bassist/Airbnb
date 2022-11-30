@@ -1,10 +1,10 @@
 <template>
   <section class="stay-list">
-    <el-row class="cards-layout">
-      <el-col v-for="stay in stays" :key="stay._id" :span="10" :offset="2">
+    <div class="cards-layout">
+      <div v-for="stay in stays" :key="stay._id" class="card">
         <stay-preview :stay="stay"></stay-preview>
-      </el-col>
-    </el-row>
+      </div>
+    </div>
   </section>
 </template>
   
