@@ -7,8 +7,14 @@
         grid-column: 2;
     }
 
-    span {
+    span > :not(.btn) {
         color: black;
+    }
+
+    .review{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
     }
 
 
@@ -62,67 +68,132 @@
         }
     }
 
-    .stay-reserve {
-        height: fit-content;
-        display: flex;
-        flex-direction: column;
-    }
+    .details-container{
+        display: grid;
+        grid-gap: 20px;
+        width: 100%;
+        grid-template-areas:
+            "a1 a1 a4"
+            "a2 a2 a4"
+            "a3 a3 a5"
+        ;
 
-    .stay-ferrites{
-        display: flex;
-        flex-direction: column;
-        padding-top: 50px;
-        .ferrites-header{
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
+        .stay-reserve {
+            width: rem(calc($padded-break-small)/3 + 40px);
+            margin-left: auto;
             
-            .header-text{
-                display: flex;
-                flex-direction: column;
-            }
-            border-bottom: 1px solid rgba(128, 128, 128, 0.3);
-        }
-        
-        img{
-            width: 60px;
-            height: 60px;
-            border-radius: 50px; 
-        }
-        
-        .ferrites-main{
-            padding-top: 32px;
-            padding-bottom: 32px;
+            margin-top: 50px;
+            height: fit-content;
             display: flex;
             flex-direction: column;
-            border-bottom: 1px solid rgba(128, 128, 128, 0.3);
-            
-            .line{
+            grid-area: a4;
+        }
+
+        .stay-ferrites{
+            width: rem(calc($padded-break-small)/3 * 2 - 40px);
+            display: flex;
+            flex-direction: column;
+            padding-top: 50px;
+            grid-area: a1;
+            .ferrites-header{
                 display: flex;
                 flex-direction: row;
+                justify-content: space-between;
                 
-                .text{
-                    margin-left: 16px;
+                .header-text{
+                    display: flex;
+                    flex-direction: column;
+                }
+                border-bottom: 1px solid rgba(128, 128, 128, 0.3);
+            }
+            
+            img{
+                width: 60px;
+                height: 60px;
+                border-radius: 50px; 
+            }
+            
+            .ferrites-main{
+                padding-top: 32px;
+                padding-bottom: 32px;
+                display: flex;
+                flex-direction: column;
+                border-bottom: 1px solid rgba(128, 128, 128, 0.3);
+                
+                .line{
+                    display: flex;
+                    flex-direction: row;
+                    
+                    .text{
+                        margin-left: 16px;
+                    }
                 }
             }
         }
-        
-        .aircover{
-            padding-top: 32px;
-            padding-bottom: 32px;
-            border-bottom: 1px solid rgba(128, 128, 128, 0.3);
-            color: black;
-            span{
-                font-size: inherit;
-                font-style: inherit;
-                color: red;
-            }
             
-            .learn-more{
-                text-decoration-line: underline;
-                font-weight: bold;
-                cursor: pointer;
+            .aircover{
+                width: rem(calc($padded-break-small)/3 * 2 - 40px);
+                padding-top: 32px;
+                padding-bottom: 32px;
+                border-bottom: 1px solid rgba(128, 128, 128, 0.3);
+                color: black;
+                grid-area: a2;
+                span{
+                    font-size: inherit;
+                    font-style: inherit;
+                    color: red;
+                }
+                
+                .learn-more{
+                    text-decoration-line: underline;
+                    font-weight: bold;
+                    cursor: pointer;
+                }
             }
-        }
+
+            .place-offers{
+                width: rem(calc($padded-break-small)/3 * 2 - 40px);
+                padding-top: 32px;
+                padding-bottom: 32px;
+                border-bottom: 1px solid rgba(128, 128, 128, 0.3);
+                grid-area: a3;
+
+                button{
+                    background-color: white;
+                    color: black;
+                    border: 1px solid black;
+                    border-radius: 5px;
+                    padding: 13px 23px;
+                    margin-top: 32px;
+                    font-size: medium;
+                    cursor: pointer;
+                }
+
+                button:hover{
+                    filter: brightness(97%);
+                }
+
+                .offer{
+                    display: flex;
+
+                    .text{
+                        margin-left: 16px;
+                    }
+                }
+            }
+
+            .rare-find{
+                display: flex;
+                flex-direction: row;
+                margin-top: auto;
+                grid-area: a5;
+                border: 1px solid rgba(128, 128, 128, 0.4);
+                border-radius: 12px;
+                padding: 24px;
+                width: rem(calc($padded-break-small)/3 + 40px);
+                height: 50%;
+                margin-left: auto;
+                
+            }
     }
 }

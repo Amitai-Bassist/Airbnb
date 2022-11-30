@@ -1,8 +1,8 @@
 <template>
     <section class="stay-reserve order-container">
     <div class="order-form-header">
-      <p><span class="cost">$150</span> / night</p>
-      <p>4.38 <span class="reviews">(4 reviews)</span></p>
+      <p><span class="cost">${{stay.price}}</span> / night</p>
+      <p>{{reviewScore}} <span class="reviews">({{ stay.reviews.length }} reviews)</span></p>
     </div>
 
     <div class="order-data">
@@ -26,7 +26,7 @@
       </div>
     </div>
 
-    <div class="btn-container">
+    <div class="btn-container" @click="onReserve">
       <div class="cell"></div>
       <div class="cell"></div>
       <div class="cell"></div>
@@ -129,16 +129,38 @@
       <div class="cell"></div>
       <div class="content">
         <button class="action-btn">
-          <span>Check availability</span>
+          <span class="btn">Reserve</span>
         </button>
       </div>
     </div>
   </section>
-  <p class="footer">Report this listing</p>
 </template>
 
 <script>
    export default {
-
-   }
+    props:{
+      stay: Object,
+    },
+    created() {
+      setTimeout(() => {
+        this.getReviewScore();
+    }, 500);
+    },
+    methods: {
+      getReviewScore() {
+        this.$store.commit({
+          type: "getReviewScore",
+          stayReviews: this.stay.reviews,
+        });
+      },
+      onReserve(){
+        this.$emit('isReserve')
+      }
+    },
+    computed: {
+      reviewScore() {
+        return this.$store.getters.reviewScore;
+      },
+    },
+  }
 </script>
