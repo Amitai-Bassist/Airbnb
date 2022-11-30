@@ -5,7 +5,9 @@ header {
     background-color: $clr6;
     padding: 10px;
     display: flex;
+    z-index: 2;
     justify-content: space-between;
+    border-bottom: solid 1px #dddddd;
 
     .loggedin-user {
         background-color: $clr6;
@@ -54,4 +56,5 @@ header {
 
 .main-filter-btns{
     border: solid 1px #dddddd;
+    border-radius: 50px;
 }

@@ -1,0 +1,36 @@
+.filter-main-nav{
+    position: fixed;
+    top: 72px;
+    width: 100%;
+    z-index: 1;
+    background-color: white;
+    display: flex;
+    // justify-content: space-between;
+    .filter-btn{
+        justify-self: end;
+        width: fit-content;
+        background-color: white;
+        color: black;
+        border: solid 1px #dddddd;
+        border-radius: 7px;
+        
+    }
+}
+.filter-icon-carousel{
+    width: 80%;
+}
+.icon-filter-img{
+    width: 30px;
+    height: 30px;
+}
+
+.navigate-filter-carousel{
+    border-radius: 50%;
+    border: solid 1px #dddddd;
+    z-index: 5;
+    background-color: white;
+}
+
+.navigate-filter-carousel:hover{
+    color: black;
+}
