@@ -1,6 +1,6 @@
 <template>
     <Carousel>
-      <Slide v-for="image in imgs" :key="image">
+      <Slide v-for="image in imgs" :key="image" @click="goToDetails">
         <div class="carousel__item"><img :src="image" ></div>
       </Slide>
       
@@ -24,6 +24,11 @@ import 'vue3-carousel/dist/carousel.css'
     props: {
         imgs: Array
     },
+    methods: {
+          goToDetails() {
+            this.$emit('goToDetails')
+          }
+        },
     components: {
       Carousel,
       Slide,
@@ -35,8 +40,8 @@ import 'vue3-carousel/dist/carousel.css'
   
 <style>
   .carousel__item {
-    height: 400px;
-    width: 100%;
+    height: 100%;
+    min-width: 244px;
     background-color: var(--vc-clr-primary);
     color: var(--vc-clr-white);
     font-size: 20px;
@@ -59,9 +64,31 @@ import 'vue3-carousel/dist/carousel.css'
     border: 5px solid white;
   }
   .carousel__item img{
-    height: 100%;
-    width: 100%;
+    height: 232px;
+    min-width: 244px;
     object-fit: cover;
-  }
   
+  }
+  .carousel__pagination {
+    z-index: 100;
+    top: 85%;
+    right: 35%;
+   
+    position: absolute;
+  }
+  .carousel__pagination-button {
+    border-radius: 50%;
+  }
+  section.carousel {
+    height: 100%;
+    min-width: 244px;
+    }
+    .carousel__pagination-button::after {
+  display: block;
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--vc-pgn-background-color);
+}
 </style>
