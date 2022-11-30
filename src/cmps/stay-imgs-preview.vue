@@ -3,10 +3,10 @@
       <Slide v-for="image in imgs" :key="image">
         <div class="carousel__item"><img :src="image" ></div>
       </Slide>
-  
+      
       <template #addons>
-        <Navigation />
         <Pagination />
+        <Navigation class="navigate-filter-carousel"/>
       </template>
     </Carousel>
 </template>
@@ -47,18 +47,30 @@ import 'vue3-carousel/dist/carousel.css'
   }
   
   .carousel__slide {
-    padding: 10px;
+    /* padding: 10px; */
   }
   
+  .slide {
+    width: 250px;
+  }
   .carousel__prev,
   .carousel__next {
     box-sizing: content-box;
     border: 5px solid white;
   }
+<<<<<<< HEAD
 
   .carousel__item img{
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
+=======
+  .carousel__item img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+  
+>>>>>>> 7ca1ea60c0d728287dc26fbcd6a7abf9221337bc
 </style>

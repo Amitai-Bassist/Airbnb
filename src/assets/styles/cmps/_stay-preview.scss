@@ -1,11 +1,17 @@
 .stay-preview {
     font-family:Airbnb-Cereal-Book;
+    p {
+      font-size: 1rem;
+      color: rgb(79, 78, 78);
+    }
     .bottom {
         margin-top: 13px;
         line-height: 12px;
         display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap; 
         justify-content: space-between;
-        align-items: center;
+        // align-items: center;
       }
       
       .button {
