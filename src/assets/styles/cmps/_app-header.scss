@@ -109,6 +109,14 @@ header {
     margin-top: 70px;
 }
 
+.big-filter-btn{
+    background-color: #ebebeb;
+    color: #222222;
+    >span{
+        color: #222222;
+    }
+}
+
 .screen-shadow{
     position: fixed;
     top: 155px;
