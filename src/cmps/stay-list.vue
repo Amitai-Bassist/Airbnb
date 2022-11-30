@@ -1,5 +1,5 @@
 <template>
-    <el-row>
+    <el-row class="stay-list">
       <el-col v-for="stay in stays" :key="stay._id" :span="10" :offset="2">
         <stay-preview :stay="stay"></stay-preview>
       </el-col>
