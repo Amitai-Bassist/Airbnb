@@ -95,8 +95,6 @@ const users = [
   }
 ]
 
-
-
 // Homepage: TOP categories: Best Rate / Houses / Kitchen  - show all - link to Explore
 // Renders a <StayList> with <StayPreview> with Link to <StayDetails>   url: /stay/123
 // See More => /explore?topRate=true
