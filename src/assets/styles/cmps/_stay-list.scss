@@ -1,5 +1,8 @@
 .stay-list {
     margin-top: 200px;
+    margin-inline: 0px;
+    width: 100%;
+
 }
 
 .cards-layout {
@@ -17,8 +20,12 @@
 }
 @include for-normal-layout {
     grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 24px;
+    grid-row-gap: 40px;
+    justify-items: stretch;
     .card{
-        width: 300px;
+        min-width: 244px;
+        min-height: 332px;
     }
 }
 @include for-wide-layout {
