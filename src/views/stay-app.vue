@@ -1,5 +1,5 @@
 <template>
-  <div class="main-layout main-container">
+  <div class="main-layout">
       <stay-list :stays="stays"></stay-list>
   </div>
 </template>
