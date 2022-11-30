@@ -1,13 +1,14 @@
 <template>
   <section v-if="stay" class="stay-details">
     <h1>{{ stay.name }} </h1>
-    <p>{{ reviewScore }} <span>{{ stay.reviews.length }} reviews</span> . Superhost . <span>{{ stay.loc.city }}, {{ stay.loc.country }}</span></p>
-    <div class="img-container">
-    <img :src="stay.imgUrls[0]" alt="">
-    <img :src="stay.imgUrls[0]" alt="">
-    <img :src="stay.imgUrls[0]" alt="">
-    <img :src="stay.imgUrls[0]" alt="">
-    <img :src="stay.imgUrls[0]" alt="">
+    <p>{{ reviewScore }} &#183; <span>{{ stay.reviews.length }} reviews</span> . Superhost . <span>{{ stay.loc.city }}, {{ stay.loc.country }}</span></p>
+    <div class="img-container" >
+    <img :src="imgUrl" alt="" v-for="imgUrl in stay.imgUrls" :key="imgUrl">
+    </div>
+
+    <div class="stay-ferrites"> 
+      <h3>Entire {{stay.type}} hosted by {{stay.host.fullname}}</h3>
+      <p>{{stay.capacity}} guests &#183; </p>
     </div>
 
     <!-- reviews -->

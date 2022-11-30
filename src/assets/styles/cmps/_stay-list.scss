@@ -1,5 +1,26 @@
-.stay-list {
-  font-family:Montserrat-Regular;
+.cards-layout {
+  font-family:Airbnb-Cereal-Book;
+  display: grid;
+
+  @include for-mobile-layout {
+    grid-template-columns: 1fr;
+}
+@include for-narrow-layout {
+    grid-template-columns: repeat(2, 1fr);
+}
+@include for-small-layout {
+    grid-template-columns: repeat(3,1fr);
+}
+@include for-normal-layout {
+    grid-template-columns: repeat(4, 1fr);
+}
+@include for-wide-layout {
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 20px;
+}
+@include for-extra-wide-layout {
+    grid-template-columns: repeat(6, 1fr);
+}
 }
 
 

@@ -1,9 +1,11 @@
 <template>
-    <el-row class="stay-list">
+  <section class="stay-list">
+    <el-row class="cards-layout">
       <el-col v-for="stay in stays" :key="stay._id" :span="10" :offset="2">
         <stay-preview :stay="stay"></stay-preview>
       </el-col>
     </el-row>
+  </section>
 </template>
   
 <script>
