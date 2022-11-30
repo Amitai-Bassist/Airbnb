@@ -29,10 +29,12 @@ export function getActionAddStayMsg(stayId) {
 
 export const stayModule = {
     state: {
-        stays: []
+        stays: [],
+        stayReveiwScore: null
     },
     getters: {
         stays({stays}) { return stays },
+        reviewScore({stayReveiwScore}) {return stayReveiwScore}
     },
     mutations: {
         setStays(state, { stays }) {
@@ -53,6 +55,15 @@ export const stayModule = {
             if (!stay.msgs) stay.msgs = []
             stay.msgs.push(msg)
         },
+        getReviewScore(state,{stayReviews}){
+            let reviewNum = 0
+            let stayReveiwScore = 0 
+            stayReviews.forEach(review => {
+                reviewNum++
+                stayReveiwScore += review.rate
+            })
+            state.stayReveiwScore = (stayReveiwScore/reviewNum).toFixed(1)
+        }
     },
     actions: {
         async addStay(context, { stay }) {
@@ -75,11 +86,11 @@ export const stayModule = {
                 throw err
             }
         },
-        async loadStays(context) {
+        async loadStays({commit,state,rootState}) {
             try {
                 const stays = await stayService.query()
                 console.log(stays);
-                context.commit({ type: 'setStays', stays })
+                commit({ type: 'setStays', stays })
             } catch (err) {
                 console.log('stayStore: Error in loadStays', err)
                 throw err
