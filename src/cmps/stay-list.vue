@@ -24,12 +24,12 @@
   
   
 <style>
-  .time {
+  /* .time {
     font-size: 12px;
     color: #999;
-  }
+  } */
   
-  .bottom {
+  /* .bottom {
     margin-top: 13px;
     line-height: 12px;
     display: flex;
@@ -40,11 +40,11 @@
   .button {
     padding: 0;
     min-height: auto;
-  }
+  } */
   
-  .image {
+  /* .image {
     width: 100%;
     display: block;
-  }
+  } */
   </style>
   
