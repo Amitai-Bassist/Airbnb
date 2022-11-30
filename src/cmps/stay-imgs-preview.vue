@@ -35,7 +35,7 @@ import 'vue3-carousel/dist/carousel.css'
   
 <style>
   .carousel__item {
-    min-height: 200px;
+    height: 400px;
     width: 100%;
     background-color: var(--vc-clr-primary);
     color: var(--vc-clr-white);
@@ -54,5 +54,11 @@ import 'vue3-carousel/dist/carousel.css'
   .carousel__next {
     box-sizing: content-box;
     border: 5px solid white;
+  }
+
+  .carousel__item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 </style>
