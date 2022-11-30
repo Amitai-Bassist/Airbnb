@@ -20,8 +20,19 @@
     width: 80%;
 }
 .icon-filter-img{
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
+    // color: #717171;
+}
+
+.icon-in-carousel-filter{
+    color: #717171;
+    cursor: pointer;
+}
+
+.icon-in-carousel-filter:hover{
+    color: black;
+    border-bottom: 2px solid #717171;
 }
 
 .navigate-filter-carousel{
@@ -29,7 +40,9 @@
     border: solid 1px #dddddd;
     z-index: 5;
     background-color: white;
+    
 }
+
 
 .navigate-filter-carousel:hover{
     color: black;

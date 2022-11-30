@@ -1,7 +1,10 @@
 <template>
     <Carousel :itemsToShow="8" :wrapAround="true" :transition="500">
       <Slide v-for="icon in icons" :key="icon">
-        <img class="icon-filter-img" :src="icon" alt="1">
+        <div class="flex column icon-in-carousel-filter">
+            <img class="icon-filter-img" :src="icon.url" alt="1">
+            {{icon.iconName}}
+        </div>
 
       </Slide>
       
@@ -24,24 +27,40 @@
     data(){
         return {
             icons: [
-                "https://res.cloudinary.com/airbnb22/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669758835/tropical_fgverw.jpg",
-                "https://res.cloudinary.com/airbnb22/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669758830/trending_dc5gh8.jpg",
-                "https://res.cloudinary.com/airbnb22/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669758826/top_of_the_world._jpg_b8wzyu.jpg",
-                "https://res.cloudinary.com/airbnb22/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669758821/private_room_bdwxkv.jpg",
-                "https://res.cloudinary.com/airbnb22/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669758817/play_v8l9un.jpg",
-                "https://res.cloudinary.com/airbnb22/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669758812/omg_effgok.jpg",
-                "https://res.cloudinary.com/airbnb22/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669758807/new_sfipxe.jpg",
-                "https://res.cloudinary.com/airbnb22/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669758802/mansions_u4xctw.jpg",
-                "https://res.cloudinary.com/airbnb22/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669758796/luxe_r6kico.jpg",
-                "https://res.cloudinary.com/airbnb22/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669758792/iconic_cities_zij7ek.jpg",
-                "https://res.cloudinary.com/airbnb22/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669758786/hanoks_aywmtj.jpg",
-                "https://res.cloudinary.com/airbnb22/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669758781/design_mmixeo.jpg",
-                "https://res.cloudinary.com/airbnb22/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669758775/castles_uwp3vj.jpg",
-                "https://res.cloudinary.com/airbnb22/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669758770/cabins_hsuyh5.jpg",
-                "https://res.cloudinary.com/airbnb22/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669758762/amazing_views_gixu8h.jpg",
-                "https://res.cloudinary.com/airbnb22/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669758752/adapted_qivady.jpg",
-                // "",
-                // "",
+                {url:"https://res.cloudinary.com/airbnb22/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669758835/tropical_fgverw.jpg",
+                iconName:'Tropical'},
+                {url:"https://res.cloudinary.com/airbnb22/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669758830/trending_dc5gh8.jpg",
+                iconName:'Trending'},
+                {url:"https://res.cloudinary.com/airbnb22/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669758826/top_of_the_world._jpg_b8wzyu.jpg",
+                iconName:'Top of the world'},
+                {url:"https://res.cloudinary.com/airbnb22/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669758821/private_room_bdwxkv.jpg",
+                iconName:'Private rooms'},
+                {url:"https://res.cloudinary.com/airbnb22/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669758817/play_v8l9un.jpg",
+                iconName:'Play'},
+                {url:"https://res.cloudinary.com/airbnb22/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669758812/omg_effgok.jpg",
+                iconName:'OMG!'},
+                {url:"https://res.cloudinary.com/airbnb22/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669758807/new_sfipxe.jpg",
+                iconName:'New'},
+                {url:"https://res.cloudinary.com/airbnb22/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669758802/mansions_u4xctw.jpg",
+                iconName:'Mansions'},
+                {url:"https://res.cloudinary.com/airbnb22/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669758796/luxe_r6kico.jpg",
+                iconName:'Luxe'},
+                {url:"https://res.cloudinary.com/airbnb22/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669758792/iconic_cities_zij7ek.jpg",
+                iconName:'Iconic cities'},
+                {url:"https://res.cloudinary.com/airbnb22/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669758786/hanoks_aywmtj.jpg",
+                iconName:'Hanoks'},
+                {url:"https://res.cloudinary.com/airbnb22/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669758781/design_mmixeo.jpg",
+                iconName:'Design'},
+                {url:"https://res.cloudinary.com/airbnb22/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669758775/castles_uwp3vj.jpg",
+                iconName:'Castles'},
+                {url:"https://res.cloudinary.com/airbnb22/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669758770/cabins_hsuyh5.jpg",
+                iconName:'Cabins'},
+                {url:"https://res.cloudinary.com/airbnb22/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669758762/amazing_views_gixu8h.jpg",
+                iconName:'Amazing views'},
+                {url:"https://res.cloudinary.com/airbnb22/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669758752/adapted_qivady.jpg",
+                iconName:'Adapted'},
+                // {url:"",
+                // {url:"",
 
         ]
         }

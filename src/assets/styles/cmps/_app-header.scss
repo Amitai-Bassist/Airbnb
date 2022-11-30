@@ -49,12 +49,39 @@ header {
 .user-nav-bar{
     position: fixed;
     right: 0;
+    top: 60px;
     display: flex;
     flex-direction: column;
-    z-index: 1;
+    z-index: 6;
 }
 
 .main-filter-btns{
     border: solid 1px #dddddd;
     border-radius: 50px;
+    cursor: pointer;
+}
+.main-filter-btn{
+    background-color: white;
+    color: #222222;
+    cursor: pointer;
+    &.guest{
+        color: #717171;
+    }
+}
+
+.main-filter-search-btn{
+    background-color: #ff385c;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    >.s1qcpybl{
+        width: 12px;
+        height: 12px; 
+    }
+}
+
+.big-search-filter{
+    background-color: #ebebeb;
+    border-radius: 50px;
+    margin-top: 50px;
 }
