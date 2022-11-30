@@ -1,0 +1,15 @@
+.stay-preview {
+    font-family: Airbnb_Cereal-Book;
+    .bottom {
+        margin-top: 13px;
+        line-height: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .button {
+        padding: 0;
+        min-height: auto;
+      }
+}
