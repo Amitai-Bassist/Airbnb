@@ -15,23 +15,41 @@
         }
     }
 
+    @include for-mobile-layout {
+        grid-template-columns: 
+            minmax(24px, 1fr)
+            minmax(auto, $padded-break-mobile)
+            minmax(24px, 1fr);
+    }
     @include for-narrow-layout {
         grid-template-columns: 
-            minmax(20px, 1fr)
-            minmax(auto, $mobile-breakpoint)
-            minmax(20px, 1fr);
+            minmax(24px, 1fr)
+            minmax(auto, $padded-break-narrow)
+            minmax(24px, 1fr);
+    }
+    @include for-small-layout {
+        grid-template-columns: 
+            minmax(40px, 1fr)
+            minmax(auto, $padded-break-small)
+            minmax(40px, 1fr);
     }
     @include for-normal-layout {
         grid-template-columns: 
-            minmax(20px, 1fr)
-            minmax(auto, $narrow-breakpoint)
-            minmax(20px, 1fr);
+            minmax(40px, 1fr)
+            minmax(auto, $padded-break-normal)
+            minmax(40px, 1fr);
     }
     @include for-wide-layout {
         grid-template-columns: 
-            minmax(20px, 1fr)
-            minmax(auto, $normal-breakpoint)
-            minmax(20px, 1fr);
+            minmax(80px, 1fr)
+            minmax(auto, $padded-break-wide)
+            minmax(80px, 1fr);
+    }
+    @include for-extra-wide-layout {
+        grid-template-columns: 
+            minmax(80px, 1fr)
+            minmax($padded-break-wide, auto)
+            minmax(80px, 1fr);
     }
 }
 
@@ -40,3 +58,48 @@
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-gap: 20px;
 }
+
+// .main-layout {
+//     display: grid;
+//     grid-template-columns: 1fr 950px 1fr;
+//     > * {
+//     grid-column: 2;
+//     }
+//     &.full {
+//         grid-column: 1 /-1;
+//     }
+// @include for-mobile-layout {
+//     @media (max-width: calc($mobile-breakpoint + 40px)) {
+//         background-color: lightcoral;
+//     }
+// }
+
+// @include for-narrow-layout {
+//     @media (min-width: calc($mobile-breakpoint + 40px)) {
+//         background-color: lightcyan;
+//     }
+// }
+
+// @include for-small-layout {
+//     @media (min-width: calc($narrow-breakpoint + 40px)) {
+//         background-color:lightgreen;
+//     }
+// }
+// @include for-normal-layout {
+//     @media (min-width: calc($small-breakpoint + 40px)) {
+//         background-color: lightpink;
+//     }
+// }
+
+// @include for-wide-layout {
+//     @media (min-width: calc($normal-breakpoint + 40px)) {
+//         background-color:lightgoldenrodyellow;
+//     }
+// }
+
+// @include for-extra-wide-layout {
+//     @media (min-width: calc($wide-breakpoint + 40px)) {
+//         background-color: antiquewhite;
+//     }
+// }
+// }

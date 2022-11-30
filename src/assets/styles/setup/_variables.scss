@@ -6,7 +6,20 @@ $clr4: #95adbe;
 $clr5: #dff0ea;
 $clr6: #fff;
 
+// LAYOUT
+$layoutPadding: 20px;
+
 // Breakpoints
-$mobile-breakpoint: 460px;
-$narrow-breakpoint: 720px;
-$normal-breakpoint: 960px;
+$mobile-breakpoint: 550px;
+$narrow-breakpoint: 950px;
+$small-breakpoint: 1128px;
+$normal-breakpoint: 1640px;
+$wide-breakpoint: 1880px;
+
+
+$padded-break-mobile: $mobile-breakpoint - 48px;
+$padded-break-narrow: $narrow-breakpoint - 48px;
+$padded-break-small: $small-breakpoint - 80px;
+$padded-break-normal: $normal-breakpoint - 80px;
+$padded-break-wide: $wide-breakpoint - 160px;
+// $padded-break-extra-wide: $break-wide - $layoutPadding * 2;
