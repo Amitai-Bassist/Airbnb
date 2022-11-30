@@ -1,11 +1,33 @@
 .filter-main-nav{
     position: fixed;
+    padding-left: 0;
     top: 72px;
-    width: 100%;
+    @include for-mobile-layout {
+        
+    }
+    @include for-narrow-layout {
+        
+    }
+    @include for-small-layout {
+        
+    }
+    @include for-normal-layout {
+        left: 40px;
+        right: 40px;
+    }
+    @include for-wide-layout {
+        left: 40px;
+        right: 40px;    
+    }
+    @include for-extra-wide-layout {
+        left: 80px;
+        right: 80px;    
+    }
     z-index: 1;
     background-color: white;
+    padding: 5px 0;
     display: flex;
-    // justify-content: space-between;
+    justify-content: space-between;
     .filter-btn{
         justify-self: end;
         width: fit-content;
@@ -13,11 +35,14 @@
         color: black;
         border: solid 1px #dddddd;
         border-radius: 7px;
+        width: minmax(72px,92px);
+        margin-right: 0;
         
     }
 }
 .filter-icon-carousel{
     width: 80%;
+    padding-left: 0;
 }
 .icon-filter-img{
     width: 24px;
