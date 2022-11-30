@@ -1,4 +1,4 @@
-import { stayService } from '../services/stay.service.local'
+import { stayService } from '../../services/stay.service.local'
 
 export function getActionRemoveStay(stayId) {
     return {
@@ -27,7 +27,7 @@ export function getActionAddStayMsg(stayId) {
     }
 }
 
-export const stayStore = {
+export const stayModule = {
     state: {
         stays: []
     },

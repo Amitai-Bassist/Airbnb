@@ -1,11 +1,11 @@
-import { reviewService } from '../services/review.service'
+import { reviewService } from '../../services/review.service'
 
 
 
 
 
 
-export const reviewStore = {
+export const reviewModule = {
     state: {
         reviews: []
     },

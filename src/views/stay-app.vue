@@ -11,7 +11,7 @@ import {
   getActionRemoveStay,
   getActionUpdateStay,
   getActionAddStayMsg,
-} from "../store/stay.store";
+} from "../store/modules/stay.module";
 import stayList from "../cmps/stay-list.vue";
 export default {
   data() {

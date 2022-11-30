@@ -1,7 +1,8 @@
 <template>
   <section>
     <user-msg/>
-    <app-header />
+    <app-upper-header />
+    <app-second-header/>
     <router-view/>
   </section>
 </template>
@@ -10,7 +11,8 @@
 
 
 import { store } from './store/store'
-import appHeader from './cmps/app-header.vue'
+import appUpperHeader from './cmps/app-upper-header.vue'
+import appSecondHeader from './cmps/app-second-header.vue'
 import userMsg from './cmps/user-msg.vue'
 import { userService } from './services/user.service'
 
@@ -23,7 +25,8 @@ export default {
     if (user)  store.commit({type: 'setLoggedinUser', user})
   },
   components: {
-    appHeader,
+    appUpperHeader,
+    appSecondHeader,
     userMsg
   },
 }
