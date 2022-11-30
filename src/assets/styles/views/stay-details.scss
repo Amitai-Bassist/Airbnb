@@ -67,4 +67,62 @@
         display: flex;
         flex-direction: column;
     }
+
+    .stay-ferrites{
+        display: flex;
+        flex-direction: column;
+        padding-top: 50px;
+        .ferrites-header{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            
+            .header-text{
+                display: flex;
+                flex-direction: column;
+            }
+            border-bottom: 1px solid rgba(128, 128, 128, 0.3);
+        }
+        
+        img{
+            width: 60px;
+            height: 60px;
+            border-radius: 50px; 
+        }
+        
+        .ferrites-main{
+            padding-top: 32px;
+            padding-bottom: 32px;
+            display: flex;
+            flex-direction: column;
+            border-bottom: 1px solid rgba(128, 128, 128, 0.3);
+            
+            .line{
+                display: flex;
+                flex-direction: row;
+                
+                .text{
+                    margin-left: 16px;
+                }
+            }
+        }
+        
+        .aircover{
+            padding-top: 32px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid rgba(128, 128, 128, 0.3);
+            color: black;
+            span{
+                font-size: inherit;
+                font-style: inherit;
+                color: red;
+            }
+            
+            .learn-more{
+                text-decoration-line: underline;
+                font-weight: bold;
+                cursor: pointer;
+            }
+        }
+    }
 }
