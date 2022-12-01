@@ -20,7 +20,7 @@ import 'vue3-carousel/dist/carousel.css'
 
   
   export default defineComponent({
-    name: 'Basic',
+    name: 'stay-imgs-preview',
     props: {
         imgs: Array
     },
@@ -29,6 +29,9 @@ import 'vue3-carousel/dist/carousel.css'
             this.$emit('goToDetails')
           }
         },
+    computed: {
+
+    },
     components: {
       Carousel,
       Slide,
@@ -39,6 +42,10 @@ import 'vue3-carousel/dist/carousel.css'
 </script>
   
 <style>
+  .carousel__viewport {
+    border-radius: 20px;
+    /* min-height: 232px; */
+  }
   .carousel__item {
     height: 100%;
     min-width: 244px;
@@ -51,10 +58,6 @@ import 'vue3-carousel/dist/carousel.css'
     align-items: center;
   }
   
-  .carousel__slide {
-    /* padding: 10px; */
-  }
-  
   .slide {
     width: 250px;
   }
@@ -62,33 +65,63 @@ import 'vue3-carousel/dist/carousel.css'
   .carousel__next {
     box-sizing: content-box;
     border: 5px solid white;
+    width: 25px;
+  height: 25px;
   }
   .carousel__item img{
-    height: 232px;
+   min-height: 232px;
     min-width: 244px;
     object-fit: cover;
-  
+    vertical-align: bottom;
+    border-radius: rem(20px);
+    aspect-ratio: 1/1
   }
   .carousel__pagination {
-    z-index: 100;
-    top: 85%;
-    right: 35%;
+    z-index: 1;
+    top:90%;
+    right: 42%;
    
     position: absolute;
   }
   .carousel__pagination-button {
     border-radius: 50%;
   }
+ 
   section.carousel {
     height: 100%;
     min-width: 244px;
     }
-    .carousel__pagination-button::after {
+  .carousel__pagination-button::after {
   display: block;
   content: '';
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  background-color: var(--vc-pgn-background-color);
+  background-color: white;
+  opacity: 50%;
+}
+
+/* TODO not working yer */
+.carousel__pagination-button::after:last-of-type{
+    height: 2px;
+    width: 2px;
+  }
+
+button.carousel__pagination-button {
+  padding: 2.2px;
+}
+.carousel__pagination-button:hover::after,
+.carousel__pagination-button--active::after {
+  background-color: #fffefe;
+  opacity: 100%;
+}
+
+.carousel__next--disabled,
+.carousel__prev--disabled {
+  cursor: not-allowed;
+  opacity: 0.0;
+}
+
+.carousel__item:hover {
 }
 </style>
