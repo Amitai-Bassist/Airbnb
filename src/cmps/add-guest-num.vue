@@ -1,7 +1,12 @@
 <template>
-        <div>
-        <h1>Adults</h1>
-        <p>Ages 13 or above</p>
+        <div class="flex row space-between">
+            <button class="add-guest-button" @click="changeNum(-1)" v-bind:class="{disabled:this.downDisabled}">
+                <span class="_8ovatg"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; fill: none; height: 12px; width: 12px; stroke: currentcolor; stroke-width: 5.33333; overflow: visible;"><path d="m2 16h28"></path></svg></span>
+            </button>
+            <span class="add-guest-span">{{num}}</span>
+            <button class="add-guest-button" @click="changeNum(1)">
+                <span class="_8ovatg"><svg class="svg" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; fill: none; height: 12px; width: 12px; stroke: currentcolor; stroke-width: 5.33333; overflow: visible;"><path d="m2 16h28m-14-14v28"></path></svg></span>
+            </button>
         </div>
 </template>
 
@@ -9,6 +14,25 @@
 <script>
     export default {
         props: {
-        }
+        },
+        data(){
+            return {
+                num: 0,
+                plusDisabled: false,
+                downDisabled: true,
+            }
+        },
+        methods: {
+            changeNum(num){
+                this.num += num
+                if (this.num === -1 || this.num === 0){
+                    this.downDisabled = true
+                    this.num = 0
+                }
+                else if (this.num === 1){
+                    this.downDisabled = false
+                }
+            }
+        },
     }
 </script>

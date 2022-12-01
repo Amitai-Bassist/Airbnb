@@ -71,5 +71,8 @@
   .el-picker-panel__content{
     display: block !important;
   }
+  .el-date-editor{
+    display: none !important;
+  }
   </style>
   
