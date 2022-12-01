@@ -24,6 +24,9 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1;
 }
 
+button, span, section, div {
+    font-family: Airbnb-Cereal-Book;
+}
 
 section, main, footer {
     padding: 0px;
@@ -44,4 +47,5 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
 

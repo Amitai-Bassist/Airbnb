@@ -31,7 +31,6 @@
         },
         methods: {
           goToDetails() {
-            console.log('hi')
             this.$router.push( `/stay/${this.stay._id}`) 
           }
         },
