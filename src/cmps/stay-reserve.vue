@@ -154,7 +154,8 @@
         });
       },
       onReserve(){
-        this.$emit('isReserve')
+        if(this.stay)this.$emit('isReserve')
+        else this.$router.push('/')
       }
     },
     computed: {

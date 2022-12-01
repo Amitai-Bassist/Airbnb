@@ -85,16 +85,6 @@ const users = [
     myStays: [],
   },
   {
-<<<<<<< HEAD
-    _id: 'u102',
-    fullname: 'User 2',
-    imgUrl: '/img/img2.jpg',
-    username: 'user2',
-    password: 'secret',
-    myStays: [],
-  },
-];
-=======
     "_id": "u102",
     "fullname": "User 2",
     "imgUrl": "/img/img2.jpg",
@@ -103,7 +93,6 @@ const users = [
     "myStays": [],
   }
 ]
->>>>>>> 87fc1444d26b890a77d8fb9f7672c8028e81bbf5
 
 // Homepage: TOP categories: Best Rate / Houses / Kitchen  - show all - link to Explore
 // Renders a <StayList> with <StayPreview> with Link to <StayDetails>   url: /stay/123

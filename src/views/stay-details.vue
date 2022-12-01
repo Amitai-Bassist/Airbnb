@@ -5,9 +5,8 @@
       <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 14px; width: 14px; fill: currentcolor;"><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z" fill-rule="evenodd"></path></svg>
        {{ reviewScore }} &#183; <span>{{ stay.reviews.length }} reviews</span> . Superhost . <span>{{ stay.loc.city }}, {{ stay.loc.country }}</span></p>
     <div class="img-container" >
-      <img :src="imgUrl" alt="" v-for="imgUrl in stay.imgUrls" :key="imgUrl">
+      <img :src="imgUrl" alt="" v-for="imgUrl in stay.imgUrls.slice(0,5)" :key="imgUrl">
     </div>
-    <reserve-modal v-if="isReserve"></reserve-modal>  
 
     <div class="details-container">
 
@@ -92,7 +91,9 @@
         <button>Show all 68 amenities</button>
       </div>
 
-      <stay-reserve :stay="stay" @isReserve="toggleReserve"></stay-reserve>
+      <stay-reserve :stay="stay" @isReserve="toggleReserve">
+      </stay-reserve>
+      <reserve-modal v-if="isReserve" :reservation="reservation" :stay="stay"></reserve-modal>
 
       <div class="rare-find">
         <p>
@@ -122,17 +123,28 @@ export default {
       stay: null,
       isEditMode: false,
       isReserve: false,
+      reservation: {
+        checkIn:'', 
+        checkOut:'', 
+        totalPrice: null, 
+        TotalNights: null, 
+        adults:null,
+        kids:null,
+        pets:null,
+        infants:null,
+        reviewScore: this.$store.getters.reviewScore,
+      },
     };
   },
   created() {
     const { id } = this.$route.params;
-    console.log(id);
     stayService.getById(id).then((stay) => {
       this.stay = stay;
     });
     setTimeout(() => {
       this.getReviewScore();
     }, 500);
+    this.totalDays(new Date('11/25/2022'),new Date('12/01/2022'),80)
   },
   methods: {
     updateReview({ target }, idx) {
@@ -153,6 +165,11 @@ export default {
     },
     toggleReserve(){
       this.isReserve = !this.isReserve
+    },
+    totalDays(date1,date2,price=this.stay.price){
+      const difference  = date2.getTime() - date1.getTime()
+      this.reservation.totalPrice = Math.ceil(difference / (1000 * 3600 * 24)) * price
+      this.reservation.TotalNights = Math.ceil(difference / (1000 * 3600 * 24))
     }
   },
   computed: {
