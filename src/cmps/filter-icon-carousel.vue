@@ -1,13 +1,15 @@
 <template>
-    <Carousel :itemsToShow="8" :wrapAround="true" :transition="500">
+    <Carousel :itemsToShow="8" :wrapAround="true" :transition="500" 
+    :itemsToScroll="5" :touchDrag="true">
       <Slide v-for="icon in icons" :key="icon">
-        <div class="flex column icon-in-carousel-filter">
+        <div class="flex column space-between icon-in-carousel-filter">
             <img class="icon-filter-img" :src="icon.url" alt="1">
             {{icon.iconName}}
         </div>
 
       </Slide>
-      
+      <Carousel ref="myCarousel"> ... </Carousel>
+
         <template #addons>
         <Navigation class="navigate-filter-carousel"/>
         </template>
@@ -21,11 +23,13 @@
   
 //   import 'vue3-carousel/carousel.css'
   import 'vue3-carousel/dist/carousel.css'
-  
+  import { ref } from 'vue'
+
   export default defineComponent({
     name: 'Autoplay',
     data(){
         return {
+            myCarousel: ref(null),
             icons: [
                 {url:"https://res.cloudinary.com/airbnb22/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669758835/tropical_fgverw.jpg",
                 iconName:'Tropical'},
@@ -64,6 +68,9 @@
 
         ]
         }
+    },
+    mounted() {
+      // console.log('hi i am here',this.myCarousel.data)
     },
     components: {
       Carousel,
