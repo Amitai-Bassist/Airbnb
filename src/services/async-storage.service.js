@@ -4,6 +4,7 @@ export const storageService = {
   post,
   put,
   remove,
+  getDemoAmenities,
 };
 
 function query(entityType, delay = 500) {
@@ -703,4 +704,33 @@ function getDemoStays() {
       likedByUsers: ['mini-user'], // for user-wishlist : use $in
     },
   ];
+}
+
+function getDemoAmenities(){
+  return [
+    {
+      name: 'TV',
+      url: 'https://res.cloudinary.com/dtaiyvzq5/image/upload/v1669909778/airbnb%20icons/jc9e6zs9n8eucvtvz7lw.svg',
+    },
+    {
+      name: 'Wifi',
+      url: 'https://res.cloudinary.com/dtaiyvzq5/image/upload/v1669910814/airbnb%20icons/bmi7xu2obsa1qzxxglyl.svg',
+    },
+    {
+      name: 'Kitchen',
+      url:'https://res.cloudinary.com/dtaiyvzq5/image/upload/v1669910864/airbnb%20icons/oug8b4op4x5nb7mqavnv.svg',
+    },
+    {
+      name:'Smoking allowed',
+      url:'https://res.cloudinary.com/dtaiyvzq5/image/upload/v1669910916/airbnb%20icons/vkmnmtwjgolvuhoorbhg.svg',
+    },
+    {
+      name:'Pets allowed',
+      url:'https://res.cloudinary.com/dtaiyvzq5/image/upload/v1669910961/airbnb%20icons/sumnjh7chkpaegztys3b.svg',
+    },
+    {
+      name:'Cooking basics',
+      url:'https://res.cloudinary.com/dtaiyvzq5/image/upload/v1669910864/airbnb%20icons/oug8b4op4x5nb7mqavnv.svg',
+    }
+  ]
 }

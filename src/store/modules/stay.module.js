@@ -1,3 +1,4 @@
+import { storageService } from '../../services/async-storage.service'
 import { stayService } from '../../services/stay.service.local'
 
 export function getActionRemoveStay(stayId) {
@@ -30,11 +31,13 @@ export function getActionAddStayMsg(stayId) {
 export const stayModule = {
     state: {
         stays: [],
-        stayReveiwScore: null
+        stayReveiwScore: null,
+        demoAmenities:[]
     },
     getters: {
         stays({stays}) { return stays },
-        reviewScore({stayReveiwScore}) {return stayReveiwScore}
+        reviewScore({stayReveiwScore}) {return stayReveiwScore},
+        demoAmenities({demoAmenities}) {return demoAmenities}
     },
     mutations: {
         setStays(state, { stays }) {
@@ -63,6 +66,9 @@ export const stayModule = {
                 stayReveiwScore += review.rate
             })
             state.stayReveiwScore = (stayReveiwScore/reviewNum).toFixed(1)
+        },
+        getDemoAmenities(state){
+            state.demoAmenities = storageService.getDemoAmenities()
         }
     },
     actions: {
