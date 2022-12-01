@@ -1,5 +1,5 @@
 <template>
-    <section class="calender-container">
+    <section  class="calender-container">
         <stay-calendar></stay-calendar>
     </section>
     
@@ -13,6 +13,12 @@
         },
         components: {
             stayCalendar
-        }
+        },
+        created() {
+            
+        },
+        methods:{
+           
+        },
     }
 </script>

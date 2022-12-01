@@ -6,7 +6,7 @@
         </router-link>
       </nav>
       <main-filter @clickedMain="clickedMain" v-if="isMainFilter" class="main-filter-btns"></main-filter>
-      <big-filter :isWhereSearch="isWhereSearch" :isWhenSearch="isWhenSearch" :issWhoSearch="isWhoSearch" 
+      <big-filter @clickedMain="clickedMain" :isWhereSearch="isWhereSearch" :isWhenSearch="isWhenSearch" :isWhoSearch="isWhoSearch" 
        v-if="isBigFilter" class="big-search-filter flex row"></big-filter>
       <section @click="openUserNav=!openUserNav" class="loggedin-user" v-if="loggedInUser">
         <img src="https://res.cloudinary.com/dht4wwjwe/image/upload/v1669794047/airbnb/dgxtegsrfyrdcywi0vij.png" alt="">

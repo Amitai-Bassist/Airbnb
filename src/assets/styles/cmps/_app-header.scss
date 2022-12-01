@@ -132,6 +132,7 @@ header {
     margin: 0;
     justify-content: start;
     border-radius: 50px;
+    width: 145px;
     >span{
         color: #222222;
         cursor: pointer;
@@ -140,6 +141,17 @@ header {
         background-color: #dddddd00;
         color: black;
         cursor: pointer;
+    }
+    &.isActive{
+        background-color: white;
+        box-shadow: 0 0 0 1px rgb(0 0 0 / 4%), 0 5px 16px rgb(0 0 0 / 15%);
+
+    }
+    &.isActive:hover{
+        background-color: white 
+    }
+    &:first-child{
+        width: 325px;
     }
 }
 
@@ -182,6 +194,18 @@ header {
 .mainland-img{
     width: 122px;
     height: 122px;
+    cursor: pointer;
+    padding: 1px;
+    margin: 1px;
+    border-radius: 10px;
+    
+}
+
+.mainland-img:hover{
+    border: #222222 solid 1px;
+    width: 122px;
+    height: 122px;
+    padding: 0;
 }
 
 .calender-container{

@@ -6,26 +6,51 @@
           type="daterange"
           start-placeholder="Start date"
           end-placeholder="End date"
-          :default-time="defaultTime"
+          ref="calendar"
           :disabled-date="disabledDate"
-          aria-expanded="true"
         />
       </div>
     </div>
 </template>
   
-<script lang="ts" setup>
+<script>
   import { ref } from 'vue'
-  
-  const value = ref('')
-  const defaultTime = ref<[Date, Date]>([
-    new Date(2000, 1, 1, 0, 0, 0),
-    new Date(2000, 2, 1, 23, 59, 59),
-  ])
-  const disabledDate = (time: Date) => {
-  return time.getTime() < Date.now()
-}
+  export default {
+    data(){
+      return{
+        value: ref('')
+        
+    }
+  },
+  mounted() {
+    this.isFocus()  
+  },
+  methods: {
+    isFocus(){
+      const noteRef = this.$refs.calendar;
+      noteRef.focus()
+
+    }  
+  },
+  computed: {
+  //   defaultTime(){
+  //     return ref<[Date, Date]>([
+  //   new Date(2000, 1, 1, 0, 0, 0),
+  //   new Date(2000, 2, 1, 23, 59, 59),
+  // ])
+    // },
+    disabledDate(){
+      const time = new Date()
+      //  return time < Date.now()
+    }
+  },
+ }
+//  :default-time="defaultTime"
+
 </script>
+
+
+
   <style scoped>
   .demo-date-picker {
     display: flex;
