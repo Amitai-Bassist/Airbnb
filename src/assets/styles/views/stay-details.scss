@@ -79,7 +79,7 @@
         ;
 
         .stay-reserve {
-            width: rem(calc($padded-break-small)/3 + 40px);
+            width: rem(calc(calc($padded-break-small)/3 + 40px));
             margin-left: auto;
             
             margin-top: 50px;
@@ -90,7 +90,7 @@
         }
 
         .stay-ferrites{
-            width: rem(calc($padded-break-small)/3 * 2 - 40px);
+            width: rem(calc(calc($padded-break-small)/3 * 2 - 40px));
             display: flex;
             flex-direction: column;
             padding-top: 50px;
@@ -132,7 +132,7 @@
         }
             
             .aircover{
-                width: rem(calc($padded-break-small)/3 * 2 - 40px);
+                width: rem(calc(calc($padded-break-small)/3 * 2 - 40px));
                 padding-top: 32px;
                 padding-bottom: 32px;
                 border-bottom: 1px solid rgba(128, 128, 128, 0.3);
@@ -152,7 +152,7 @@
             }
 
             .place-offers{
-                width: rem(calc($padded-break-small)/3 * 2 - 40px);
+                width: rem(calc(calc($padded-break-small)/3 * 2 - 40px));
                 padding-top: 32px;
                 padding-bottom: 32px;
                 border-bottom: 1px solid rgba(128, 128, 128, 0.3);
@@ -190,7 +190,7 @@
                 border: 1px solid rgba(128, 128, 128, 0.4);
                 border-radius: 12px;
                 padding: 24px;
-                width: rem(calc($padded-break-small)/3 + 40px);
+                width: rem(calc(calc($padded-break-small)/3 + 40px));
                 height: 50%;
                 margin-left: auto;
                 
