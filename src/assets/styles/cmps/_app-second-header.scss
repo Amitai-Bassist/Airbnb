@@ -1,7 +1,7 @@
 .filter-main-nav{
     position: fixed;
     padding-left: 0;
-    top: 72px;
+    top: 81px;
     @include for-mobile-layout {
         
     }
@@ -25,7 +25,7 @@
     }
     z-index: 1;
     background-color: white;
-    padding: 5px 0;
+    
     display: flex;
     justify-content: space-between;
     .filter-btn{
@@ -37,6 +37,7 @@
         border-radius: 7px;
         width: minmax(72px,92px);
         margin-right: 0;
+        cursor: pointer;
         
     }
 }
@@ -45,14 +46,21 @@
     padding-left: 0;
 }
 .icon-filter-img{
+    align-self: center;
     width: 24px;
-    height: 24px;
+    height: 24px !important;
     // color: #717171;
 }
 
 .icon-in-carousel-filter{
     color: #717171;
     cursor: pointer;
+    padding: 0;
+    font-size: 12px;
+    height: 58px;
+}
+.carousel_slide--visible{
+    padding: 0 !important;
 }
 
 .icon-in-carousel-filter:hover{

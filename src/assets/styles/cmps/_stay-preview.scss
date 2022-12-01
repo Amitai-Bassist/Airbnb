@@ -3,35 +3,90 @@
     width: 100%;
     height: 100%;
     p {
-      font-size: 1rem;
-      color: rgb(79, 78, 78);
+      font-size: rem(15px);
+      color: #717171;
       width: 100%;
       text-decoration: none;
     }
     p.stay-name {
-      font-family: Airbnb-Cereal-Bold;
+      font-family: Airbnb-Cereal-Medium;
+      font-size: rem(15px);
+      text-transform: capitalize; 
+      color: #222222;
+      white-space: nowrap;
+  // overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 230px;
+      display: block;
+
     }
     p span.price {
       font-family: Airbnb-Cereal-Bold;
-      color: rgb(79, 78, 78);
+      color: #222222;
     }
     .bottom {
         margin-top: 13px;
         line-height: 12px;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap; 
-        display: inline-block;
-        justify-content: space-between;
+        width: 100%;
+        display: grid;
+        // flex-direction: row;
+        // flex-wrap: wrap; 
+        // display: inline-block;
+        // justify-content: space-between;
         // align-items: center;
+        display: grid;
+        grid-template-columns: 4fr 1fr;
+        // grid-template-columns: 99.6px 18.6px;
+        // grid-template-rows: repeat(3, 1fr) 1.3157fr;
+        grid-template-rows: repeat(3,19px) 25px;
+        grid-column-gap: 3px;
+        grid-row-gap: 2px;
       }
       
+      .grid-item-1 {
+          grid-column: 1/2;
+          grid-row: 1/2;
+      }
+      .grid-item-3 {
+          grid-column: 2/3;
+          grid-row: 1/2;
+          flex-wrap: nowrap;
+          justify-self: end;
+          align-items: baseline;
+      }
+    
+      .grid-item-2 {
+          grid-column: 1/2;
+          grid-row: 2/3;
+      }
+      .grid-item-3 p {
+        font-size: 15px;
+      }
+    
+      .grid-item-4 {
+          grid-column: 1/2;
+          grid-row: 4/5;
+          color: #222222;
+      }
+
+
       .button {
+        margin-block-start: 12px;
         padding: 0;
         min-height: auto;
       }
+     
+     
 }
 
+.el-card {
+  border: none !important ;
+  overflow: hidden;
+}
+
+div.el-card.is-always-shadow {
+  box-shadow: none;
+}
 // @include for-normal-layout {
 //   grid-template-columns: repeat(4, 1fr);
 //   grid-column-gap: 24px;
@@ -41,4 +96,4 @@
 //       width: 244px;
 //       height: 332px;
 //   }
-// }
+// }        
