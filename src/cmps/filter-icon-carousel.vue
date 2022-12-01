@@ -1,5 +1,5 @@
 <template>
-    <Carousel :itemsToShow="8" :wrapAround="true" :transition="500" 
+    <Carousel :itemsToShow="12" :wrapAround="true" :transition="500" 
     :itemsToScroll="5" :touchDrag="true">
       <Slide v-for="icon in icons" :key="icon">
         <div class="flex column space-between icon-in-carousel-filter">

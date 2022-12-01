@@ -229,7 +229,7 @@ header {
     height: 410px;
     padding-top: 16px;
     padding-bottom: 24px;
-    border-radius: 10px;
+    border-radius: 32px;
     z-index: 8;
     background-color: white;
     grid-template-columns: 1fr 10px 1fr;
@@ -263,26 +263,57 @@ header {
     top: 160px;
     width: 848px;
     right: calc(50% - 424px);
-    height: 410px;
+    height: 450px;
     padding-top: 16px;
     padding-bottom: 24px;
-    border-radius: 10px;
+    border-radius: 32px;
     z-index: 8;
     background-color: white;
-    display: block;
 }
 
-.el-date-table-cell{
-    >span{
-        color: #222222;
-    }
+.el-picker-panel ,.el-date-table-cell__text{
+    
+        color: #222222 !important;
+        font-size: 16px !important;
+        font-family: Airbnb-Cereal-Book !important;
 }
+.el-date-table-cell {
+    width: 40px !important;
+    height: 38px !important;
+}
+
 
 .el-picker-panel__content{
     display: block !important ;
   }
 
-  .stay-who-search{
+
+.el-popper ,.is-pure is-light ,.el-picker__popper{
+    --el-box-shadow: none !important;
+    --el-box-shadow-light: none !important;
+    --el-box-shadow-lighter: none !important;
+    --el-box-shadow-dark: none !important;
+    border: none !important;
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+    --el-transition-box-shadow:none;
+    position: fixed !important;
+    top: 170px !important;
+    padding-left: 150px !important;
+    padding-right: 150px !important;
+    // top: 0px !important;
+    // padding-top: 200px !important;
+    background-color: #dddddd00 !important;
+}
+
+.el-picker-panel__content ,.el-date-range-picker__content{
+    border: none !important;
+} 
+
+.block{
+    opacity: 0;
+}
+
+.stay-who-search{
     position: fixed;
     box-shadow: 0 0 0 1px rgb(0 0 0 / 4%), 0 8px 16px rgb(0 0 0 / 15%);
     top: 155px;
@@ -358,3 +389,5 @@ header {
     width: 22px;
     text-align: center;
 }
+
+// .el-picker-panel__body ,.el-picker-panel ,.el-date-range-picker,.el-picker-panel__body-wrapper, .el-popper-container-6902,

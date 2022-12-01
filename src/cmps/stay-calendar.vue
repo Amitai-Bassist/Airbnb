@@ -14,6 +14,7 @@
 </template>
   
 <script>
+  import { eventBus } from '../services/event-bus.service'
   import { ref } from 'vue'
   export default {
     data(){
@@ -22,6 +23,9 @@
         
     }
   },
+  created() {
+    eventBus.on('when-selected', this.isFocus)
+  },
   mounted() {
     this.isFocus()  
   },
@@ -29,7 +33,6 @@
     isFocus(){
       const noteRef = this.$refs.calendar;
       noteRef.focus()
-
     }  
   },
   computed: {
