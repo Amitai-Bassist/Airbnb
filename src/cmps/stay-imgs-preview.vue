@@ -1,13 +1,13 @@
 <template>
-    <Carousel>
-      <Slide v-for="image in imgs" :key="image" @click="goToDetails" @mouseover="toggleHover">
+    <Carousel @mouseleave="notHover" @mouseover="onHover">
+      <Slide v-for="image in imgs" :key="image" @click="goToDetails" >
         <div class="carousel__item"><img :src="image" ></div>
       </Slide>
       
       <template #addons>
 
-        <Pagination />
-        <Navigation class="navigate-filter-carousel"/>
+        <Pagination  />
+        <Navigation class="navigate-imgs-carousel" :class="[isHover|| isNavHover ? 'show' : 'hide']" />
         <button class="add-to-wishlist" @click="toggleWishlist">
   <svg class="heart" :class="[isSaved ? 'red' : 'grey']" 
    viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 24px; width: 24px; stroke:#ffffff; stroke-width: 2; overflow: visible;"><path d="m16 28c7-4.733 14-10 14-17 0-1.792-.683-3.583-2.05-4.95-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05l-2.051 2.051-2.05-2.051c-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05-1.367 1.367-2.051 3.158-2.051 4.95 0 7 7 12.267 14 17z"></path></svg>
@@ -30,7 +30,8 @@
     data() {
       return {
         isSaved: false,
-        isHover: false,
+        isHover: null,
+        isNavHover: null,
       }
     },
     methods: {
@@ -40,9 +41,12 @@
           toggleWishlist() {
         this.isSaved = !this.isSaved;
       },
-          toggleHover() {
-        this.isHover = !this.isHover;
-      }
+          onHover() {
+        this.isHover = true
+      },
+          notHover() {
+        this.isHover = false
+      },
         },
     computed: {
      
@@ -58,7 +62,7 @@
   
 <style>
   .carousel__viewport {
-    border-radius: 10px;
+    border-radius: 15px;
   }
   .carousel__item {
     height: 100%;
@@ -70,6 +74,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 10px;
   }
   
   .slide {
@@ -88,7 +93,8 @@
     object-fit: cover;
     vertical-align: bottom;
     border-radius: rem(20px);
-    aspect-ratio: 1.05172414/1
+    aspect-ratio: 1.05172414/1;
+    border-radius: 10px;
   }
   .carousel__pagination {
     z-index: 1;
@@ -145,7 +151,7 @@ button.carousel__pagination-button {
     background-color: transparent;
     position: absolute;
     z-index: 2;
-    top:1%;
+    top:2%;
     right:1%;
     
   }
@@ -155,4 +161,27 @@ button.carousel__pagination-button {
  .red{
     fill: #ff385c;
   }
+
+  .show {
+    display: block;
+  }
+
+  .hide {
+    display: none;
+  }
+
+  .navigate-imgs-carousel{
+    border-radius: 50%;
+    border: solid 1px #dddddd;
+    z-index: 5;
+    background-color: white;
+    /* &[aria-label="Navigate to previous slide"]{
+        margin-left: 0;
+    } */
+}
+
+
+.navigate-imgs-carousel:hover{
+    color: black;
+}
 </style>
