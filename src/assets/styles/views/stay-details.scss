@@ -12,6 +12,11 @@
         color: black;
     }
 
+    .white{
+        fill: white;
+        stroke: black !important;
+    }
+
     .review{
         display: flex;
         flex-direction: row;

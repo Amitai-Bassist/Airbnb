@@ -1,6 +1,6 @@
 <template>
     <section  class="calender-container">
-        <stay-calendar ref="calendar"></stay-calendar>
+        <!-- <stay-calendar></stay-calendar> -->
     </section>
     
 </template>

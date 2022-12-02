@@ -19,21 +19,32 @@
   export default {
     data(){
       return{
-        value: ref('')
-        
+        value: ref(''),
+        noteRef:null,
     }
   },
   created() {
-    eventBus.on('when-selected', this.isFocus)
   },
   mounted() {
-    this.isFocus()  
+    eventBus.on('when-selected', this.isFocus)
+      // this.isFocus()  
+  },
+  unmounted(){
+    
   },
   methods: {
-    isFocus(){
-      const noteRef = this.$refs.calendar;
-      noteRef.focus()
-    }  
+    async isFocus(){
+      console.log('focus');
+      this.noteRef = await this.$refs.calendar;
+      console.log(this.noteRef);
+      this.noteRef.focus()
+    },
+    updateFocus(){
+      setTimeout(()=> {
+      console.log('focus');
+      this.isFocus
+    },50)
+    } 
   },
   computed: {
   //   defaultTime(){
