@@ -25,6 +25,7 @@
 <script>
     // import { ref } from 'vue'
     import stayImgsPreview from './stay-imgs-preview.vue';
+    import { eventBus } from '../services/event-bus.service';
     export default {
         props: {
             stay: Object
@@ -36,6 +37,7 @@
         },
         methods: {
           goToDetails() {
+            eventBus.emit('go-to-details')
             this.$router.push( `/stay/${this.stay._id}`) 
           }
         },
