@@ -1,11 +1,20 @@
 <template>
     <section class="grid stay-where-search">
         <div>
-            <h1>Recent searches</h1>
-                    </div> 
+            <h2>Mostly searched</h2>
+            <ul>
+            
+                <li><span>Paris</span></li>
+                <li><span>Us</span></li>
+                <li><span>Madrid</span></li>
+                <li><span>Tel-Aviv</span></li>
+            </ul>
+            
+            
+        </div> 
         <hr>  
         <div>
-            <h1>Search by region</h1>
+            <h2>Search by region</h2>
             <section class="chose-mainland">
             <div>
             <img @click="choseMainland('all')" class="mainland-img" src="https://res.cloudinary.com/dht4wwjwe/image/upload/v1669832788/ypxaozgl8ypv41zcslzr.jpg" alt="">

@@ -6,7 +6,7 @@
         </router-link>
       </nav>
       <main-filter @clickedMain="clickedMain" v-if="isMainFilter" class="main-filter-btns"></main-filter>
-      <big-filter @clickedMain="clickedMain" :isWhereSearch="isWhereSearch" :isWhenSearch="isWhenSearch" :isWhoSearch="isWhoSearch" 
+      <big-filter @clickedMain="clickedMain" :isWhereSearch="isWhereSearch" :isWhoSearch="isWhoSearch" :isWhenEnd="isWhenEnd" :isWhenStart="isWhenStart"
        v-if="isBigFilter" class="big-search-filter flex row"></big-filter>
       <section @click="openUserNav=!openUserNav" class="loggedin-user" v-if="loggedInUser">
         <img src="https://res.cloudinary.com/dht4wwjwe/image/upload/v1669794047/airbnb/dgxtegsrfyrdcywi0vij.png" alt="">
@@ -17,11 +17,13 @@
   <div class="full screen-shadow" @click="clickedScreen" v-if="isBigFilter"></div>
   <user-nav-bar v-if="openUserNav" :loggedInUser="loggedInUser"></user-nav-bar>
   <stay-where-search class="" v-if="isWhereSearch"></stay-where-search>
-  <stay-when-search class="" v-if="isWhenSearch"></stay-when-search>
+  <stay-when-search class="" v-if="(isWhenStart || isWhenEnd)"></stay-when-search>
+  <stay-calendar v-if="isBigFilter"></stay-calendar>
   <stay-who-search class="" v-if="isWhoSearch"></stay-who-search>
     
 </template>
 <script>
+import stayCalendar from './stay-calendar.vue';
 import userNavBar from './user-nav-bar.vue';
 import stayWhereSearch from './stay-where-search.vue'
 import stayWhenSearch from './stay-when-search.vue'
@@ -35,29 +37,33 @@ export default {
       isMainFilter: true,
       isBigFilter:false,
       isWhereSearch: false,
-      isWhenSearch: false,
       isWhoSearch: false,
+      isWhenStart: false,
+      isWhenEnd: false,
       
     }
   },
   methods:{
     clickedMain(chose){
-      console.log(chose);
       this.isMainFilter = false
+      this.isBigFilter = false
       this.isBigFilter = true
       this.isWhereSearch = false
-      this.isWhenSearch = false
       this.isWhoSearch = false
+      this.isWhenStart = false
+      this.isWhenEnd = false
       if (chose === 'where') this.isWhereSearch = true
-      if (chose === 'when') this.isWhenSearch = true
+      if (chose === 'when-start') this.isWhenStart = true
+      if (chose === 'when-end') this.isWhenEnd = true
       if (chose === 'who') this.isWhoSearch = true
-      console.log(this.isWhenSearch);
+      
     },
     clickedScreen(){
       this.isMainFilter = true
       this.isBigFilter = false
       this.isWhereSearch = false
-      this.isWhenSearch = false
+      this.isWhenStart = false
+      this.isWhenEnd = false
       this.isWhoSearch = false
     }
   },
@@ -73,6 +79,7 @@ export default {
     bigFilter,
     stayWhenSearch,
     stayWhoSearch,
+    stayCalendar
   }
 }
 </script>
