@@ -2,21 +2,24 @@ header {
     position: fixed;
     top: 0;
     @include for-mobile-layout {
-        
+        left: 24px;
+        right: 24px;
     }
     @include for-narrow-layout {
-        
+        left: 24px;
+        right: 24px;
     }
     @include for-small-layout {
-        
+        left: 40px;
+        right: 40px;
     }
     @include for-normal-layout {
         left: 40px;
         right: 40px;
     }
     @include for-wide-layout {
-        left: 40px;
-        right: 40px;    
+        left: 80px;
+        right: 80px;    
     }
     @include for-extra-wide-layout {
         left: 80px;
@@ -26,7 +29,7 @@ header {
     background-color: $clr6;
     padding: 16px 0;
     display: flex;
-    z-index: 2;
+    z-index: 5;
     justify-content: space-between;
     border-bottom: solid 1px #dddddd;
 
@@ -66,6 +69,9 @@ header {
     nav {
         background-color: $clr6;
         padding: 5px 0;
+        >a:hover{
+            text-decoration: none;
+        }
     }
     nav a:not(:first-child) {
         border-top: 1px solid $clr1;
@@ -75,7 +81,22 @@ header {
     nav .active {
         color: $clr1;
     }
-    
+   
+}
+.router-logo-link{
+    >.airbnb-logo{
+        height: 37px;
+        width: 32px;
+    }
+    >h1{
+        padding-left: 5px;
+        font-size: 24px;
+        font-weight: 1600;
+        align-self: center;
+        margin-bottom: 0;
+        color: #ff385c;
+        font-family: Airbnb-Cereal-Bold;
+    }
 }
 
 .user-nav-bar{
@@ -90,7 +111,7 @@ header {
     border-radius: 10px;
     z-index: 6;
     background-color: white;
-    box-shadow: 0 1px 2px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 5%);
+    box-shadow: 1px 1px 11px 1px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 5%);    
     >a{
         outline-style: none;
         color: #222222;
