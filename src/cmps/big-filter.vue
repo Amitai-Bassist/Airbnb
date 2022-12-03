@@ -1,8 +1,11 @@
 <template>
     <section>
       <button class="big-filter-btn grid column" @click="choseSearch('where')" v-bind:class="{isActive: WhereSearch}">
-        <div>Where</div>
-        <input type="text" placeholder="search destination">
+        <form action="" @submit="onSearchByName()">
+          <div>Where</div>
+          <input type="search" placeholder="search destination" v-model="filterBy.txt" >
+          <button>submit</button>
+        </form>
       </button>|
       <button class="big-filter-btn grid column"  v-bind:class="{isActive: WhenStart}"><div>Check in</div><div>Add dates</div></button>|
       <button class="big-filter-btn grid column"  v-bind:class="{isActive: WhenEnd}"><div>Check out</div><div>Add dates</div></button>|
@@ -24,12 +27,19 @@
             WhenEnd: this.isWhenEnd,
             WhereSearch: this.isWhereSearch, 
             WhoSearch:this.isWhoSearch,
+            filterBy: {txt:''}
           }
         },
         mounted() {
           this.addEventListeners()
         },
         methods: {
+          onSearchByName(){
+            console.log(this.filterBy);
+            this.$emit('clickedScreen')
+            this.$store.dispatch({ type: "loadStays", filterBy: this.filterBy });
+            this.$router.push('/stay/explore')
+          },
           choseSearch(chose){
             this.addEventListeners()
             this.WhereSearch= (chose === 'where') ? true : false

@@ -59,8 +59,8 @@
 }
 .filter-icon-carousel{
     width: 90%;
-    padding-left: 45px;
-    padding-right: 45px;
+    // padding-left: 45px;
+    // padding-right: 45px;
     
 }
 
@@ -68,7 +68,7 @@
 .carousel__slide ,.carousel_slide--clone ,.carousel__slide--visible ,.carousel__slide--prev{
     opacity: 1 !important;
     transform: rotateY(0) scale(0.9) !important;
-    padding-top: 10px !important;
+    // padding-top: 10px !important;
 }
 
 .icon-filter-img{
@@ -82,7 +82,7 @@
     color: #717171;
     cursor: pointer;
     padding: 0;
-    padding-bottom: 3px;
+    // padding-bottom: 3px;
     font-size: 13px;
     height: 58px;
     // min-width: 58px;
@@ -93,8 +93,8 @@
 }
 
 .carousel__viewport{
-    padding-top: 5px !important;
-    padding-bottom: 3px;
+    // padding-top: 5px !important;
+    // padding-bottom: 3px;
 }
 
 .icon-in-carousel-filter:hover{

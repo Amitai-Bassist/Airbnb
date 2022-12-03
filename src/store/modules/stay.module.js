@@ -24,7 +24,8 @@ export function getActionAddStayMsg(stayId) {
     return {
         type: 'addStayMsg',
         stayId,
-        txt: 'Stam txt'
+        txt: 'Stam txt',
+        filterBy: null
     }
 }
 
@@ -69,7 +70,11 @@ export const stayModule = {
         },
         getDemoAmenities(state){
             state.demoAmenities = storageService.getDemoAmenities()
-        }
+        },
+        setFilterBy(state,{filter}){
+            state.filterBy = filter
+            
+        },
     },
     actions: {
         async addStay(context, { stay }) {
@@ -92,9 +97,9 @@ export const stayModule = {
                 throw err
             }
         },
-        async loadStays({commit,state,rootState}) {
+        async loadStays({commit,state,rootState}, {filterBy}) {
             try {
-                const stays = await stayService.query()
+                const stays = await stayService.query(filterBy)
                 console.log(stays);
                 commit({ type: 'setStays', stays })
             } catch (err) {

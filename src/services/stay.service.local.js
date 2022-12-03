@@ -16,15 +16,17 @@ export const stayService = {
 window.cs = stayService
 
 
-async function query(filterBy = { txt: '', price: 0 ,labels: ''}) {
+async function query(filterBy = { txt: ''}) {
     var stays = await storageService.query(STORAGE_KEY)
-    // if (filterBy.txt) {
-    //     const regex = new RegExp(filterBy.txt, 'i')
-    //     stays = stays.filter(stay => regex.test(stay.loc.country) || regex.test(stay.loc.city))
-    // }
+    console.log('service',filterBy);
+    if (filterBy.txt) {
+        const regex = new RegExp(filterBy.txt, 'i')
+        stays = stays.filter(stay => regex.test(stay.name) || regex.test(stay.loc.country))
+    }
     // if (filterBy.price) {
     //     stays = stays.filter(stay => stay.price <= filterBy.price)
     // }
+    console.log(stays);
     return stays
 }
 

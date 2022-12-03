@@ -7,6 +7,7 @@ import reviewApp from './views/review-app.vue'
 import loginSignup from './views/login-signup.vue'
 import userDetails from './views/user-details.vue'
 import stayDetails from './views/stay-details.vue'
+import stayExplore from './views/stay-explore.vue'
 
 const routes = [
   {
@@ -18,6 +19,11 @@ const routes = [
     path: '/stay',
     name: 'stay-app',
     component: stayApp
+  },
+  {
+    path: '/stay/explore',
+    name: 'stay-explore',
+    component: stayExplore
   },
   {
     path: '/stay/:id',
