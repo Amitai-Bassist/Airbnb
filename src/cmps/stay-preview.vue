@@ -13,10 +13,8 @@
                 <p class="grid-item-2">{{ stay.loc.address +" "+ stay.loc.city + "," + " " + stay.loc.country }} </p>
                 <p class="grid-item-5">1 bed</p>
                 <p class="grid-item-4"><span class="price">${{ stay.price?.toLocaleString() }}</span> night</p>
-              
-               
-              <!-- <el-button text class="button">Operating</el-button> -->
-            </div>
+                
+              </div>
           </div>
   
         </el-card>

@@ -2,6 +2,7 @@
     <div class="demo-date-picker">
       <div class="block is-active">
         <el-date-picker
+          @blur="closeDetailsReserve"
           v-model="value"
           type="daterange"
           start-placeholder="Start date"
@@ -20,7 +21,7 @@
     data(){
       return{
         value: ref(''),
-        noteRef:null,
+        calendarRef:null,
     }
   },
   created() {
@@ -35,15 +36,18 @@
   methods: {
     async isFocus(){
       console.log('focus');
-      this.noteRef = await this.$refs.calendar;
-      console.log(this.noteRef);
-      this.noteRef.focus()
+      this.calendarRef = await this.$refs.calendar;
+      console.log(this.calendarRef);
+      this.calendarRef.focus()
     },
     updateFocus(){
       setTimeout(()=> {
       console.log('focus');
       this.isFocus
     },50)
+    },
+    closeDetailsReserve(){
+      eventBus.emit('close-modal')
     } 
   },
   computed: {
