@@ -46,7 +46,7 @@
       dates:[],
       start:null,
       end:null,
-      minDate:new Date(),
+      minDate:new Date() + 1,
       dateStart:null,
       dateEnd:null,
       calendarRef:null
@@ -68,25 +68,31 @@
   },
   methods: {
     onDayClick(day) {
+      console.log(day.date.getTime());
       if(!this.start){
+        let today = new Date()
+        today.setHours(0,0,0,0)
+        if(day.date.getTime() >= today.getTime()){
         this.start = day.date
         this.dateStart = day.id.split("-").reverse().join("/")
-        this.$emit('updateStart',this.dateStart)
+        this.$emit('updateStart',{date:this.start,id:this.dateStart})
         this.dates[0] = {
           start:this.start,
           end:this.start
         }
         this.minDate = new Date(day.date)
+        }
       }else if(!this.end && ((new Date(day.date) - new Date(this.start)) >= 0)){
         this.end = day.date
         this.dateEnd = day.id.split("-").reverse().join("/")
-        this.$emit('updateEnd',this.dateEnd)
+        this.$emit('updateEnd',{date:this.end,id:this.dateEnd})
         this.dates[0] = {
           start: new Date(this.start),
           end: new Date(this.end)
         }
         this.start = null
         this.end = null
+        this.minDate = new Date()
       }
     },
   },

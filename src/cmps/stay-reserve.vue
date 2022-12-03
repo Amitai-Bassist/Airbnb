@@ -10,11 +10,11 @@
       <div class="date-picker" v-if="!isWhenStart">
         <div class="date-input" @click="toggleCalender">
           <label>CHECK IN</label>
-          <input :value="getDateStart">
+          <input :value="getDateStart || 'Add date'">
         </div>
         <div class="date-input">
           <label>CHECK OUT</label>
-          <input :value="getDateEnd">
+          <input :value="getDateEnd || 'Add date'">
         </div>
       </div>      
       <div class="guest-input" v-if="!isWhenStart">
@@ -134,6 +134,34 @@
       </div>
     </div>
 
+    <div class="reserve-total-price" v-if="TotalNights">
+      <div class="reserve-price flex row space-between">
+        <div class="text">
+          ${{stay.price}} X {{TotalNights}} nights 
+        </div>
+        <div class="amount">
+          ${{accommodation}}
+        </div>
+      </div>
+      <div class="reserve-price flex row space-between">
+        <div class="text">
+          Service fee 
+        </div>
+        <div class="amount">
+          ${{ServiceFee}}
+        </div>
+      </div>
+      <div class="total flex row space-between">
+        <div class="text">
+          Total 
+        </div>
+        <div class="amount">
+          ${{totalPrice}}
+        </div>
+      </div>
+      
+    </div>
+
     <!-- <stay-when-search class="" v-if="(isWhenStart || isWhenEnd)"></stay-when-search> -->
 
   </section>
@@ -153,7 +181,12 @@
         isWhenStart:false,
         isWhenEnd:false,
         dateEnd:'-',
-        dateStart:'-'
+        dateStart:'-',
+        TotalNights:null,
+        totalPrice:null,
+        accommodation: null,
+        ServiceFee:null,
+        
       }
     },
     created() {
@@ -182,20 +215,28 @@
       },
       updateEnd(update){
         this.dateEnd = update
+        this.daysPriceCalc(this.dateStart.date,this.dateEnd.date)
       },
       onClickAway() {
         this.isWhenStart = false
-    }
+      },
+      daysPriceCalc(date1,date2,price=this.stay.price){
+      const difference  = date2.getTime() - date1.getTime()
+      this.TotalNights = Math.ceil(difference / (1000 * 3600 * 24))
+      this.accommodation = (this.TotalNights * price).toFixed(2)
+      this.ServiceFee = (Math.ceil(difference / (1000 * 3600 * 24)) * 5.35).toFixed(2)
+      this.totalPrice = parseFloat(this.accommodation) + parseFloat(this.ServiceFee)
+    },
     },
     computed: {
       reviewScore() {
         return this.$store.getters.reviewScore;
       },
       getDateStart(){
-        return this.dateStart
+        return this.dateStart.id
       },
       getDateEnd(){
-        return this.dateEnd
+        return this.dateEnd.id
       }
     },
     components: {
