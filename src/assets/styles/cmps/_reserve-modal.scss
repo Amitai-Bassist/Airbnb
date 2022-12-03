@@ -9,8 +9,9 @@
     border: 1px solid black;
     border-radius: 5px;
     text-align: center;
-    grid-area: a1;
+    grid-area: a1/a2/a3;
     grid-column: 2;
+    // right: em(300px);
     
     > * {
         font-family: Airbnb-Cereal-Bold;
