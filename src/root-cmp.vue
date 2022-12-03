@@ -3,9 +3,9 @@
     <user-msg/>
     <app-upper-header />
     <app-second-header/>
-    <app-footer/>
     <router-view/>
   </section>
+  <app-footer/>
 </template>
 
 <script>

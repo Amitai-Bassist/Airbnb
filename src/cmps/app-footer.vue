@@ -1,9 +1,24 @@
 <template>
-    <footer class="stay-footer">
-<div>fff</div>
+    <footer class="full main-container">
+        <div class="flex stay-footer main-container">
+        <div class="footer-details flex row nowrap">
+            <span class="footer-rigths">
+                &copy; 2022 Airb&b, Inc.
+            </span>
+            <span class="footer-dot">.</span>
+            <span>
+                <ol class="terms flex row nowrap">
+                    <li>Privacy</li>
+                    <span class="footer-dot">.</span>
+                    <li>Terms</li>
+                    <span class="footer-dot">.</span>
+                    <li>Sitemap</li>
+                </ol>
+            </span>
+        </div>
+    </div>
     </footer>
 </template>
-
 
 <script>
 export default {

@@ -1,9 +1,38 @@
+footer {
+    width: 100%;
+}
 .stay-footer {
-    background-color: green;
-    height: 30px;
-    // height: 8vh;
+    background-color: #ffffff;
+    height: rem(48px);
+    border-top: rem(1px) solid #dddddd;
     width:100%;
     position:fixed;
+    z-index: 1;
     bottom: 0;
-    
+    color: #222222;
+
+    font-size: rem(14px);
+    line-height: rem(18px);
+
+     span.footer-dot {
+        display: inline-block;
+        text-align: center;
+        width: 19px;
+        font-size: rem(14px);
+        line-height: 80%;
+    }
+     span ol.terms {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        justify-content: space-around;
+     }
+
+     span ol.terms li {
+        // margin-inline-start: 40px;
+     }
+}
+
+.footer-details {
+    align-items: center;
 }
