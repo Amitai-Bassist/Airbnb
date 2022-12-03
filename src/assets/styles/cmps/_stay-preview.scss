@@ -13,9 +13,8 @@
       text-transform: capitalize; 
       color: #222222;
       white-space: nowrap;
-  // overflow: hidden;
       text-overflow: ellipsis;
-      max-width: 190px;
+      max-width: rem(190px);
       display: block;
       overflow: hidden;
       height: fit-content;
@@ -25,23 +24,18 @@
       color: #222222;
     }
     .bottom {
-        margin-top: 13px;
-        line-height: 12px;
+        margin-top: rem(12px);
+        line-height: rem(12px);
+        padding: 0;
+        min-height: auto;
         width: 100%;
         display: grid;
-        // flex-direction: row;
-        // flex-wrap: wrap; 
-        // display: inline-block;
-        // justify-content: space-between;
-        // align-items: center;
         grid-template-columns: 4fr 1fr;
-        // grid-template-columns: 99.6px 18.6px;
-        // grid-template-rows: repeat(3, 1fr) 1.3157fr;
         grid-template-rows: repeat(3,19px) 25px;
-        grid-column-gap: 3px;
-        grid-row-gap: 2px;
+        grid-column-gap: rem(3px);
+        grid-row-gap: rem(2px);
       }
-      
+  
       .grid-item-1 {
           grid-column: 1/2;
           grid-row: 1/2;
@@ -59,6 +53,18 @@
           grid-row: 2/3;
           color: #717171;
       }
+
+      p.grid-item-2  {
+        @media (max-width: 300px) {
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          max-width: rem(190px);
+          display: block;
+          overflow: hidden;
+          height: fit-content;
+        }
+      }
+
       .grid-item-3 p {
         font-size: 15px;
       }
@@ -74,17 +80,18 @@
           grid-row: 3/4;
           color: #717171;
       }
-
-
-      .button {
-        margin-block-start: 12px;
-        padding: 0;
-        min-height: auto;
-      }
-     
-     
+   
+  //   @include for-small-layout {
+  //     .bottom {
+  //       margin-top: rem(11px);
+  //   }
+  // }
+  //   @include for-normal-layout {
+  //     .bottom {
+  //       margin-top: rem(13px);
+  //     } 
+  // }
 }
-
 .el-card {
   border: none !important ;
   overflow: hidden;
