@@ -20,7 +20,7 @@
         <p class="under-line">Save</p>
       </div>
     </div>
-     <div class="img-container" >
+     <div class="img-container" ref="header">
       <img :src="imgUrl" alt="" v-for="imgUrl in stay.imgUrls.slice(0,5)" :key="imgUrl">
     </div>
 
@@ -97,10 +97,6 @@
         <h2>What this place offers</h2>
 
         <div class="offer" v-for="amenitie in stay.amenities" :key="amenitie"> 
-          <!-- <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" 
-          aria-hidden="true" role="presentation" focusable="false" 
-          style="display: block; height: 24px; width: 24px; fill: currentcolor;">
-          <path d="m15.9999 20.33323c2.0250459 0 3.66667 1.6416241 3.66667 3.66667s-1.6416241 3.66667-3.66667 3.66667-3.66667-1.6416241-3.66667-3.66667 1.6416241-3.66667 3.66667-3.66667zm0 2c-.9204764 0-1.66667.7461936-1.66667 1.66667s.7461936 1.66667 1.66667 1.66667 1.66667-.7461936 1.66667-1.66667-.7461936-1.66667-1.66667-1.66667zm.0001-7.33323c3.5168171 0 6.5625093 2.0171251 8.0432368 4.9575354l-1.5143264 1.5127043c-1.0142061-2.615688-3.5549814-4.4702397-6.5289104-4.4702397s-5.5147043 1.8545517-6.52891042 4.4702397l-1.51382132-1.5137072c1.48091492-2.939866 4.52631444-4.9565325 8.04273174-4.9565325zm.0001-5.3332c4.9804693 0 9.3676401 2.540213 11.9365919 6.3957185l-1.4470949 1.4473863c-2.1746764-3.5072732-6.0593053-5.8431048-10.489497-5.8431048s-8.31482064 2.3358316-10.48949703 5.8431048l-1.44709488-1.4473863c2.56895177-3.8555055 6.95612261-6.3957185 11.93659191-6.3957185zm-.0002-5.3336c6.4510616 0 12.1766693 3.10603731 15.7629187 7.9042075l-1.4304978 1.4309874c-3.2086497-4.44342277-8.4328305-7.3351949-14.3324209-7.3351949-5.8991465 0-11.12298511 2.89133703-14.33169668 7.334192l-1.43047422-1.4309849c3.58629751-4.79760153 9.31155768-7.9032071 15.7621709-7.9032071z"></path></svg> -->
           <img :src="demoAmenities[findAmenitie(amenitie)].url" alt="" v-if="(demoAmenities.length > 0)" class="offer-img">
           <div class="text">{{amenitie}}</div>
         </div>
@@ -108,9 +104,18 @@
         <button>Show all 68 amenities</button>
       </div>
 
-      <stay-reserve :stay="stay" @isReserve="toggleReserve">
+      <stay-reserve 
+        :stay="stay" 
+        @isReserve="toggleReserve"
+        ref="nav" v-bind:style="{ position: stickyNav ? 'fixed' : 'static' }"
+        :class="stickyNav? 'is-fixed': ''">
       </stay-reserve>
-      <reserve-modal v-if="isReserve" :reservation="reservation" :stay="stay"></reserve-modal>
+      <reserve-modal 
+        v-if="isReserve" 
+        :reservation="reservation" 
+        :stay="stay"
+        >
+      </reserve-modal>
 
       <div class="rare-find">
         <p>
@@ -129,16 +134,15 @@
 </template>
 
 <script>
-import { stayService } from "../services/stay.service.local.js";
-import stayReserve from "../cmps/stay-reserve.vue";
-import reserveModal from "../cmps/reserve-modal.vue";
+  import { eventBus } from '../services/event-bus.service'
+  import { stayService } from "../services/stay.service.local.js";
+  import stayReserve from "../cmps/stay-reserve.vue";
+  import reserveModal from "../cmps/reserve-modal.vue";
 
 export default {
   name: "stay-detail",
   data() {
     return {
-      // middleDot: &#183;,
-      // space: &#160;,
       stay: null,
       isSaved: false,
       isEditMode: false,
@@ -154,6 +158,8 @@ export default {
         infants:null,
         reviewScore: this.$store.getters.reviewScore,
       },
+      headerObserver: null,
+      stickyNav: false,
     };
   },
   created() {
@@ -166,6 +172,14 @@ export default {
     }, 500);
     this.totalDays(new Date('11/25/2022'),new Date('12/01/2022'),80)
     this.getDemoAmenities()
+  },
+  mounted() {
+    setTimeout(() => {
+      this.headerObserver = new IntersectionObserver(this.onHeaderObserved, {
+        rootMargin: "-91px 0px 0px",
+      });
+      this.headerObserver.observe(this.$refs.header);
+    }, 500);
   },
   methods: {
     updateReview({ target }, idx) {
@@ -196,13 +210,17 @@ export default {
       this.$store.commit({type:"getDemoAmenities"})
     },
     findAmenitie(amenitie){
-      // console.log('amenitie',amenitie);
-      // console.log('amenities',this.demoAmenities);
       const idx = this.demoAmenities.findIndex(Amenitie=> Amenitie.name === amenitie)
       return idx
     },
     toggleWishlist() {
         this.isSaved = !this.isSaved;
+    },
+    onHeaderObserved(entries) {
+      console.log(entries);
+      entries.forEach((entry) => {
+        this.stickyNav = entry.isIntersecting ? false : true;
+      });
     },
 
   },
