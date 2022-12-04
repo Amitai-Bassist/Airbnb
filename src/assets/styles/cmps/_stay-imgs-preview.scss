@@ -1,6 +1,11 @@
 .carousel__viewport {
     border-radius: rem(15px);
 }
+
+.slide {
+    width: rem(250px);
+}
+
 .carousel__item {
     height: 100%;
     background-color: var(--vc-clr-primary);
@@ -30,11 +35,18 @@
     @include for-extra-wide-layout {
         min-width: rem(267px); 
     }
+
+   
 }
-  
-.slide {
-    width: rem(250px);
+button.add-to-wishlist {
+    background-color: transparent;
+    position: absolute;
+    z-index: 2;
+    top:2%;
+    right:1%; 
 }
+ 
+
 .carousel__prev,
 .carousel__next {
     box-sizing: content-box;
@@ -46,6 +58,8 @@
 .carousel__item img{
     object-fit: cover;
     vertical-align: bottom;
+    // width: 100%;
+    // height: 100%;
     // border-radius: rem(20px);
     aspect-ratio: 1.05172414/1;
     border-radius: rem(10px);
@@ -74,8 +88,6 @@
         min-width: rem(267px); 
         min-height: rem(253.65px);
     }
-  
-  
 }
 
 .carousel__pagination {
@@ -110,6 +122,7 @@ section.carousel {
         min-width: rem(267px); 
     }
 }
+
 .carousel__pagination-button::after {
     display: block;
     content: '';
@@ -143,13 +156,6 @@ button.carousel__pagination-button {
   width: 4px;
   } */
 
-button.add-to-wishlist {
-    background-color: transparent;
-    position: absolute;
-    z-index: 2;
-    top:2%;
-    right:1%; 
-}
 
 
   .navigate-imgs-carousel{
