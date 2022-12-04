@@ -22,21 +22,21 @@
     }
     @include for-normal-layout {
         grid-template-columns: 
-            minmax(0px, 1fr)
-            minmax(auto, $padded-break-narrow)
-            minmax(0px, 1fr);
+            minmax(100px, 1fr)
+            minmax(auto, $padded-break-normal)
+            minmax(100px, 1fr);
     }
     @include for-wide-layout {
         grid-template-columns: 
             minmax(em(150px), 1fr)
-            minmax(auto, $padded-break-wide)
+            minmax(auto, $padded-break-normal)
             minmax(em(150px), 1fr)
     }
     @include for-extra-wide-layout {
         grid-template-columns: 
-            minmax(em(150px), 1fr)
-            minmax($padded-break-wide, auto)
-            minmax(em(150px), 1fr)
+            minmax(270px, 1fr)
+            minmax($padded-break-narrow, auto)
+            minmax(270px, 1fr)
     }
 
     >* {
