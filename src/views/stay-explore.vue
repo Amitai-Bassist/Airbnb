@@ -1,6 +1,7 @@
 <template>
-    <div>
-        <stay-list :stays="stays"></stay-list>
+    <div class="stay-explore">
+        <p>Found {{stays.length}} homes for you!</p>
+        <stay-list class="stay-list-explore" :stays="stays"></stay-list>
     </div>
 </template>
   
