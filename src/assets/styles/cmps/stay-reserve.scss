@@ -1,6 +1,6 @@
 .stay-reserve {
     top: 91px;
-    right: 0;
+    width: initial;
     font-family: sans-serif;
     display: flex;
     align-items: center;
@@ -12,14 +12,14 @@
     background-color: white;
 
   &.is-fixed{
-    transform: translateX(em(-169px))
+    position: sticky !important;
   }
   
   .order-container {
     border: 1px solid #00000030;
     border-radius: 13px;
     padding: 20px;
-    width: 300px;
+    width: 100%;
     box-shadow: 0 0 5px 5px #00000015;
     padding-bottom: 0px;
   }

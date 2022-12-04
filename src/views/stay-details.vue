@@ -1,5 +1,5 @@
 <template>
-  <section v-if="stay" class="stay-details">
+  <section v-if="stay" class="stay-details main-container">
     <h1>{{ stay.name }} </h1>
     <div class="review">
       <div class="review-text">
