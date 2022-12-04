@@ -3,7 +3,7 @@
         <div class="flex stay-footer main-container">
         <div class="footer-details flex row nowrap">
             <span class="footer-rigths">
-                &copy; 2022 staybnb, Inc.
+                &copy; 2022 dreambnb, Inc.
             </span>
             <span class="footer-dot">.</span>
             <span>

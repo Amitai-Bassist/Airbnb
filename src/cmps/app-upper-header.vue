@@ -3,7 +3,7 @@
       <nav>
         <router-link to="/stay" class="flex router-logo-link" @click="returnToMinStay()">
           <img class="airbnb-logo" src="https://res.cloudinary.com/dht4wwjwe/image/upload/v1669976706/bdcvkjwqkucgzr2bka5x.svg" alt="logo">
-          <h1>staybnb</h1> 
+          <h1>dreambnb</h1> 
         </router-link>
       </nav>
       <main-filter @clickedMain="clickedMain" v-if="isMainFilter" class="main-filter-btns"></main-filter>

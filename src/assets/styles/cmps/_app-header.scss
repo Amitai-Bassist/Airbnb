@@ -605,8 +605,9 @@ header {
     >.vc-container{
         position: fixed;
         top: 190px;
-        right: calc(50% - 450px);
-        width: 600px;
+        // right: calc(40% - 650px);
+        width: 700px;
+        height: 400px;
         border: none;
         .vc-day >*{
           font-family: Airbnb-Cereal-Bold !important;
@@ -635,3 +636,27 @@ header {
     }
 }
 
+.mosley-search-container{
+    margin-top: 20px;
+    >*{
+        margin-bottom: 20px;
+        >:first-child{
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-content: center;
+            background-color: #dddddd;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            margin-right: 16px;
+            // margin-bottom: 20px;
+        }
+        >span{
+            align-self: center;
+        }
+    }
+    >*:hover{
+        background-color: #ff385c;
+    }
+}
