@@ -27,8 +27,13 @@
   .order-form-header {
     display: flex;
     align-items: center;
+    flex-direction: column;
     justify-content: space-between;
     width: 100%;
+
+    @include for-normal-layout {
+      flex-direction: row;
+    }
   
     p {
       margin-top: 0;

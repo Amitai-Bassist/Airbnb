@@ -1,7 +1,7 @@
 <template>
   <section v-if="stay" class="stay-details main-container">
     <h1>{{ stay.name }} </h1>
-    <div class="review">
+    <div class="stay-review">
       <div class="review-text">
         <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 14px; width: 14px; fill: currentcolor;"><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z" fill-rule="evenodd"></path></svg>
         {{ reviewScore }} &#183; &#160; <span class="review-num">{{ stay.reviews.length }} reviews</span> . Superhost . <span>{{ stay.loc.city }}, {{ stay.loc.country }}</span>
@@ -21,7 +21,21 @@
       </div>
     </div>
      <div class="img-container" ref="header">
-      <img :src="imgUrl" alt="" v-for="imgUrl in stay.imgUrls.slice(0,5)" :key="imgUrl">
+      <div class="img-gallery" v-for="imgUrl in stay.imgUrls.slice(0,5)" :key="imgUrl">
+        <img :src="imgUrl" alt="">
+      </div>
+      <div class="all-img" v-if="isShowAllImg">
+        <div class="text flex row space-between">
+          <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" 
+          role="presentation" focusable="false" style="display: block; height: 16px; width: 16px; 
+          fill: currentcolor;">
+          <path d="m3 11.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-10-5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-10-5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z" fill-rule="evenodd"></path></svg>
+          <p>Show all photos</p>
+        </div>
+        <div class="all-img-container" v-if="isShowAllImg" v-for="imgUrl in stay.imgUrls" :key="imgUrl">
+          <img :src="imgUrl" alt="">
+        </div>
+      </div>
     </div>
 
     <div class="details-container">
@@ -107,7 +121,7 @@
       <stay-reserve 
         :stay="stay" 
         @isReserve="toggleReserve"
-        ref="nav" v-bind:style="{ position: stickyNav ? 'fixed' : 'static' }"
+        ref="nav" v-bind:style="{ position: stickyNav ? 'sticky' : 'static' }"
         :class="stickyNav? 'is-fixed': ''">
       </stay-reserve>
       <reserve-modal 
@@ -160,6 +174,7 @@ export default {
       },
       headerObserver: null,
       stickyNav: false,
+      isShowAllImg:false,
     };
   },
   created() {
