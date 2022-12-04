@@ -1,7 +1,43 @@
 .stay-details {
     margin-top: 110px;
     display: grid;
-    grid-template-columns: 150px 1fr 150px;
+
+    @include for-mobile-layout {
+        grid-template-columns: 
+            minmax(24px, 1fr)
+            minmax(auto, $padded-break-mobile)
+            minmax(24px, 1fr);
+    }
+    @include for-narrow-layout {
+        grid-template-columns:
+            minmax(20px,1fr)
+            minmax(auto, $padded-break-small)
+            minmax(20px,1fr)
+    }
+    @include for-small-layout {
+        grid-template-columns:
+            0px 
+            minmax(auto, $padded-break-small)
+            0px
+    }
+    @include for-normal-layout {
+        grid-template-columns: 
+            minmax(0px, 1fr)
+            minmax(auto, $padded-break-narrow)
+            minmax(0px, 1fr);
+    }
+    @include for-wide-layout {
+        grid-template-columns: 
+            minmax(em(150px), 1fr)
+            minmax(auto, $padded-break-wide)
+            minmax(em(150px), 1fr)
+    }
+    @include for-extra-wide-layout {
+        grid-template-columns: 
+            minmax(em(150px), 1fr)
+            minmax($padded-break-wide, auto)
+            minmax(em(150px), 1fr)
+    }
 
     >* {
         grid-column: 2;
@@ -127,6 +163,7 @@
 
     .details-container{
         display: grid;
+        position: relative;
         grid-gap: 20px;
         width: 100%;
         grid-template-areas:
@@ -134,9 +171,10 @@
             "a2 a2 a4"
             "a3 a3 a5"
         ;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
 
         .stay-reserve {
-            width: rem(calc(calc($padded-break-small)/3 + 40px));
+            width: 100%;
             margin-left: auto;
             
             margin-top: 50px;
@@ -151,7 +189,6 @@
                 color: rgb(113, 113, 113);
             }
 
-            width: rem(calc(calc($padded-break-small)/3 * 2 - 40px));
             display: flex;
             flex-direction: column;
             padding-top: 50px;
@@ -193,7 +230,7 @@
         }
             
             .aircover{
-                width: rem(calc(calc($padded-break-small)/3 * 2 - 40px));
+                width: initial;
                 padding-top: 32px;
                 padding-bottom: 32px;
                 border-bottom: 1px solid rgba(128, 128, 128, 0.3);
@@ -213,7 +250,7 @@
             }
 
             .place-offers{
-                width: rem(calc(calc($padded-break-small)/3 * 2 - 40px));
+                width: 100%;
                 padding-top: 32px;
                 padding-bottom: 32px;
                 border-bottom: 1px solid rgba(128, 128, 128, 0.3);
