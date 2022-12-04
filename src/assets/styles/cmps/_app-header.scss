@@ -25,6 +25,32 @@ header {
         left: 80px;
         right: 80px;    
     }
+    &.details{
+        @include for-mobile-layout {
+            left: 174px;
+            right: 174px;
+        }
+        @include for-narrow-layout {
+            left: 174px;
+            right: 174px;
+        }
+        @include for-small-layout {
+            left: 190px;
+            right: 190px;
+        }
+        @include for-normal-layout {
+            left: 190px;
+            right: 190px;
+        }
+        @include for-wide-layout {
+            left: 230px;
+            right: 230px;    
+        }
+        @include for-extra-wide-layout {
+            left: 230px;
+            right: 230px;    
+        } 
+    }
     // max-width: calc($wide-breakpoint);
     background-color: $clr6;
     padding: 16px 0;
@@ -32,6 +58,10 @@ header {
     z-index: 5;
     justify-content: space-between;
     border-bottom: solid 1px #dddddd;
+    &.big-filter{
+        padding-top: 16px;
+        padding-bottom: 4px;
+    }
 
     .loggedin-user {
         width: 77px;
@@ -124,6 +154,23 @@ header {
         background-color: #f1efef;
     }
 }
+.details-filter-btns{
+    width: 300px;
+    height: 48px;
+    border: solid 1px #dddddd;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 5%);
+    >:first-child{
+        padding-left: 26px;
+        padding-right: 17px;
+        border-radius: 50px;
+        font-family: Airbnb-Cereal-Bold;
+    }
+    >:nth-child(2){
+        align-self: center;
+    }
+}
 
 .main-filter-btns{
     width: 352px;
@@ -169,8 +216,10 @@ header {
     width: 32px;
     height: 32px;
     justify-self: center;
+    font-size: 16px;
     cursor: pointer;
     >.s1qcpybl{
+        justify-self: center;
         width: 12px;
         height: 12px; 
     }
@@ -206,6 +255,9 @@ header {
         display: grid;
         grid-template-columns: 1fr 1fr;
     }
+    >span{
+        align-self: center;
+    }
 }
 
 .big-filter-btn{
@@ -219,6 +271,7 @@ header {
     border-radius: 50px;
     width: 129px;
     z-index: 4;
+    // position: absolute;
     >span{
         color: #222222;
         cursor: pointer;
@@ -233,30 +286,89 @@ header {
     &.isActive{
         background-color: white;
         box-shadow: 0 0 0 1px rgb(0 0 0 / 4%), 0 5px 16px rgb(0 0 0 / 15%);
-        >input{
-            background-color: white
+        >form{
+            >input{
+                background-color: white;
+            }
         }
     }
+    >:first-child{
+        font-family: Airbnb-Cereal-Bold;
+    }
     &.isActive:hover{
-        >input{
-            background-color: white
+        >form{
+            >input{
+                background-color: white
+            }
         }
         background-color: white 
     }
     &:first-child{
         width: 325px;
     }
-    >input{
-        background-color: #ebebeb;
+    >form{
+        >*{
+            margin: 0;
+        }
+    }
+    &.date{
+        padding-left: 20px;
+        display: grid;
+        grid-template-columns: 69px 1fr;
+        grid-template-rows: 25px 1fr;
+        grid-template-areas: 
+        'div1 btn'
+        'div2 btn';
+        >:first-child{
+            grid-area: 'div1';
+            align-self: end;
+        }
+        >:nth-child(2){
+            opacity: 0;
+            grid-area: 'btn';
+            margin-top: 11px;
+            border-radius: 50%;
+            background-color: #ebebeb;
+            color: #222222;
+            &.reset-active{
+                opacity: 1;
+                cursor: pointer;
+            }
+        }
+        >:nth-child(3){
+            grid-area: 'div2';
+        }
     }
 }
 
 .big-filter-btn:hover{
     background-color: #dddddd;
-    >input{
-        background-color: #dddddd;
+    >form{
+        >input{
+            background-color: #dddddd;
+        }
     }
 }
+
+.input-search-big-filter{
+    background-color: #ebebeb;
+    border: none !important;
+    margin: 0;
+}
+
+.input-search-big-filter:hover{
+    
+}
+
+.input-search-big-filter:focus-visible{
+    border: none !important;
+}
+.input-search-big-filter:focus{ 
+    outline: white;
+}
+
+
+
 
 .screen-shadow{
     position: fixed;
@@ -273,7 +385,7 @@ header {
     display: grid;
     top: 155px;
     width: 848px;
-    right: calc(50% - 437px);
+    right: calc(50% - 450px);
     height: 450px;
     padding-top: 16px;
     padding-bottom: 24px;
@@ -330,7 +442,7 @@ header {
     position: fixed;
     top: 160px;
     width: 848px;
-    right: calc(50% - 437px);
+    right: calc(50% - 450px);
     height: 450px;
     padding-top: 16px;
     padding-bottom: 24px;
@@ -479,4 +591,22 @@ header {
     text-align: center;
 }
 
-// .el-picker-panel__body ,.el-picker-panel ,.el-date-range-picker,.el-picker-panel__body-wrapper, .el-popper-container-6902,
+.calender-container-search{
+    position: fixed;
+    top: 160px;
+    width: 848px;
+    right: calc(50% - 450px);
+    height: 450px;
+    padding-top: 16px;
+    padding-bottom: 24px;
+    border-radius: 32px;
+    z-index: 8;
+    background-color: white;
+
+}
+
+.calender-for-search{
+    position: fixed;
+    top: 10px;
+    left: calc(50% - 250px);
+}

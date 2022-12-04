@@ -1,17 +1,18 @@
 <template>
     <Carousel :itemsToShow="12" :wrapAround="true" :transition="500" 
-    :itemsToScroll="5" :touchDrag="true">
-      <Slide v-for="icon in icons" :key="icon">
+    :itemsToScroll="5" :touchDrag="true" >
+      <Slide class="slide-in-header" v-for="icon in icons" :key="icon"  >
         <div class="flex column space-between icon-in-carousel-filter">
-            <img class="icon-filter-img" :src="icon.url" alt="1">
+            <img class="header-icon-filter-img" :src="icon.url" alt="1">
             {{icon.iconName}}
         </div>
 
       </Slide>
-      <Carousel ref="myCarousel"> ... </Carousel>
+      <Carousel  ref="myCarousel"> ... </Carousel>
 
         <template #addons>
-        <Navigation class="navigate-filter-carousel"/>
+        <Navigation class="header-navigate-filter-carousel"/>
+        
         </template>
       ...
     </Carousel>
@@ -75,7 +76,7 @@
     components: {
       Carousel,
       Slide,
-      Pagination,
+      
       Navigation
     },
   })
@@ -98,19 +99,40 @@
     transition: 0.5s;
   }
   
+  
   .carousel__slide {
-    opacity: 0.9;
-    transform: rotateY(-20deg) scale(0.9);
+    opacity: 1;
+    transform: rotateY(0) scale(0.9);
+    /* transform: rotateY(-20deg) scale(0.9); */
+    padding-top: 14px;
+    height: 100%;
+    width: 120px !important;
+  }
+  .carousel_slide--visible{
+    padding: 0 ;
+    width: 120px;
+  }
+
+  .carousel__slide:hover {
+    
+    /* color: black;
+    border-bottom: 2px solid #717171;
+    /* height: 58px; */
+    /* padding-bottom: 10px;  */
+    
   }
   
   .carousel__slide--active ~ .carousel__slide {
     transform: rotateY(20deg) scale(0.9);
+    transform: rotateY(0) scale(0.9);
   }
   
   .carousel__slide--prev {
     opacity: 1;
-    transform: rotateY(-10deg) scale(0.95);
+    transform: rotateY(0) scale(0.9);
+    /* transform: rotateY(-10deg) scale(0.95); */
   }
+  
   
   .carousel__slide--next {
     opacity: 1;
