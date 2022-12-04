@@ -1,7 +1,7 @@
 <template>
-  <header :class="{details:isDetailsHeader,'big-filter':isBigFilter}">
+  <header  :class="{'details':isDetailsHeader,'big-filter':isBigFilter}"> 
       <nav>
-        <router-link to="/stay" class="flex router-logo-link" @click="returnToMinStay()">
+        <router-link to="/stay" class="flex router-logo-link" @click="returnToMainStay()">
           <img class="airbnb-logo" src="https://res.cloudinary.com/dht4wwjwe/image/upload/v1669976706/bdcvkjwqkucgzr2bka5x.svg" alt="logo">
           <h1>dreambnb</h1> 
         </router-link>
@@ -14,7 +14,6 @@
         <img src="https://res.cloudinary.com/dht4wwjwe/image/upload/v1669794047/airbnb/dgxtegsrfyrdcywi0vij.png" alt="">
         <img :src="loggedInUser.imgUrl" />
       </section>
-      
   </header>
   <div class="full screen-shadow" @click="clickedScreen" v-if="isBigFilter"></div>
   <user-nav-bar v-click-away="onClickAway" v-if="openUserNav" :loggedInUser="loggedInUser"></user-nav-bar>
@@ -43,6 +42,7 @@ export default {
       isWhenStart: false,
       isWhenEnd: false,
       isDetailsHeader: false
+
       
     }
   },
@@ -59,19 +59,25 @@ export default {
       this.isWhoSearch = false
       this.isWhenStart = false
       this.isWhenEnd = false
-      if (chose === 'where') this.isWhereSearch = true
-      if (chose === 'when-start') this.isWhenStart = true
-      if (chose === 'when-end') this.isWhenEnd = true
-      if (chose === 'who') this.isWhoSearch = true
+      this.isWhereSearch = (chose === 'where')
+      this.isWhenStart = (chose === 'when-start')
+      this.isWhenEnd = (chose === 'when-end')
+      this.isWhoSearch = (chose === 'who')
       
     },
-    returnToMinStay(){
+    returnToMainStay(){
+      this.isDetailsHeader = false
       this.clickedScreen()
       eventBus.emit('back-to-main')
     },
     clickedScreen(){
-      this.resetAll()
-      this.isMainFilter = true
+      if (this.isDetailsHeader){
+        this.resetAll()
+        this.isDetailsHeader = true
+      }else{
+        this.resetAll()
+        this.isMainFilter = true
+      }
       eventBus.emit('go-main-filter')
       
     },

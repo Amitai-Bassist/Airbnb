@@ -2,11 +2,12 @@
     <section >
       <button class="big-filter-btn grid column" @click="choseSearch('where')" v-bind:class="{isActive: WhereSearch}">
           <form action="" @submit="choseSearch('when-start')">
-          <div>Where</div>
-          <input class="input-search-big-filter" type="search" :placeholder="wherePlaceholder" v-model="filterBy.txt" >
+            <div>Where</div>
+            <input class="input-search-big-filter" type="search" :placeholder="wherePlaceholder" v-model="filterBy.txt" >
           </form>
-      </button><span>|</span>
-      <button class="big-filter-btn date grid"  v-bind:class="{isActive: WhenStart}" @click="choseSearch('when-start')">
+      </button>
+      <span>|</span>
+      <button class="big-filter-btn date grid"  v-bind:class="{isActive: whenStart}" @click="choseSearch('when-start')">
         <div>Check in</div>
         <button v-bind:class="resetActiveStart" @click="resetDate()" class="reset-date">x</button>
         <div>{{dateStart}}</div>
@@ -17,7 +18,10 @@
         <div>{{dateEnd}}</div>
       </button><span>|</span>
       <div class="big-filter-btn grid" v-bind:class="{isActive:WhoSearch}" @click="choseSearch('who')">
-        <button class="who-filter-btn grid column" ><div>Who</div><div>Add guests</div></button>
+        <button class="who-filter-btn grid column" >
+          <div>Who</div>
+          <div>Add guests</div>
+        </button>
         <button @click="onSearch()" class="main-filter-search-btn big"><div class="s1qcpybl dir dir-ltr" data-icon="true" data-testid="little-search-icon"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 5.33333; overflow: visible;"><g fill="none"><path d="m13 24c6.0751322 0 11-4.9248678 11-11 0-6.07513225-4.9248678-11-11-11-6.07513225 0-11 4.92486775-11 11 0 6.0751322 4.92486775 11 11 11zm8-3 9 9"></path></g></svg></div><div>search</div></button>
       </div>
     </section>    
@@ -26,11 +30,11 @@
 <script>
     import { eventBus } from '../services/event-bus.service'
     export default {
-        props: ['isWhereSearch','isWhenStart','isWhenEnd','isWhoSearch']
+        props: ['isWhereSearch','iswhenStart','isWhenEnd','isWhoSearch']
         ,
         data(){
           return{
-            WhenStart: this.isWhenStart,
+            whenStart: this.isWhenStart,
             WhenEnd: this.isWhenEnd,
             WhereSearch: this.isWhereSearch, 
             WhoSearch:this.isWhoSearch,
@@ -53,7 +57,7 @@
             return this.mainland
           },
           resetActiveStart(){
-            return {'reset-active':(this.WhenStart & this.dateStart !== 'Add dates')}
+            return {'reset-active':(this.whenStart & this.dateStart !== 'Add dates')}
           },
           resetActiveEnd(){
             return {'reset-active':(this.WhenEnd & this.dateEnd !== 'Add dates')}
@@ -67,10 +71,10 @@
             this.$router.push('/stay/explore')
           },
           choseSearch(chose){
-            this.WhereSearch= (chose === 'where') ? true : false
-            this.WhoSearch= (chose === 'who') ? true : false
-            this.WhenStart= (chose === 'when-start') ? true : false
-            this.WhenEnd= (chose === 'when-end') ? true : false
+            this.WhereSearch= (chose === 'where')
+            this.WhoSearch= (chose === 'who')
+            this.whenStart= (chose === 'when-start') 
+            this.WhenEnd= (chose === 'when-end') 
             this.$emit('clickedMain',chose)
           },
           setDateStart(date){
