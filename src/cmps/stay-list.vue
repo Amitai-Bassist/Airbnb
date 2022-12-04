@@ -9,17 +9,15 @@
 </template>
   
 <script>
-    import stayPreview from './stay-preview.vue';
-    export default {
-        props: {
-            stays: Object
-        },
-        created(){
-        },
-        components: {
-            stayPreview 
-        }
-   }
+  import stayPreview from './stay-preview.vue';
+  export default {
+    props: {
+      stays: Object
+    },
+    components: {
+      stayPreview 
+    }
+  }
 </script>
  
   
