@@ -1,8 +1,8 @@
 <template>
-  <section>
-    <user-msg/>
     <app-upper-header />
     <app-second-header/>
+  <section>
+    <user-msg/>
     <router-view/>
   </section>
   <app-footer/>

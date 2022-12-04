@@ -1,34 +1,36 @@
 .filter-main-nav{
     position: fixed;
-    padding-left: 0;
+    // padding-left: 0;
     top: 81px;
+    width: 100%;
+    border-bottom: solid 1px #dddddd;
     &.big-filter{
         top: 77px;
     }
     height: 78px !important;
     @include for-mobile-layout {
-        left: 24px;
-        right: 24px;
+        padding-left: 24px;
+        padding-right: 24px;
     }
     @include for-narrow-layout {
-        left: 24px;
-        right: 24px;
+        padding-left: 24px;
+        padding-right: 24px;
     }
     @include for-small-layout {
-        left: 40px;
-        right: 40px;
+        padding-left: 40px;
+        padding-right: 40px;
     }
     @include for-normal-layout {
-        left: 40px;
-        right: 40px;
+        padding-left: 40px;
+        padding-right: 40px;
     }
     @include for-wide-layout {
-        left: 80px;
-        right: 80px;    
+        padding-left: 80px;
+        padding-right: 80px;    
     }
     @include for-extra-wide-layout {
-        left: 80px;
-        right: 80px;    
+        padding-left: 80px;
+        padding-right: 80px;    
     }
     z-index: 4;
     background-color: white;
@@ -132,4 +134,13 @@
 
 .header-navigate-filter-carousel:hover{
     color: black;
+}
+
+.filter-modal-container{
+    position: fixed;
+    top: 200px;
+    right: 200px;
+    width: 100px;
+    height: 100px;
+    background-color: #717171;
 }

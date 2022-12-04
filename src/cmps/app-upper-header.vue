@@ -1,5 +1,5 @@
 <template>
-  <header  :class="{'details':isDetailsHeader,'big-filter':isBigFilter}"> 
+  <header :class="{'details':isDetailsHeader,'big-filter':isBigFilter}"> 
       <nav>
         <router-link to="/stay" class="flex router-logo-link" @click="returnToMainStay()">
           <img class="airbnb-logo" src="https://res.cloudinary.com/dht4wwjwe/image/upload/v1669976706/bdcvkjwqkucgzr2bka5x.svg" alt="logo">

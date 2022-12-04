@@ -1,58 +1,60 @@
 header {
     position: fixed;
     top: 0;
+    width: 100%;
     @include for-mobile-layout {
-        left: 24px;
-        right: 24px;
+        padding-left: 24px;
+        padding-right: 24px;
     }
     @include for-narrow-layout {
-        left: 24px;
-        right: 24px;
+        padding-left: 24px;
+        padding-right: 24px;
     }
     @include for-small-layout {
-        left: 40px;
-        right: 40px;
+        padding-left: 40px;
+        padding-right: 40px;
     }
     @include for-normal-layout {
-        left: 40px;
-        right: 40px;
+        padding-left: 40px;
+        padding-right: 40px;
     }
     @include for-wide-layout {
-        left: 80px;
-        right: 80px;    
+        padding-left: 80px;
+        padding-right: 80px;    
          
     }
     @include for-extra-wide-layout {
-        left: 80px;
-        right: 80px;  
+        padding-left: 80px;
+        padding-right: 80px;
+      
           
     }
     &.details{
-        position: fixed;
+        position: absolute;
         top: 0;
         @include for-mobile-layout {
-            left: 40px;
-            right: 40px;
+            padding-left: 40px;
+            padding-right: 40px;
         }
         @include for-narrow-layout {
-            left: 40px;
-            right: 40px;
+            padding-left: 40px;
+            padding-right: 40px;
         }
         @include for-small-layout {
-            left: 40px;
-            right: 40px;
+            padding-left: 40px;
+            padding-right: 40px;
         }
         @include for-normal-layout {
-            left: 140px;
-            right: 140px;
+            padding-left: 140px;
+            padding-right: 140px;
         }
         @include for-wide-layout {
-            left: 250px;
-            right: 250px;    
+            padding-left: 250px;
+            padding-right: 250px;    
         }
         @include for-extra-wide-layout {
-            left: 350px !important;
-            right: 350px !important;    
+            padding-left: 350px;
+            padding-right: 350px;    
         } 
     }
     // max-width: calc($wide-breakpoint);
