@@ -2,6 +2,9 @@
     position: fixed;
     padding-left: 0;
     top: 81px;
+    &.big-filter{
+        top: 77px;
+    }
     height: 78px !important;
     @include for-mobile-layout {
         left: 24px;
@@ -57,45 +60,52 @@
         }       
     }
 }
-.filter-icon-carousel{
-    // width: 90%;
-    // padding-left: 45px;
-    // padding-right: 45px;
-    
+.header-filter-icon-carousel{
+    width: 90%;
+    padding-left: 45px;
+    padding-right: 45px; 
+}
+
+.header-icon-filter-img{
+    align-self: center;
+    opacity: 0.6425339366515838;
+    width: 26px !important;
+    height: 26px !important;
+    color: #717171;
+    margin-bottom: 6px;
 }
 
 
-.carousel__slide ,.carousel_slide--clone ,.carousel__slide--visible ,.carousel__slide--prev{
-    // opacity: 1 !important;
-    // transform: rotateY(0) scale(0.9) !important;
-    // padding-top: 10px !important;
-}
-
-.icon-filter-img{
-    // align-self: center;
-    // width: 24px !important;
-    // height: 24px !important;
-    // color: #717171;
-}
 
 .icon-in-carousel-filter{
     color: #717171;
     cursor: pointer;
-    // padding: 0;
-    // padding-bottom: 3px;
-    // font-size: 13px;
-    // height: 58px;
-    // min-width: 58px;
-    // min-width: 90px !important;
-}
-.carousel_slide--visible{
-    // padding: 0 ;
+    padding: 0;
+    padding-bottom: 11px;
+    font-size: 14px;
+    height: 68px;
+    width: 100%;
+    >.carousel__viewport{
+        padding-top: 5px !important;
+        padding-bottom: 3px;        
+    }
 }
 
-.carousel__viewport{
-    // padding-top: 5px !important;
-    // padding-bottom: 3px;
+.icon-in-carousel-filter:hover{
+    color: black;
+    border-bottom: 2px solid #717171;
+    height: 70px; 
+    >.header-icon-filter-img{
+        opacity: 1;
+    }
 }
+
+.slide-in-header{
+    width: 120px;
+}
+
+
+
 
 // .icon-in-carousel-filter:hover{
 //     color: black;
@@ -105,17 +115,21 @@
     
 // }
 
-// .navigate-filter-carousel{
-//     border-radius: 50%;
-//     border: solid 1px #dddddd;
-//     z-index: 5;
-//     background-color: white;
-//     &[aria-label="Navigate to previous slide"]{
-//         margin-left: 0;
-//     }
-// }
+.header-navigate-filter-carousel{
+    border-radius: 50%;
+    border: 0.5px solid rgb(0 0 0 / 0.3) !important;
+    z-index: 5;
+    background-color: white;
+    &[aria-label="Navigate to previous slide"]{
+        margin-left: 0;
+    }
+    >.carousel__icon{
+        width: 25px;
+        height: 21px;
+    }
+}
 
 
-.navigate-filter-carousel:hover{
+.header-navigate-filter-carousel:hover{
     color: black;
 }

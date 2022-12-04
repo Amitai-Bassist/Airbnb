@@ -1,0 +1,13 @@
+.stay-explore{
+    margin-top: 11.25rem;
+    >:first-child{
+        color: #222222;
+    }
+}
+
+.stay-list{
+    &.stay-list-explore{
+        margin-top: 0;
+    }
+   
+}

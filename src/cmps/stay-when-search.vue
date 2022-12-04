@@ -1,21 +1,23 @@
 <template>
-    <section  class="calender-container">
-        <!-- <stay-calendar></stay-calendar> -->
-    </section>
-    
+    <filter-calendar-search ></filter-calendar-search>
 </template>
 
 <script>
-    import stayCalendar from './stay-calendar.vue';
-    import { ref } from 'vue'
-    export default {
+  import filterCalendarSearch from './filter-calendar-search.vue';
+  export default {
     data(){
       return{
-        value: ref('')    
+        
+      }
+    },
+    computed: {
+     
+    },
+    components:{
+      filterCalendarSearch
+    },
+    methods: {
+      
     }
-  },
-  components:{
-    stayCalendar
   }
-}
 </script>

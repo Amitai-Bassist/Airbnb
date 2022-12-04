@@ -8,7 +8,8 @@ export const storageService = {
 };
 
 function query(entityType, delay = 500) {
-  var entities = JSON.parse(localStorage.getItem(entityType)) || getDemoStays();
+  if(entityType === 'stay') var entities = getDemoStays()
+  else var entities = JSON.parse(localStorage.getItem(entityType)) ;
   _save('stay', entities);
   return new Promise((resolve) => setTimeout(() => resolve(entities), delay));
 }

@@ -1,5 +1,5 @@
 .stay-details {
-    margin-top: 300px;
+    margin-top: 110px;
     display: grid;
     grid-template-columns: 150px 1fr 150px;
 
@@ -55,11 +55,36 @@
         display: grid;
         height: fit-content;
 
-        grid-template-areas:
-            "c1 c1 c2 c3 "
-            "c1 c1 c4 c5"
-        ;
         grid-gap: 10px;
+
+        @include for-mobile-layout {
+            grid-template-areas:
+            "c1" ;
+            >img:nth-child(2) {
+                grid-area: c2;
+                display: none;
+            }
+    
+            >img:nth-child(3) {
+                display: none;
+                grid-area: c3;
+            }
+    
+            >img:nth-child(4) {
+                display: none;
+                grid-area: c4;
+            }
+    
+            >img:nth-child(5) {
+                display: none;
+                grid-area: c5;
+            }
+        }
+        @include for-narrow-layout{
+            grid-template-areas:
+            "c1 c1 c2 c3 "
+            "c1 c1 c4 c5";
+        }
 
         >img:nth-child(1) {
             border-radius: 15px 0px 0px 15px;

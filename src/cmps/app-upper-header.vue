@@ -1,7 +1,7 @@
 <template>
-  <header>
+  <header :class="{details:isDetailsHeader,'big-filter':isBigFilter}">
       <nav>
-        <router-link to="/stay" class="flex router-logo-link">
+        <router-link to="/stay" class="flex router-logo-link" @click="returnToMinStay()">
           <img class="airbnb-logo" src="https://res.cloudinary.com/dht4wwjwe/image/upload/v1669976706/bdcvkjwqkucgzr2bka5x.svg" alt="logo">
           <h1>staybnb</h1> 
         </router-link>
@@ -9,6 +9,7 @@
       <main-filter @clickedMain="clickedMain" v-if="isMainFilter" class="main-filter-btns"></main-filter>
       <big-filter @clickedMain="clickedMain" @clickedScreen="clickedScreen" :isWhereSearch="isWhereSearch" :isWhoSearch="isWhoSearch" :isWhenEnd="isWhenEnd" :isWhenStart="isWhenStart"
        v-if="isBigFilter" class="big-search-filter flex row"></big-filter>
+      <details-header-filter @clickedMain="clickedMain" v-if="isDetailsHeader"></details-header-filter>
       <section @click="openUserNav=!openUserNav" class="loggedin-user" v-if="loggedInUser">
         <img src="https://res.cloudinary.com/dht4wwjwe/image/upload/v1669794047/airbnb/dgxtegsrfyrdcywi0vij.png" alt="">
         <img :src="loggedInUser.imgUrl" />
@@ -16,15 +17,15 @@
       
   </header>
   <div class="full screen-shadow" @click="clickedScreen" v-if="isBigFilter"></div>
-  <user-nav-bar v-if="openUserNav" :loggedInUser="loggedInUser"></user-nav-bar>
+  <user-nav-bar v-click-away="onClickAway" v-if="openUserNav" :loggedInUser="loggedInUser"></user-nav-bar>
   <stay-where-search class="" v-if="isWhereSearch"></stay-where-search>
   <stay-when-search class="" v-if="(isWhenStart || isWhenEnd)"></stay-when-search>
-  <stay-calendar v-if="isBigFilter"></stay-calendar>
   <stay-who-search class="" v-if="isWhoSearch"></stay-who-search>
     
 </template>
 <script>
-import stayCalendar from './stay-calendar.vue';
+import { eventBus } from '../services/event-bus.service'
+import detailsHeaderFilter from './details-header-filter.vue';
 import userNavBar from './user-nav-bar.vue';
 import stayWhereSearch from './stay-where-search.vue'
 import stayWhenSearch from './stay-when-search.vue'
@@ -41,14 +42,19 @@ export default {
       isWhoSearch: false,
       isWhenStart: false,
       isWhenEnd: false,
+      isDetailsHeader: false
       
     }
+  },
+  created() {
+    eventBus.on('go-to-details',this.changeToDetailsHeader)
   },
   methods:{
     clickedMain(chose){
       this.isMainFilter = false
       this.isBigFilter = false
       this.isBigFilter = true
+      eventBus.emit('go-big-filter')
       this.isWhereSearch = false
       this.isWhoSearch = false
       this.isWhenStart = false
@@ -59,13 +65,31 @@ export default {
       if (chose === 'who') this.isWhoSearch = true
       
     },
+    returnToMinStay(){
+      this.clickedScreen()
+      eventBus.emit('back-to-main')
+    },
     clickedScreen(){
+      this.resetAll()
       this.isMainFilter = true
+      eventBus.emit('go-main-filter')
+      
+    },
+    resetAll(){
+      this.isMainFilter = false
       this.isBigFilter = false
       this.isWhereSearch = false
       this.isWhenStart = false
       this.isWhenEnd = false
       this.isWhoSearch = false
+      this.isDetailsHeader = false
+    },
+    changeToDetailsHeader(){
+      this.resetAll()
+      this.isDetailsHeader = true
+    },
+    onClickAway(){
+      this.openUserNav = false
     }
   },
   computed: {
@@ -80,7 +104,7 @@ export default {
     bigFilter,
     stayWhenSearch,
     stayWhoSearch,
-    stayCalendar
+    detailsHeaderFilter,
   }
 }
 </script>
