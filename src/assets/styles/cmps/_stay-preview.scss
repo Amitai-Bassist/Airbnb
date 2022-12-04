@@ -39,6 +39,7 @@
       .grid-item-1 {
           grid-column: 1/2;
           grid-row: 1/2;
+          margin-block-start: 2px;
       }
       .grid-item-3 {
           grid-column: 2/3;
@@ -86,11 +87,11 @@
   //       margin-top: rem(11px);
   //   }
   // }
-  //   @include for-normal-layout {
-  //     .bottom {
-  //       margin-top: rem(13px);
-  //     } 
-  // }
+    @include for-normal-layout {
+      .bottom {
+        margin-top: rem(13px);
+      } 
+  }
 }
 .el-card {
   border: none !important ;
