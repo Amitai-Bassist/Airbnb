@@ -50,7 +50,7 @@ export default {
   },
   created() {
     eventBus.on('go-to-details',this.changeToDetailsHeader)
-    
+    if (id) {this.changeToDetailsHeader()}
   },
   methods:{
     clickedMain(chose){

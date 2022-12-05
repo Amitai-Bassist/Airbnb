@@ -25,7 +25,7 @@ async function query(filterBy = { txt: ''}) {
     }
     if (filterBy.type) {
         const regex = new RegExp(filterBy.type, 'i')
-        stays = stays.filter(stay => regex.test(stay.labels[2]))
+        stays = stays.filter(stay => regex.test(stay.type))
     }
     // if (filterBy.price) {
     //     stays = stays.filter(stay => stay.price <= filterBy.price)
