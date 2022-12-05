@@ -1,6 +1,6 @@
 <template>
   <el-card :body-style="{ padding: '0px' }" class="stay-preview">
-    <stay-imgs-preview :imgs="stay.imgUrls" @goToDetails="goToDetails"></stay-imgs-preview>
+    <stay-imgs-preview :imgs="stay.imgUrls" @goToDetails="goToDetails" @addToWishlist="addToWishlist"></stay-imgs-preview>
     <div class="stay-desc" @click="goToDetails">
       <div class="bottom">
         <p class="stay-name grid-item-1">{{ stay.name }} </p>
@@ -40,6 +40,9 @@
         eventBus.emit('go-to-details');
         this.$router.push( `/stay/${this.stay._id}`);
       },
+      addToWishlist() {
+        this.$store.commit({type: 'addToWishlist', stay: this.stay})
+      }
     },
     computed: {
       // stayName() {

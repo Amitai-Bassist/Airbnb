@@ -1,5 +1,24 @@
 <template>
     <section style="margin-top:200px;" class="">
+      <div class="mini-boards">
+        <!-- <el-card class="box-card mini-board" shadow="always">
+          <template #header>
+            <div class="card-header">
+              <span>WISHLIST</span>
+              <el-button class="button" text>Go to whishlist</el-button>
+            </div>
+          </template>
+          <div><p><span>24</span>saved stays</p></div>
+        </el-card> -->
+        <div class="mini-card flex row wrap">
+          <div class="mini-card-header flex">
+            <h1>WISHLIST</h1>
+            <!-- <button class="mini-card-btn">Go to whishlist</button> -->
+          </div>
+          <h4><span>50</span>saved stays</h4>
+          <button class="mini-card-btn">Go to whishlist</button>
+        </div>
+        </div>
       <EasyDataTable
       :headers="headers"
       :items="items"
@@ -56,29 +75,9 @@ export default {
     ]
   },
   methods: {
-    // headerItemClassNameFunction(ev) {
-      // (header: header, index: number): string => {
-      // if (header.value === 'hostActions') return 'is-host';
-      // return '';
-      // };
-    //   this.headers.forEach(header=> {
-    //     if(header.value === 'hostActions') {
-    //       console.log(ev)
-    //       return 'is-host';
-    //     }
-    //     else return ''; 
-    //   })
-    // },
-    // bodyItemClassName() {
-    //   (column: string, index: number): string => {
-    //   if (column === 'hostActions') return 'is-host';
-    //   return '';
-    //   };
-    // }
+
   }
 }
-
-// :body-item-class-name="bodyItemClassName"
 
 </script>
 
@@ -86,7 +85,58 @@ export default {
 .is-host {
   display: none;
 }
+
+/* //card - mini-boards */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.text {
+  font-size: 14px;
+}
+.item {
+  margin-bottom: 18px;
+}
+.box-card {
+  width: 480px;
+}
+.mini-card {
+  box-shadow: 0px 0px 12px rgba(0,0,0,0.12);
+  color: #222222;
+  width: 244px;
+  height: 180px;
+  border-radius: 12px;
+  padding: 18px 12px;
+}
+.mini-card h1 {
+  font-size: 1.25rem;
+}
+.mini-card-btn {
+  border: opx solid transparent;
+  background-color: transparent;
+  transition: 0.1s;
+  padding:8px 15px;
+  align-items: center;
+  height: 32px;
+  border-radius: 4px;
+  color: #222222;
+
+}
+.mini-card-btn:hover {
+  background-color: #eee;
+}
+
+.mini-card-header {
+justify-content: space-between;
+align-items: center;
+width: 300px;
+height: 42px;
+padding: 20px 12px;
+}
 </style>
+
+
 
 
 

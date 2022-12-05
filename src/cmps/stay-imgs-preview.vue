@@ -37,6 +37,7 @@
       },
       toggleWishlist() {
         this.isSaved = !this.isSaved;
+        this.$emit('addToWishlist')
       },
       onHover() {
         this.isHover = true
