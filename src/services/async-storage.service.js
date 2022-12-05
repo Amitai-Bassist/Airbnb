@@ -7,10 +7,16 @@ export const storageService = {
   getDemoAmenities,
 };
 
+import myJson from '../../data/stay.json' 
+// assert {type:'json'}
+
 function query(entityType, delay = 500) {
-  if (entityType === 'stay') var entities = getDemoStays();
-  else var entities = JSON.parse(localStorage.getItem(entityType));
-  _save('stay', entities);
+  // if (entityType === 'stay') var entities = getDemoStays();
+  var entities = JSON.parse(localStorage.getItem(entityType));
+  if (!entities){
+    entities = myJson.splice(0,30)
+    _save('stay', entities);
+  }
   return new Promise((resolve) => setTimeout(() => resolve(entities), delay));
 }
 

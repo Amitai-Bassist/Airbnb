@@ -205,12 +205,13 @@ export default {
   },
   created() {
     const { id } = this.$route.params;
-    stayService.getById(id).then((stay) => {
-      this.stay = stay;
-    });
+    this.$store.dispatch({ type: "getStayById" , stayId: id});
     setTimeout(() => {
+      this.stay = this.$store.getters.currStay
+      console.log('getStay:',this.stay);
       this.getReviewScore();
-    }, 500);
+
+    }, 800);
     this.totalDays(new Date('11/25/2022'),new Date('12/01/2022'),80)
     this.getDemoAmenities()
   },
@@ -220,7 +221,7 @@ export default {
         rootMargin: "-91px 0px 0px",
       });
       this.headerObserver.observe(this.$refs.header);
-    }, 500);
+    }, 900);
   },
   methods: {
     updateReview({ target }, idx) {
@@ -252,6 +253,7 @@ export default {
     },
     findAmenitie(amenitie){
       const idx = this.demoAmenities.findIndex(Amenitie=> Amenitie.name === amenitie)
+      if (idx === -1) return 0
       return idx
     },
     toggleWishlist() {
@@ -268,6 +270,9 @@ export default {
 
   },
   computed: {
+    // stay() {
+    //   return this.$store.getters.currStay;
+    // },
     formattedDate() {
       var currStayCreatedAt = this.stay.createdAt;
       var formatedDate = new Date(currStayCreatedAt);

@@ -25,7 +25,8 @@ export function getActionAddStayMsg(stayId) {
         type: 'addStayMsg',
         stayId,
         txt: 'Stam txt',
-        filterBy: null
+        filterBy: null,
+        currStay: null
     }
 }
 
@@ -37,12 +38,16 @@ export const stayModule = {
     },
     getters: {
         stays({stays}) { return stays },
+        currStay({currStay}) { return currStay },
         reviewScore({stayReveiwScore}) {return stayReveiwScore},
         demoAmenities({demoAmenities}) {return demoAmenities}
     },
     mutations: {
         setStays(state, { stays }) {
             state.stays = stays
+        },
+        setStay(state, { stay }) {
+            state.currStay = stay
         },
         addStay(state, { stay }) {
             state.stays.push(stay)
@@ -73,7 +78,6 @@ export const stayModule = {
         },
         setFilterBy(state,{filter}){
             state.filterBy = filter
-            
         },
     },
     actions: {
@@ -104,6 +108,16 @@ export const stayModule = {
                 commit({ type: 'setStays', stays })
             } catch (err) {
                 console.log('stayStore: Error in loadStays', err)
+                throw err
+            }
+        },
+        async getStayById({commit,state,rootState}, {stayId}) {
+            try {
+                const stay = await stayService.getById(stayId)
+                
+                commit({ type: 'setStay', stay })
+            } catch (err) {
+                console.log('stayStore: Error in getStayById', err)
                 throw err
             }
         },

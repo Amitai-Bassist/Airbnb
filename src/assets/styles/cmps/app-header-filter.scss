@@ -38,8 +38,8 @@
     }
     >.border-line-between{
         width: 0 ;
-        margin-left: 10px;
-        margin-right: 10px;
+        margin-left: 8px !important;
+        padding-right: 8px;
         height: 24px;
         align-self: center;
         border-left: solid 1px #dddddd;
@@ -67,6 +67,7 @@
 
 .main-filter-search-btn{
     background-color: #ff385c;
+    margin-top: 7px;
     border-radius: 50%;
     width: 32px;
     height: 32px;
@@ -115,6 +116,15 @@
     }
     >span{
         align-self: center;
+    }
+    .border-line-between{
+        width: 0 ;
+        // margin-left: 8px !important;
+        // padding-right: 8px;
+        height: 32px;
+        align-self: center;
+        border-left: solid 1px #dddddd;
+        margin: 0;
     }
 }
 

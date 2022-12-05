@@ -8,6 +8,10 @@ import loginSignup from './views/login-signup.vue'
 import userDetails from './views/user-details.vue'
 import stayDetails from './views/stay-details.vue'
 import stayExplore from './views/stay-explore.vue'
+import stayWishList from './views/stay-wish-list.vue'
+import stayDashboard from './views/stay-dashboard.vue'
+import stayReservation from './views/stay-reservation.vue'
+
 
 const routes = [
   {
@@ -24,6 +28,21 @@ const routes = [
     path: '/stay/explore',
     name: 'stay-explore',
     component: stayExplore
+  },
+  {
+    path: '/stay/wishlist',
+    name: 'stay-wish-list',
+    component: stayWishList
+  },
+  {
+    path: '/stay/dashboard',
+    name: 'stay-dashboard',
+    component: stayDashboard
+  },
+  {
+    path: '/stay/reservation',
+    name: 'stay-reservation',
+    component: stayReservation
   },
   {
     path: '/stay/:id',
