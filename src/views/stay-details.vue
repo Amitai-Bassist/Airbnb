@@ -4,7 +4,7 @@
     <div class="stay-review">
       <div class="review-text">
         <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 14px; width: 14px; fill: currentcolor;"><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z" fill-rule="evenodd"></path></svg>
-        {{ reviewScore }} &#183; &#160; <span class="review-num">{{ stay.reviews.length }} reviews</span> . Superhost . <span>{{ stay.loc.city }}, {{ stay.loc.country }}</span>
+        {{ reviewScore }} &#183; &#160; <span class="review-num">{{ stay.reviews.length }} {{reviewNum}}</span>&#160;&#160;&#183;&#160;&#160;Superhost&#160;&#160;.&#160;&#160;<span class="stay-review-loc">{{ stay.loc.city }}, {{ stay.loc.country }}</span>
       </div>
       <div class="share-save">
         <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 2; overflow: visible;"><g fill="none"><path d="M27 18v9a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-9"></path><path d="M16 3v23V3z"></path><path d="M6 13l9.293-9.293a1 1 0 0 1 1.414 0L26 13"></path></g></svg>
@@ -24,18 +24,6 @@
       <div class="img-gallery" v-for="imgUrl in stay.imgUrls.slice(0,5)" :key="imgUrl">
         <img :src="imgUrl" alt="">
       </div>
-      <div class="all-img" v-if="isShowAllImg">
-        <div class="text flex row space-between">
-          <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" 
-          role="presentation" focusable="false" style="display: block; height: 16px; width: 16px; 
-          fill: currentcolor;">
-          <path d="m3 11.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-10-5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-10-5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm5 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z" fill-rule="evenodd"></path></svg>
-          <p>Show all photos</p>
-        </div>
-        <div class="all-img-container" v-if="isShowAllImg" v-for="imgUrl in stay.imgUrls" :key="imgUrl">
-          <img :src="imgUrl" alt="">
-        </div>
-      </div>
     </div>
 
     <div class="details-container">
@@ -45,8 +33,8 @@
         <div class="ferrites-header">
 
           <div class="header-text"> 
-            <h3>Entire {{stay.type}} hosted by {{stay.host.fullname}}</h3>
-            <p>{{stay.capacity}} guests &#183;</p>
+            <h3>Entire {{stayTypeToLowerCase}} hosted by {{stay.host.fullname}}</h3>
+            <p>{{stay.capacity}} guests &#183;  2 bedrooms &#183;  4 beds &#183;  2 baths</p>
           </div>
           
           <!-- change to host img after getting json -->
@@ -110,20 +98,23 @@
       <div class="place-offers">
         <h2>What this place offers</h2>
 
-        <div class="offer" v-for="amenitie in stay.amenities" :key="amenitie"> 
-          <img :src="demoAmenities[findAmenitie(amenitie)].url" alt="" v-if="(demoAmenities.length > 0)" class="offer-img">
-          <div class="text">{{amenitie}}</div>
+        <div class="offers">
+          <div class="offer" v-for="amenitie in stay.amenities" :key="amenitie">
+            <img :src="demoAmenities[findAmenitie(amenitie)].url" alt="" v-if="(demoAmenities.length > 0)" class="offer-img">
+            <div class="text">{{amenitie}}</div>
+          </div> 
         </div>
 
         <button>Show all 68 amenities</button>
       </div>
 
-      <stay-reserve 
-        :stay="stay" 
-        @isReserve="toggleReserve"
-        ref="nav" v-bind:style="{ position: stickyNav ? 'sticky' : 'static' }"
-        :class="stickyNav? 'is-fixed': ''">
-      </stay-reserve>
+      <div class="stickey-container">
+        <stay-reserve 
+          :stay="stay" 
+          @isReserve="toggleReserve"
+          ref="nav" v-bind:style="{ position: stickyNav ? 'sticky' : 'static' }">
+        </stay-reserve>
+      </div>
       <reserve-modal 
         v-if="isReserve" 
         :reservation="reservation" 
@@ -141,8 +132,42 @@
     </div>
 
     <!-- reviews -->
-    <h2>Reviews</h2>
-    <section v-if="stay.reviews"></section>
+    <div class="reviews">
+      <h3>      
+        <div class="review-header flex row align-center">
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 14px; width: 14px; fill: currentcolor;"><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z" fill-rule="evenodd"></path></svg>
+        &#160;{{ reviewScore }} &#183; &#160; <span class="review-num">{{ stay.reviews.length }} {{reviewNum}}</span>
+        </div>
+      </h3>
+      <div class="review-category">
+        <div class="category flex row align-center space-between" v-for="score in reviewScores" :key="score">
+          <p>{{score.name}}</p>
+          <div class="flex row align-center">
+            <div class="meter">
+              <div class="fill" :style="{width:checkAvgScore(score.score)}"></div>
+            </div>
+            <p>{{score.score}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="users-reviews">
+        <div class="user-review" v-for="review in stay.reviews" :key="review">
+          <div class="user-info flex row">
+            <img src="https://a0.muscache.com/im/pictures/user/143723a2-07f4-4cb7-9754-d82d61930cf7.jpg?aki_policy=profile_large" alt="">
+            <div class="name">
+              <div class="user-name">
+                {{review.by.fullname}}
+              </div>
+              <p class="date">November 2022</p>
+            </div>
+          </div>
+          <div class="flex column">
+            {{stay.reviews[0].txt}}
+            <button class="show-more">Show more</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </section>
 </template>
@@ -175,6 +200,7 @@ export default {
       headerObserver: null,
       stickyNav: false,
       isShowAllImg:false,
+      reviewScores:[{name:'Cleanliness',score:4.8},{name:'Communication',score:4.9},{name:'Check-in',score:4.5},{name:'Accuracy',score:4.3},{name:'Location',score:4.1},{name:'Value',score:4.2}],
     };
   },
   created() {
@@ -232,11 +258,13 @@ export default {
         this.isSaved = !this.isSaved;
     },
     onHeaderObserved(entries) {
-      console.log(entries);
       entries.forEach((entry) => {
         this.stickyNav = entry.isIntersecting ? false : true;
       });
     },
+    checkAvgScore(num){
+      return (100 * num)/5.0 + '%' 
+    }
 
   },
   computed: {
@@ -251,6 +279,14 @@ export default {
     demoAmenities(){
       return this.$store.getters.demoAmenities;
     },
+    stayTypeToLowerCase(){
+      return this.stay.type.toLowerCase()
+    },
+    reviewNum(){
+      if(this.stay.reviews.length > 1){
+        return 'reviews'
+      }else return 'review'
+    }
   },
   components: {
     stayReserve,
