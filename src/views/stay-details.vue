@@ -204,6 +204,7 @@ export default {
     };
   },
   created() {
+    eventBus.emit('go-to-details')
     const { id } = this.$route.params;
     this.$store.dispatch({ type: "getStayById" , stayId: id});
     setTimeout(() => {
