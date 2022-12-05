@@ -22,8 +22,18 @@
       <EasyDataTable
       :headers="headers"
       :items="items"
+      >
+      <template #item-hostActions="item">
     
-      />
+        <select @change="changeStatus(event)"  id="">
+        <!-- <select id=""> -->
+          <option :value="item.status">{{item.status}}</option>
+          <option :value="item.status === 'pending' ? 'approved' : 'pending'">{{item.status === 'pending' ? 'approved' : 'pending'}}</option>
+          <option :value="item.status === 'pending' ? 'declined' : 'approved'">{{item.status === 'pending' ? 'declined' : 'approved'}}</option>
+        </select>
+
+      </template>
+    </EasyDataTable>
     </section>
 </template>
 
@@ -33,49 +43,52 @@ export default {
   data() {
     return {
       headers: [
-        { text: "Status", value: "status" },
-        { text: "Guests", value: "guests"},
-        { text: "Check-In", value: "checkIn"},
-        { text: "Check-Out", value: "checkOut"},
-        { text: "Booked", value: "booked"},
+        { text: "Status", value: "status", sortable: true },
+        { text: "Guests", value: "guests", sortable: true},
+        { text: "Check-In", value: "checkIn", sortable: true},
+        { text: "Check-Out", value: "checkOut", sortable: true},
+        { text: "Booked", value: "booked", sortable: true},
         { text: "Listing", value: "listing", sortable: true},
         { text: "Total Payout", value: "totalPrice", width: 200},
-        { text: "", value: ""},
     ],
-      items: [
-        { status: "Approved", guests: 5, checkIn: "07/12/22", checkOut: "11/12/22", booked: "01/12/22", listing: "City View Apartment", totalPrice: "350", hostActions: "Approved"},
-        { status: "Approved", guests: 5, checkIn: "07/12/22", checkOut: "11/12/22", booked: "01/12/22", listing: "City View Apartment", totalPrice: "350", hostActions: "Approved"},
-        { status: "Approved", guests: 5, checkIn: "07/12/22", checkOut: "11/12/22", booked: "01/12/22", listing: "City View Apartment", totalPrice: "350", hostActions: "Approved"},
-        { status: "Approved", guests: 5, checkIn: "07/12/22", checkOut: "11/12/22", booked: "01/12/22", listing: "City View Apartment", totalPrice: "350", hostActions: "Approved"},
-        { status: "Approved", guests: 5, checkIn: "07/12/22", checkOut: "11/12/22", booked: "01/12/22", listing: "City View Apartment", totalPrice: "350", hostActions: "Approved"},
-        { status: "Approved", guests: 5, checkIn: "07/12/22", checkOut: "11/12/22", booked: "01/12/22", listing: "City View Apartment", totalPrice: "350", hostActions: "Approved"},
-        { status: "Approved", guests: 5, checkIn: "07/12/22", checkOut: "11/12/22", booked: "01/12/22", listing: "City View Apartment", totalPrice: "350", hostActions: "Approved"},
-        { status: "Approved", guests: 5, checkIn: "07/12/22", checkOut: "11/12/22", booked: "01/12/22", listing: "City View Apartment", totalPrice: "350", hostActions: "Approved"},
-        { status: "Approved", guests: 5, checkIn: "07/12/22", checkOut: "11/12/22", booked: "01/12/22", listing: "City View Apartment", totalPrice: "350", hostActions: "Approved"},
-      ],
+      items:[],
+      hostStay: null,
+      orders: null,
     }
   },
   created() {
-    var isHost = false;
-    var host = '';
-    var hostActions = '';
-    if(isHost) {
-      host = 'host'
-      hostActions = 'hostActions' 
-    }
-    this.headers = [
-        { text: "Status", value: "status" },
-        { text: "Guests", value: "guests"},
-        { text: "Check-In", value: "checkIn"},
-        { text: "Check-Out", value: "checkOut"},
-        { text: "Booked", value: "booked"},
-        { text: "Listing", value: "listing", sortable: true},
-        { text: "Total Payout", value: "totalPrice", width: 200},
-        { text: host, value: hostActions },
-    ]
+    const {id} = this.$route.params;
+    this.getHostOrders(id)
   },
   methods: {
-
+    async getHostOrders(id) {
+      const hostOrders =  await this.$store.dispatch({type: 'getHostOrders', userId: id});
+      this.items = []
+        hostOrders.forEach(order => {
+          this.items.push({
+            status: order.status,
+            guests: order.guests.adults,
+            checkIn: order.startDate,
+            checkOut: order.endDate,
+            booked: new Date(order.createdAt).toLocaleDateString(),
+            listing: order.stay.name,
+            totalPrice: '$' + order.totalPrice
+          })
+        });
+      if(hostOrders) {
+        this.orders = hostOrders;
+        this.headers.push({ text: "host", value: "hostActions" })
+      }
+    },
+    changeStatus(val){
+      console.log('val',arguments);
+    },
+    async getHostStays(id) {
+      const hostStays =  await this.$store.dispatch({type: 'getHostStays', userId: id});
+      if(hostStays) {
+        this.headers.push({ text: "host", value: "hostActions" })
+      }
+    }
   }
 }
 

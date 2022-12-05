@@ -7,18 +7,21 @@ export const storageService = {
   getDemoAmenities,
 };
 
-import myStayJson from '../../data/stay.json' 
-import myUserJson from '../../data/user.json' 
+import myStayJson from '../../data/stay.json';
+import myUserJson from '../../data/user.json';
+import myOrderJson from '../../data/order.json';
 // assert {type:'json'}
 
 function query(entityType, delay = 500) {
   // if (entityType === 'stay') var entities = getDemoStays();
   var entities = JSON.parse(localStorage.getItem(entityType));
-  if (!entities){
+  if (!entities) {
     if (entityType === 'stay') {
-      entities = myStayJson.splice(0,30)
-    } else{
-      entities = myUserJson.splice(0,30)
+      entities = myStayJson.splice(0, 30);
+    } else if (entityType === 'user') {
+      entities = myUserJson.splice(0, 30);
+    } else {
+      entities = myOrderJson;
     }
     _save(entityType, entities);
   }
