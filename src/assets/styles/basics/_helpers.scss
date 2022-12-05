@@ -37,6 +37,9 @@
     &.nowrap {
         flex-wrap: nowrap;
     }
+    &.wrap {
+        flex-wrap: wrap;
+    }
 }
 
 // Media helpers

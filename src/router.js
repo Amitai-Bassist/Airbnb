@@ -1,80 +1,77 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router';
 
-import home from './views/home.vue'
-import chat from './views/chat.vue'
-import stayApp from './views/stay-app.vue'
-import reviewApp from './views/review-app.vue'
-import loginSignup from './views/login-signup.vue'
-import userDetails from './views/user-details.vue'
-import stayDetails from './views/stay-details.vue'
-import stayExplore from './views/stay-explore.vue'
-import stayWishList from './views/stay-wish-list.vue'
-import stayDashboard from './views/stay-dashboard.vue'
-import stayReservation from './views/stay-reservation.vue'
-
+import home from './views/home.vue';
+import chat from './views/chat.vue';
+import stayApp from './views/stay-app.vue';
+import reviewApp from './views/review-app.vue';
+import loginSignup from './views/login-signup.vue';
+import userDetails from './views/user-details.vue';
+import stayDetails from './views/stay-details.vue';
+import stayExplore from './views/stay-explore.vue';
+import stayWishList from './views/stay-wish-list.vue';
+import stayDashboard from './views/stay-dashboard.vue';
+import stayReservation from './views/stay-reservation.vue';
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: home
+    component: home,
   },
   {
     path: '/stay',
     name: 'stay-app',
-    component: stayApp
+    component: stayApp,
   },
   {
     path: '/stay/explore',
     name: 'stay-explore',
-    component: stayExplore
+    component: stayExplore,
   },
   {
     path: '/stay/wishlist',
     name: 'stay-wish-list',
-    component: stayWishList
+    component: stayWishList,
   },
   {
-    path: '/stay/dashboard',
+    path: '/stay/dashboard/:id',
     name: 'stay-dashboard',
-    component: stayDashboard
+    component: stayDashboard,
   },
   {
     path: '/stay/reservation',
     name: 'stay-reservation',
-    component: stayReservation
+    component: stayReservation,
   },
   {
     path: '/stay/:id',
     name: 'stay-details',
-    component: stayDetails
+    component: stayDetails,
   },
   {
     path: '/review',
     name: 'review',
-    component: reviewApp
+    component: reviewApp,
   },
   {
     path: '/chat',
     name: 'chat',
-    component: chat
+    component: chat,
   },
   {
     path: '/login',
     name: 'loginSignup',
-    component: loginSignup
+    component: loginSignup,
   },
   {
     path: '/user/:id',
     name: 'user-details',
-    component: userDetails
-  }
-]
-
+    component: userDetails,
+  },
+];
 
 export const router = createRouter({
   routes,
-  history: createWebHashHistory()
+  history: createWebHashHistory(),
   // base: process.env.BASE_URL,
-})
-
+});
