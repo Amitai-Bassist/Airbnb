@@ -1,8 +1,10 @@
 <template>
-    <section class="order-container user-login-modal">
-        <button @click="closeModal()">x</button>
-        <h1>Log in or sign up</h1>
-        <input  type="text" v-model="user.username" placeholder="Username">
+    <section class="login-order-container user-login-modal">
+        <div class="modal-header flex space-between">
+          <button @click="closeModal()">✖</button>
+          <div>Log in or sign up</div>
+        </div>
+        <input  type="text" v-model="user.username" placeholder="Username"><br>
         <input type="password" v-model="user.password" placeholder="Password">
         <div @click="login()" class="btn-container">
             <div class="cell"></div>
@@ -111,7 +113,7 @@
                 </button>
             </div>
         </div>
-
+        <a @click="">Sign in</a>
         
     </section>
   
@@ -146,14 +148,6 @@
 
 <style>
 
-.order-container {
-  border: 1px solid #00000030;
-  border-radius: 13px;
-  font-family: sans-serif;
-  padding: 20px;
-  width: 500px;
-  height: 200px;
-  box-shadow: 0 0 5px 5px #00000015;
-}
+
 
 </style>
