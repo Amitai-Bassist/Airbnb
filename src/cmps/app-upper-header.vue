@@ -18,7 +18,9 @@
       </section>
   </header>
   <div class="full screen-shadow" @click="clickedScreen" v-if="isBigFilter"></div>
-  <user-nav-bar @goToLogin="(isLoginModal = true, openUserNav = false)" v-click-away="onClickAway" v-if="openUserNav" :loggedInUser="loggedInUser"></user-nav-bar>
+  <user-nav-bar @goToLogin="(isLoginModal = true, openUserNav = false)" @logout="logout"
+  v-click-away="onClickAway" 
+  v-if="openUserNav" :loggedInUser="loggedInUser"></user-nav-bar>
   <stay-where-search class="" v-if="isWhereSearch"></stay-where-search>
   <stay-when-search class="" v-if="(isWhenStart || isWhenEnd)"></stay-when-search>
   <stay-who-search class="" v-if="isWhoSearch"></stay-who-search>
@@ -104,12 +106,20 @@ export default {
     },
     onClickAway(){
       this.openUserNav = false
-    }
+    },
+    logout(){
+      this.openUserNav = false
+      this.returnToMainStay()
+    },
   },
   computed: {
     loggedInUser() {
-      return this.$store.getters.loggedinUser 
-      // return {imgUrl:'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'}
+      const loggedinUser = this.$store.getters.loggedinUser 
+      if (!loggedinUser){
+        return {imgUrl:'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'}
+      }
+      return loggedinUser
+      
     },
   },
   components: {
