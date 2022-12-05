@@ -5,9 +5,9 @@
             <span class="footer-rigths">
                 &copy; 2022 dreambnb, Inc.
             </span>
-            <span class="footer-dot">.</span>
             <span>
                 <ol class="terms flex row nowrap">
+                    <span class="footer-dot">.</span>
                     <li>Privacy</li>
                     <span class="footer-dot">.</span>
                     <li>Terms</li>
@@ -22,6 +22,5 @@
 
 <script>
 export default {
-
 }
 </script>

@@ -140,7 +140,7 @@
           ${{stay.price}} X {{TotalNights}} nights 
         </div>
         <div class="amount">
-          ${{accommodation}}
+          ${{accommodationComma}}
         </div>
       </div>
       <div class="reserve-price flex row space-between">
@@ -223,9 +223,9 @@
       daysPriceCalc(date1,date2,price=this.stay.price){
       const difference  = date2.getTime() - date1.getTime()
       this.TotalNights = Math.ceil(difference / (1000 * 3600 * 24))
-      this.accommodation = (this.TotalNights * price).toFixed(2)
-      this.ServiceFee = (Math.ceil(difference / (1000 * 3600 * 24)) * 5.35).toFixed(2)
-      this.totalPrice = parseFloat(this.accommodation) + parseFloat(this.ServiceFee)
+      this.accommodation = (this.TotalNights * price)
+      this.ServiceFee = ((Math.ceil(difference / (1000 * 3600 * 24)) * 5.35).toFixed(2))
+      this.totalPrice = (parseFloat(this.accommodation) + parseFloat(this.ServiceFee)).toLocaleString('en-US')
     },
     },
     computed: {
@@ -237,6 +237,9 @@
       },
       getDateEnd(){
         return this.dateEnd.id
+      },
+      accommodationComma(){
+        return this.accommodation.toLocaleString('en-US')
       }
     },
     components: {
