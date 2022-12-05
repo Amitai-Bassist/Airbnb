@@ -1,5 +1,6 @@
 import { storageService } from '../../services/async-storage.service'
 import { stayService } from '../../services/stay.service.local'
+import { utilService } from '../../services/util.service'
 
 export function getActionRemoveStay(stayId) {
     return {
@@ -69,7 +70,7 @@ export const stayModule = {
             let stayReveiwScore = 0 
             stayReviews.forEach(review => {
                 reviewNum++
-                stayReveiwScore += review.rate
+                stayReveiwScore += (review.rate.Cleanliness+ review.rate.Communication+ review.rate.CheckIn+ review.rate.Accuracy+ review.rate.Location+ review.rate.Value)/6
             })
             state.stayReveiwScore = (stayReveiwScore/reviewNum).toFixed(1)
         },

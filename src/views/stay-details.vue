@@ -34,7 +34,7 @@
 
           <div class="header-text"> 
             <h3>Entire {{stayTypeToLowerCase}} hosted by {{stay.host.fullname}}</h3>
-            <p>{{stay.capacity}} guests &#183;  2 bedrooms &#183;  4 beds &#183;  2 baths</p>
+            <p>{{stay.capacity}} guests &#183;  {{stay.bedrooms}} bedrooms &#183;  {{(stay.bedrooms*2)}} beds &#183;  {{stay.bathrooms}} baths</p>
           </div>
           
           <!-- change to host img after getting json -->
@@ -99,7 +99,7 @@
         <h2>What this place offers</h2>
 
         <div class="offers">
-          <div class="offer" v-for="amenitie in stay.amenities" :key="amenitie">
+          <div class="offer" v-for="amenitie in stay.amenities.slice(0,10)" :key="amenitie">
             <img :src="demoAmenities[findAmenitie(amenitie)].url" alt="" v-if="(demoAmenities.length > 0)" class="offer-img">
             <div class="text">{{amenitie}}</div>
           </div> 
@@ -146,27 +146,28 @@
             <div class="meter">
               <div class="fill" :style="{width:checkAvgScore(score.score)}"></div>
             </div>
-            <p>{{score.score}}</p>
+            <p class="meter-num">{{score.score.toFixed(1)}}</p>
           </div>
         </div>
       </div>
       <div class="users-reviews">
-        <div class="user-review" v-for="review in stay.reviews" :key="review">
+        <div class="user-review" v-for="review in stay.reviews.slice(0,6)" :key="review">
           <div class="user-info flex row">
-            <img src="https://a0.muscache.com/im/pictures/user/143723a2-07f4-4cb7-9754-d82d61930cf7.jpg?aki_policy=profile_large" alt="">
+            <img :src="review.by.imgUrl" alt="">
             <div class="name">
               <div class="user-name">
                 {{review.by.fullname}}
               </div>
-              <p class="date">November 2022</p>
+              <p class="date">{{review.at.slice(0,10)}}</p>
             </div>
           </div>
           <div class="flex column">
-            {{stay.reviews[0].txt}}
+            {{review.txt}}
             <button class="show-more">Show more</button>
           </div>
         </div>
       </div>
+      <button>Show all {{stay.reviews.length}} {{reviewNum}}</button>
     </div>
 
   </section>
@@ -200,7 +201,7 @@ export default {
       headerObserver: null,
       stickyNav: false,
       isShowAllImg:false,
-      reviewScores:[{name:'Cleanliness',score:4.8},{name:'Communication',score:4.9},{name:'Check-in',score:4.5},{name:'Accuracy',score:4.3},{name:'Location',score:4.1},{name:'Value',score:4.2}],
+      reviewScores: []
     };
   },
   created() {
@@ -240,6 +241,24 @@ export default {
         type: "getReviewScore",
         stayReviews: this.stay.reviews,
       });
+      let Cleanliness = 0,Communication = 0, CheckIn = 0, Accuracy = 0, Location = 0, Value = 0
+      this.stay.reviews.forEach(review =>{
+        Cleanliness += review.rate.Cleanliness
+        Communication += review.rate.Communication
+        CheckIn += review.rate.CheckIn
+        Accuracy += review.rate.Accuracy
+        Location += review.rate.Location
+        Value += review.rate.Value
+      })
+      const numReviews = this.stay.reviews.length
+      this.reviewScores= [
+        {name:'Cleanliness',score: Cleanliness/numReviews},
+        {name:'Communication',score: Communication/numReviews},
+        {name:'Check-in',score: CheckIn/numReviews},
+        {name:'Accuracy',score: Accuracy/numReviews},
+        {name:'Location',score: Location/numReviews},
+        {name:'Value',score: Value/numReviews}
+      ]
     },
     toggleReserve(){
       this.isReserve = !this.isReserve

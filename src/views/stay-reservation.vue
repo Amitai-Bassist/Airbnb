@@ -7,12 +7,15 @@
 </template>
   
 <script>
+// reservation
   export default {
     name: 'reservation',
     data() {
       return {
 
       }
+    },
+    created(){
     },
     computed: {
 
