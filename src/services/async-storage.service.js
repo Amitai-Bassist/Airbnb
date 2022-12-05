@@ -8,8 +8,8 @@ export const storageService = {
 };
 
 function query(entityType, delay = 500) {
-  if(entityType === 'stay') var entities = getDemoStays()
-  else var entities = JSON.parse(localStorage.getItem(entityType)) ;
+  if (entityType === 'stay') var entities = getDemoStays();
+  else var entities = JSON.parse(localStorage.getItem(entityType));
   _save('stay', entities);
   return new Promise((resolve) => setTimeout(() => resolve(entities), delay));
 }
@@ -92,10 +92,11 @@ function getDemoStays() {
         'https://a0.muscache.com/im/pictures/eb5ed6f7-e977-4316-9cbc-a9bbf64e7075.jpg?im_w=480',
         'https://a0.muscache.com/im/pictures/miso/Hosting-618133020295708288/original/12a4e011-8a92-45ca-8231-35bb2bfbab1f.jpeg?im_w=480',
       ],
-      price: 80.0,
+      price: 75.0,
       summary:
         'Fantastic duplex apartment with three bedrooms, located in the historic area of Porto, Ribeira (Cube)...',
       capacity: 8,
+      bedrooms: 3,
       amenities: [
         'TV',
         'Wifi',
@@ -144,10 +145,11 @@ function getDemoStays() {
         'https://a0.muscache.com/im/pictures/ab3d9c2b-1e5d-4c1f-91ab-26b376b49633.jpg?im_w=720',
         'https://a0.muscache.com/im/pictures/7f0322f3-51ba-4a06-9e34-b8fdb3ac9fc1.jpg?im_w=720',
       ],
-      price: 80.0,
+      price: 309.0,
       summary:
         'Fantastic duplex apartment with three bedrooms, located in the historic area of Porto, Ribeira (Cube)...',
       capacity: 8,
+      bedrooms: 2,
       amenities: [
         'TV',
         'Wifi',
@@ -197,10 +199,11 @@ function getDemoStays() {
         'https://a0.muscache.com/im/pictures/9e14ff18-2ca5-4d12-883e-8734399050ef.jpg?im_w=720',
         'https://a0.muscache.com/im/pictures/9e14ff18-2ca5-4d12-883e-8734399050ef.jpg?im_w=720',
       ],
-      price: 80.0,
+      price: 108.0,
       summary:
         'Fantastic duplex apartment with three bedrooms, located in the historic area of Porto, Ribeira (Cube)...',
       capacity: 8,
+      bedrooms: 1,
       amenities: [
         'TV',
         'Wifi',
@@ -249,10 +252,11 @@ function getDemoStays() {
         'https://a0.muscache.com/im/pictures/eb5ed6f7-e977-4316-9cbc-a9bbf64e7075.jpg?im_w=480',
         'https://a0.muscache.com/im/pictures/miso/Hosting-618133020295708288/original/12a4e011-8a92-45ca-8231-35bb2bfbab1f.jpeg?im_w=480',
       ],
-      price: 80.0,
+      price: 180.0,
       summary:
         'Fantastic duplex apartment with three bedrooms, located in the historic area of Porto, Ribeira (Cube)...',
       capacity: 8,
+      bedrooms: 3,
       amenities: [
         'TV',
         'Wifi',
@@ -301,10 +305,11 @@ function getDemoStays() {
         'https://a0.muscache.com/im/pictures/ab3d9c2b-1e5d-4c1f-91ab-26b376b49633.jpg?im_w=720',
         'https://a0.muscache.com/im/pictures/7f0322f3-51ba-4a06-9e34-b8fdb3ac9fc1.jpg?im_w=720',
       ],
-      price: 80.0,
+      price: 195.0,
       summary:
         'Fantastic duplex apartment with three bedrooms, located in the historic area of Porto, Ribeira (Cube)...',
       capacity: 8,
+      bedrooms: 5,
       amenities: [
         'TV',
         'Wifi',
@@ -354,10 +359,11 @@ function getDemoStays() {
         'https://a0.muscache.com/im/pictures/9e14ff18-2ca5-4d12-883e-8734399050ef.jpg?im_w=720',
         'https://a0.muscache.com/im/pictures/9e14ff18-2ca5-4d12-883e-8734399050ef.jpg?im_w=720',
       ],
-      price: 80.0,
+      price: 130.0,
       summary:
         'Fantastic duplex apartment with three bedrooms, located in the historic area of Porto, Ribeira (Cube)...',
       capacity: 8,
+      bedrooms: 4,
       amenities: [
         'TV',
         'Wifi',
@@ -406,10 +412,11 @@ function getDemoStays() {
         'https://a0.muscache.com/im/pictures/miso/Hosting-51467325/original/0d0eb20c-59ba-4048-83f1-72ade831b55b.jpeg?im_w=720',
         'https://a0.muscache.com/im/pictures/miso/Hosting-51467325/original/c20542fb-c83b-4e49-95f4-d85d831d38b2.jpeg?im_w=720',
       ],
-      price: 80.0,
+      price: 280.0,
       summary:
         'Fantastic duplex apartment with three bedrooms, located in the historic area of Porto, Ribeira (Cube)...',
       capacity: 8,
+      bedrooms: 3,
       amenities: [
         'TV',
         'Wifi',
@@ -458,10 +465,11 @@ function getDemoStays() {
         'https://a0.muscache.com/im/pictures/miso/Hosting-49996006/original/a5b3dca5-5a9c-47b6-8e1f-602079b54506.jpeg?im_w=720',
         'https://a0.muscache.com/im/pictures/miso/Hosting-49996006/original/8abd9352-a7ea-4d4c-b62f-c47415017146.jpeg?im_w=720',
       ],
-      price: 80.0,
+      price: 95.0,
       summary:
         'Fantastic duplex apartment with three bedrooms, located in the historic area of Porto, Ribeira (Cube)...',
       capacity: 8,
+      bedrooms: 2,
       amenities: [
         'TV',
         'Wifi',
@@ -514,6 +522,7 @@ function getDemoStays() {
       summary:
         'Fantastic duplex apartment with three bedrooms, located in the historic area of Porto, Ribeira (Cube)...',
       capacity: 8,
+      bedrooms: 4,
       amenities: [
         'TV',
         'Wifi',
@@ -566,6 +575,7 @@ function getDemoStays() {
       summary:
         'Fantastic duplex apartment with three bedrooms, located in the historic area of Porto, Ribeira (Cube)...',
       capacity: 8,
+      bedrooms: 2,
       amenities: [
         'TV',
         'Wifi',
@@ -609,12 +619,12 @@ function getDemoStays() {
       type: 'House',
       imgUrls: [
         'https://a0.muscache.com/im/pictures/e83e702f-ef49-40fb-8fa0-6512d7e26e9b.jpg?aki_policy=large',
-        'otherImg.jpg',
       ],
-      price: 80.0,
+      price: 300.0,
       summary:
         'Fantastic duplex apartment with three bedrooms, located in the historic area of Porto, Ribeira (Cube)...',
       capacity: 8,
+      bedrooms: 3,
       amenities: [
         'TV',
         'Wifi',
@@ -663,10 +673,11 @@ function getDemoStays() {
         'https://a0.muscache.com/im/pictures/miso/Hosting-49996006/original/a5b3dca5-5a9c-47b6-8e1f-602079b54506.jpeg?im_w=720',
         'https://a0.muscache.com/im/pictures/miso/Hosting-49996006/original/8abd9352-a7ea-4d4c-b62f-c47415017146.jpeg?im_w=720',
       ],
-      price: 80.0,
+      price: 120.0,
       summary:
         'Fantastic duplex apartment with three bedrooms, located in the historic area of Porto, Ribeira (Cube)...',
       capacity: 8,
+      bedrooms: 2,
       amenities: [
         'TV',
         'Wifi',
@@ -707,7 +718,7 @@ function getDemoStays() {
   ];
 }
 
-function getDemoAmenities(){
+function getDemoAmenities() {
   return [
     {
       name: 'TV',
@@ -719,19 +730,19 @@ function getDemoAmenities(){
     },
     {
       name: 'Kitchen',
-      url:'https://res.cloudinary.com/dtaiyvzq5/image/upload/v1669910864/airbnb%20icons/oug8b4op4x5nb7mqavnv.svg',
+      url: 'https://res.cloudinary.com/dtaiyvzq5/image/upload/v1669910864/airbnb%20icons/oug8b4op4x5nb7mqavnv.svg',
     },
     {
-      name:'Smoking allowed',
-      url:'https://res.cloudinary.com/dtaiyvzq5/image/upload/v1669910916/airbnb%20icons/vkmnmtwjgolvuhoorbhg.svg',
+      name: 'Smoking allowed',
+      url: 'https://res.cloudinary.com/dtaiyvzq5/image/upload/v1669910916/airbnb%20icons/vkmnmtwjgolvuhoorbhg.svg',
     },
     {
-      name:'Pets allowed',
-      url:'https://res.cloudinary.com/dtaiyvzq5/image/upload/v1669910961/airbnb%20icons/sumnjh7chkpaegztys3b.svg',
+      name: 'Pets allowed',
+      url: 'https://res.cloudinary.com/dtaiyvzq5/image/upload/v1669910961/airbnb%20icons/sumnjh7chkpaegztys3b.svg',
     },
     {
-      name:'Cooking basics',
-      url:'https://res.cloudinary.com/dtaiyvzq5/image/upload/v1669910864/airbnb%20icons/oug8b4op4x5nb7mqavnv.svg',
-    }
-  ]
+      name: 'Cooking basics',
+      url: 'https://res.cloudinary.com/dtaiyvzq5/image/upload/v1669910864/airbnb%20icons/oug8b4op4x5nb7mqavnv.svg',
+    },
+  ];
 }
