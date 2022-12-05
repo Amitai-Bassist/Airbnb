@@ -168,17 +168,19 @@
         </div>
       </div>
       <button>Show all {{stay.reviews.length}} {{reviewNum}}</button>
+      <details-map :loc="stay.loc"></details-map>
     </div>
+
 
   </section>
 </template>
 
 <script>
   import { eventBus } from '../services/event-bus.service'
-  import { stayService } from "../services/stay.service.local.js";
   import stayReserve from "../cmps/stay-reserve.vue";
   import reserveModal from "../cmps/reserve-modal.vue";
-
+  import detailsMap from '../cmps/details-map.vue';
+  
 export default {
   name: "stay-detail",
   data() {
@@ -290,9 +292,6 @@ export default {
 
   },
   computed: {
-    // stay() {
-    //   return this.$store.getters.currStay;
-    // },
     formattedDate() {
       var currStayCreatedAt = this.stay.createdAt;
       var formatedDate = new Date(currStayCreatedAt);
@@ -316,6 +315,7 @@ export default {
   components: {
     stayReserve,
     reserveModal,
+    detailsMap,
   },
 };
 </script>
