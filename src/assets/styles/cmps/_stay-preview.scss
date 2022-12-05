@@ -6,36 +6,52 @@
       font-size: rem(15px);
       width: 100%;
       text-decoration: none;
+      height: fit-content;
+      margin: 0%;
+
     }
     p.stay-name {
       font-family: Airbnb-Cereal-Medium;
       font-size: rem(15px);
+      line-height: rem(18px);
       text-transform: capitalize; 
       color: #222222;
       white-space: nowrap;
       text-overflow: ellipsis;
-      max-width: rem(190px);
       display: block;
       overflow: hidden;
       height: fit-content;
+      padding-block-start: 1px;
+      //
+     margin: 0;
+
+      @include for-normal-layout {
+        max-width: rem(220px);
+      }
+      @include for-wide-layout {
+        max-width: rem(200px);
+      }
+      @include for-extra-wide-layout {
+        max-width: rem(200px);
+      }
     }
     p span.price {
-      font-family: Airbnb-Cereal-Bold;
+      font-family: Airbnb-Cereal-Medium;
       color: #222222;
     }
     .bottom {
         margin-top: rem(12px);
-        line-height: rem(12px);
+        // line-height: rem(12px);
         padding: 0;
         min-height: auto;
         width: 100%;
         display: grid;
         grid-template-columns: 4fr 1fr;
-        grid-template-rows: repeat(3,19px) 25px;
+        grid-template-rows: repeat(4,19px) 25px;
         grid-column-gap: rem(3px);
         grid-row-gap: rem(2px);
       }
-  
+   
       .grid-item-1 {
           grid-column: 1/2;
           grid-row: 1/2;
@@ -46,7 +62,7 @@
           grid-row: 1/2;
           flex-wrap: nowrap;
           justify-self: end;
-          align-items: baseline;
+          align-items: center;
       }
     
       .grid-item-2 {
@@ -56,32 +72,52 @@
       }
 
       p.grid-item-2  {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        display: block;
+        overflow: hidden;
+        height: fit-content;
         @media (max-width: 300px) {
-          white-space: nowrap;
-          text-overflow: ellipsis;
           max-width: rem(190px);
-          display: block;
-          overflow: hidden;
-          height: fit-content;
+        }
+        @include for-normal-layout {
+          max-width: rem(220px);
+        }
+        @include for-wide-layout {
+          max-width: rem(220px);
+        }
+        @include for-extra-wide-layout {
+          max-width: rem(220px);
         }
       }
 
       .grid-item-3 p {
         font-size: 15px;
+        margin: 0px;
       }
-    
-      .grid-item-4 {
+      
+      .grid-item-6 {
           grid-column: 1/2;
           grid-row: 4/5;
+          margin-block-start: 6px;
+          line-height: 10px;
+      }
+      .grid-item-4 {
+          grid-column: 1/2;
+          grid-row: 5/6;
           color: #222222;
           margin-block-start: 6px;
+          align-self: center;
       }
       .grid-item-5 {
           grid-column: 1/2;
           grid-row: 3/4;
-          color: #717171;
+          line-height: 22px;
       }
-   
+      .grid-item-2, .grid-item-6, .grid-item-5 {
+        font-family: Airbnb-Cereal-Thin;
+        color: #717171;
+      }
   //   @include for-small-layout {
   //     .bottom {
   //       margin-top: rem(11px);
