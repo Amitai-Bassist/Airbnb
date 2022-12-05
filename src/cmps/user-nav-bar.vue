@@ -2,9 +2,7 @@
     <section class="user-nav-bar">
         <section v-if="loggedInUser._id">
             <router-link to="/stay/wishlist">Whishlist</router-link>
-            <router-link :to="`/stay/dashboard`">
-                Account dashboard
-            </router-link>
+            <router-link :to="`/stay/dashboard/${loggedInUser._id}`">Account dashboard</router-link>
             <router-link @click="logout()" to="/stay">Logout</router-link>
         </section>
         <section v-else>
@@ -15,7 +13,7 @@
         </section>
         
 
-        <!-- <router-link :to="`/stay/dashboard/${loggedInUser._id}`"> -->
+        
         
         
     
