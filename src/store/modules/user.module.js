@@ -32,6 +32,10 @@ export const userModule = {
         setUserScore(state, { score }) {
             state.loggedinUser.score = score
         },
+        // setUserWishlist(state, { stay }) {
+        //     state.loggedinUser.wishlist = state.loggedinUser.wishlist.push(stay)
+        //     console.log('state.loggedinUser.wishlist',state.loggedinUser.wishlist);
+        // },
     },
     actions: {
         async login({ commit }, { userCred }) {
@@ -100,6 +104,16 @@ export const userModule = {
                 commit({ type: 'setUser', user })
             } catch (err) {
                 console.log('userStore: Error in updateUser', err)
+                throw err
+            }
+
+        },
+        async addToWishlist({ commit }, { stay }) {
+            try {
+                const updatedUser = await userService.addToWishlist(stay)
+                commit({ type: 'setLoggedinUser', user: updatedUser })
+            } catch (err) {
+                console.log('userStore: Error in increaseScore', err)
                 throw err
             }
 

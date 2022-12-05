@@ -18,16 +18,21 @@
       </section>
   </header>
   <div class="full screen-shadow" @click="clickedScreen" v-if="isBigFilter"></div>
-  <user-nav-bar @goToLogin="(isLoginModal = true, openUserNav = false)" @logout="logout"
+  <user-nav-bar 
+  @goToLogin="(isLoginModal = true, openUserNav = false)" 
+  @goToSignup="(isSignupModal = true, openUserNav = false)" 
+  @goUserEdit="(isUserEdit = true, openUserNav = false)" 
+  @logout="logout"
   v-click-away="onClickAway" 
   v-if="openUserNav" :loggedInUser="loggedInUser"></user-nav-bar>
   <stay-where-search class="" v-if="isWhereSearch"></stay-where-search>
   <stay-when-search class="" v-if="(isWhenStart || isWhenEnd)"></stay-when-search>
   <stay-who-search class="" v-if="isWhoSearch"></stay-who-search>
-  <user-login-modal  
-    v-if="isLoginModal" @closeModal="(isLoginModal = false)">
+  <user-login-modal 
+    :isSignupModal="isSignupModal" :loggedInUser="loggedInUser" :isUserEdit="isUserEdit"
+    v-if="(isLoginModal || isSignupModal || isUserEdit)" @closeModal="(isLoginModal = false, isSignupModal = false, isUserEdit)">
   </user-login-modal>
-  <div v-if="isLoginModal" @click="(isLoginModal = false)" class="modal-full-screen"></div>
+  <div v-if="(isLoginModal || isSignupModal || isUserEdit)" @click="(isLoginModal = false,isSignupModal=false, isUserEdit=false)" class="modal-full-screen"></div>
     
 </template>
 <script>
@@ -52,6 +57,8 @@ export default {
       isWhenEnd: false,
       isDetailsHeader: false,
       isLoginModal: false,
+      isSignupModal: false,
+      isUserEdit:false,
     }
   },
   created() {
