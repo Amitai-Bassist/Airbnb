@@ -1,0 +1,28 @@
+.filter-modal-container{
+    position: fixed;
+    top: 30px;
+    right: calc(50% - 400px);
+    border-radius: 12px;
+    width: 800px;
+    height: 90%;
+    background-color:rgb(255 255 255);
+    box-shadow: rgb(0 0 0 / 28%) 0px 8px 28px !important;
+    z-index: 10;
+    overflow:scroll;
+    >*{
+        margin-bottom: 20px;
+        padding-left: 24px;
+    }
+    >:nth-child(1){
+
+    }
+}
+
+.modal-full-screen{
+    position: fixed;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #71717190;
+    z-index: 8;
+}

@@ -1,7 +1,7 @@
 <template>
     <section class="grid stay-where-search">
         <div>
-            <h2>Mostly searched</h2>
+            <h2>Trending destinations</h2>
             <section class="mosley-search-container">
                 <div class="flex" @click="choseMainland('Paris')">
                     <div >
@@ -41,7 +41,7 @@
             <section class="chose-mainland">
             <div>
             <img @click="choseMainland('')" class="mainland-img" src="https://res.cloudinary.com/dht4wwjwe/image/upload/v1669832788/ypxaozgl8ypv41zcslzr.jpg" alt="">
-            <div>i'm flexible</div>
+            <div>I'm flexible</div>
             </div>
             <div>
             <img @click="choseMainland('Europe')" class="mainland-img" src="https://res.cloudinary.com/dht4wwjwe/image/upload/v1669832796/jmoewtj22cydhrxv8igw.webp" alt="">

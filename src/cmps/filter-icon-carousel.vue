@@ -1,8 +1,8 @@
 <template>
-    <Carousel :itemsToShow="12" :wrapAround="true" :transition="500" 
+    <Carousel :itemsToShow="12" :wrapAround="false" :transition="500" class="carousel-of-icons"
     :itemsToScroll="5" :touchDrag="true" >
-      <Slide class="slide-in-header" v-for="icon in icons" :key="icon"  >
-        <div class="flex column space-between icon-in-carousel-filter">
+      <Slide  class="slide-in-header" v-for="icon in icons" :key="icon"  >
+        <div @click="choseIcon(icon.iconName)" :class="{iconActive:icon.iconName === iconChosen }"  class="flex column space-between icon-in-carousel-filter">
             <img class="header-icon-filter-img" :src="icon.url" alt="1">
             {{icon.iconName}}
         </div>
@@ -11,8 +11,8 @@
       <Carousel  ref="myCarousel"> ... </Carousel>
 
         <template #addons>
-        <Navigation class="header-navigate-filter-carousel"/>
         
+        <Navigation class="header-navigate-filter-carousel"/>
         </template>
       ...
     </Carousel>
@@ -32,12 +32,12 @@
         return {
             myCarousel: ref(null),
             icons: [
+                {url:"https://res.cloudinary.com/airbnb22/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669758826/top_of_the_world._jpg_b8wzyu.jpg",
+                iconName:'Top of the world'},
                 {url:"https://res.cloudinary.com/airbnb22/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669758835/tropical_fgverw.jpg",
                 iconName:'Tropical'},
                 {url:"https://res.cloudinary.com/airbnb22/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669758830/trending_dc5gh8.jpg",
                 iconName:'Trending'},
-                {url:"https://res.cloudinary.com/airbnb22/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669758826/top_of_the_world._jpg_b8wzyu.jpg",
-                iconName:'Top of the world'},
                 {url:"https://res.cloudinary.com/airbnb22/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669758821/private_room_bdwxkv.jpg",
                 iconName:'Private rooms'},
                 {url:"https://res.cloudinary.com/airbnb22/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669758817/play_v8l9un.jpg",
@@ -66,12 +66,19 @@
                 iconName:'Adapted'},
                 // {url:"",
                 // {url:"",
+            ],
+            iconChosen: 'Top of the world'
 
-        ]
         }
     },
     mounted() {
       // console.log('hi i am here',this.myCarousel.data)
+    },
+    methods: {
+      choseIcon(iconName){
+        this.iconChosen = iconName
+        this.$store.dispatch({ type: "loadStays", filterBy: {type: iconName} });
+      }
     },
     components: {
       Carousel,
@@ -80,6 +87,7 @@
       Navigation
     },
   })
+
 </script>
   
 <style scoped>
@@ -123,8 +131,8 @@
   }
   
   .carousel__slide--active ~ .carousel__slide {
-    transform: rotateY(20deg) scale(0.9);
-    transform: rotateY(0) scale(0.9);
+    /* transform: rotateY(20deg) scale(0.9);
+    transform: rotateY(0) scale(0.9); */
   }
   
   .carousel__slide--prev {
@@ -140,7 +148,11 @@
   }
   
   .carousel__slide--active {
-    opacity: 1;
-    transform: rotateY(0) scale(1.1);
+    /* opacity: 1;
+    transform: rotateY(0) scale(1.1); */
+  }
+
+  .slide-in-header{
+    padding-left: 0;
   }
 </style>

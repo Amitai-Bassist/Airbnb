@@ -12,7 +12,9 @@
       <details-header-filter @clickedMain="clickedMain" v-if="isDetailsHeader"></details-header-filter>
       <section @click="openUserNav=!openUserNav" class="loggedin-user" v-if="loggedInUser">
         <img src="https://res.cloudinary.com/dht4wwjwe/image/upload/v1669794047/airbnb/dgxtegsrfyrdcywi0vij.png" alt="">
-        <img :src="loggedInUser.imgUrl" />
+        <el-badge :value="1" class="item" type="primary">
+          <img :src="loggedInUser.imgUrl" />
+        </el-badge>
       </section>
   </header>
   <div class="full screen-shadow" @click="clickedScreen" v-if="isBigFilter"></div>
@@ -48,9 +50,11 @@ export default {
   },
   created() {
     eventBus.on('go-to-details',this.changeToDetailsHeader)
+    
   },
   methods:{
     clickedMain(chose){
+      addEventListener('scroll', (event) => {this.clickedScreen()})
       this.isMainFilter = false
       this.isBigFilter = false
       this.isBigFilter = true

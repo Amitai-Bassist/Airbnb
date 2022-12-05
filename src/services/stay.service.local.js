@@ -23,6 +23,10 @@ async function query(filterBy = { txt: ''}) {
         const regex = new RegExp(filterBy.txt, 'i')
         stays = stays.filter(stay => regex.test(stay.name) || regex.test(stay.loc.country))
     }
+    if (filterBy.type) {
+        const regex = new RegExp(filterBy.type, 'i')
+        stays = stays.filter(stay => regex.test(stay.labels[2]))
+    }
     // if (filterBy.price) {
     //     stays = stays.filter(stay => stay.price <= filterBy.price)
     // }

@@ -61,7 +61,7 @@ header {
     background-color: $clr6;
     padding: 16px 0;
     display: flex;
-    z-index: 5;
+    z-index: 10;
     justify-content: space-between;
     border-bottom: solid 1px #dddddd;
     &.big-filter{
@@ -73,14 +73,14 @@ header {
         width: 77px;
         height: 42px;
         background-color: $clr6;
-        padding: 5px 5px 5px 12px;
+        padding: 4px 5px 5px 12px;
         border-radius: 21px;
         // align-self: flex-end;
         color: whitesmoke;
         border: solid 1px #dddddd;
         cursor: pointer;
         display: grid;
-        grid-template-columns: 1fr 2fr;
+        grid-template-columns: 27px 30px;
         span{
             background-color: rgb(113,113,113);
             // padding: 4px;
@@ -93,9 +93,11 @@ header {
             align-self: center;
         }
         :nth-child(2){
-            width: 30px;
-            height: 30px;
-            justify-self: end;
+            >img{
+                width: 30px;
+                height: 30px;
+                justify-self: end;
+            }
         }
     }
     .loggedin-user:hover{
@@ -145,7 +147,7 @@ header {
     padding-top: 11px;
     padding-bottom: 11px;
     border-radius: 10px;
-    z-index: 6;
+    z-index: 9;
     background-color: white;
     box-shadow: 1px 1px 11px 1px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 5%);    
     >a{
