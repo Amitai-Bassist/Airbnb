@@ -18,10 +18,14 @@
       </section>
   </header>
   <div class="full screen-shadow" @click="clickedScreen" v-if="isBigFilter"></div>
-  <user-nav-bar v-click-away="onClickAway" v-if="openUserNav" :loggedInUser="loggedInUser"></user-nav-bar>
+  <user-nav-bar @goToLogin="(isLoginModal = true, openUserNav = false)" v-click-away="onClickAway" v-if="openUserNav" :loggedInUser="loggedInUser"></user-nav-bar>
   <stay-where-search class="" v-if="isWhereSearch"></stay-where-search>
   <stay-when-search class="" v-if="(isWhenStart || isWhenEnd)"></stay-when-search>
   <stay-who-search class="" v-if="isWhoSearch"></stay-who-search>
+  <user-login-modal  
+    v-if="isLoginModal" @closeModal="(isLoginModal = false)">
+  </user-login-modal>
+  <div v-if="isLoginModal" @click="(isLoginModal = false)" class="modal-full-screen"></div>
     
 </template>
 <script>
@@ -33,6 +37,7 @@ import stayWhenSearch from './stay-when-search.vue'
 import stayWhoSearch from './stay-who-search.vue'
 import mainFilter from './main-filter.vue'
 import bigFilter from './big-filter.vue'
+import userLoginModal from './user-login-modal.vue'
 export default {
   data(){
     return {
@@ -43,14 +48,13 @@ export default {
       isWhoSearch: false,
       isWhenStart: false,
       isWhenEnd: false,
-      isDetailsHeader: false
-
-      
+      isDetailsHeader: false,
+      isLoginModal: false,
     }
   },
   created() {
     eventBus.on('go-to-details',this.changeToDetailsHeader)
-    if (id) {this.changeToDetailsHeader()}
+    
   },
   methods:{
     clickedMain(chose){
@@ -104,8 +108,8 @@ export default {
   },
   computed: {
     loggedInUser() {
-      // return this.$store.getters.loggedinUser 
-      return {imgUrl:'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'}
+      return this.$store.getters.loggedinUser 
+      // return {imgUrl:'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'}
     },
   },
   components: {
@@ -116,6 +120,7 @@ export default {
     stayWhenSearch,
     stayWhoSearch,
     detailsHeaderFilter,
+    userLoginModal
   }
 }
 </script>

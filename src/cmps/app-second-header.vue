@@ -24,8 +24,6 @@
             }
         },
         created(){
-            const { id } = this.$route.params;
-            if (id) this.mainPage = true
             eventBus.on('go-to-details',()=>{this.mainPage = false})
             eventBus.on('back-to-main',()=>{this.mainPage = true})
             eventBus.on('go-big-filter',()=>{this.isBigFilter = true})
