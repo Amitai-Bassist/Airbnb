@@ -1,7 +1,7 @@
 <template>
     <section class="order-container user-login-modal">
         <button @click="closeModal()">x</button>
-        <h1>Log in</h1>
+        <h1>Log in or sign up</h1>
         <input  type="text" v-model="user.username" placeholder="Username">
         <input type="password" v-model="user.password" placeholder="Password">
         <div @click="login()" class="btn-container">
@@ -111,6 +111,7 @@
                 </button>
             </div>
         </div>
+
         
     </section>
   

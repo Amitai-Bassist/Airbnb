@@ -73,7 +73,7 @@ header {
         width: 77px;
         height: 42px;
         background-color: $clr6;
-        padding: 4px 5px 5px 12px;
+        padding: 5px 5px 5px 12px;
         border-radius: 21px;
         // align-self: flex-end;
         color: whitesmoke;
@@ -145,25 +145,27 @@ header {
     right: 80px;
     top: 70px;
     width: 240px;
-    display: flex;
-    flex-direction: column;
     padding-top: 11px;
     padding-bottom: 11px;
     border-radius: 10px;
     z-index: 11;
     background-color: white;
     box-shadow: 1px 1px 11px 1px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 5%);    
-    >*{
-        outline-style: none;
-        color: #222222;
-        padding: 9px 14px;
-        font-size: 14px;
-        outline-style: none;
-        cursor: pointer;
-    }
-    >*:hover{
-        text-decoration: none;
-        background-color: #f1efef;
+    >section{
+        display: flex;
+        flex-direction: column;
+        >*{
+            outline-style: none;
+            color: #222222;
+            padding: 9px 14px;
+            font-size: 14px;
+            outline-style: none;
+            cursor: pointer;
+        }
+        >*:hover{
+            text-decoration: none;
+            background-color: #f1efef;
+        }
     }
 }
 
