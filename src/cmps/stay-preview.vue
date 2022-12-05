@@ -41,7 +41,7 @@
         this.$router.push( `/stay/${this.stay._id}`);
       },
       addToWishlist() {
-        this.$store.commit({type: 'addToWishlist', stay: this.stay})
+        this.$store.dispatch({type: 'addToWishlist', stay: this.stay})
       }
     },
     computed: {
