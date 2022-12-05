@@ -3,23 +3,17 @@
         <section v-if="loggedInUser._id">
             <router-link to="/stay/wishlist">Whishlist</router-link>
             <router-link :to="`/stay/dashboard/${loggedInUser._id}`">Account dashboard</router-link>
+            <div @click="goUserEdit()">Edit my account</div>
             <router-link @click="logout()" to="/stay">Logout</router-link>
         </section>
         <section v-else>
-            <div @click="goToLogin()">Signup</div>
+            <div @click="goSignup()">Signup</div>
             <div @click="goToLogin()">Login</div>
             <div class="border-line-between"></div>
             <div>Dreambnb your home</div>
-        </section>
-        
-
-        
-        
-        
-    
+        </section>    
     </section>
 </template>
-
 
 <script>
     export default {
@@ -28,8 +22,13 @@
         },
         methods: {
             goToLogin(){
-                console.log('logon');
                 this.$emit('goToLogin')
+            },
+            goSignup(){
+                this.$emit('goToSignup')
+            },
+            goUserEdit(){
+                this.$emit('goUserEdit')
             },
             logout(){
                 this.$store.dispatch({ type: "logout" });
