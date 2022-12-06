@@ -57,10 +57,12 @@
     },
     computed: {
       inWishlist(){
-        const wishlist = this.loggedinUser.wishlist
-        return wishlist.some((stay)=>{
-          return stay._id === this.stay._id
-        })
+        // if (!this.loggedinUser) return false
+        // const wishlist = this.loggedinUser.wishlist
+        // return wishlist.some((stay)=>{
+        //   return stay._id === this.stay._id
+        // })
+        return false
       }
       // stayName() {
         // var newName = this.stay.name.splice(0,25);

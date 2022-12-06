@@ -1,5 +1,6 @@
 <template>
   <header class="header-layout" :class="{'details':isDetailsHeader,'big-filter':isBigFilter}"> 
+      <new-user-msg ></new-user-msg>
       <nav>
         <router-link to="/stay" class="flex router-logo-link" @click="returnToMainStay()">
           <img class="airbnb-logo" src="https://res.cloudinary.com/dht4wwjwe/image/upload/v1669976706/bdcvkjwqkucgzr2bka5x.svg" alt="logo">
@@ -35,9 +36,12 @@
     @closeUserLoginModal="closeUserLoginModal">
   </user-login-modal>
   <div v-if="(isLoginModal || isSignupModal || isUserEdit)" @click="(isLoginModal = false,isSignupModal=false, isUserEdit=false)" class="modal-full-screen"></div>
-    
+  
+
+
 </template>
 <script>
+import newUserMsg from './new-user-msg.vue';
 import { eventBus } from '../services/event-bus.service'
 import detailsHeaderFilter from './details-header-filter.vue';
 import userNavBar from './user-nav-bar.vue';
@@ -61,7 +65,8 @@ export default {
       isLoginModal: false,
       isSignupModal: false,
       isUserEdit:false,
-      isLoggedInUser: this.loggedInUser === true
+      isLoggedInUser: this.loggedInUser === true,
+      showmsg: false,
     }
   },
   created() {
@@ -146,7 +151,8 @@ export default {
     stayWhenSearch,
     stayWhoSearch,
     detailsHeaderFilter,
-    userLoginModal
+    userLoginModal,
+    newUserMsg
   }
 }
 </script>
