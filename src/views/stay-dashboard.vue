@@ -25,13 +25,16 @@
       >
       <template #item-hostActions="item">
     
-        <select @change="changeStatus(event)"  id="">
+        <select @change="changeStatus($event)" :model="editingItem.status" id="">
         <!-- <select id=""> -->
           <option :value="item.status">{{item.status}}</option>
           <option :value="item.status === 'pending' ? 'approved' : 'pending'">{{item.status === 'pending' ? 'approved' : 'pending'}}</option>
           <option :value="item.status === 'pending' ? 'declined' : 'approved'">{{item.status === 'pending' ? 'declined' : 'approved'}}</option>
         </select>
 
+      </template>
+      <template #item-status="item">
+        {{item.status}}
       </template>
     </EasyDataTable>
     </section>
@@ -54,6 +57,7 @@ export default {
       items:[],
       hostStay: null,
       orders: null,
+      editingItem: {status:''}
     }
   },
   created() {
@@ -66,6 +70,7 @@ export default {
       this.items = []
         hostOrders.forEach(order => {
           this.items.push({
+            id: order._id,
             status: order.status,
             guests: order.guests.adults,
             checkIn: order.startDate,
@@ -80,8 +85,11 @@ export default {
         this.headers.push({ text: "host", value: "hostActions" })
       }
     },
-    changeStatus(val){
-      console.log('val',arguments);
+    changeStatus(val, ){
+      console.log(val.target.value)
+      // const item = this.items.value.find(item => {
+      //   item.id === 
+      // })
     },
     async getHostStays(id) {
       const hostStays =  await this.$store.dispatch({type: 'getHostStays', userId: id});
