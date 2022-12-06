@@ -5,14 +5,14 @@
                 <h1>Adults</h1>
                 <p>Ages 13 or above</p>
             </div>
-            <add-guest-num @changeNum="changeNum" :number="1" :maxNum="maxGuests"></add-guest-num>
+            <add-guest-num @changeNum="changeNum" :number="1" :maxNum="maxAdults"></add-guest-num>
         </div>
         <div class="flex row space-between align-center">
             <div>
                 <h1>Children</h1>
                 <p>Ages 2-12</p>
             </div>
-            <add-guest-num @changeNum="changeNumKids" :number="0" :maxNum="maxGuests"></add-guest-num>
+            <add-guest-num @changeNum="changeNumKids" :number="0" :maxNum="maxKids"></add-guest-num>
         </div>
         <div class="flex row space-between align-center">
             <div>
@@ -36,7 +36,8 @@ import addGuestNum from './add-guest-num.vue';
 
     export default {
         props: {
-            'maxGuests':Number
+            'maxAdults':Number,
+            'maxKids':Number,
         },
         data(){
             return{
