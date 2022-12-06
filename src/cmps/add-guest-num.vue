@@ -17,7 +17,6 @@
             'number': Number,
             'maxNum': Number,
         },
-        // props:['number','maxNum'],
         data(){
             return {
                 num: this.number,
@@ -25,20 +24,36 @@
                 downDisabled: true,
             }
         },
+        watch:{
+            maxNum(value){
+                if (this.num >= value){
+                    this.plusDisabled = true
+                }else this.plusDisabled = false
+                if(this.num === 0 && this.maxNum === 0){
+                    this.plusDisabled = true
+                    this.downDisabled = true
+                }
+            }
+        },
         methods: {
             changeNum(num){
                 this.num += num
+                console.log('maxNum',this.maxNum);
                 if (this.num <= this.number){
                     this.downDisabled = true
                     this.num = this.number
                 }
-                else if (this.num === this.number + 1){
+                else if (this.num >= this.number + 1){
                     this.downDisabled = false
                 }
                 if (this.num >= this.maxNum){
                     this.plusDisabled = true
                     this.num = this.maxNum
                 }else this.plusDisabled = false
+                if(this.num === 0 && this.maxNum === 0){
+                    this.plusDisabled = true
+                    this.downDisabled = true
+                }
 
                 this.$emit('changeNum',this.num)
             }
