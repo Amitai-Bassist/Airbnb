@@ -9,7 +9,7 @@ export const storageService = {
 
 import myStayJson from '../../data/stay.json';
 import myUserJson from '../../data/user.json';
-// import myOrderJson from '../../data/order.json';
+import myOrderJson from '../../data/order.json';
 // assert {type:'json'}
 
 function query(entityType, delay = 500) {

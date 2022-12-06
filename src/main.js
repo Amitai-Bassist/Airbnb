@@ -13,7 +13,9 @@ import VCalendar from 'v-calendar';
 import VueClickAway from 'vue3-click-away';
 import Vue3EasyDataTable from 'vue3-easy-data-table';
 import 'vue3-easy-data-table/dist/style.css';
+import moment from 'moment';
 
+moment().format();
 const app = createApp(rootCmp);
 app.use(router);
 app.use(store);
