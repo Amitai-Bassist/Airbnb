@@ -210,6 +210,7 @@ export default {
   },
   created() {
     eventBus.emit('go-to-details')
+    const {txt = '' ,type = '' ,checkin = '' ,checkout = '' ,adults = 0 , children = 0 , infants = 0 , pets = 0 } = this.$route.query
     const { id } = this.$route.params;
     this.$store.dispatch({ type: "getStayById" , stayId: id});
     setTimeout(() => {

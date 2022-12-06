@@ -371,6 +371,7 @@
 </template>
   
 <script>
+  import { eventBus } from '../services/event-bus.service'
   export default {
     name: 'wish-list',
     props: ['isSignupModal','loggedInUser','isUserEdit'],
@@ -397,6 +398,14 @@
       login(){
         const user = this.$store.dispatch({ type: "login", userCred: this.user });
         this.$emit('closeUserLoginModal')
+        const msg = {
+                    title: 'Login was succses',
+                    message: "welcome back!",
+                    position: 'bottom-left',
+                    type: 'success',
+                    duration: 2000,
+                }
+        eventBus.emit('show-user-msg',msg)
       },
       signup(){
         const user = this.$store.dispatch({ type: "signup", userCred: this.newUser });

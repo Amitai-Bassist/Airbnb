@@ -62,6 +62,7 @@
           eventBus.on('chose-day-start', this.setCheckin)
           eventBus.on('chose-day-end', this.setCheckout)
           eventBus.on('chose-where-mainland', this.setWhereMainland)
+          eventBus.on('chose-who-guests', this.setWhoGuests)
         },
         computed: {
           wherePlaceholder(){
@@ -81,14 +82,7 @@
             this.$store.dispatch({ type: "loadStays", filterBy: this.filterBy });
             this.$router.push({ 
               path: '/stay/explore', 
-              // query: { 
-              //   txt_search: this.filterBy.txt, 
-              //   type: this.filterBy.type,
-              //   checkin: this.filterBy.checkin,
-              //   checkout: this.filterBy.checkout,
-              // } 
               query: this.filterBy
-               
             })
           },
           choseSearch(chose){
@@ -106,6 +100,12 @@
           setCheckout(date){
             this.filterBy.checkout = date.id
             this.checkout = date.id
+          },
+          setWhoGuests({adults, children, infants, pets}){
+            this.filterBy.adults = adults
+            this.filterBy.children = children
+            this.filterBy.infants = infants
+            this.filterBy.pets = pets
           },
           resetDate(){
             console.log('reset');

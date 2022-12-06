@@ -1,6 +1,6 @@
 <template>
   <el-card :body-style="{ padding: '0px' }" class="stay-preview">
-    <stay-imgs-preview :imgs="stay.imgUrls" @goToDetails="goToDetails" @addToWishlist="addToWishlist"></stay-imgs-preview>
+    <stay-imgs-preview :imgs="stay.imgUrls" :saved="inWishlist" @goToDetails="goToDetails" @addToWishlist="addToWishlist"></stay-imgs-preview>
     <div class="stay-desc" @click="goToDetails">
       <div class="bottom">
         <p class="stay-name grid-item-1">{{ stay.name }} </p>
@@ -42,8 +42,13 @@
   },
     methods: {
       goToDetails() {
+        const {txt = '' ,type = '' ,checkin = '' ,checkout = '' ,adults = 0 , children = 0 , infants = 0 , pets = 0 } = this.$route.query
         eventBus.emit('go-to-details');
-        this.$router.push( `/stay/${this.stay._id}`);
+        this.$router.push({ 
+              path: `/stay/${this.stay._id}`, 
+              query: {txt:txt ,type:type,checkin:checkin,checkout:checkout,
+                adults:adults, children:children, infants:infants, pets:pets,inWishlist:this.inWishlist}
+            })
       },
       addToWishlist() {
         this.$store.dispatch({type: 'addToWishlist', stay: this.stay})
@@ -52,7 +57,18 @@
       // }
     },
     computed: {
-  
+      inWishlist(){
+        // if (!this.loggedinUser) return false
+        // const wishlist = this.loggedinUser.wishlist
+        // return wishlist.some((stay)=>{
+        //   return stay._id === this.stay._id
+        // })
+        return false
+      }
+      // stayName() {
+        // var newName = this.stay.name.splice(0,25);
+        // newStayName = newName;
+      // }
     },
     components: {
       stayImgsPreview 
