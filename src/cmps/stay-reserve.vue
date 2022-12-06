@@ -223,7 +223,7 @@ export default {
       accommodation: null,
       ServiceFee: null,
       guestsSelected: false,
-      gusetNum: 0,
+      gusetNum: 1
     };
   },
   created() {

@@ -12,21 +12,21 @@
                 <h1>Children</h1>
                 <p>Ages 2-12</p>
             </div>
-            <add-guest-num @changeNum="changeNum"></add-guest-num>
+            <add-guest-num @changeNum="changeNum" :number="0"></add-guest-num>
         </div>
         <div class="flex row space-between">
             <div>
                 <h1>Infants</h1>
                 <p>Under age 2</p>
             </div>
-            <add-guest-num @changeNum="changeNum"></add-guest-num>
+            <add-guest-num @changeNum="changeNum" :number="0"></add-guest-num>
         </div>
         <div class="flex row space-between">
             <div>
                 <h1>Pets</h1>
                 <p>Bringing a service animal?</p>
             </div>
-            <add-guest-num @changeNum="changeNum"></add-guest-num>
+            <add-guest-num @changeNum="changeNum" :number="0"></add-guest-num>
         </div>
     </section>
 </template>
