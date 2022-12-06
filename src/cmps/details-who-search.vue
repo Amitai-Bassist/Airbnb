@@ -5,7 +5,7 @@
                 <h1>Adults</h1>
                 <p>Ages 13 or above</p>
             </div>
-            <add-guest-num @changeNum="changeNum"></add-guest-num>
+            <add-guest-num @changeNum="changeNum" :number="1"></add-guest-num>
         </div>
         <div class="flex row space-between">
             <div>
