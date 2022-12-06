@@ -22,11 +22,12 @@
   export default defineComponent({
     name: 'stay-imgs-preview',
     props: {
-      imgs: Array
+      imgs: Array,
+      saved: Boolean
     },
     data() {
       return {
-        isSaved: false,
+        isSaved: this.saved || false,
         isHover: null,
         isNavHover: null,
       }
