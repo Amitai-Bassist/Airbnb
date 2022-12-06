@@ -10,13 +10,13 @@
       <button class="big-filter-btn date grid"  v-bind:class="{isActive: whenStart}" @click="choseSearch('when-start')">
         <div>Check in</div>
         <button v-bind:class="resetActiveStart" @click="resetDate()" class="reset-date">x</button>
-        <div>{{dateStart}}</div>
+        <div>{{checkin}}</div>
       </button>
       <div class="border-line-between"></div>
       <button class="big-filter-btn date grid"  v-bind:class="{isActive: WhenEnd}" @click="choseSearch('when-end')">
         <div>Check out</div>
         <button v-bind:class="resetActiveEnd" @click="resetDate()" class="reset-date">x</button>
-        <div>{{dateEnd}}</div>
+        <div>{{checkout}}</div>
       </button>
       <div class="border-line-between"></div>
       <div class="big-filter-btn grid" v-bind:class="{isActive:WhoSearch}" @click="choseSearch('who')">
@@ -46,16 +46,21 @@
             filterBy: {
               txt:'',
               type: '',
-              dateStart: '',dateEnd: '',
-              guest: {adults: 0, children: 0, infants: 0, pets: 0}},
-            dateStart: 'Add dates',
-            dateEnd: 'Add dates',
+              checkin: '',
+              checkout: '',
+              adults: 0, 
+              children: 0, 
+              infants: 0, 
+              pets: 0
+            },
+            checkin: 'Add dates',
+            checkout: 'Add dates',
             mainland: 'Search destination'
           }
         },
         mounted() {
-          eventBus.on('chose-day-start', this.setDateStart)
-          eventBus.on('chose-day-end', this.setDateEnd)
+          eventBus.on('chose-day-start', this.setCheckin)
+          eventBus.on('chose-day-end', this.setCheckout)
           eventBus.on('chose-where-mainland', this.setWhereMainland)
         },
         computed: {
@@ -63,10 +68,10 @@
             return this.mainland
           },
           resetActiveStart(){
-            return {'reset-active':(this.whenStart & this.dateStart !== 'Add dates')}
+            return {'reset-active':(this.whenStart & this.checkin !== 'Add dates')}
           },
           resetActiveEnd(){
-            return {'reset-active':(this.WhenEnd & this.dateEnd !== 'Add dates')}
+            return {'reset-active':(this.WhenEnd & this.checkout !== 'Add dates')}
           },
         },
         methods: {
@@ -74,7 +79,17 @@
             console.log(this.filterBy);
             this.$emit('clickedScreen')
             this.$store.dispatch({ type: "loadStays", filterBy: this.filterBy });
-            this.$router.push('/stay/explore')
+            this.$router.push({ 
+              path: '/stay/explore', 
+              // query: { 
+              //   txt_search: this.filterBy.txt, 
+              //   type: this.filterBy.type,
+              //   checkin: this.filterBy.checkin,
+              //   checkout: this.filterBy.checkout,
+              // } 
+              query: this.filterBy
+               
+            })
           },
           choseSearch(chose){
             this.WhereSearch= (chose === 'where')
@@ -83,21 +98,21 @@
             this.WhenEnd= (chose === 'when-end') 
             this.$emit('clickedMain',chose)
           },
-          setDateStart(date){
-            this.dateStart = date.id
-            this.filterBy.dateStart = date.date
+          setCheckin(date){
+            this.filterBy.checkin = date.id
+            this.checkin = date.id
             this.choseSearch('when-end')
           },
-          setDateEnd(date){
-            this.dateEnd = date.id
-            this.filterBy.dateEnd = date.date
+          setCheckout(date){
+            this.filterBy.checkout = date.id
+            this.checkout = date.id
           },
           resetDate(){
             console.log('reset');
-            this.dateStart = 'Add dates'
-            this.filterBy.dateStart = ''
-            this.dateEnd = 'Add dates'
-            this.filterBy.dateEnd = ''
+            this.checkin = 'Add dates'
+            this.filterBy.checkin = ''
+            this.checkout = 'Add dates'
+            this.filterBy.checkout = ''
             this.choseSearch('when-start')
             eventBus.emit('reset-day-chose')
           },

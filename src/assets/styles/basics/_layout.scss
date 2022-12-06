@@ -58,3 +58,103 @@
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-gap: 20px;
 }
+
+.header-layout{
+    position: fixed;
+    @include for-mobile-layout {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+    @include for-narrow-layout {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+    @include for-small-layout {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+    @include for-normal-layout {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+    @include for-wide-layout {
+        padding-left: 80px;
+        padding-right: 80px;       
+    }
+    @include for-extra-wide-layout {
+        padding-left: 80px;
+        padding-right: 80px;    
+    }
+    &.details{
+        position: absolute;
+        top: 0;
+        @include for-mobile-layout {
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+        @include for-narrow-layout {
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+        @include for-small-layout {
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+        @include for-normal-layout {
+            padding-left: 150px;
+            padding-right: 150px;
+        }
+        @include for-wide-layout {
+            padding-left: 250px;
+            padding-right: 250px;    
+        }
+        @include for-extra-wide-layout {
+            padding-left: 350px;
+            padding-right: 350px;    
+        } 
+    }
+}
+
+.user-nav-layout{
+    position: fixed;
+    @include for-mobile-layout {
+        right: 24px;
+    }
+    @include for-narrow-layout {
+        right: 24px;
+    }
+    @include for-small-layout {
+        right: 40px;
+    }
+    @include for-normal-layout {
+        right: 40px;
+    }
+    @include for-wide-layout {
+        right: 80px;       
+    }
+    @include for-extra-wide-layout {
+        right: 80px;    
+    }
+    &.details{
+        position: absolute;
+        
+        @include for-mobile-layout {
+            right: 40px;
+        }
+        @include for-narrow-layout {
+            right: 40px;
+        }
+        @include for-small-layout {
+            right: 40px;
+        }
+        @include for-normal-layout {
+            right: 150px;
+        }
+        @include for-wide-layout {
+            right: 250px;    
+        }
+        @include for-extra-wide-layout {
+            right: 350px;    
+        } 
+    }
+}

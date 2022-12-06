@@ -1,6 +1,4 @@
 .filter-main-nav{
-    position: fixed;
-    // padding-left: 0;
     top: 81px;
     width: 100%;
     &.was-scrolled{
@@ -10,30 +8,6 @@
         top: 77px;
     }
     height: 78px !important;
-    @include for-mobile-layout {
-        padding-left: 24px;
-        padding-right: 24px;
-    }
-    @include for-narrow-layout {
-        padding-left: 24px;
-        padding-right: 24px;
-    }
-    @include for-small-layout {
-        padding-left: 40px;
-        padding-right: 40px;
-    }
-    @include for-normal-layout {
-        padding-left: 40px;
-        padding-right: 40px;
-    }
-    @include for-wide-layout {
-        padding-left: 80px;
-        padding-right: 80px;    
-    }
-    @include for-extra-wide-layout {
-        padding-left: 80px;
-        padding-right: 80px;    
-    }
     z-index: 7;
     background-color: white;
     

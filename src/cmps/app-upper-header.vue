@@ -1,5 +1,5 @@
 <template>
-  <header :class="{'details':isDetailsHeader,'big-filter':isBigFilter}"> 
+  <header class="header-layout" :class="{'details':isDetailsHeader,'big-filter':isBigFilter}"> 
       <nav>
         <router-link to="/stay" class="flex router-logo-link" @click="returnToMainStay()">
           <img class="airbnb-logo" src="https://res.cloudinary.com/dht4wwjwe/image/upload/v1669976706/bdcvkjwqkucgzr2bka5x.svg" alt="logo">
@@ -10,7 +10,7 @@
       <big-filter @clickedMain="clickedMain" @clickedScreen="clickedScreen" :isWhereSearch="isWhereSearch" :isWhoSearch="isWhoSearch" :isWhenEnd="isWhenEnd" :isWhenStart="isWhenStart"
        v-if="isBigFilter" class="big-search-filter flex row"></big-filter>
       <details-header-filter @clickedMain="clickedMain" v-if="isDetailsHeader"></details-header-filter>
-      <section @click="openUserNav=!openUserNav" class="loggedin-user" v-if="loggedInUser">
+      <section @click="openUserNav=!openUserNav" class="loggedin-user" >
         <img src="https://res.cloudinary.com/dht4wwjwe/image/upload/v1669794047/airbnb/dgxtegsrfyrdcywi0vij.png" alt="">
         <el-badge :value="1" class="item" type="primary">
           <img :src="loggedInUser.imgUrl" />
@@ -19,6 +19,7 @@
   </header>
   <div class="full screen-shadow" @click="clickedScreen" v-if="isBigFilter"></div>
   <user-nav-bar 
+  :class="{'details':isDetailsHeader}"
   @goToLogin="(isLoginModal = true, openUserNav = false)" 
   @goToSignup="(isSignupModal = true, openUserNav = false)" 
   @goUserEdit="(isUserEdit = true, openUserNav = false)" 
@@ -30,7 +31,8 @@
   <stay-who-search class="" v-if="isWhoSearch"></stay-who-search>
   <user-login-modal 
     :isSignupModal="isSignupModal" :loggedInUser="loggedInUser" :isUserEdit="isUserEdit"
-    v-if="(isLoginModal || isSignupModal || isUserEdit)" @closeModal="(isLoginModal = false, isSignupModal = false, isUserEdit)">
+    v-if="(isLoginModal || isSignupModal || isUserEdit)"
+    @closeUserLoginModal="closeUserLoginModal">
   </user-login-modal>
   <div v-if="(isLoginModal || isSignupModal || isUserEdit)" @click="(isLoginModal = false,isSignupModal=false, isUserEdit=false)" class="modal-full-screen"></div>
     
@@ -59,6 +61,7 @@ export default {
       isLoginModal: false,
       isSignupModal: false,
       isUserEdit:false,
+      isLoggedInUser: this.loggedInUser === true
     }
   },
   created() {
@@ -80,6 +83,7 @@ export default {
       this.isWhenStart = (chose === 'when-start')
       this.isWhenEnd = (chose === 'when-end')
       this.isWhoSearch = (chose === 'who')
+      
       
     },
     returnToMainStay(){
@@ -118,6 +122,11 @@ export default {
       this.openUserNav = false
       this.returnToMainStay()
     },
+    closeUserLoginModal(){
+      this.isLoginModal = false 
+      this.isSignupModal = false 
+      this.isUserEdit = false
+    }
   },
   computed: {
     loggedInUser() {

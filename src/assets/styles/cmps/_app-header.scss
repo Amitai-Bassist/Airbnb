@@ -1,63 +1,6 @@
 header {
-    position: fixed;
     top: 0;
     width: 100%;
-    @include for-mobile-layout {
-        padding-left: 24px;
-        padding-right: 24px;
-    }
-    @include for-narrow-layout {
-        padding-left: 24px;
-        padding-right: 24px;
-    }
-    @include for-small-layout {
-        padding-left: 40px;
-        padding-right: 40px;
-    }
-    @include for-normal-layout {
-        padding-left: 40px;
-        padding-right: 40px;
-    }
-    @include for-wide-layout {
-        padding-left: 80px;
-        padding-right: 80px;    
-         
-    }
-    @include for-extra-wide-layout {
-        padding-left: 80px;
-        padding-right: 80px;
-      
-          
-    }
-    &.details{
-        position: absolute;
-        top: 0;
-        @include for-mobile-layout {
-            padding-left: 40px;
-            padding-right: 40px;
-        }
-        @include for-narrow-layout {
-            padding-left: 40px;
-            padding-right: 40px;
-        }
-        @include for-small-layout {
-            padding-left: 40px;
-            padding-right: 40px;
-        }
-        @include for-normal-layout {
-            padding-left: 140px;
-            padding-right: 140px;
-        }
-        @include for-wide-layout {
-            padding-left: 250px;
-            padding-right: 250px;    
-        }
-        @include for-extra-wide-layout {
-            padding-left: 350px;
-            padding-right: 350px;    
-        } 
-    }
-    // max-width: calc($wide-breakpoint);
     background-color: $clr6;
     padding: 16px 0;
     display: flex;
@@ -75,7 +18,6 @@ header {
         background-color: $clr6;
         padding: 5px 5px 5px 12px;
         border-radius: 21px;
-        // align-self: flex-end;
         color: whitesmoke;
         border: solid 1px #dddddd;
         cursor: pointer;
@@ -84,8 +26,6 @@ header {
         grid-template-rows: 31px;
         span{
             background-color: rgb(113,113,113);
-            // padding: 4px;
-            // margin: 10px;
             border-radius: 50%; 
         }
         >:first-child{
@@ -142,7 +82,6 @@ header {
 
 .user-nav-bar{
     position: fixed;
-    right: 80px;
     top: 70px;
     width: 240px;
     padding-top: 11px;
@@ -178,35 +117,62 @@ header {
     background-color: #71717168;
     z-index: 3;
 }
-.login-order-container {
-    border: 1px solid #00000030;
-    border-radius: 13px;
-    font-family: sans-serif;
-    padding: 30px;
-    width: 500px;
-    height: 350px;
-    box-shadow: 0 0 5px 5px #00000015;
-    >.modal-header{
-        width: 65%; 
-        >:first-child{
-            background-color: white;
-            color: #222222;
-        }   
-    }
-}
 
-.user-login-modal{
+.login-order-container {
     position: fixed;
     top: 30vh;
     right: calc(50% - 250px);
     z-index: 20;
+    border: 1px solid #00000030;
+    border-radius: 13px;
+    font-family: sans-serif;
+    padding: 30px 74px;
+    width: 500px;
+    height: 350px;
+    box-shadow: 0 0 5px 5px #00000015;
+    display: flex;
+    flex-direction: column;
     background-color: white;
+    gap: 5px;
+    >:first-child{
+        background-color: white;
+        color: #222222;
+        position: fixed;
+        top: 31vh;
+        right: calc(50% + 200px);
+    }
+    >.login-header{
+        text-align: center;
+        margin-bottom: 7px;
+    } 
+    >form{
+        display: grid;
+        grid-template-columns: 90px 1fr;
+        grid-template-rows: 1fr;
+        width: 100%;
+        height: 40px;
+        padding-bottom: 10px;
+        
+        >label{
+            align-self: center;
+        }
+        >input{
+            width: 100%;
+            height: 33px;
+            border-radius: 8px;
+            padding-left: 11px;
+            justify-self: center;
+            border: black solid 1px;
+            align-self: center;
+        }
+    }
     .btn-container {
         position: relative;
         width: 100%;
         height: 48px;
         padding: 0 0;
-        margin: 0 0;
+        margin-top: 30px;
+        margin-bottom: 0;
         cursor: pointer;
         border: none;
         display: grid;
@@ -216,14 +182,12 @@ header {
           .cell:nth-child(10n + #{$i + 1}):hover ~ .content {
             --positionX: #{$i};
           }
-      
           .cell:nth-child(n + #{10 * $i + 1}):nth-child(-n + #{10 * ($i + 1)}):hover
             ~ .content {
             --positionY: #{$i};
           }
         }
       }
-      
       .cell {
         width: 100%;
         height: 100%;
@@ -234,7 +198,6 @@ header {
       .content {
         --positionX: 0;
         --positionY: 5;
-      
         position: absolute;
         top: 0;
         right: 0;
@@ -245,7 +208,6 @@ header {
         align-items: center;
         height: 100%;
         border-radius: 8px;
-      
         background-image: radial-gradient(
           circle at calc((0 + var(--positionX, 0)) * 10%)
             calc((0 + var(--positionY, 0)) * 5%),
@@ -266,26 +228,4 @@ header {
         background-color: transparent;
         border: none;
       }
-      
-      span {
-        padding: 0 0;
-        margin: 0 0;
-        color: white;
-        font-size: 16px;
-        line-height: 20px;
-        font-weight: 600;
-        font-family: sans-serif;
-      }
-      
-      p.footer {
-        color: gray;
-        font-weight: 500;
-        display: inline-block;
-        width: 100%;
-        text-align: center;
-      }
 }
-
-
-
-
