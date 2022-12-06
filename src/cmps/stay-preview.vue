@@ -22,6 +22,8 @@
     // import { ref } from 'vue'
   import stayImgsPreview from './stay-imgs-preview.vue';
   import { eventBus } from '../services/event-bus.service';
+  
+
   export default {
     props: {
       stay: Object
@@ -31,14 +33,23 @@
         // newStayName: null,
         dateRange: {
           start:null,
-          end:null
+          end:null,
+          
         },
     }
   },
+  created(){
+    
+  },
     methods: {
       goToDetails() {
+
+        const {txt = '' ,type = '' ,checkin = '' ,checkout = '' ,adults = 0 , children = 0 , infants = 0 , pets = 0 } = this.$route.query
         eventBus.emit('go-to-details');
-        this.$router.push( `/stay/${this.stay._id}`);
+        this.$router.push({ 
+              path: `/stay/${this.stay._id}`, 
+              query: {txt:txt ,type:type,checkin:checkin,checkout:checkout,adults:adults, children:children, infants:infants, pets:pets}
+            })
       },
       addToWishlist() {
         this.$store.dispatch({type: 'addToWishlist', stay: this.stay})
