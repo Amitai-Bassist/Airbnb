@@ -35,7 +35,7 @@
     },
     methods: {
       goToDetails(stayId){
-        this.$router.push( `/stay/${stayId}`)
+        this.$router.push({path: `/stay/${stayId}`,query: {inWishlist:true}})
       }
     } 
   }
