@@ -22,13 +22,14 @@
   
   .order-form-header {
     display: flex;
-    align-items: center;
     flex-direction: column;
     justify-content: space-between;
+    align-items: flex-start;
     width: 100%;
-
+    
     @include for-normal-layout {
       flex-direction: row;
+      align-items: center;
     }
   
     p {
@@ -87,7 +88,7 @@
   input {
     border: none;
     padding: 0 0;
-    width: 50%;
+    width: 100%;
     outline: none;
   }
   
@@ -101,10 +102,18 @@
     font-size: 1.3em;
   }
   
-  span.reviews {
-    color: #00000070;
+  .span-reviews {
+    color: #717171;
     font-size: 0.85em;
     text-decoration: underline;
+    font-family: Airbnb-Cereal-Medium;
+    line-height: 10px;
+    cursor: pointer;
+  }
+
+  .review-score{
+    font-size: em(14px);
+    font-family: Airbnb-Cereal-Medium;
   }
   
   .btn-container {

@@ -25,13 +25,16 @@
       >
       <template #item-hostActions="item">
     
-        <select @change="changeStatus(event)"  id="">
-        <!-- <select id=""> -->
+        <select @change="changeStatus($event,item.id)" :model="editingItem.status" id="">
           <option :value="item.status">{{item.status}}</option>
-          <option :value="item.status === 'pending' ? 'approved' : 'pending'">{{item.status === 'pending' ? 'approved' : 'pending'}}</option>
-          <option :value="item.status === 'pending' ? 'declined' : 'approved'">{{item.status === 'pending' ? 'declined' : 'approved'}}</option>
+          <option :value="statusValue[0]" v-if="item.status !== statusValue[0]">{{statusValue[0]}}</option>
+          <option :value="statusValue[1]" v-if="item.status !== statusValue[1]">{{statusValue[1]}}</option>
+          <option :value="statusValue[2]" v-if="item.status !== statusValue[2]">{{statusValue[2]}}</option>
         </select>
 
+      </template>
+      <template #item-status="item">
+        {{item.status}}
       </template>
     </EasyDataTable>
     </section>
@@ -54,6 +57,8 @@ export default {
       items:[],
       hostStay: null,
       orders: null,
+      editingItem: {status:''},
+      statusValue:['pending','approved','decline'],
     }
   },
   created() {
@@ -66,6 +71,7 @@ export default {
       this.items = []
         hostOrders.forEach(order => {
           this.items.push({
+            id: order._id,
             status: order.status,
             guests: order.guests.adults,
             checkIn: order.startDate,
@@ -80,14 +86,23 @@ export default {
         this.headers.push({ text: "host", value: "hostActions" })
       }
     },
-    changeStatus(val){
-      console.log('val',arguments);
+    changeStatus(val, id){
+      
+      const idx = this.items.findIndex(item=>item.id === id)
+      this.items[idx].status = val.target.value
     },
     async getHostStays(id) {
       const hostStays =  await this.$store.dispatch({type: 'getHostStays', userId: id});
       if(hostStays) {
         this.headers.push({ text: "host", value: "hostActions" })
       }
+    },
+    checkStatusValue(status){
+      this.statusValue = ['pending','approved','decline']
+      const idx = this.statusValue.findIndex(statu=>statu === status)
+      this.statusValue.splice(idx,1)
+      this.statusValue.unshift(status)
+      console.log(this.statusValue)
     }
   }
 }

@@ -12,7 +12,7 @@
     @include for-narrow-layout {
         grid-template-columns:
             minmax(20px,1fr)
-            minmax(auto, $padded-break-small)
+            minmax(auto, $padded-break-narrow)
             minmax(20px,1fr)
     }
     @include for-small-layout {
@@ -43,6 +43,15 @@
     >* {
         grid-column: 2;
         color: black;
+    }
+
+    h4{
+        font-size:16px;
+    }
+
+    svg{
+        height: 24px;
+        width: 24px;
     }
 
     span > :not(.btn) {
@@ -207,7 +216,7 @@
             "a2 a4"
             "a3 a5"
         ;
-        grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+        grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
 
         .stay-reserve {
             width: 100%;
@@ -273,6 +282,7 @@
                 border-bottom: 1px solid rgba(128, 128, 128, 0.3);
                 color: black;
                 grid-area: a2;
+
                 span{
                     font-size: inherit;
                     font-style: inherit;
@@ -309,6 +319,7 @@
                     border-radius: 5px;
                     padding: 13px 23px;
                     margin-top: 32px;
+                    margin-left: 0;
                     font-size: medium;
                     cursor: pointer;
                 }
@@ -339,7 +350,7 @@
                 border: 1px solid rgba(128, 128, 128, 0.4);
                 border-radius: 12px;
                 padding: 24px;
-                width: rem(calc(calc($padded-break-small)/3 + 40px));
+                width: 80%;
                 height: 50%;
                 margin-left: auto;
                 
@@ -355,7 +366,21 @@
     .reviews{
         border-top: 1px solid rgba(128, 128, 128, 0.3);
         padding-top: 64px;
-        height: 1000px;
+        height: fit-content;
+        
+        button{
+            margin-bottom: 32px;
+            font-family: Airbnb-Cereal-Bold;
+            background-color: white;
+            color: black;
+            border: 1px solid black;
+            border-radius: 5px;
+            padding: 13px 23px;
+            margin-top: 32px;
+            margin-left: 0;
+            font-size: medium;
+            cursor: pointer;
+        }
         
 
         .review-category{
@@ -379,10 +404,12 @@
         .meter{
             width: 102px;
             height: 4px;
-            border: 0.5px solid black;
+            border: 0.5px solid #dddddd;
+            background-color: #dddddd;
             border-radius: 50px;
             
             .fill{
+                border: 0.2px;
                 border-radius: 50px;
                 height: 3px;
                 background-color: black;
@@ -392,15 +419,26 @@
         .users-reviews{
             padding-top: 32px;
             display: grid;
+            grid-gap: 0px 25px;
             grid-template-columns: 1fr 1fr;
 
             .user-review{
-                column-count: auto;
                 padding-bottom: 32px;
             }
 
+            
             .user-info{
                 padding-bottom: 12px;
+                
+            }
+            .text{
+                max-width: 40ch;
+                min-height: 50px;
+                // text-overflow: ellipsis;
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
             }
 
             img{
@@ -424,6 +462,7 @@
 
             .show-more{
                 background-color: white;
+                border: none;
                 color: black;
                 width: fit-content;
                 text-decoration-line: underline;
@@ -433,6 +472,7 @@
                 font-size: medium;
                 cursor: pointer;
             }
+            
 
         }
     }
