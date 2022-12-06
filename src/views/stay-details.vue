@@ -165,7 +165,7 @@
             <div class="text">
               {{review.txt}}
             </div>
-            <button class="show-more">Show more</button>
+            <button class="show-more" v-if="(review.txt.length>120)">Show more</button>
           </div>
         </div>
       </div>

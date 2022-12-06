@@ -12,7 +12,7 @@
     @include for-narrow-layout {
         grid-template-columns:
             minmax(20px,1fr)
-            minmax(auto, $padded-break-small)
+            minmax(auto, $padded-break-narrow)
             minmax(20px,1fr)
     }
     @include for-small-layout {
@@ -43,6 +43,15 @@
     >* {
         grid-column: 2;
         color: black;
+    }
+
+    h4{
+        font-size:16px;
+    }
+
+    svg{
+        height: 24px;
+        width: 24px;
     }
 
     span > :not(.btn) {
@@ -273,6 +282,7 @@
                 border-bottom: 1px solid rgba(128, 128, 128, 0.3);
                 color: black;
                 grid-area: a2;
+
                 span{
                     font-size: inherit;
                     font-style: inherit;
@@ -309,6 +319,7 @@
                     border-radius: 5px;
                     padding: 13px 23px;
                     margin-top: 32px;
+                    margin-left: 0;
                     font-size: medium;
                     cursor: pointer;
                 }
@@ -339,7 +350,7 @@
                 border: 1px solid rgba(128, 128, 128, 0.4);
                 border-radius: 12px;
                 padding: 24px;
-                width: rem(calc(calc($padded-break-small)/3 + 40px));
+                width: 80%;
                 height: 50%;
                 margin-left: auto;
                 
@@ -366,6 +377,7 @@
             border-radius: 5px;
             padding: 13px 23px;
             margin-top: 32px;
+            margin-left: 0;
             font-size: medium;
             cursor: pointer;
         }
@@ -392,10 +404,12 @@
         .meter{
             width: 102px;
             height: 4px;
-            border: 0.5px solid black;
+            border: 0.5px solid #dddddd;
+            background-color: #dddddd;
             border-radius: 50px;
             
             .fill{
+                border: 0.2px;
                 border-radius: 50px;
                 height: 3px;
                 background-color: black;
@@ -418,10 +432,13 @@
                 
             }
             .text{
-                width: 90%;
-                height: 50px;
-                text-overflow: ellipsis;
+                max-width: 40ch;
+                min-height: 50px;
+                // text-overflow: ellipsis;
                 overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
             }
 
             img{
@@ -445,6 +462,7 @@
 
             .show-more{
                 background-color: white;
+                border: none;
                 color: black;
                 width: fit-content;
                 text-decoration-line: underline;
