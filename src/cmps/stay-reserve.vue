@@ -30,36 +30,30 @@
       </div>
       <div class="guest-input" v-if="!isWhenStart">
         <label>GUESTS</label>
-        <input :value="myGuest" />
+        <div class="guests flex row">
+          {{(myGuest + (myGuest > 1? ' guests':' guest'))}}
+          <div class="infants" v-if="(infantsNum > 0)">
+            {{', '+infantsNum +(infantsNum>1?' infants':' infant')}}
+          </div>
+          <div class="pets" v-if="(petsNum > 0)">
+            {{', '+petsNum + (petsNum>1?' pets':' pet')}}
+          </div> 
+        </div> 
         <svg
           viewBox="0 0 320 512"
           width="100"
           title="angle-down"
           @click="guestsSelected = !guestsSelected"
-          v-if="!guestsSelected"
-        >
+          v-if="!guestsSelected">
           <path
             d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z"
           />
         </svg>
         <svg
-          viewBox="0 0 32 32"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-          role="presentation"
-          focusable="false"
-          style="
-            display: block;
-            fill: none;
-            height: 16px;
-            width: 16px;
-            stroke: currentcolor;
-            stroke-width: 4;
-            overflow: visible;
-          "
+          viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" 
+          style=" display: block; fill: none;height: 16px;width: 16px;stroke: currentcolor;stroke-width: 4;overflow: visible;"
           v-else
-          @click="guestsSelected = !guestsSelected"
-        >
+          @click="guestsSelected = !guestsSelected">
           <g fill="none">
             <path
               d="m4 20 11.2928932-11.29289322c.3905243-.39052429 1.0236893-.39052429 1.4142136 0l11.2928932 11.29289322"
@@ -71,6 +65,10 @@
     <div class="who-search-container">
       <details-who-search
         @totalGuest="totalGuest"
+        @totalKids="totalKids"
+        @totalInfants="totalInfants"
+        @totalPets="totalPets"
+        :maxGuests="maxGuests"
         v-if="guestsSelected"
       ></details-who-search>
     </div>
@@ -223,7 +221,10 @@ export default {
       accommodation: null,
       ServiceFee: null,
       guestsSelected: false,
-      gusetNum: 1
+      gusetNum: 1,
+      kidsNum:0,
+      infantsNum:0,
+      petsNum:0,
     };
   },
   created() {
@@ -268,28 +269,37 @@ export default {
       ).toLocaleString("en-US");
     },
     totalGuest(num) {
-      this.gusetNum += num;
-      if (this.num === -1 || this.num === 0) {
-        this.gusetNum = 0;
-      }
+      this.gusetNum = num
     },
+    totalKids(num) {
+      this.kidsNum = num
+    },
+    totalInfants(num) {
+      this.infantsNum = num
+    },
+    totalPets(num) {
+      this.petsNum = num
+    }
   },
   computed: {
     myGuest() {
-      return this.gusetNum;
+      return this.gusetNum + this.kidsNum
     },
     reviewScore() {
-      return this.$store.getters.reviewScore;
+      return this.$store.getters.reviewScore
     },
     getDateStart() {
-      return this.dateStart.id;
+      return this.dateStart.id
     },
     getDateEnd() {
-      return this.dateEnd.id;
+      return this.dateEnd.id
     },
     accommodationComma() {
       return this.accommodation.toLocaleString("en-US");
     },
+    maxGuests(){
+      return stay.capacity - gusetNum - kidsNum
+    }
   },
   components: {
     stayWhenSearch,

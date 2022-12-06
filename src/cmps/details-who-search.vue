@@ -1,32 +1,32 @@
 <template>
     <section class="details-who-search flex column">
-        <div class="flex row space-between">
-            <div class="flex column">
+        <div class="flex row space-between align-center">
+            <div>
                 <h1>Adults</h1>
                 <p>Ages 13 or above</p>
             </div>
-            <add-guest-num @changeNum="changeNum" :number="1"></add-guest-num>
+            <add-guest-num @changeNum="changeNum" :number="1" :maxNum="maxGuests"></add-guest-num>
         </div>
-        <div class="flex row space-between">
+        <div class="flex row space-between align-center">
             <div>
                 <h1>Children</h1>
                 <p>Ages 2-12</p>
             </div>
-            <add-guest-num @changeNum="changeNum" :number="0"></add-guest-num>
+            <add-guest-num @changeNum="changeNumKids" :number="0" :maxNum="maxGuests"></add-guest-num>
         </div>
-        <div class="flex row space-between">
+        <div class="flex row space-between align-center">
             <div>
                 <h1>Infants</h1>
                 <p>Under age 2</p>
             </div>
-            <add-guest-num @changeNum="changeNum" :number="0"></add-guest-num>
+            <add-guest-num @changeNum="changeNumInfants" :number="0" :maxNum="5"></add-guest-num>
         </div>
-        <div class="flex row space-between">
+        <div class="flex row space-between align-center">
             <div>
                 <h1>Pets</h1>
                 <p>Bringing a service animal?</p>
             </div>
-            <add-guest-num @changeNum="changeNum" :number="0"></add-guest-num>
+            <add-guest-num @changeNum="changeNumPets" :number="0" :maxNum="5"></add-guest-num>
         </div>
     </section>
 </template>
@@ -36,21 +36,35 @@ import addGuestNum from './add-guest-num.vue';
 
     export default {
         props: {
-            
+            'maxGuests':Number
         },
         data(){
             return{
                 totalGuest:0,
+                totalKids:0,
+                totalInfants:0,
+                totalPets:0
             }
         },
         methods:{
             changeNum(num){
-                this.totalGuest += num
-                if (this.num === -1 || this.num === 0){
-                    this.totalGuest = 0
-                }
-                this.$emit('totalGuest',num)
+                this.totalGuest = num
+                this.$emit('totalGuest',this.totalGuest)
+            },
+            changeNumKids(num){
+                this.totalKids = num
+                this.$emit('totalKids',this.totalKids)
+            },
+            changeNumInfants(num){
+                this.totalInfants = num
+                this.$emit('totalInfants',this.totalInfants)
+            },
+            changeNumPets(num){
+                this.totalPets = num
+                this.$emit('totalPets',this.totalPets)
             }
+            
+            
         },
         components:{
             addGuestNum 
