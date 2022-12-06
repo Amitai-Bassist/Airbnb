@@ -5,7 +5,7 @@
           <div class="mini-card-header flex row wrap">
             <h1>Wishlist</h1>
           </div>
-          <h4 v-if="loggedinUser"><span>{{loggedinUser.wishlist.length}}</span>&nbsp;saved stays</h4>
+          <h4 v-if="loggedinUser"><span>{{(loggedinUser.wishlist?loggedinUser.wishlist.length: 0)}}</span>&nbsp;saved stays</h4>
           <button @click="goToWishlist" class="mini-card-btn">Go to wishlist</button>
         </div>
         <div class="mini-card flex row wrap">
@@ -31,6 +31,8 @@
       <EasyDataTable class="orders-table"
       :headers="headers"
       :items="items"
+      :body-row-class-name="bodyRowClassNameFunction"
+      no-hover
       >
       <template #item-hostActions="item">
     
@@ -116,13 +118,12 @@ export default {
     goToWishlist() {
       this.$router.push('/stay/wishlist')
     },
-    // bodyItemClassNameFunction(column, item) {
-    //   if (column === 'status') {
-    //     if((this.items[item].status) === "pending")return "orange";
-    //     if((this.items[item].status) === "approved")return "green";
-    //     if((this.items[item].status) === "decline")return "red";
-    //   }
-    // }
+    bodyRowClassNameFunction(item,index) {
+      console.log(item.status);
+      if(item.status === "pending")return "orange"
+      if(item.status === "approved")return "green"
+      if(item.status === "decline")return "red"
+    }
   },
 
   computed: {
@@ -131,7 +132,6 @@ export default {
     },
 },
   };
-  // :body-item-class-name="bodyItemClassNameFunction"
 
 </script>
 
@@ -251,13 +251,16 @@ item {
   color: green;
 }
 .red {
-  color: red;
+  --easy-table-body-row-background-color: #f56c6c;
+  --easy-table-body-row-font-color: #fff;
 }
 .orange {
-  color: orange;
+  --easy-table-body-row-background-color: #f5aa6c;
+  --easy-table-body-row-font-color: #fff;
 }
 .green {
-  color: green;
+  --easy-table-body-row-background-color: #67c23a;
+  --easy-table-body-row-font-color: #fff;
 }
 
 .status-column {

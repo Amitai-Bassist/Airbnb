@@ -15,13 +15,7 @@ import Vue3EasyDataTable from 'vue3-easy-data-table';
 import 'vue3-easy-data-table/dist/style.css';
 import moment from 'moment';
 
-<<<<<<< HEAD
 moment().format();
-=======
-
-
-
->>>>>>> 37aeac1cc4cc9f768e805f13555f50eefcae1817
 const app = createApp(rootCmp);
 app.use(router);
 app.use(store);
