@@ -162,7 +162,9 @@
             </div>
           </div>
           <div class="flex column">
-            {{review.txt}}
+            <div class="text">
+              {{review.txt}}
+            </div>
             <button class="show-more">Show more</button>
           </div>
         </div>
@@ -180,7 +182,7 @@
   import stayReserve from "../cmps/stay-reserve.vue";
   import reserveModal from "../cmps/reserve-modal.vue";
   import detailsMap from '../cmps/details-map.vue';
-  
+
 export default {
   name: "stay-detail",
   data() {

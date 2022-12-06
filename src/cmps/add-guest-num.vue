@@ -17,7 +17,7 @@
         },
         data(){
             return {
-                num: 0,
+                num: 1,
                 plusDisabled: false,
                 downDisabled: true,
             }
@@ -32,6 +32,7 @@
                 else if (this.num === 1){
                     this.downDisabled = false
                 }
+                this.$emit('changeNum',num)
             }
         },
     }
