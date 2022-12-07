@@ -29,41 +29,48 @@
   }
 
   h2 {
-    color: rgb(241, 37, 75);
+    color: #373737;
   }
 
   .your-trip {
-    font-family: Airbnb-Cereal-Bold;
-    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    font-size: 16px;
     grid-area: your-trip;
   }
 
   .reservation-details {
     grid-area: stay-details;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    // align-items:f;
     height: 100%;
     width: 100%;
 
     .h2 {
-      align-self: center;
     }
 
     .text {
       height: em(100px);
-      display: grid;
-      grid-template-areas:
-        "top"
-        "middle"
-        "review"
-      ;
+      // display: grid;
+      // grid-template-areas:
+      //   "top"
+      //   "middle"
+      //   "review"
+      // ;
       text-align: start;
 
-      p {
+      & p {
         margin: 0;
         padding: 0;
         padding-left: em(10px);
+        font-size: 16px;
       }
-
+      
       .review-text{
+        font-size: 14px;
         line-height: 30px;
       }
 
@@ -115,19 +122,20 @@
   }
 
   .price-details{
+    justify-content: end;
     grid-area: price-details;
     display: flex;
     flex-direction: column;
   }
 
   .btn-container {
-    // margin-top: 15px !important;
+    margin-top: 32px !important;
     position: relative;
     width: 70%;
     height: 48px;
     padding: 0 0;
     margin: 0 0;
-    margin-bottom: 20px;
+    // margin-bottom: 20px;
     cursor: pointer;
     border: none;
     display: grid;

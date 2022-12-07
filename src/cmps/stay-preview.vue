@@ -11,7 +11,7 @@
         </div>    
         <p class="grid-item-2">{{ stay.loc.address +" "+ stay.loc.city + "," + " " + stay.loc.country }} </p>
         <p class="grid-item-5">{{stay.bedrooms}}&nbsp;beds</p>
-        <p class="grid-item-6">6 - 7 Dec</p>
+        <p class="grid-item-6">12 - 15 Dec</p>
         <p class="grid-item-4"><span class="price">${{ stay.price?.toLocaleString() }}</span> night</p>
       </div>
     </div>
