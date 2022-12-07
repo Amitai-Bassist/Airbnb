@@ -4,7 +4,7 @@
     <div class="stay-review">
       <div class="review-text">
         <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 14px; width: 14px; fill: currentcolor;"><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z" fill-rule="evenodd"></path></svg>
-        {{ reviewScore }} &#183; &#160; <span class="review-num">{{ stay.reviews.length }} {{reviewNum}}</span>&#160;&#160;&#183;&#160;&#160;Superhost&#160;&#160;.&#160;&#160;<span class="stay-review-loc">{{ stay.loc.city }}, {{ stay.loc.country }}</span>
+        {{ reviewScore || 'new' }} &#183; &#160; <span class="review-num">{{( stay.reviews.length > 0? stay.reviews.length: 'no')}} {{reviewNum}}</span>&#160;&#160;&#183;&#160;&#160;Superhost&#160;&#160;.&#160;&#160;<span class="stay-review-loc">{{ stay.loc.city }}, {{ stay.loc.country }}</span>
       </div>
       <div class="share-save">
         <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 2; overflow: visible;"><g fill="none"><path d="M27 18v9a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-9"></path><path d="M16 3v23V3z"></path><path d="M6 13l9.293-9.293a1 1 0 0 1 1.414 0L26 13"></path></g></svg>
@@ -115,12 +115,12 @@
           ref="nav" v-bind:style="{ position: stickyNav ? 'sticky' : 'static' }">
         </stay-reserve>
       </div>
-      <reserve-modal 
+      <!-- <reserve-modal 
         v-if="isReserve" 
         :reservation="reservation" 
         :stay="stay"
         >
-      </reserve-modal>
+      </reserve-modal> -->
 
       <div class="rare-find">
         <p>
@@ -132,7 +132,7 @@
     </div>
 
     <!-- reviews -->
-    <div class="reviews">
+    <div class="reviews" v-if="(stay.reviews.length > 0)">
       <h3>      
         <div class="review-header flex row align-center">
         <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 14px; width: 14px; fill: currentcolor;"><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z" fill-rule="evenodd"></path></svg>
@@ -172,6 +172,11 @@
       <button>Show all {{stay.reviews.length}} {{reviewNum}}</button>
       <details-map :loc="stay.loc"></details-map>
     </div>
+    <div v-else>
+      <p>
+        No reviews
+      </p> 
+    </div>
 
 
   </section>
@@ -190,7 +195,7 @@ export default {
       stay: null,
       isSaved: false,
       isEditMode: false,
-      isReserve: false,
+      // isReserve: false,
       reservation: {
         checkIn:'', 
         checkOut:'', 

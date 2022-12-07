@@ -57,7 +57,7 @@
     };
   },
   created(){
-    if(this.detailsDateStart !== "-" && this.detailsDateEnd !== "-"){
+    if(this.detailsDateStart.id !== null && this.detailsDateEnd.id !== null){
       this.dates[0] = {start:this.detailsDateStart.date,end:this.detailsDateEnd.date}
       this.dateStart=this.detailsDateStart.id
       this.dateEnd=this.detailsDateEnd.id
@@ -109,6 +109,7 @@
         this.start = null
         this.end = null
         this.minDate = new Date()
+        this.closeCalender()
       }
     },
     clearDates(){
@@ -117,8 +118,8 @@
       this.end=null
       this.dateStart=null
       this.dateEnd=null
-      this.$emit('updateStart',{date:this.start,id:"-"})
-      this.$emit('updateEnd',{date:this.end,id:"-"})
+      this.$emit('updateStart',{date:this.start,id:''})
+      this.$emit('updateEnd',{date:this.end,id:''})
     },
     closeCalender(){
       this.$emit('closeCalendar')
