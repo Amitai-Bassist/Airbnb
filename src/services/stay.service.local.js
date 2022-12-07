@@ -35,6 +35,7 @@ async function query(filterBy = { txt: '' }, storageKey = STORAGE_KEY) {
 }
 
 function getById(stayId) {
+  console.log(stayId ,'in service');
   return storageService.get(STORAGE_KEY, stayId);
 }
 
@@ -43,11 +44,11 @@ async function remove(stayId) {
 }
 
 async function save(stay) {
+  console.log(stay);
   var savedStay;
   if (stay._id) {
     savedStay = await storageService.put(STORAGE_KEY, stay);
   } else {
-    stay._id = Math.floor(Math.random()*10000)
     // Later, owner is set by the backend
     stay.host = userService.getLoggedinUser();
     savedStay = await storageService.post(STORAGE_KEY, stay);
@@ -73,9 +74,27 @@ async function addStayMsg(stayId, txt) {
 
 function getEmptyStay() {
   return {
-    name: 'Susita-' + (Date.now() % 1000),
-    price: utilService.getRandomIntInclusive(1000, 9000),
-    loc: { country: '', city: '', address: '' },
+      name: '',
+      type: '',
+      imgUrls: [],
+      price: '',
+      summary: '',
+      capacity: 1,
+      delivery: '',
+      amenities: [],
+      bathrooms: 1,
+      bedrooms: 1,
+      roomType: '',
+      loc: {
+          country: '',
+          countryCode: '',
+          city: '',
+          address: '',
+          lat: 20,
+          lan: 156,
+      },
+      reviews: [],
+      likedByUsers: [],
   };
 }
 

@@ -29,7 +29,7 @@
         },
         data() {
             return {
-                showmsg:false
+                
             }
         },
         methods: {
@@ -65,11 +65,6 @@
                 }
                 eventBus.emit('show-user-msg',msg)  
             }
-            
         },
-        components:{
-            
-        }
-        
     }
 </script>

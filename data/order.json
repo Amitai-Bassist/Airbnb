@@ -1,0 +1,48 @@
+[
+    {
+      "_id": "o1226",
+      "hostId": "622f3403e36c59e6164faf93",
+      "createdAt": 1670278367256,
+      "buyer": {
+        "_id": "622f3401e36c59e6164fab4d",
+        "fullname": "Edgar"
+      },
+      "totalPrice": 1190,
+      "startDate": "2025/10/15",
+      "endDate": "2025/10/17",
+      "guests": {
+        "adults": 2,
+        "kids": 1
+      },
+      "stay": {
+        "_id": "622f337a75c7d36e498aaaf8",
+        "name": "Westin Kaanapali KORVN 2BR",
+        "price": 595.0
+      },
+      "msgs": [],
+     "status": "pending"
+    },
+    {
+      "_id": "o1225",
+      "hostId": "622f3403e36c59e6164faf93",
+      "createdAt": 1670278367257,
+      "buyer": {
+        "_id": "622f3401e36c59e6164fab4e",
+        "fullname": "Leo"
+      },
+      "totalPrice": 1598,
+      "startDate": "2023/10/15",
+      "endDate": "2023/10/17",
+      "guests": {
+        "adults": 2,
+        "kids": 1
+      },
+      "stay": {
+        "_id": "622f337a75c7d36e498aab0c",
+        "name": "Westin Kaanapali KORVS 2BR OCEAN VIEW",
+        "price": 799.0
+      },
+    "msgs": [],
+    "status": "approved"
+    }
+  ]
