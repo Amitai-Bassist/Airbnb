@@ -25,15 +25,15 @@
       //
      margin: 0;
 
-      @include for-normal-layout {
-        max-width: rem(220px);
-      }
-      @include for-wide-layout {
-        max-width: rem(200px);
-      }
-      @include for-extra-wide-layout {
-        max-width: rem(200px);
-      }
+      // @include for-normal-layout {
+      //   max-width: rem(220px);
+      // }
+      // @include for-wide-layout {
+      //   max-width: rem(200px);
+      // }
+      // @include for-extra-wide-layout {
+      //   max-width: rem(200px);
+      // }
     }
     p span.price {
       font-family: Airbnb-Cereal-Medium;
@@ -80,15 +80,15 @@
         @media (max-width: 300px) {
           max-width: rem(190px);
         }
-        @include for-normal-layout {
-          max-width: rem(220px);
-        }
-        @include for-wide-layout {
-          max-width: rem(220px);
-        }
-        @include for-extra-wide-layout {
-          max-width: rem(220px);
-        }
+        // @include for-normal-layout {
+        //   max-width: rem(220px);
+        // }
+        // @include for-wide-layout {
+        //   max-width: rem(220px);
+        // }
+        // @include for-extra-wide-layout {
+        //   max-width: rem(220px);
+        // }
       }
 
       .grid-item-3 p {
