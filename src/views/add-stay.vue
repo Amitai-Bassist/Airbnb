@@ -124,6 +124,7 @@
 </template>
 
 <script>
+import { stayService } from '../services/stay.service.local';
 import { reactive } from 'vue'
 import { ref } from 'vue'
 import imgUpload from '../cmps/img-upload.vue'
@@ -131,14 +132,11 @@ import imgListAtferUploading from '../cmps/img-list-after-uploading.vue'
 import {imgService} from '../services/img-sevice'
 
 export default {
-    created() {
-
-    },
     data() {
         return {
             imgUrls: [],
-            loggedinUser: null,
             num: ref(1),
+            stay: null,
             form: reactive({
                 name: '',
                 type: '',
@@ -150,6 +148,7 @@ export default {
                 bathrooms: 1,
                 bedrooms: 1,
                 roomType: '',
+                imgUrls: ["http://res.cloudinary.com/dmtlr2viw/image/upload/v1663436993/yzxnnw83e9qyas022au4.jpg"],
                 loc: {
                     country: '',
                     countryCode: '',
@@ -159,35 +158,87 @@ export default {
             })
         }
     },
-    created(){
+    async created(){
+        const { id } = this.$route.params
+        if (id){
+            const firststay = await this.getStayById(id)
+            this.stay = JSON.parse(JSON.stringify(firststay))
+            console.log(this.stay);
+            this.form.name = this.stay.name
+            this.form.type= this.stay.type
+            this.form.price= this.stay.price
+            this.form.summary= this.stay.summary
+            this.form.capacity= this.stay.capacity
+            this.form.delivery= true
+            this.form.amenities= this.stay.amenities
+            this.form.bathrooms= this.stay.bathrooms
+            this.form.bedrooms= this.stay.bedrooms
+            this.form.roomType= this.stay.roomType   
+            this.form.loc.country= this.stay.loc.country
+            this.form.loc.countryCode= this.stay.loc.countryCode
+            this.form.loc.city= this.stay.loc.city
+            this.form.loc.address= this.stay.loc.address
+            if (this.stay.imgUrls) this.imgUrls = this.stay.imgUrls
+        }else{
+            this.stay = JSON.parse(JSON.stringify(stayService.getEmptyStay()))
+            console.log(this.stay);
+        }
     },
     computed: {
         
     },
     methods: {
+        async getStayById(id){
+            var stay = await this.$store.dispatch({ type: "getStayById" ,stayId: id });
+            console.log(stay);
+            return stay
+        },
         saveImg(url) {
             this.imgUrls.push(url)
             console.log(this.imgUrls);
             // imgService.saveImg(url)
         },
         async submitForm(){
-            console.log(this.form)
-            var stay = this.form
-            stay.reviews = []
-            stay.loc.lan = 20.93792
-            stay.loc.lat= 156.6917
-            stay.imgUrls = ["http://res.cloudinary.com/dmtlr2viw/image/upload/v1663436975/hx9ravtjop3uqv4giupt.jpg"]
-            const newStay = await this.$store.dispatch({ type: "addStay" ,stay: stay });
-            console.log('sucsses');
+            console.log('form',this.form);
+            console.log('this.imgUrls',this.imgUrls);
+            this.stay.name = this.form.name
+            this.stay.type = this.form.type
+            this.stay.price = this.form.price
+            this.stay.summary = this.form.summary
+            this.stay.capacity = this.form.capacity
+            this.stay.amenities = this.form.amenities
+            this.stay.bathrooms = this.form.bathrooms
+            this.stay.bedrooms = this.form.bedrooms
+            this.stay.roomType = this.form.roomType
+            this.stay.loc.country = this.form.loc.country
+            this.stay.loc.countryCode = this.form.loc.countryCode
+            this.stay.loc.city = this.form.loc.city
+            this.stay.loc.address = this.form.loc.address
+            if (this.stay.imgUrls === 0) {
+                this.stay.imgUrls = this.imgUrls
+                console.log(this.stay.imgUrls);
+            }
+            console.log('stay to submit',this.stay)
+            // this.stay.imgUrls? this.stay.imgUrls : ["http://res.cloudinary.com/dmtlr2viw/image/upload/v1663436975/hx9ravtjop3uqv4giupt.jpg"]
+            if (!this.stay._id){
+                console.log('adding')
+                const newStay = await this.$store.dispatch({ type: "addStay" ,stay: this.stay })
+                console.log('sucsses',newStay)
+            }else{
+                const newStay = await this.$store.dispatch({ type: "updateStay" ,stay: this.stay })
+                // this.$store.dispatch({ type: "loadStays" })
+                console.log('updating')
+                console.log('sucsses',newStay)
+            }
         },
         handleChangeBathrooms(value){
-            this.form.bathrooms = value
+            this.stay.bathrooms = value
         },
         handleChangeBedrooms(value){
-            this.form.bedrooms = value
+            this.stay.bedrooms = value
         },
         handleChangeCapacity(value){
-            this.form.capacity = value
+            this.stay.capacity = value
         },
     },
     components:{

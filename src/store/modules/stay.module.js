@@ -132,6 +132,7 @@ export const stayModule = {
         const stay = await stayService.getById(stayId);
 
         commit({ type: 'setStay', stay });
+        return stay
       } catch (err) {
         console.log('stayStore: Error in getStayById', err);
         throw err;
