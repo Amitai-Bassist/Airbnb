@@ -1,7 +1,7 @@
 <template>
     <app-upper-header />
     <app-second-header/>
-  <section style="margin-bottom: 60px;">
+  <section style="margin-bottom: 80px;">
     <user-msg/>
     <router-view/>
   </section>
