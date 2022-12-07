@@ -33,6 +33,7 @@
           end:null,
         },
         reviewScore: null,
+        
     }
   },
   created() {
@@ -77,8 +78,9 @@
     },
     computed: {
       inWishlist(){
-        if (!this.loggedinUser || !this.loggedinUser.wishlist) return false
-        const wishlist = this.loggedinUser.wishlist
+        const loggedinUser = this.$store.getters.loggedinUser 
+        if (!loggedinUser || !loggedinUser.wishlist) return false
+        const wishlist = loggedinUser.wishlist
         return wishlist.some((stay)=>{
           return stay._id === this.stay._id
         })
