@@ -2,8 +2,12 @@
     <section class="user-nav-layout user-nav-bar">
         <section v-if="loggedInUser._id">
             <router-link to="/stay/wishlist">Whishlist</router-link>
+            <div class="user-nav-border-line-between"></div>
+            <router-link :to="`/host`">Dreambnb your home</router-link>
+            <router-link :to="`/host/${'622f337a75c7d36e498aab00'}`">Edit your home</router-link>
             <router-link :to="`/stay/dashboard/${loggedInUser._id}`">Account dashboard</router-link>
             <div @click="goUserEdit()">Edit my account</div>
+            <div class="user-nav-border-line-between"></div>
             <router-link @click="logout()" to="/stay">Logout</router-link>
             
             
@@ -11,9 +15,8 @@
         <section v-else>
             <div @click="goToLogin()">Login</div>
             <div @click="goSignup()">Signup</div>
-            <div class="border-line-between"></div>
+            <div class="user-nav-border-line-between"></div>
             <div>Dreambnb your home</div>
-            <el-button plain @click="open()"> Bottom Left </el-button>
         </section>    
     </section>
 </template>

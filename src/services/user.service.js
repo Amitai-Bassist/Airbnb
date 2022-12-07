@@ -22,6 +22,7 @@ export const userService = {
   update,
   changeScore,
   addToWishlist,
+  removeFromWishlist,
 }
 
 window.userService = userService
@@ -97,6 +98,16 @@ async function addToWishlist(stay){
   return user
 }
 
+async function removeFromWishlist(stay){
+  var user = getLoggedinUser()
+  if (!user) throw new Error('Not loggedin')
+  if (!user.wishlist) throw new Error('No wishlist')
+  const idx = user.wishlist.findIndex((currStay)=>currStay._id === stay._id)
+  user.wishlist.splice(idx,1)
+  await update(user)
+  return user
+}
+
 async function changeScore(by) {
   const user = getLoggedinUser()
   if (!user) throw new Error('Not loggedin')
@@ -120,25 +131,3 @@ function getLoggedinUser() {
   return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
 }
 
-// (async () => {
-//   await userService.signup({
-//     fullname: 'Puki Norma',
-//     username: 'puki',
-//     password: '123',
-//     score: 10000,
-//     isAdmin: false,
-//   })
-//   await userService.signup({
-//     fullname: 'Master Adminov',
-//     username: 'admin',
-//     password: '123',
-//     score: 10000,
-//     isAdmin: true,
-//   })
-//   await userService.signup({
-//     fullname: 'Muki G',
-//     username: 'muki',
-//     password: '123',
-//     score: 10000,
-//   })
-// })()

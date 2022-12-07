@@ -1,6 +1,6 @@
 <template>
   <section  class="calender-container-search">
-      <v-calendar class="calender-for-search" :attributes="attributes" @dayclick="onDayClick" :columns="2" :min-date="minDate" color="gray" />
+      <v-calendar locale="en" class="calender-for-search" :attributes="attributes" @dayclick="onDayClick" :columns="2" :min-date="minDate" color="gray" />
   </section>
 </template>
   

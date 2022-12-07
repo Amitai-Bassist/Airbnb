@@ -47,6 +47,7 @@ async function save(stay) {
   if (stay._id) {
     savedStay = await storageService.put(STORAGE_KEY, stay);
   } else {
+    stay._id = Math.floor(Math.random()*10000)
     // Later, owner is set by the backend
     stay.host = userService.getLoggedinUser();
     savedStay = await storageService.post(STORAGE_KEY, stay);
