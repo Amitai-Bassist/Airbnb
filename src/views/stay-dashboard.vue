@@ -5,7 +5,7 @@
           <div class="mini-card-header flex row wrap">
             <h1>Wishlist</h1>
           </div>
-          <h4 v-if="loggedinUser"><span>{{loggedinUser.wishlist.length}}</span>&nbsp;saved stays</h4>
+          <h4 v-if="loggedinUser"><span>{{(loggedinUser.wishlist ? loggedinUser.wishlist.length: 0)}}</span>&nbsp;saved stays</h4>
           <button @click="goToWishlist" class="mini-card-btn">Go to wishlist</button>
         </div>
         <div class="mini-card flex row wrap">
@@ -20,8 +20,8 @@
             <div class="mini-card-header flex wrap">
               <h1>Your Next Stay</h1>
             </div>
-            <h4 v-if="loggedinUser"><span></span>&nbsp;stay name</h4>
-            <button @click="goToWishlist" class="mini-card-btn">Go to stay</button>
+            <h4 v-if="loggedinUser">Entire amazing views hosted by Patty And Beckett</h4>
+            <button @click="goToStay" class="mini-card-btn">Go to stay</button>
           </div>
           <div class="next-stay-img">
             <img src="http://res.cloudinary.com/dmtlr2viw/image/upload/v1663437349/thl7eoxar7dc7kpbahhj.jpg" alt="">
@@ -31,6 +31,8 @@
       <EasyDataTable class="orders-table"
       :headers="headers"
       :items="items"
+      :body-row-class-name="bodyRowClassNameFunction"
+      no-hover
       >
       <template #item-hostActions="item">
     
@@ -67,7 +69,7 @@ export default {
       hostStay: null,
       orders: null,
       editingItem: {status:''},
-      statusValue:['pending','approved','decline'],
+      statusValue:['pending','approved','declined'],
     }
   },
   created() {
@@ -92,7 +94,7 @@ export default {
         });
       if(hostOrders) {
         this.orders = hostOrders;
-        this.headers.push({ text: "host", value: "hostActions" })
+        this.headers.push({ text: "Actions", value: "hostActions" })
       }
     },
     changeStatus(val, id){
@@ -103,11 +105,11 @@ export default {
     async getHostStays(id) {
       const hostStays =  await this.$store.dispatch({type: 'getHostStays', userId: id});
       if(hostStays) {
-      this.headers.push({ text: "host", value: "hostActions" })
+      this.headers.push({ text: "Actions", value: "hostActions" })
       }
     },
     checkStatusValue(status){
-      this.statusValue = ['pending','approved','decline']
+      this.statusValue = ['pending','approved','declined']
       const idx = this.statusValue.findIndex(statu=>statu === status)
       this.statusValue.splice(idx,1)
       this.statusValue.unshift(status)
@@ -116,13 +118,15 @@ export default {
     goToWishlist() {
       this.$router.push('/stay/wishlist')
     },
-    // bodyItemClassNameFunction(column, item) {
-    //   if (column === 'status') {
-    //     if((this.items[item].status) === "pending")return "orange";
-    //     if((this.items[item].status) === "approved")return "green";
-    //     if((this.items[item].status) === "decline")return "red";
-    //   }
-    // }
+    goToStay() {
+      this.$router.push('/stay/622f337a75c7d36e498aaaf8')
+    },
+    bodyRowClassNameFunction(item,index) {
+      console.log(item.status);
+      if(item.status === "pending")return "orange"
+      if(item.status === "approved")return "green"
+      if(item.status === "declined")return "red"
+    }
   },
 
   computed: {
@@ -131,7 +135,6 @@ export default {
     },
 },
   };
-  // :body-item-class-name="bodyItemClassNameFunction"
 
 </script>
 
@@ -182,7 +185,7 @@ thead.vue3-easy-data-table__header {
   box-shadow: 0px 0px 12px rgba(0,0,0,0.12);
   color: #222222;
   width: 244px;
-  height: 190px;
+  height: 210px;
   border-radius: 12px;
   padding: 18px 18px;
   margin-block-end: 50px;
@@ -213,7 +216,7 @@ thead.vue3-easy-data-table__header {
 
 .mini-card h4 {
   color:#717171;
-  font-size: 1rem;
+  font-size: 0.85rem;
 }
 
 .mini-card h4 span {
@@ -247,17 +250,17 @@ align-self: flex-start;
   height: 170px;
 }
 
-item {
-  color: green;
-}
 .red {
-  color: red;
+  --easy-table-body-row-background-color: #EEF1FF;
+  --easy-table-body-row-font-color: #222222;
 }
 .orange {
-  color: orange;
+  --easy-table-body-row-background-color: #FAF7F0;
+  --easy-table-body-row-font-color: #222222;
 }
 .green {
-  color: green;
+  --easy-table-body-row-background-color: #DEF5E5;
+  --easy-table-body-row-font-color: #222222;
 }
 
 .status-column {
