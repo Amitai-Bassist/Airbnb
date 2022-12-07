@@ -23,7 +23,6 @@
 @import "cmps/review-list";
 @import "cmps/stay-list";
 @import "cmps/stay-reserve";
-@import "cmps/reserve-modal";
 @import "cmps/stay-imgs-preview";
 @import "cmps/stay-explore";
 @import "cmps/app-footer";
@@ -32,6 +31,7 @@
 @import "cmps/add-stay";
 
 // Views
+@import "views/stay-reservation";
 @import "views/stay-app";
 @import "views/stay-details";
 

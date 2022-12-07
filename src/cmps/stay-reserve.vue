@@ -259,7 +259,9 @@ export default {
       }
     }, 500)
   },
-  mounted() {},
+  mounted() {
+    if(this.dateEnd.date !== null && this.dateStart.date !== null) this.daysPriceCalc(this.dateStart.date,this.dateEnd.date,this.stay.price)
+  },
   methods: {
     getReviewScore() {
       this.$store.commit({
@@ -280,16 +282,16 @@ export default {
       }else{
         const order={
           hostId:this.stay.host._id,
+          hostName:this.stay.host.fullname,
           createdAt:Date.now(),
           buyer:{
             _id:this.loggedInUser._id,
-            // id:this.loggedInUser?this.loggedInUser._id: null,
             fullname:this.loggedInUser.fullname,
-            // fullname:this.loggedInUser?this.loggedInUser.fullname:"Guest",
           },
           totalPrice:this.totalPrice,
           startDate:this.dateStart.id,
           endDate:this.dateEnd.id,
+          totalNights:this.totalNights,
           guests: {
             adults: this.gusetNum,
             kids: this.kidsNum
@@ -297,7 +299,11 @@ export default {
           stay: {
           _id: this.stay._id,
           name: this.stay.name,
-          price: this.stay.price
+          price: this.stay.price,
+          imgUrls: this.stay.imgUrls,
+          type: this.stay.type,
+          reviewScore: this.reviewScore,
+          reviews: this.stay.reviews
           },
           msgs: [],
           status: "pending"
