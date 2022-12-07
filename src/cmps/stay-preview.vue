@@ -11,7 +11,7 @@
         </div>    
         <p class="grid-item-2">{{ stay.loc.address +" "+ stay.loc.city + "," + " " + stay.loc.country }} </p>
         <p class="grid-item-5">{{stay.bedrooms}}&nbsp;beds</p>
-        <p class="grid-item-6">Dec 7 - 9</p>
+        <p class="grid-item-6">6 - 7 Dec</p>
         <p class="grid-item-4"><span class="price">${{ stay.price?.toLocaleString() }}</span> night</p>
       </div>
     </div>
@@ -20,10 +20,10 @@
 
 <script>
     // import { ref } from 'vue'
+ 
   import stayImgsPreview from './stay-imgs-preview.vue';
   import { eventBus } from '../services/event-bus.service';
-  
-
+  // import { utilService } from '../services/util.service';
   export default {
     props: {
       stay: Object
@@ -34,12 +34,11 @@
         dateRange: {
           start:null,
           end:null,
-          loggedinUser:null
         },
     }
   },
-  created(){
-    this.loggedinUser = this.$store.getters.loggedinUser
+  created() {
+    // this.getDates()
   },
     methods: {
       goToDetails() {

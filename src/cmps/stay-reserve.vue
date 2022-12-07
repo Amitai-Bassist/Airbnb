@@ -244,8 +244,30 @@ export default {
       });
     },
     onReserve() {
-      if (this.stay) this.$emit("isReserve");
-      else this.$router.push("/");
+      const order={
+        hostId:this.stay.host.id,
+        createdAt:Date.now(),
+        buyer:{
+          id:this.loggedInUser._id,
+          fullname:this.loggedInUser.fullname,
+        },
+        totalPrice:this.totalPrice,
+        startDate:this.dateStart,
+        endDate:this.date.dateEnd,
+        guests: {
+          adults: this.gusetNum,
+          kids: this.kidsNum
+        },
+        stay: {
+        _id: this.stay._id,
+        name: this.stay.name,
+        price: this.stay.price
+        },
+        msgs: [],
+        status: "pending"
+      }
+      this.$emit("isReserve",order);
+      this.$router.push("/stay/reservation");
     },
     toggleCalender() {
       this.isWhenStart = !this.isWhenStart;
@@ -326,7 +348,10 @@ export default {
     },
     maxKids(){
       return this.stay.capacity - this.gusetNum
-    }
+    },
+    loggedInUser() {
+      return this.$store.getters.loggedinUser;
+    },
   },
   components: {
     stayWhenSearch,

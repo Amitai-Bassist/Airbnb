@@ -1,27 +1,38 @@
 <template>
     <section style="margin-top:200px;" class="">
-      <div class="mini-boards">
-        <!-- <el-card class="box-card mini-board" shadow="always">
-          <template #header>
-            <div class="card-header">
-              <span>WISHLIST</span>
-              <el-button class="button" text>Go to whishlist</el-button>
-            </div>
-          </template>
-          <div><p><span>24</span>saved stays</p></div>
-        </el-card> -->
+      <div class="mini-boards flex row nowrap">
         <div class="mini-card flex row wrap">
-          <div class="mini-card-header flex">
-            <h1>WISHLIST</h1>
-            <!-- <button class="mini-card-btn">Go to whishlist</button> -->
+          <div class="mini-card-header flex row wrap">
+            <h1>Wishlist</h1>
           </div>
-          <h4><span>50</span>saved stays</h4>
-          <button class="mini-card-btn">Go to whishlist</button>
+          <h4 v-if="loggedinUser"><span>{{(loggedinUser.wishlist?loggedinUser.wishlist.length: 0)}}</span>&nbsp;saved stays</h4>
+          <button @click="goToWishlist" class="mini-card-btn">Go to wishlist</button>
         </div>
+        <div class="mini-card flex row wrap">
+          <div class="mini-card-header flex row wrap">
+            <h1>Messages</h1>
+          </div>
+          <h4 v-if="loggedinUser"><span></span>&nbsp;new messages</h4>
+          <button @click="goToWishlist" class="mini-card-btn">Go to messages</button>
         </div>
-      <EasyDataTable
+        <div class="mini-card next-stay flex column wrap">
+          <div class="next-stay-first flex row wrap">
+            <div class="mini-card-header flex wrap">
+              <h1>Your Next Stay</h1>
+            </div>
+            <h4 v-if="loggedinUser"><span></span>&nbsp;stay name</h4>
+            <button @click="goToWishlist" class="mini-card-btn">Go to stay</button>
+          </div>
+          <div class="next-stay-img">
+            <img src="http://res.cloudinary.com/dmtlr2viw/image/upload/v1663437349/thl7eoxar7dc7kpbahhj.jpg" alt="">
+          </div>
+        </div>
+      </div>
+      <EasyDataTable class="orders-table"
       :headers="headers"
       :items="items"
+      :body-row-class-name="bodyRowClassNameFunction"
+      no-hover
       >
       <template #item-hostActions="item">
     
@@ -34,14 +45,14 @@
 
       </template>
       <template #item-status="item">
-        {{item.status}}
+        {{item.status}} 
       </template>
     </EasyDataTable>
     </section>
 </template>
 
 <script>
-// import { Header, Item } from "vue3-easy-data-table";
+
 export default {
   data() {
     return {
@@ -63,7 +74,7 @@ export default {
   },
   created() {
     const {id} = this.$route.params;
-    this.getHostOrders(id)
+    this.getHostOrders(id);
   },
   methods: {
     async getHostOrders(id) {
@@ -87,14 +98,14 @@ export default {
       }
     },
     changeStatus(val, id){
-      
       const idx = this.items.findIndex(item=>item.id === id)
       this.items[idx].status = val.target.value
+      console.log('idx',this.items[idx] )
     },
     async getHostStays(id) {
       const hostStays =  await this.$store.dispatch({type: 'getHostStays', userId: id});
       if(hostStays) {
-        this.headers.push({ text: "host", value: "hostActions" })
+      this.headers.push({ text: "host", value: "hostActions" })
       }
     },
     checkStatusValue(status){
@@ -103,9 +114,24 @@ export default {
       this.statusValue.splice(idx,1)
       this.statusValue.unshift(status)
       console.log(this.statusValue)
+    },
+    goToWishlist() {
+      this.$router.push('/stay/wishlist')
+    },
+    bodyRowClassNameFunction(item,index) {
+      console.log(item.status);
+      if(item.status === "pending")return "orange"
+      if(item.status === "approved")return "green"
+      if(item.status === "decline")return "red"
     }
-  }
-}
+  },
+
+  computed: {
+    loggedinUser() {
+      return this.$store.getters.loggedinUser;
+    },
+},
+  };
 
 </script>
 
@@ -114,7 +140,30 @@ export default {
   display: none;
 }
 
+/* // easy data table */
+.orders-table {
+  border-radius: 16px;
+  box-shadow: 0px 0px 12px rgba(0,0,0,0.12);
+
+}
+.orders-table th {
+  font-size: 14px;
+  font-family: Airbnb-Cereal-Medium;
+}
+
+thead.vue3-easy-data-table__header {
+  height: 40px;
+}
+
+.orders-table table {
+ border-radius: 12px;
+}
+
 /* //card - mini-boards */
+.mini-boards {
+  justify-content: space-between;
+  max-width: 80%;
+}
 .card-header {
   display: flex;
   justify-content: space-between;
@@ -133,34 +182,89 @@ export default {
   box-shadow: 0px 0px 12px rgba(0,0,0,0.12);
   color: #222222;
   width: 244px;
-  height: 180px;
+  height: 190px;
   border-radius: 12px;
-  padding: 18px 12px;
+  padding: 18px 18px;
+  margin-block-end: 50px;
 }
 .mini-card h1 {
   font-size: 1.25rem;
+
 }
 .mini-card-btn {
   border: opx solid transparent;
-  background-color: transparent;
+  background-color: #f7f7f7;
   transition: 0.1s;
-  padding:8px 15px;
+  padding:8px;
   align-items: center;
-  height: 32px;
+  height: 40px;
   border-radius: 4px;
   color: #222222;
-
+  width: 130px;
+  margin-inline-start: 0;
+  font-size: 14px;
+  font-family: Airbnb-Cereal-Medium;
+  align-self: flex-end;
+  /* align-self:center; */
 }
 .mini-card-btn:hover {
-  background-color: #eee;
+  background-color: #e0e0e0;
 }
 
+.mini-card h4 {
+  color:#717171;
+  font-size: 1rem;
+}
+
+.mini-card h4 span {
+  font-family: Airbnb-Cereal-Medium;
+}
 .mini-card-header {
 justify-content: space-between;
 align-items: center;
 width: 300px;
 height: 42px;
-padding: 20px 12px;
+padding: 20px 0px;
+align-self: flex-start;
+}
+
+.mini-card:nth-child(3) {
+  width: 400px;
+}
+
+.next-stay-img img {
+  object-fit: cover;
+  width: 200px;
+  height: 130px;
+  /* aspect-ratio:; */
+  border-radius: 12px;
+}
+.next-stay, .next-stay-img {
+  padding-block-start: 20px;
+}
+.next-stay-first {
+  width: 150px;
+  height: 170px;
+}
+
+item {
+  color: green;
+}
+.red {
+  --easy-table-body-row-background-color: #f56c6c;
+  --easy-table-body-row-font-color: #fff;
+}
+.orange {
+  --easy-table-body-row-background-color: #f5aa6c;
+  --easy-table-body-row-font-color: #fff;
+}
+.green {
+  --easy-table-body-row-background-color: #67c23a;
+  --easy-table-body-row-font-color: #fff;
+}
+
+.status-column {
+  color:aquamarine;
 }
 </style>
 
