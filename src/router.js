@@ -11,6 +11,7 @@ import stayExplore from './views/stay-explore.vue';
 import stayWishList from './views/stay-wish-list.vue';
 import stayDashboard from './views/stay-dashboard.vue';
 import stayReservation from './views/stay-reservation.vue';
+import addStay from './views/add-stay.vue';
 
 const routes = [
   {
@@ -52,6 +53,11 @@ const routes = [
     path: '/review',
     name: 'review',
     component: reviewApp,
+  },
+  {
+    path: '/host/:id?',
+    name: 'add-stay',
+    component: addStay,
   },
   {
     path: '/chat',

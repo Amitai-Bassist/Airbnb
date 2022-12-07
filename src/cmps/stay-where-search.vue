@@ -35,7 +35,7 @@
                 </div> 
             </section>
         </div>
-        <hr>  
+        <div class="line-between-where-search"></div>  
         <div>
             <h2>Search by region</h2>
             <section class="chose-mainland">

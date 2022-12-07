@@ -395,26 +395,40 @@
 
     },
     methods: {
-      login(){
-        const user = this.$store.dispatch({ type: "login", userCred: this.user });
+      async login(){
+        const user = await this.$store.dispatch({ type: "login", userCred: this.user });
         this.$emit('closeUserLoginModal')
         const msg = {
-                    title: 'Login was succses',
-                    message: "welcome back!",
+                    title: 'Login successfully',
+                    message: `welcome back ${user.fullname}!`,
                     position: 'bottom-left',
                     type: 'success',
-                    duration: 2000,
+                    duration: 4000,
                 }
         eventBus.emit('show-user-msg',msg)
       },
-      signup(){
-        const user = this.$store.dispatch({ type: "signup", userCred: this.newUser });
+      async signup(){
+        const user = await this.$store.dispatch({ type: "signup", userCred: this.newUser });
         this.$emit('closeUserLoginModal')
-        console.log('a new user has been born', user);
+        const msg2 = {
+                    title: 'Registration succeeded',
+                    message: `welcome ${user.fullname}!`,
+                    position: 'bottom-left',
+                    type: 'success',
+                    duration: 4000,
+                }
+        eventBus.emit('show-user-msg',msg2)
       },
-      updateUser(){
+      async updateUser(){
         this.$emit('closeUserLoginModal')
-        const user = this.$store.dispatch({ type: "updateUser", user: this.editingUser });
+        const user = await this.$store.dispatch({ type: "updateUser", user: this.editingUser });
+        const msg2 = {
+                    title: 'successfully updated',
+                    position: 'bottom-left',
+                    type: 'success',
+                    duration: 4000,
+                }
+        eventBus.emit('show-user-msg',msg2)
       },
       closeModal(){
         this.$emit('closeUserLoginModal')
