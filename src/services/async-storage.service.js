@@ -20,7 +20,7 @@ function query(entityType, delay = 500) {
       entities = myStayJson.splice(0, 30);
     } else if (entityType === 'user') {
       entities = myUserJson.splice(0, 30);
-    } else {
+    } else if(entityType === 'order'){
       entities = myOrderJson;
     }
     _save(entityType, entities);

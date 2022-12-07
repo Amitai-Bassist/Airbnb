@@ -168,18 +168,18 @@ export const stayModule = {
         throw err;
       }
     },
-    async getHostOrders(context, { userId }) {
-      try {
-        const orders = await stayService.query({ text: '' }, 'order');
-        console.log('orders', orders);
-        const hostOrders = orders.filter((order) => {
-          return order.hostId === userId;
-        });
-        return hostOrders;
-      } catch (err) {
-        console.log('stayStore: Error in getHostOrders', err);
-        throw err;
-      }
-    },
+    // async getHostOrders(context, { userId }) {
+    //   try {
+    //     const orders = await stayService.query({ text: '' }, 'order');
+    //     console.log('orders', orders);
+    //     const hostOrders = orders.filter((order) => {
+    //       return order.hostId === userId;
+    //     });
+    //     return hostOrders;
+    //   } catch (err) {
+    //     console.log('stayStore: Error in getHostOrders', err);
+    //     throw err;
+    //   }
+    // },
   },
 };

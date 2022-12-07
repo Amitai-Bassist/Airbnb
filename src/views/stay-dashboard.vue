@@ -12,7 +12,7 @@
           <div class="mini-card-header flex row wrap">
             <h1>Messages</h1>
           </div>
-          <h4 v-if="loggedinUser"><span></span>&nbsp;new messages</h4>
+          <h4 v-if="loggedinUser"> order #o1226 has been approved</h4>
           <button @click="goToWishlist" class="mini-card-btn">Go to messages</button>
         </div>
         <div class="mini-card next-stay flex column wrap">
@@ -164,8 +164,8 @@ thead.vue3-easy-data-table__header {
 
 /* //card - mini-boards */
 .mini-boards {
-  justify-content: space-between;
-  max-width: 80%;
+  /* justify-content: space-between; */
+  max-width: 90%;
 }
 .card-header {
   display: flex;
@@ -208,7 +208,7 @@ thead.vue3-easy-data-table__header {
   font-size: 14px;
   font-family: Airbnb-Cereal-Medium;
   align-self: flex-end;
-  /* align-self:center; */
+  box-shadow: 0px 0px 5px rgba(0,0,0,0.12);
 }
 .mini-card-btn:hover {
   background-color: #e0e0e0;
@@ -216,7 +216,7 @@ thead.vue3-easy-data-table__header {
 
 .mini-card h4 {
   color:#717171;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
 }
 
 .mini-card h4 span {
@@ -231,14 +231,17 @@ padding: 20px 0px;
 align-self: flex-start;
 }
 
-.mini-card:nth-child(3) {
-  width: 400px;
+.mini-card:nth-child(3)  {
+  width: 430px;
+  margin-inline-start: 25px;
 }
-
+.mini-card:nth-child(2) {
+  margin-inline-start: 25px;
+}
 .next-stay-img img {
   object-fit: cover;
   width: 200px;
-  height: 130px;
+  height: 147px;
   /* aspect-ratio:; */
   border-radius: 12px;
 }

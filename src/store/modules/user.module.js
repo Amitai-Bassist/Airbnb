@@ -41,7 +41,6 @@ export const userModule = {
         async login({ commit }, { userCred }) {
             try {
                 const user = await userService.login(userCred)
-                console.log('in user store',user);
                 commit({ type: 'setLoggedinUser', user })
                 return user
             } catch (err) {
@@ -102,6 +101,7 @@ export const userModule = {
             try {
                 user = await userService.update(user)
                 commit({ type: 'setLoggedinUser', user })
+                return user
             } catch (err) {
                 console.log('userStore: Error in updateUser', err)
                 throw err
@@ -112,6 +112,18 @@ export const userModule = {
             try {
                 const updatedUser = await userService.addToWishlist(stay)
                 commit({ type: 'setLoggedinUser', user: updatedUser })
+                return updatedUser
+            } catch (err) {
+                console.log('userStore: Error in increaseScore', err)
+                throw err
+            }
+
+        },
+        async removeFromWishlist({ commit }, { stay }) {
+            try {
+                const updatedUser = await userService.removeFromWishlist(stay)
+                commit({ type: 'setLoggedinUser', user: updatedUser })
+                return updatedUser
             } catch (err) {
                 console.log('userStore: Error in increaseScore', err)
                 throw err
@@ -131,6 +143,5 @@ export const userModule = {
         setWatchedUser({commit}, payload) {
             commit(payload)
         },       
-
     }
 }

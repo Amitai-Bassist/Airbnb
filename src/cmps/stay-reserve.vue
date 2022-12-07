@@ -6,8 +6,8 @@
       </p>
       <p class="review-score flex row align-center">
         <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 14px; width: 14px; fill: currentcolor;"><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z" fill-rule="evenodd"></path></svg>
-        &#160;{{ reviewScore }} &#183; &#160;
-        <span class="span-reviews"> {{ stay.reviews.length }} reviews</span>
+        &#160;{{ reviewScore || 'new' }} &#183; &#160;
+        <span class="span-reviews"> {{ ( stay.reviews.length > 0? stay.reviews.length: 'no') }} reviews</span>
       </p>
     </div>
 
@@ -17,8 +17,8 @@
         @updateStart="updateStart"
         @updateEnd="updateEnd"
         @closeCalendar="closeCalendar"
-        :detailsDateStart="this.dateStart"
-        :detailsDateEnd="this.dateEnd"
+        :detailsDateStart="dateStart"
+        :detailsDateEnd="dateEnd"
         v-if="isWhenStart"
       ></details-calendar>
       <div class="date-picker" v-if="!isWhenStart">
@@ -206,7 +206,8 @@
 <script>
 import stayWhenSearch from "./stay-when-search.vue";
 import detailsCalendar from "./details-calendar.vue";
-import { eventBus } from "../services/event-bus.service";
+import { eventBus} from "../services/event-bus.service";
+import newUserMsg from './new-user-msg.vue';
 import detailsWhoSearch from "../cmps/details-who-search.vue";
 
 export default {
@@ -217,8 +218,8 @@ export default {
     return {
       isWhenStart: false,
       isWhenEnd: false,
-      dateEnd: "-",
-      dateStart: "-",
+      dateEnd: {id:null,date:null},
+      dateStart: {id:null,date:null},
       totalNights: null,
       totalPrice: null,
       accommodation: null,
@@ -228,12 +229,35 @@ export default {
       kidsNum:0,
       infantsNum:0,
       petsNum:0,
+      loggedInUser: null
     };
   },
   created() {
+    let {txt = '' ,type = '' ,checkin ,checkout ,adults = 1 , children = 0 , infants = 0 , pets = 0 } = this.$route.query
+    this.gusetNum = +adults === 0?1:+adults
+    this.kidsNum = +children
+    this.infantsNum = +infants
+    this.petsNum = +pets
+    if(checkin !== '') {
+      checkin = checkin[3] + checkin[4] + checkin[2] + checkin[0] + checkin[1]  + checkin[5] + checkin[6] + checkin[7] + checkin[8]+ checkin[9]
+      this.dateStart = {id:checkin}
+    }
+    this.dateStart.date = checkin!==''? new Date(checkin):null
+    if(checkout !== '') {
+      this.dateEnd = {id:checkout}
+      checkout = checkout[3] + checkout[4] + checkout[2] + checkout[0] + checkout[1]  + checkout[5] + checkout[6] + checkout[7] + checkout[8]+ checkout[9]
+    }
+    this.dateEnd.date = checkin!==''? new Date(checkout):null
     setTimeout(() => {
       this.getReviewScore();
-    }, 500);
+    }, 500)
+    this.loggedInUser = this.$store.getters.loggedinUser    
+    const orders = this.$store.getters.orders
+    setTimeout(() => {
+      if(!orders[0]) {
+        this.$store.dispatch({type:'loadOrders'})
+      }
+    }, 500)
   },
   mounted() {},
   methods: {
@@ -244,47 +268,60 @@ export default {
       });
     },
     onReserve() {
-      const order={
-        hostId:this.stay.host.id,
-        createdAt:Date.now(),
-        buyer:{
-          id:this.loggedInUser._id,
-          fullname:this.loggedInUser.fullname,
-        },
-        totalPrice:this.totalPrice,
-        startDate:this.dateStart,
-        endDate:this.date.dateEnd,
-        guests: {
-          adults: this.gusetNum,
-          kids: this.kidsNum
-        },
-        stay: {
-        _id: this.stay._id,
-        name: this.stay.name,
-        price: this.stay.price
-        },
-        msgs: [],
-        status: "pending"
+      if(!this.loggedInUser || this.dateEnd.id=== null){
+        const msg = {
+                    title: 'reserve failed',
+                    message: !this.loggedInUser?'please login first':'please pick a date first',
+                    position: 'bottom-right',
+                    type: 'error',
+                    duration: 2000,
+                }
+        eventBus.emit('show-user-msg',msg)
+      }else{
+        const order={
+          hostId:this.stay.host._id,
+          createdAt:Date.now(),
+          buyer:{
+            _id:this.loggedInUser._id,
+            // id:this.loggedInUser?this.loggedInUser._id: null,
+            fullname:this.loggedInUser.fullname,
+            // fullname:this.loggedInUser?this.loggedInUser.fullname:"Guest",
+          },
+          totalPrice:this.totalPrice,
+          startDate:this.dateStart.id,
+          endDate:this.dateEnd.id,
+          guests: {
+            adults: this.gusetNum,
+            kids: this.kidsNum
+          },
+          stay: {
+          _id: this.stay._id,
+          name: this.stay.name,
+          price: this.stay.price
+          },
+          msgs: [],
+          status: "pending"
+        }
+        this.$store.dispatch({type:'addOrder',order})
+        this.$router.push("/stay/reservation");
       }
-      this.$emit("isReserve",order);
-      this.$router.push("/stay/reservation");
     },
     toggleCalender() {
       this.isWhenStart = !this.isWhenStart;
     },
     updateStart(update) {
       this.dateStart = update;
-      if(update.id === "-"){
-        this.dateStart = "-"
+      if(update.id === ''){
+        this.dateStart.id = null
       }
     },
     updateEnd(update) {
       this.dateEnd = update;
-      if(update.id !== "-"){
+      if(update.id !== ''){
         this.daysPriceCalc(this.dateStart.date, this.dateEnd.date);
       }else {
         this.totalNights = null
-        this.dateEnd = "-"
+        this.dateEnd.id = null
       }
     },
     onClickAway() {
@@ -349,14 +386,15 @@ export default {
     maxKids(){
       return this.stay.capacity - this.gusetNum
     },
-    loggedInUser() {
-      return this.$store.getters.loggedinUser;
-    },
+    // loggedInUser() {
+    //   return this.$store.getters.loggedinUser;
+    // },
   },
   components: {
     stayWhenSearch,
     detailsCalendar,
     detailsWhoSearch,
+    newUserMsg,
   },
 };
 </script>

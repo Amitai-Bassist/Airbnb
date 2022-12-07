@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { uploadService } from '../services/upload.service.js'
+import { uploadImg } from '../services/upload.service.js'
 
 export default {
   data() {
@@ -21,7 +21,7 @@ export default {
   methods: {
     async uploadImg(ev) {
       this.isUploading = true
-      const { secure_url, height, width } = await uploadService.uploadImg(ev)
+      const { secure_url, height, width } = await uploadImg(ev)
       this.isUploading = false
       this.imgUrl = secure_url
       this.height = height

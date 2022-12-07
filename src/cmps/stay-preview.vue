@@ -52,14 +52,37 @@
                 adults:adults, children:children, infants:infants, pets:pets,inWishlist:this.inWishlist}
             })
       },
-      addToWishlist() {
-        this.$store.dispatch({type: 'addToWishlist', stay: this.stay})
-      },
+      async addToWishlist(isAdd) {
+        if (isAdd){
+          const updatedUser = await this.$store.dispatch({type: 'addToWishlist', stay: this.stay})
+          const msg = {
+            message: `❤ Saved to your wishlist`,
+                      position: 'bottom-left',
+                      type: 'success',
+                      duration: 4000,
+                    }
+          eventBus.emit('show-user-msg',msg)
+        }else{  
+          const updatedUser = await this.$store.dispatch({type: 'removeFromWishlist', stay: this.stay})
+          console.log(updatedUser);
+          const msg = {
+            message: `❤ Removed from your wishlist`,
+                      position: 'bottom-left',
+                      type: 'success',
+                      duration: 4000,
+                    }
+          eventBus.emit('show-user-msg',msg)          
+        }
+      }
     },
     computed: {
       inWishlist(){
-        return false
-      },
+        if (!this.loggedinUser || !this.loggedinUser.wishlist) return false
+        const wishlist = this.loggedinUser.wishlist
+        return wishlist.some((stay)=>{
+          return stay._id === this.stay._id
+        })
+      }
     },
     components: {
       stayImgsPreview 
