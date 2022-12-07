@@ -93,8 +93,12 @@ button.add-to-wishlist {
 .carousel__pagination {
     z-index: 1;
     top:87.3%;
-    right: 39%;
+    right: 45%;
     position: absolute;
+    padding-inline-start: 0;
+    @include for-mobile-layout {
+       top: 90%;
+    }
 }
   
 .carousel__pagination-button {
