@@ -391,6 +391,12 @@
         editingUser: JSON.parse(JSON.stringify(this.loggedInUser))
       }
     },
+    async created(){
+      const user = await this.$store.dispatch({ type: "getById", userId: this.loggedInUser._id });
+      user.password = ''
+      console.log(user);
+      this.editingUser = user
+    },
     computed: {
 
     },

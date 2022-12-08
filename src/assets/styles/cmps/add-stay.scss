@@ -52,6 +52,22 @@
         justify-content: center;
         border: solid 1px #80808052;
         // display: inline-grid;
+        >:first-child{
+            &.big{
+                height: 100%;
+                padding-top: 100px;
+            }
+        }
     }
     
+}
+.el-form-item__label{
+    width: 150px;
+    justify-content: flex-start !important;
+}
+
+.el-form .el-form--default .el-form--label-right .add-stay-form{
+    >:nth-child(7){
+        
+    }
 }

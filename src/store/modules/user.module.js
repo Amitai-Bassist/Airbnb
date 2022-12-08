@@ -88,6 +88,16 @@ export const userModule = {
                 throw err
             }
         },
+        async getById({ commit }, { userId }) {
+            try {
+                const user = await userService.getById(userId)
+                
+                return user
+            } catch (err) {
+                console.log('userStore: Error in removeUser', err)
+                throw err
+            }
+        },
         async removeUser({ commit }, { userId }) {
             try {
                 await userService.remove(userId)
