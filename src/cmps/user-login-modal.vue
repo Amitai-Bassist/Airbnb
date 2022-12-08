@@ -392,10 +392,12 @@
       }
     },
     async created(){
-      const user = await this.$store.dispatch({ type: "getById", userId: this.loggedInUser._id });
-      user.password = ''
-      console.log(user);
-      this.editingUser = user
+      const loggedinUser = this.$store.getters.loggedinUser
+      if (loggedinUser){
+        const user = await this.$store.dispatch({ type: "getById", userId: this.loggedInUser._id });
+        user.password = ''
+        this.editingUser = user
+      }
     },
     computed: {
 
