@@ -17,9 +17,11 @@ function query(entityType, delay = 500) {
   var entities = JSON.parse(localStorage.getItem(entityType));
   if (!entities) {
     if (entityType === 'stay') {
-      entities = myStayJson.splice(0, 30);
+      entities = myStayJson.splice(0,100);
+      // entities = myStayJson.splice(0, 30);
     } else if (entityType === 'user') {
-      entities = myUserJson.splice(0, 30);
+      entities = myUserJson.splice(0, 100);
+      // entities = myUserJson.splice(0, 30);
     } else if(entityType === 'order'){
       entities = myOrderJson;
     }

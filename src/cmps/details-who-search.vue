@@ -5,28 +5,28 @@
                 <h1>Adults</h1>
                 <p>Ages 13 or above</p>
             </div>
-            <add-guest-num @changeNum="changeNum" :number="1" :maxNum="maxAdults"></add-guest-num>
+            <add-guest-num @changeNum="changeNum" :number="1" :maxNum="maxAdults" :minNum="1"></add-guest-num>
         </div>
         <div class="flex row space-between align-center">
             <div>
                 <h1>Children</h1>
                 <p>Ages 2-12</p>
             </div>
-            <add-guest-num @changeNum="changeNumKids" :number="0" :maxNum="maxKids"></add-guest-num>
+            <add-guest-num @changeNum="changeNumKids" :number="0" :maxNum="maxKids" :minNum="0"></add-guest-num>
         </div>
         <div class="flex row space-between align-center">
             <div>
                 <h1>Infants</h1>
                 <p>Under age 2</p>
             </div>
-            <add-guest-num @changeNum="changeNumInfants" :number="0" :maxNum="5"></add-guest-num>
+            <add-guest-num @changeNum="changeNumInfants" :number="0" :maxNum="5" :minNum="0"></add-guest-num>
         </div>
         <div class="flex row space-between align-center">
             <div>
                 <h1>Pets</h1>
                 <p>Bringing a service animal?</p>
             </div>
-            <add-guest-num @changeNum="changeNumPets" :number="0" :maxNum="5"></add-guest-num>
+            <add-guest-num @changeNum="changeNumPets" :number="0" :maxNum="5" :minNum="0"></add-guest-num>
         </div>
     </section>
 </template>

@@ -163,16 +163,17 @@
           </div>
         </div>
       </div>
-      <button>Show all {{stay.reviews.length}} {{reviewNum}}</button>
+      <button @click="showMoreReveiw()">Show all {{stay.reviews.length}} {{reviewNum}}</button>
       <details-map :loc="stay.loc"></details-map>
     </div>
     <div v-else>
       <p>
         No reviews
-      </p> 
-    </div>
-
+      </p>
+    </div> 
+    <!-- <details-modal></details-modal> -->
   </section>
+
 </template>
 
 <script>
@@ -180,6 +181,7 @@
   import stayReserve from "../cmps/stay-reserve.vue";
   import reserveModal from "../cmps/reserve-modal.vue";
   import detailsMap from '../cmps/details-map.vue';
+  import detailsModal from '../cmps/details-modal.vue';
 
 export default {
   name: "stay-detail",
@@ -320,6 +322,7 @@ export default {
     stayReserve,
     reserveModal,
     detailsMap,
+    detailsModal,
   },
 };
 </script>

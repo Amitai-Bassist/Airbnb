@@ -3,9 +3,9 @@
       <div class="your-trip">
         <!-- <h1>Reservation Success!</h1> -->
         <h2>Your trip:</h2>
-        <div class="flex row">Check-In <span> &nbsp;{{myReservation.startDate}}</span></div>
-        <div class="flex row">Check-Out <span> &nbsp;{{myReservation.endDate }}</span></div>
-        <div class="flex row">Host name <span> &nbsp;{{myReservation.hostName}}</span></div>
+        <div class="flex row">Check-In: <span> &nbsp;{{myReservation.startDate}}</span></div>
+        <div class="flex row">Check-Out: <span> &nbsp;{{myReservation.endDate }}</span></div>
+        <div class="flex row">Host: <span> &nbsp;{{myReservation.hostName}}</span></div>
         <!-- <div class="end"></div> -->
       </div>
       <div class="reservation-details">
@@ -23,124 +23,126 @@
       </div>
       <!-- <div class="end"></div> -->
       <div class="price-details">
-        <h2>price-details</h2>
+        <h2>price-details:</h2>
         <div class="flex row">Adults: {{myReservation.guests.adults }}</div>
         <div v-if="myReservation.guests.kids" class="flex row">Kids: {{myReservation.guests.kids}}</div>
         <div v-if="myReservation.guests.infants" class="flex row">Infants:{{reservmyReservation.guests.infants}}</div>
         <div v-if="myReservation.guests.pets" class="flex row">Pets: {{reservmyReservation.guests.pets}}</div>
         <div class="flex row">Total price: <span> &nbsp;${{myReservation.totalPrice}}</span></div>
         <div class="flex row">Total nights: <span> &nbsp;{{myReservation.totalNights}}</span></div>
-        <div class="btn-container" @click="moveToHomePage">
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="cell"></div>
-      <div class="content">
-        <button class="action-btn">
-          <span class="btn">Look for more places to stay</span>
-        </button>
       </div>
+      <div class="btn-container" @click="moveToHomePage">
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="content">
+      <button class="action-btn">
+        <span class="btn">Look for more places to stay</span>
+      </button>
+    </div>
+      </div>
+      <div class="img-container">
+        <div :class="('img'+index)" alt=""  v-for="(imgUrl,index) in myReservation.stay.imgUrls.slice(0,4)" :key="imgUrl">
+          <img :src="imgUrl" >
         </div>
       </div>
-    <div class="img-container">
-          <img :src="imgUrl" :class="('img'+index)" alt=""  v-for="(imgUrl,index) in myReservation.stay.imgUrls.slice(0,4)" :key="imgUrl">
-        </div>
     </section> 
     <!-- <pre>{{myReservation}}</pre> -->
     
