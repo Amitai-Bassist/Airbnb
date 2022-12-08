@@ -4,7 +4,6 @@
             <router-link to="/stay/wishlist">Whishlist</router-link>
             <div class="user-nav-border-line-between"></div>
             <router-link :to="`/host`">Dreambnb your home</router-link>
-            <router-link :to="`/host/${'622f337a75c7d36e498aab00'}`">Edit your home</router-link>
             <router-link :to="`/stay/dashboard/${loggedInUser._id}`">Account dashboard</router-link>
             <div @click="goUserEdit()">Edit my account</div>
             <div class="user-nav-border-line-between"></div>

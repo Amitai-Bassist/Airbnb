@@ -1,8 +1,30 @@
 <template>
-    <section class="stay-details main-container">
+    <section class="add-stay-container stay-details main-container">
     
-  <h1 style="margin-top: 200px">host a new home</h1>
-    <el-form class="add-stay-form" :model="form" label-width="120px">
+    <h1>host a new home</h1>
+    <section class="img-container">
+    <div class="img-gallery">
+        <img-upload  v-if="!imgUrls[0]" @saved="saveImg"></img-upload>
+        <img v-else :src="imgUrls[0]" alt="">
+    </div>
+    <div class="img-gallery">
+        <img-upload v-if="!imgUrls[1]" @saved="saveImg"></img-upload>
+        <img v-else :src="imgUrls[1]" alt="">
+    </div>
+    <div class="img-gallery">
+        <img-upload v-if="!imgUrls[2]" @saved="saveImg"></img-upload>
+        <img v-else :src="imgUrls[2]" alt="">
+    </div>
+    <div class="img-gallery">
+        <img-upload v-if="!imgUrls[3]" @saved="saveImg"></img-upload>
+        <img v-else :src="imgUrls[3]" alt="">
+    </div>
+    <div class="img-gallery">
+        <img-upload v-if="!imgUrls[4]" @saved="saveImg"></img-upload>
+        <img v-else :src="imgUrls[4]" alt="">
+    </div>
+    </section>
+    <el-form class="add-stay-form" :model="form" >
 
       <el-form-item label="New place name">
         <el-input v-model="form.name" />
@@ -21,10 +43,11 @@
       </el-form-item>
 
       <el-form-item label="Price per night">
-        <el-input v-model="form.price" />
+        
+        <el-input class="currency" v-model="form.price" />
       </el-form-item>
 
-      <el-form-item label="Place description">
+      <el-form-item class="Place-description" label="Place description">
         <el-input v-model="form.summary" type="textarea" />
       </el-form-item>
 
@@ -97,28 +120,7 @@
       <el-button @click="resetForm(ruleFormRef)">Reset</el-button>
     </el-form-item>
     </el-form>
-    <section class="img-container">
-    <div class="img-gallery">
-        <img-upload  v-if="!imgUrls[0]" @saved="saveImg"></img-upload>
-        <img v-else :src="imgUrls[0]" alt="">
-    </div>
-    <div class="img-gallery">
-        <img-upload v-if="!imgUrls[1]" @saved="saveImg"></img-upload>
-        <img v-else :src="imgUrls[1]" alt="">
-    </div>
-    <div class="img-gallery">
-        <img-upload v-if="!imgUrls[2]" @saved="saveImg"></img-upload>
-        <img v-else :src="imgUrls[2]" alt="">
-    </div>
-    <div class="img-gallery">
-        <img-upload v-if="!imgUrls[3]" @saved="saveImg"></img-upload>
-        <img v-else :src="imgUrls[3]" alt="">
-    </div>
-    <div class="img-gallery">
-        <img-upload v-if="!imgUrls[4]" @saved="saveImg"></img-upload>
-        <img v-else :src="imgUrls[4]" alt="">
-    </div>
-    </section>
+    
     <!-- <img-list-after-uploading :imgUrls="imgUrls"></img-list-after-uploading> -->
     </section>
 </template>
