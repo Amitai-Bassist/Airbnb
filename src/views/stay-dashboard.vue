@@ -291,7 +291,7 @@ align-self: flex-start;
 }
 
 .red {
-  --easy-table-body-row-background-color: #EEF1FF;
+  --easy-table-body-row-background-color: #FAEBE0;
   --easy-table-body-row-font-color: #222222;
 }
 .orange {
