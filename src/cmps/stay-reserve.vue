@@ -235,19 +235,19 @@ export default {
   created() {
     let {txt = '' ,type = '' ,checkin ,checkout ,adults = 1 , children = 0 , infants = 0 , pets = 0 } = this.$route.query
     this.gusetNum = +adults === 0?1:+adults
-    this.kidsNum = +children
-    this.infantsNum = +infants
-    this.petsNum = +pets
-    if(checkin !== '') {
+    this.kidsNum = +children?+children:0
+    this.infantsNum = +infants?+infants:0
+    this.petsNum = +pets?+pets:0
+    if(checkin !== ''&& checkin) {
       checkin = checkin[3] + checkin[4] + checkin[2] + checkin[0] + checkin[1]  + checkin[5] + checkin[6] + checkin[7] + checkin[8]+ checkin[9]
       this.dateStart = {id:checkin}
     }
-    this.dateStart.date = checkin!==''? new Date(checkin):null
-    if(checkout !== '') {
+    this.dateStart.date = checkin!==''&& checkin? new Date(checkin):null
+    if(checkout !== ''&& checkout) {
       this.dateEnd = {id:checkout}
       checkout = checkout[3] + checkout[4] + checkout[2] + checkout[0] + checkout[1]  + checkout[5] + checkout[6] + checkout[7] + checkout[8]+ checkout[9]
     }
-    this.dateEnd.date = checkin!==''? new Date(checkout):null
+    this.dateEnd.date = checkin!==''&& checkout? new Date(checkout):null
     setTimeout(() => {
       this.getReviewScore();
     }, 500)
