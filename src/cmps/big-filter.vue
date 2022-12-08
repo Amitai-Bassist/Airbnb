@@ -35,7 +35,7 @@
 <script>
     import { eventBus } from '../services/event-bus.service'
     export default {
-        props: ['isWhereSearch','iswhenStart','isWhenEnd','isWhoSearch']
+        props: ['isWhereSearch','isWhenStart','isWhenEnd','isWhoSearch']
         ,
         data(){
           return{

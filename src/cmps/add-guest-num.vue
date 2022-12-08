@@ -16,6 +16,7 @@
         props: {
             'number': Number,
             'maxNum': Number,
+            'minNum': Number,
         },
         data(){
             return {
@@ -37,16 +38,20 @@
         },
         methods: {
             changeNum(num){
+                if ((num === 1 && this.plusDisabled) || num ===-1 && this.downDisabled){ 
+                    this.$emit('changeNum',this.num)
+                    return
+                }
                 this.num += num
                 console.log('maxNum',this.maxNum);
-                if (this.num <= this.number){
+                if (this.num <= this.minNum){
                     this.downDisabled = true
-                    this.num = this.number
+                    // this.num = this.number
                 }
                 else if (this.num >= this.number + 1){
                     this.downDisabled = false
                 }
-                if (this.num >= this.maxNum){
+                if (this.num === this.maxNum){
                     this.plusDisabled = true
                     this.num = this.maxNum
                 }else this.plusDisabled = false
@@ -54,7 +59,8 @@
                     this.plusDisabled = true
                     this.downDisabled = true
                 }
-
+                
+                console.log('inside',this.num);
                 this.$emit('changeNum',this.num)
             }
         },

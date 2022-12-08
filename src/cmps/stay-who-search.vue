@@ -4,22 +4,28 @@
         <h2>Adults</h2>
         <p>Ages 13 or above</p>
     </div>
-    <add-guest-num :number="guests.adults" @changeNum="setAdultsGuests"></add-guest-num>
+    <add-guest-num :maxNum="12" :minNum="1" :number="guests.adults" @changeNum="setAdultsGuests"></add-guest-num>
+    <div class="user-nav-border-line-between"></div>
+    <div class="user-nav-border-line-between"></div>
     <div>
         <h1>Children</h1>
         <p>Ages 2-12</p>
     </div>
-    <add-guest-num  :number="guests.children" @changeNum="setChildrenGuests"></add-guest-num>
+    <add-guest-num :maxNum="6" :minNum="0" :number="guests.children" @changeNum="setChildrenGuests"></add-guest-num>
+    <div class="user-nav-border-line-between"></div>
+    <div class="user-nav-border-line-between"></div>
     <div>
         <h1>Infants</h1>
         <p>Under age 2</p>
     </div>
-    <add-guest-num :number="guests.infants" @changeNum="setInfantsGuests"></add-guest-num>
+    <add-guest-num :maxNum="6" :minNum="0" :number="guests.infants" @changeNum="setInfantsGuests"></add-guest-num>
+    <div class="user-nav-border-line-between"></div>
+    <div class="user-nav-border-line-between"></div>
     <div>
         <h1>Pets</h1>
         <p>Bringing a service animal?</p>
     </div>
-    <add-guest-num  :number="guests.pets" @changeNum="setPetsGuests"></add-guest-num>
+    <add-guest-num :maxNum="5" :minNum="0" :number="guests.pets" @changeNum="setPetsGuests"></add-guest-num>
     </section>
 </template>
 
@@ -34,7 +40,7 @@ import addGuestNum from './add-guest-num.vue';
         data(){
             return{
                 guests: {
-                    adults: 0, 
+                    adults: 1, 
                     children: 0, 
                     infants: 0, 
                     pets: 0
@@ -43,7 +49,7 @@ import addGuestNum from './add-guest-num.vue';
         },
         methods: {
             setAdultsGuests(num){
-                console.log(num);
+                // console.log(num);
                 this.guests.adults = num    
                 console.log(this.guests);
                 eventBus.emit('chose-who-guests', this.guests)

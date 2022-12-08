@@ -18,12 +18,6 @@ import { eventBus } from '../services/event-bus.service'
         methods: {
             choseSearch(chose){
                 this.$emit('clickedMain',chose)
-                if (chose === 'when-start'){
-                    console.log('when');
-                    setTimeout(()=>{
-                        eventBus.emit('when-selected')
-                    },250)
-                }
             }    
         },
     }

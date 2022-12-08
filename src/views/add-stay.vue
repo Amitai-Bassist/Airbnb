@@ -3,8 +3,8 @@
     
     <h1>host a new home</h1>
     <section class="img-container">
-    <div class="img-gallery">
-        <img-upload  v-if="!imgUrls[0]" @saved="saveImg"></img-upload>
+    <div class="img-gallery ">
+        <img-upload class="big"  v-if="!imgUrls[0]" @saved="saveImg"></img-upload>
         <img v-else :src="imgUrls[0]" alt="">
     </div>
     <div class="img-gallery">
