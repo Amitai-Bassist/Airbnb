@@ -19,7 +19,8 @@
       </section>
   </header>
   <div class="full screen-shadow" @click="clickedScreen" v-if="isBigFilter"></div>
-  <user-nav-bar 
+  <user-nav-bar
+  @click="(openUserNav=!openUserNav)" 
   :class="{'details':isDetailsHeader}"
   @goToLogin="(isLoginModal = true, openUserNav = false)" 
   @goToSignup="(isSignupModal = true, openUserNav = false)" 

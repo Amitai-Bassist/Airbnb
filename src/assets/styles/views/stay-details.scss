@@ -45,6 +45,10 @@
         color: black;
     }
 
+    h1{
+        font-size: 26px;
+    }
+
     h4{
         font-size:em(16px);
     }
@@ -432,7 +436,7 @@
                 
             }
             .text{
-                max-width: 40ch;
+                max-width: 60ch;
                 min-height: 50px;
                 // text-overflow: ellipsis;
                 overflow: hidden;
@@ -442,6 +446,7 @@
             }
 
             img{
+                margin-left: -10px;
                 width: 60px;
                 height: 60px;
                 border-radius: 50px;

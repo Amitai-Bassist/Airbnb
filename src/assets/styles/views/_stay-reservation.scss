@@ -1,17 +1,19 @@
 .stay-reservation {
   display: grid;
   grid-template-areas:
-    "your-trip blank"
+    "your-trip img-container"
     "stay-details img-container"
-    "price-details img-container";
+    "price-details blank";
   width: fit-content;
-  height: max-content;
+  height: 550px;
   padding: 10px;
   background-color: white;
   text-align: center;
   grid-column: 2;
   grid-template-rows: 0.5fr 1fr 1fr;
-  grid-template-columns: 0.5fr 1fr; 
+  grid-template-columns: 0.5fr 1fr;
+   
+
 
   >* {
     font-family: Airbnb-Cereal-Bold;
@@ -33,6 +35,7 @@
   }
 
   .your-trip {
+    margin-left: 100px;
     display: flex;
     flex-direction: column;
     justify-content: end;
@@ -41,6 +44,7 @@
   }
 
   .reservation-details {
+    margin-left: 100px;
     grid-area: stay-details;
     display: flex;
     flex-direction: column;
@@ -81,8 +85,8 @@
     grid-area: img-container;
     display: grid;
     grid-gap: 20px;
-    height: 90%;
-    width: 90%;
+    height: 80%;
+    width: 80%;
     grid-template-areas:
       "img0 img1"
       "img2 img3";
@@ -122,6 +126,7 @@
   }
 
   .price-details{
+    margin-left: 100px;
     justify-content: end;
     grid-area: price-details;
     display: flex;
