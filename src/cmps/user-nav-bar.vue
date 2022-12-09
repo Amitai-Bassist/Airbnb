@@ -42,7 +42,7 @@
                 this.$emit('goUserEdit')
             },
             logout(){
-                this.$store.dispatch({ type: "logout" });
+                this.$store.dispatch({ type: "logout" })
                 const msg = {
                     title: 'Logout was succses',
                     message: "See you next time",

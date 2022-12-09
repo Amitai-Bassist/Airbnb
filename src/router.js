@@ -16,8 +16,8 @@ import addStay from './views/add-stay.vue';
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: home,
+    name: 'stay',
+    component: stayApp,
   },
   {
     path: '/stay',
