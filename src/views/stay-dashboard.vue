@@ -33,8 +33,10 @@
           :headers="headers"
           :items="items"
           :body-row-class-name="bodyRowClassNameFunction"
+          :rows-per-page="10"
           no-hover
           >
+          
           <template #item-hostActions="item">
             <select @change="changeStatus($event,item.id)" :model="editingItem.status" class="host-actions" id="">
               <option :value="item.status">{{item.status}}</option>

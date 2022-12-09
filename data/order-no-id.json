@@ -30,9 +30,9 @@
       "_id": "622f3401e36c59e6164fab4e",
       "fullname": "Leo"
     },
-    "totalPrice": 1598,
-    "startDate": "2023/10/15",
-    "endDate": "2023/10/17",
+    "totalPrice": 1598.0,
+    "startDate": "2022/12/25",
+    "endDate": "2022/12/27",
     "guests": {
       "adults": 2,
       "kids": 1
@@ -93,29 +93,6 @@
   },
   {
     "hostId": "622f3403e36c59e6164faf93",
-    "createdAt": 1670429847369,
-    "buyer": {
-      "_id": "622f3403e36c59e6164faf93",
-      "fullname": "Patty And Beckett"
-    },
-    "totalPrice": null,
-    "startDate": null,
-    "endDate": null,
-    "guests": {
-      "adults": 1,
-      "kids": 0
-    },
-    "stay": {
-      "_id": "622f337a75c7d36e498aaaf8",
-      "name": "Westin Kaanapali KORVN 2BR",
-      "price": 595
-    },
-    "msgs": [],
-    "status": "pending"
-    
-  },
-  {
-    "hostId": "622f3403e36c59e6164faf93",
     "createdAt": 1670429894448,
     "buyer": {
       "_id": "622f3403e36c59e6164faf93",
@@ -149,7 +126,7 @@
     "endDate": "15/12/2022",
     "guests": {
       "adults": 1,
-      "kids": 0
+      "kids": 2
     },
     "stay": {
       "_id": "622f337a75c7d36e498aaaf8",
