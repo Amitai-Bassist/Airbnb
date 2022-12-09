@@ -1,5 +1,5 @@
-import { storageService } from './async-storage.service'
-// import { httpService } from './http.service'
+// import { storageService } from './async-storage.service'
+import { httpService } from './http.service'
 import { store } from '../store/store'
 import {
   socketService,
@@ -28,8 +28,8 @@ export const userService = {
 window.userService = userService
 
 function getUsers() {
-  return storageService.query('user')
-  // return httpService.get(`user`)
+  // return storageService.query('user')
+  return httpService.get(`user`)
 }
 
 function onUserUpdate(user) {
@@ -40,8 +40,8 @@ function onUserUpdate(user) {
 }
 
 async function getById(userId) {
-  const user = await storageService.get('user', userId)
-  // const user = await httpService.get(`user/${userId}`)
+  // const user = await storageService.get('user', userId)
+  const user = await httpService.get(`user/${userId}`)
 
   // socketService.emit(SOCKET_EMIT_USER_WATCH, userId)
   socketService.off(SOCKET_EVENT_USER_UPDATED, onUserUpdate)
@@ -50,25 +50,25 @@ async function getById(userId) {
   return user
 }
 function remove(userId) {
-  return storageService.remove('user', userId)
-  // return httpService.delete(`user/${userId}`)
+  // return storageService.remove('user', userId)
+  return httpService.delete(`user/${userId}`)
 }
 
 async function update(user) {
   console.log('user in userservice',user);
-  await storageService.put('user', user)
-  // user = await httpService.put(`user/${user._id}`, user)
+  // await storageService.put('user', user)
+  user = await httpService.put(`user/${user._id}`, user)
   // Handle case in which admin updates other user's details
-  if (getLoggedinUser()._id === user._id){
+  // if (getLoggedinUser()._id === user._id){
     saveLocalUser(user)
-  } 
+  // } 
   return user
 }
 
 async function login(userCred) {
-  const users = await storageService.query('user')
-  const user = users.find((user) => user.username === userCred.username)
-  // const user = await httpService.post('auth/login', userCred)
+  // const users = await storageService.query('user')
+  // const user = users.find((user) => user.username === userCred.username)
+  const user = await httpService.post('auth/login', userCred)
   if (user) {
     // socketService.login(user._id)
     return saveLocalUser(user)
@@ -78,15 +78,15 @@ async function signup(userCred) {
   if (!userCred.imgUrl)
     userCred.imgUrl =
       'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'
-  const user = await storageService.post('user', userCred)
-  // const user = await httpService.post('auth/signup', userCred)
+  // const user = await storageService.post('user', userCred)
+  const user = await httpService.post('auth/signup', userCred)
   // socketService.login(user._id)
   return saveLocalUser(user)
 }
 async function logout() {
-  sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
+  // sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
   // socketService.logout()
-  // return await httpService.post('auth/logout')
+  return await httpService.post('auth/logout')
 }
 
 async function addToWishlist(stay){

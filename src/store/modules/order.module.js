@@ -1,4 +1,4 @@
-import { orderService } from '../../services/order.service.local'
+import { orderService } from '../../services/order.service'
 
 
 export const orderModule = {
@@ -14,7 +14,7 @@ export const orderModule = {
         setOrders(state, { orders }) {
             state.orders =  orders
         },
-        addOrder(state, { order }) {
+        onAddOrder(state, { order }) {
             state.orders.push( order)
             state.currOrder = order
         },
@@ -26,9 +26,9 @@ export const orderModule = {
         async addOrder(context, { order }) {
           console.log('stayOrder');
             try {
-                order = await orderService.save(order)
-                context.commit({ type: 'addOrder', order })
-                context.dispatch({ type: 'increaseScore' })
+                const currOrder = await orderService.save(order)
+                context.commit({ type: 'onAddOrder', order:currOrder })
+                // context.dispatch({ type: 'increaseScore' })
 
                 return order
             } catch (err) {
@@ -39,7 +39,8 @@ export const orderModule = {
         async loadOrders(context) {
             try {
                 const orders = await orderService.query()
-                context.commit({ type: 'setOrders',  orders })
+                context.commit({ type: 'setOrders',  orders:orders })
+                return orders
             } catch (err) {
                 console.log(' orderStore: Error in loadOrders', err)
                 throw err
@@ -49,6 +50,7 @@ export const orderModule = {
             try {
                 await orderService.remove(orderId)
                 context.commit({ type: 'removeOrder', orderId })
+                return order
             } catch (err) {
                 console.log('orderStore: Error in removeOrder', err)
                 throw err

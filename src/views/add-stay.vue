@@ -205,7 +205,7 @@ export default {
             console.log('this.imgUrls',this.imgUrls);
             this.stay.name = this.form.name
             this.stay.type = this.form.type
-            this.stay.price = this.form.price
+            this.stay.price = +this.form.price
             this.stay.summary = this.form.summary
             this.stay.capacity = this.form.capacity
             this.stay.amenities = this.form.amenities
