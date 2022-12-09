@@ -19,6 +19,7 @@ window.cs = stayService
 
 
 async function query(filterBy = { txt: '' }) {
+    console.log('filterBy',filterBy);
     return httpService.get(STORAGE_KEY, filterBy)
 
     // var stays = await storageService.query(STORAGE_KEY)

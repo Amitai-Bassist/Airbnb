@@ -158,12 +158,13 @@ export const stayModule = {
     },
     async getHostStays(context, { userId }) {
       try {
-        const stays = await stayService.query();
-        console.log();
-        const hostStays = stays.filter((stay) => {
-          return stay.host._id === userId;
-        });
-        return hostStays;
+        const filterBy={hostId:userId,txt:''} 
+        const stays = await stayService.query(filterBy);
+        console.log('store stay',stays);
+        // const hostStays = stays.filter((stay) => {
+        //   return stay.host._id === userId;
+        // });
+        return stays;
       } catch (err) {
         console.log('stayStore: Error in getHostStays', err);
         throw err;
