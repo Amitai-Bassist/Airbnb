@@ -1,5 +1,5 @@
 import { storageService } from '../../services/async-storage.service';
-import { stayService } from '../../services/stay.service.local';
+import { stayService } from '../../services/stay.service';
 import { utilService } from '../../services/util.service';
 
 export function getActionRemoveStay(stayId) {
@@ -99,9 +99,9 @@ export const stayModule = {
   actions: {
     async addStay(context, { stay }) {
       try {
-        stay = await stayService.save(stay);
+        const newStay = await stayService.save(stay);
         context.commit(getActionAddStay(stay));
-        return stay;
+        return newStay;
       } catch (err) {
         console.log('stayStore: Error in addStay', err);
         throw err;
@@ -109,9 +109,9 @@ export const stayModule = {
     },
     async updateStay(context, { stay }) {
       try {
-        stay = await stayService.save(stay);
-        context.commit(getActionUpdateStay(stay));
-        return stay;
+        const newStay = await stayService.save(stay);
+        context.commit({ type: 'onUpdateStay', newStay });
+        return newStay;
       } catch (err) {
         console.log('stayStore: Error in updateStay', err);
         throw err;
@@ -158,12 +158,13 @@ export const stayModule = {
     },
     async getHostStays(context, { userId }) {
       try {
-        const stays = await stayService.query();
-        console.log();
-        const hostStays = stays.filter((stay) => {
-          return stay.host._id === userId;
-        });
-        return hostStays;
+        const filterBy={hostId:userId,txt:''} 
+        const stays = await stayService.query(filterBy);
+        console.log('store stay',stays);
+        // const hostStays = stays.filter((stay) => {
+        //   return stay.host._id === userId;
+        // });
+        return stays;
       } catch (err) {
         console.log('stayStore: Error in getHostStays', err);
         throw err;

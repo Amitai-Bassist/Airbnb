@@ -269,7 +269,7 @@ export default {
         stayReviews: this.stay.reviews,
       });
     },
-    onReserve() {
+    async onReserve() {
       if(!this.loggedInUser || this.dateEnd.id=== null){
         const msg = {
                     title: 'reserve failed',
@@ -308,7 +308,8 @@ export default {
           msgs: [],
           status: "pending"
         }
-        this.$store.dispatch({type:'addOrder',order})
+        const currOrder = await this.$store.dispatch({type:'addOrder',order})
+        console.log(currOrder);
         this.$router.push("/stay/reservation");
       }
     },
