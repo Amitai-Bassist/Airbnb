@@ -169,7 +169,7 @@
               <div class="user-name">
                 {{review.by.fullname}}
               </div>
-              <p class="date">{{review.at.slice(0,10)}}</p>
+              <p class="date">{{review.at.slice(0,10).split('-').reverse().join('/')}}</p>
             </div>
           </div>
           <div class="flex column">
