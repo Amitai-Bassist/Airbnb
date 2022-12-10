@@ -223,18 +223,20 @@ export default {
       reviewScores: []
     };
   },
-  created() {
+  async created() {
     eventBus.emit('go-to-details')
     const { id } = this.$route.params;
-    this.$store.dispatch({ type: "getStayById" , stayId: id});
-    setTimeout(() => {
-      this.stay = this.$store.getters.currStay
+    try{
+      const stay = await this.$store.dispatch({ type: "getStayById" , stayId: id});
+      this.stay = stay
       console.log('getStay:',this.stay);
       this.getReviewScore();
-
-    }, 800);
-    this.totalDays(new Date('11/25/2022'),new Date('12/01/2022'),80)
-    this.getDemoAmenities()
+      this.totalDays(new Date('11/25/2022'),new Date('12/01/2022'),80)
+      this.getDemoAmenities()
+    }catch (err) {
+        console.log('details: Error in getStayById', err);
+        throw err;
+    }
   },
   mounted() {
     const {inWishlist} = this.$route.query
