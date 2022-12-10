@@ -189,6 +189,7 @@
     </div>
 
     <div class="reserve-total-price" v-if="totalNights">
+      <p class="charge-msg">You won't be charged yet</p>
       <div class="reserve-price flex row space-between">
         <div class="text">${{ stay.price }} X {{ totalNights }} nights</div>
         <div class="amount">${{ accommodationComma }}</div>
@@ -233,7 +234,6 @@ export default {
       kidsNum:0,
       infantsNum:0,
       petsNum:0,
-      loggedInUser: null
     };
   },
   created() {
@@ -255,7 +255,6 @@ export default {
     setTimeout(() => {
       this.getReviewScore();
     }, 500)
-    this.loggedInUser = this.$store.getters.loggedinUser    
     const orders = this.$store.getters.orders
     setTimeout(() => {
       if(!orders[0]) {
@@ -376,6 +375,9 @@ export default {
     }
   },
   computed: {
+    loggedInUser(){
+      return this.$store.getters.loggedinUser
+    },
     myGuest() {
       return this.gusetNum + this.kidsNum
     },

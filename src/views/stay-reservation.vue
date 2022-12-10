@@ -2,14 +2,14 @@
     <section style="margin-top:100px;" class="stay-reservation main-container" v-if="myReservation">
       <div class="your-trip">
         <!-- <h1>Reservation Success!</h1> -->
-        <h2>Your trip:</h2>
+        <h2>Your trip</h2>
         <div class="flex row">Check-In: <span> &nbsp;{{myReservation.startDate}}</span></div>
         <div class="flex row">Check-Out: <span> &nbsp;{{myReservation.endDate }}</span></div>
         <div class="flex row">Host: <span> &nbsp;{{myReservation.hostName}}</span></div>
         <!-- <div class="end"></div> -->
       </div>
       <div class="reservation-details">
-        <h2 class="h2">Stay details:</h2>
+        <h2>Stay details</h2>
         <div class="text">
           <p class="top">{{myReservation.stay.name}}</p>
           <p class="middle">{{myReservation.stay.type}}</p>
@@ -23,7 +23,7 @@
       </div>
       <!-- <div class="end"></div> -->
       <div class="price-details">
-        <h2>price-details:</h2>
+        <h2>Price details</h2>
         <div class="flex row">Adults: {{myReservation.guests.adults }}</div>
         <div v-if="myReservation.guests.kids" class="flex row">Kids: {{myReservation.guests.kids}}</div>
         <div v-if="myReservation.guests.infants" class="flex row">Infants:{{reservmyReservation.guests.infants}}</div>
