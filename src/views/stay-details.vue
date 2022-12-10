@@ -217,7 +217,7 @@ export default {
         infants:null,
         reviewScore: this.$store.getters.reviewScore,
       },
-      headerObserver: null,
+      headerObserver: {},
       stickyNav: false,
       isShowAllImg:false,
       reviewScores: []
@@ -233,6 +233,11 @@ export default {
       this.getReviewScore();
       this.totalDays(new Date('11/25/2022'),new Date('12/01/2022'),80)
       this.getDemoAmenities()
+      setTimeout(() => {
+        this.headerObserver = new IntersectionObserver(this.onHeaderObserved, {
+          rootMargin: "-50px 0px 0px"})
+          this.headerObserver.observe(this.$refs.header)
+        }, 500);
     }catch (err) {
         console.log('details: Error in getStayById', err);
         throw err;
@@ -244,12 +249,6 @@ export default {
       console.log('inWishlist',inWishlist);
       this.isSaved = true
     }else this.isSaved = false
-    setTimeout(() => {
-      this.headerObserver = new IntersectionObserver(this.onHeaderObserved, {
-        rootMargin: "-50px 0px 0px",
-      });
-      this.headerObserver.observe(this.$refs.header);
-    }, 900);
   },
   methods: {
     goHome(){
