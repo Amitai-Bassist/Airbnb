@@ -1,61 +1,48 @@
 <template>
-    <section style="margin-top:200px;" class="">
-      <div class="mini-boards flex row nowrap">
-        <div class="mini-card flex row wrap">
-          <div class="mini-card-header flex row wrap">
-            <h1>Wishlist</h1>
-          </div>
-          <h4 v-if="loggedinUser"><span>{{(loggedinUser.wishlist ? loggedinUser.wishlist.length: 0)}}</span>&nbsp;saved stays</h4>
-          <button @click="goToWishlist" class="mini-card-btn">Go to wishlist</button>
-        </div>
-        <div class="mini-card flex row wrap">
-          <div class="mini-card-header flex row wrap">
-            <h1>Messages</h1>
-          </div>
-          <h4 v-if="loggedinUser"> order #o1226 has been approved</h4>
-          <button @click="goToWishlist" class="mini-card-btn">Go to messages</button>
-        </div>
-        <div class="mini-card next-stay flex column wrap">
-          <div class="next-stay-first flex row wrap">
-            <div class="mini-card-header flex wrap">
-              <h1>Your Next Stay</h1>
-            </div>
-            <h4 v-if="loggedinUser">Entire amazing views hosted by Patty And Beckett</h4>
-            <button @click="goToStay" class="mini-card-btn">Go to stay</button>
-          </div>
-          <div class="next-stay-img">
-            <img src="http://res.cloudinary.com/dmtlr2viw/image/upload/v1663437349/thl7eoxar7dc7kpbahhj.jpg" alt="">
-          </div>
-        </div>
-      </div>
-      <section class="host-orders-list">
+    <section style="margin-top:200px;">
+      <button class="user-menu" :class="onOrders ? 'active': ''" @click="showOrders">ORDERS</button>
+      <button class="user-menu" :class="onStays ? 'active': ''" @click="showStays" >MY STAYS</button>
+      <section class="host-orders-list" :class="onOrders ? 'show' : 'none'">
           <EasyDataTable class="orders-table"
           :headers="headers"
           :items="items"
           :body-row-class-name="bodyRowClassNameFunction"
+          :body-item-class-name="bodyItemClassNameFunction"
+          :header-item-class-name="headerItemClassNameFunction"
+          :rows-per-page="10"
           no-hover
           >
+          
           <template #item-hostActions="item">
-            <select @change="changeStatus($event,item.id)" :model="editingItem.status" class="host-actions" id="">
-              <option :value="item.status">{{item.status}}</option>
-              <option :value="statusValue[0]" v-if="item.status !== statusValue[0]">{{statusValue[0]}}</option>
-              <option :value="statusValue[1]" v-if="item.status !== statusValue[1]">{{statusValue[1]}}</option>
-              <option :value="statusValue[2]" v-if="item.status !== statusValue[2]">{{statusValue[2]}}</option>
-            </select>
+            <div class="host-actions-select">
+              <select @change="changeStatus($event,item.id)" :model="editingItem.status" class="host-actions" id="">
+                <option :value="item.status">{{item.status}}</option>
+                <option :value="statusValue[0]" v-if="item.status !== statusValue[0]">{{statusValue[0]}}</option>
+                <option :value="statusValue[1]" v-if="item.status !== statusValue[1]">{{statusValue[1]}}</option>
+                <option :value="statusValue[2]" v-if="item.status !== statusValue[2]">{{statusValue[2]}}</option>
+              </select>
+            </div>
           </template>
           <template #item-status="item">
             {{item.status}} 
           </template>
         </EasyDataTable>
       </section>
-      <section class="host-stays">
-
-      </section>
+      <section class="host-stays-container flex column wrap" :class="onStays ? 'show' : 'none'">
+        <section class="stay-stat">
+          <h3>Monthly revenue</h3>
+          <div class="chartiel">
+            <DoughnutChart  v-if="chartData" :chartData="getData" />
+          </div>
+          <!-- <h3>orders </h3> -->
+          <!-- <BarChart :chartData="getDataLabelStock" :options="options" /> -->
+        </section>
         <table v-if="hostStay" class="host-stays">
           <thead>
             <tr class="thead">
               <th class="start">Stay Id</th>
               <th>Stay name</th>
+              <th>View stay</th>
               <th>Edit stay</th>
               <th>Remove stay</th>
             </tr>
@@ -64,15 +51,21 @@
             <tr v-for="(stay) in hostStay" :key="stay._id">
               <td class="start">{{ stay._id }}</td> 
               <td>{{ stay.name }}</td>  
+              <td><button @click="goToStay(stay._id)" class="view-stay">Go to stay</button></td>
               <td><button @click="editStay(stay._id)" class="edit-stay">Edit</button></td>
               <td><button @click="removeStay(stay._id)" class="remove-stay">Remove</button></td>
             </tr>
           </tbody>
         </table>
     </section>
+      </section>
 </template>
 
 <script>
+  import { DoughnutChart } from "vue-chart-3";
+  import { Chart, registerables } from "chart.js";
+
+Chart.register(...registerables);
 
 export default {
   data() {
@@ -91,16 +84,24 @@ export default {
       orders: null,
       editingItem: {status:''},
       statusValue:['pending','approved','declined'],
+      onOrders: true,
+      onStays: false,
+      hostId: null,
+      chartData: null
     }
   },
   created() {
-    const {id} = this.$route.params;
-    this.getHostOrders(id);
+    const {id} = this.$route.params
+    this.hostId = id
+    this.getHostOrders(id)
     this.getHostStays(id)
+    setTimeout(()=> {
+      this.getRevenue()
+    }, 500)
   },
   methods: {
     async getHostOrders(id) {
-      const hostOrders =  await this.$store.dispatch({type: 'getHostOrders', userId: id});
+      const hostOrders =  await this.$store.dispatch({type: 'getHostOrders', userId: id})
       this.items = []
         hostOrders.forEach(order => {
           this.items.push({
@@ -124,48 +125,103 @@ export default {
       this.items[idx].status = val.target.value
     },
     async getHostStays(id) {
-      const hostStays =  await this.$store.dispatch({type: 'getHostStays', userId: id});
+      const hostStays =  await this.$store.dispatch({type: 'getHostStays', userId: id})
       if(hostStays) {
       }
       this.hostStay = hostStays
-     
     },
+    getRevenue() {
+      const date = new Date()
+      const currMonth = date.getMonth()
+      // var data = [{stayName:'', stayId: '', total:0}];
+      var res =[];
+        this.orders.forEach(order =>  { 
+        var stayMonth = order.startDate.slice(3,5)
+        if(((+stayMonth)-1)=== currMonth) {
+         var idx = res.findIndex(stay=> stay.id ===  order.stay._id)
+         var payment = parseFloat(order.totalPrice.replace(/,/g, ''))
+           if(idx === -1) {
+            res.push({name: order.stay.name, id: order.stay._id, total: payment,})
+           } else {
+            res[idx].total += payment           
+          }
+        }
+      })
+      console.log('res', res)
+      var labels = []
+      res.map(stay => labels.push(stay.name))
+      var data = []
+      res.map(stay => data.push(stay.total))
+        this.chartData = {
+        labels,
+        datasets: [
+          {
+            label: '$',
+            borderRadius: 6,
+            //should be an array:
+            data,
+            backgroundColor: ["#DEF5E5", "#BCEAD5", "#9ED5C5", "#8EC3B0"],
+          },
+        ], 
+    }
+    console.log('chartData', this.chartData)
+  },
     checkStatusValue(status){
       this.statusValue = ['pending','approved','declined']
       const idx = this.statusValue.findIndex(statu=>statu === status)
       this.statusValue.splice(idx,1)
       this.statusValue.unshift(status)
     },
-    goToWishlist() {
-      this.$router.push('/stay/wishlist')
-    },
     editStay(stayId) {
       this.$router.push('/host/' + stayId)
+    },
+    goToStay(stayId) {
+      this.$router.push('/stay/' + stayId)
     },
     async removeStay(stayId) {
       try {
        await this.$store.dispatch({type: 'removeStay', stayId})
-        this.getHostStays(this.id)
+        this.getHostStays(this.hostId)
       }
       catch (err) {
-        console.log('sorry! cannot remove stay', err);
-        throw err;
+        console.log('sorry! cannot remove stay', err)
+        throw err
       }
-    },
-    goToStay() {
-      this.$router.push('/stay/622f337a75c7d36e498aaaf8')
     },
     bodyRowClassNameFunction(item,index) {
       if(item.status === "pending")return "orange"
       if(item.status === "approved")return "green"
       if(item.status === "declined")return "red"
+    },
+    bodyItemClassNameFunction(item, index) {
+      if(item === 'hostActions') {
+        return "last-col"
+      }
+    },
+    headerItemClassNameFunction(header, index) {
+      if(header.value === 'hostActions') {
+        return "last-col"
+      }
+    },
+    showOrders() {
+      this.onOrders = true
+      this.onStays = false
+    },
+    showStays() {
+      this.onOrders = false
+      this.onStays = true
     }
   },
-
   computed: {
     loggedinUser() {
-      return this.$store.getters.loggedinUser;
+      return this.$store.getters.loggedinUser
     },
+    getData() {
+      return this.chartData
+    }
+  },
+components: { 
+  DoughnutChart, 
 },
   };
 
@@ -177,14 +233,36 @@ export default {
 }
 
 /* // easy data table */
+.host-orders-list {
+  margin-block-start: 40px;
+}
+
+.host-actions {
+  border: 0.6px solid #e0e0e0;
+  color: #373737;
+  height: 22px;
+  border-radius: 4px;
+  font-size: 12px;
+  line-height: 16px;
+  box-shadow: 0px 0px 5px rgba(0,0,0,0.12);
+  padding-inline-start: 4px;
+}
 .orders-table {
   border-radius: 16px;
+  --easy-table-border: transparent;
   box-shadow: 0px 0px 12px rgba(0,0,0,0.12);
-
 }
+
 .orders-table th {
   font-size: 14px;
   font-family: Airbnb-Cereal-Medium;
+}
+
+.orders-table td:last-child, .orders-table th:last-child {
+  --easy-table-body-item-text-align: right;
+
+  text-align: right;
+  padding-inline-end: 10px;
 }
 
 thead.vue3-easy-data-table__header {
@@ -193,101 +271,6 @@ thead.vue3-easy-data-table__header {
 
 .orders-table table {
  border-radius: 12px;
-}
-
-/* //card - mini-boards */
-.mini-boards {
-  /* justify-content: space-between; */
-  max-width: 90%;
-}
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.text {
-  font-size: 14px;
-}
-.item {
-  margin-bottom: 18px;
-}
-.box-card {
-  width: 480px;
-}
-.mini-card {
-  box-shadow: 0px 0px 12px rgba(0,0,0,0.12);
-  color: #222222;
-  width: 244px;
-  height: 215px;
-  border-radius: 12px;
-  padding: 18px 18px;
-  margin-block-end: 50px;
-}
-.mini-card h1 {
-  font-size: 1.25rem;
-
-}
-.mini-card-btn {
-  border: opx solid transparent;
-  background-color: #f7f7f7;
-  transition: 0.1s;
-  padding:8px;
-  align-items: center;
-  height: 40px;
-  border-radius: 4px;
-  color: #222222;
-  width: 130px;
-  margin-inline-start: 0;
-  font-size: 14px;
-  font-family: Airbnb-Cereal-Medium;
-  align-self: flex-end;
-  box-shadow: 0px 0px 5px rgba(0,0,0,0.12);
-}
-.mini-card-btn:hover {
-  background-color: #e0e0e0;
-}
-
-.mini-card h4 {
-  color:#717171;
-  font-size: 14px;
-  line-height: 18px;
-}
-
-.mini-card h4 span {
-  font-family: Airbnb-Cereal-Medium;
-}
-.mini-card-header {
-justify-content: space-between;
-align-items: center;
-width: 300px;
-height: 42px;
-padding: 20px 0px;
-align-self: flex-start;
-}
-
-.mini-card:nth-child(3)  {
-  width: 430px;
-  margin-inline-start: 25px;
-}
-.mini-card:nth-child(3) h4 {
- padding-block-start: 8px;
-}
-.mini-card:nth-child(2) {
-  margin-inline-start: 25px;
-}
-.next-stay-img img {
-  object-fit: cover;
-  width: 200px;
-  height: 147px;
-  /* aspect-ratio:; */
-  border-radius: 12px;
-}
-.next-stay, .next-stay-img {
-  padding-block-start: 20px;
-}
-.next-stay-first {
-  width: 150px;
-  height: 215px;
 }
 
 .red {
@@ -303,28 +286,23 @@ align-self: flex-start;
   --easy-table-body-row-font-color: #222222;
 }
 
-.status-column {
-  color:aquamarine;
+
+
+.last-col {
+  text-align: right !important;
+}
+.last-col .header-text{
+  text-align: right !important;
+  margin-inline-end: auto;
 }
 
-.host-actions {
-  border: 0.6px solid #e0e0e0;
-  color: #373737;
-  height: 22px;
-  border-radius: 4px;
-  font-size: 12px;
-  line-height: 16px;
-  box-shadow: 0px 0px 5px rgba(0,0,0,0.12);
-  padding-inline-start: 4px;
-
-}
 /* stays-table */
 .host-stays {
   margin-block-start: 40px;
   box-shadow: 0px 0px 5px rgba(0,0,0,0.12);
   border-radius: 6px;
   width: 100%;
-
+  border-collapse: collapse;
 }
 .host-stays th {
   font-size: 14px;
@@ -333,29 +311,73 @@ align-self: flex-start;
   border-bottom: 1px solid #e0e0e0;
   height: 40px;
 }
-.host-stays .thead th{
- 
+/* .host-stays tr:not(:first-child):hover{ */
+.host-stays tbody tr:hover{
+  background-color:#F2F3F5;
 } 
 .host-stays td {
   font-size: 12px;
   height: 36px;
+  color: #373737;
   border-bottom: 1px solid #e0e0e0;
-  color: #373737
 }
-
+.host-stays td:last-child, .host-stays th:last-child {
+  text-align: right;
+  padding-inline-end: 10px;
+}
 .host-stays .start {
   padding-inline-start: 10px;
 }
-button.edit-stay:hover, button.remove-stay:hover {
-background-color: #e0e0e0;
+button.edit-stay:hover, button.remove-stay:hover, .view-stay:hover {
+/* background-color: #e0e0e0; */
+/* background-color: aqua; */
+background-color: #F0DBDB;
 cursor: pointer;
 }
-.edit-stay, .remove-stay {
+.edit-stay, .remove-stay, .view-stay {
 background-color: transparent;
 border-radius: 4px;
 color: #373737;
 box-shadow: 0px 0px 5px rgba(0,0,0,0.12);
 font-size: 12px;
+}
+
+.host-orders-list.show {
+  display: block;
+}
+.host-orders-list.none {
+  display: none;
+}
+.host-stays-container {
+  margin-block-start: 40px;
+}
+
+.host-stays-container.show {
+  display: block;
+}
+.host-stays-container.none {
+  display: none;
+}
+
+.user-menu {
+  background-color: transparent;
+  border-bottom: 2px solid #373737;
+  color:#373737;
+  margin-block-end: 15px;
+  margin-inline-end: 15px;
+}
+
+.user-menu:hover, .user-menu.active {
+  color: #222222;
+  border-bottom: 3px solid #222222;
+  font-family: Airbnb-Cereal-Medium;
+}
+.chartiel > * {
+  height: 30vh;
+}
+
+.stay-stat h3 {
+  font-size: 16px;
 }
 </style>
 

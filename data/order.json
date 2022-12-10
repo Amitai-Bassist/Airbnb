@@ -93,29 +93,6 @@
   },
   {
       "hostId": "622f3403e36c59e6164faf93",
-      "createdAt": 1670429847369,
-      "buyer": {
-          "_id": "622f3403e36c59e6164faf93",
-          "fullname": "Patty And Beckett"
-      },
-      "totalPrice": null,
-      "startDate": null,
-      "endDate": null,
-      "guests": {
-          "adults": 1,
-          "kids": 0
-      },
-      "stay": {
-          "_id": "622f337a75c7d36e498aaaf8",
-          "name": "Westin Kaanapali KORVN 2BR",
-          "price": 595
-      },
-      "msgs": [],
-      "status": "pending",
-      "_id": "kzoeg"
-  },
-  {
-      "hostId": "622f3403e36c59e6164faf93",
       "createdAt": 1670429894448,
       "buyer": {
           "_id": "622f3403e36c59e6164faf93",

@@ -132,7 +132,7 @@ export const stayModule = {
         const stay = await stayService.getById(stayId);
 
         commit({ type: 'setStay', stay });
-        return stay
+        return stay;
       } catch (err) {
         console.log('stayStore: Error in getStayById', err);
         throw err;
@@ -141,7 +141,7 @@ export const stayModule = {
     async removeStay(context, { stayId }) {
       try {
         await stayService.remove(stayId);
-        context.commit(getActionRemoveStay(stayId));
+        context.commit({ type: 'removeStay', stayId });
       } catch (err) {
         console.log('stayStore: Error in removeStay', err);
         throw err;
@@ -158,9 +158,9 @@ export const stayModule = {
     },
     async getHostStays(context, { userId }) {
       try {
-        const filterBy={hostId:userId,txt:''} 
+        const filterBy = { hostId: userId, txt: '' };
         const stays = await stayService.query(filterBy);
-        console.log('store stay',stays);
+        // console.log('store stay', stays);
         // const hostStays = stays.filter((stay) => {
         //   return stay.host._id === userId;
         // });
