@@ -55,7 +55,7 @@
           </div>
           
           <!-- change to host img after getting json -->
-          <img src="https://a0.muscache.com/im/pictures/user/143723a2-07f4-4cb7-9754-d82d61930cf7.jpg?aki_policy=profile_large" alt="">
+          <img src="https://res.cloudinary.com/dtaiyvzq5/image/upload/v1670700573/tovimdeubexsdzmzdycu.webp" alt="">
 
         </div>
 

@@ -76,13 +76,17 @@
       }
 
       label{
-        margin-top: auto;
-        margin-bottom: auto;
+        display: none;
       }
 
       .guests{
         display: none;
       }
+    }
+    .guest-input::after{
+      margin-top: auto;
+      margin-bottom: auto;
+      content: 'guests';
     }
 
     .calender-container{
