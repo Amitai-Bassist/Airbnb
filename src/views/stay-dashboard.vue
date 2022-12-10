@@ -90,14 +90,12 @@ export default {
       chartData: null
     }
   },
-  created() {
+  async created() {
     const {id} = this.$route.params
     this.hostId = id
-    this.getHostOrders(id)
-    this.getHostStays(id)
-    setTimeout(()=> {
-      this.getRevenue()
-    }, 500)
+    await this.getHostOrders(id)
+    await this.getHostStays(id)
+    this.getRevenue()
   },
   methods: {
     async getHostOrders(id) {
