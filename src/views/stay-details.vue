@@ -5,8 +5,8 @@
       <div class="flex row space-between">
         <div class="review-text flex row">
           <div class="flex row align-center">
-            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 14px; width: 14px; fill: currentcolor;"><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z" fill-rule="evenodd"></path></svg>
-            {{ reviewScore || 'new' }} &#183; &#160; 
+            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 14px; width: 14px; margin-bottom: 1px; fill: currentcolor;"><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z" fill-rule="evenodd"></path></svg>
+            &#160;{{ reviewScore || 'new' }} &#183; &#160; 
             <span class="review-num">{{( stay.reviews.length > 0? stay.reviews.length: 'no')}} {{reviewNum}}</span>
             &#160;&#160;&#183;&#160;&#160;Superhost&#160;&#160;.&#160;&#160;
           </div>
@@ -15,7 +15,7 @@
           </div>
         </div>
         <div class="share-save flex row space-between">
-          <div class="home">
+          <div class="home" @click="goHome">
               <div class="flex row">
                 <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-label="Back" role="img" focusable="false" style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 4; overflow: visible;"><g fill="none"><path d="m20 28-11.29289322-11.2928932c-.39052429-.3905243-.39052429-1.0236893 0-1.4142136l11.29289322-11.2928932"></path></g></svg>
                 <p class="home-p">Home</p> 
@@ -144,12 +144,12 @@
 
     <!-- reviews -->
     <div class="reviews" v-if="(stay.reviews.length > 0)">
-      <h3>      
+      <h2>      
         <div class="review-header flex row align-center">
-        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 14px; width: 14px; fill: currentcolor;"><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z" fill-rule="evenodd"></path></svg>
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 20px; width: 20px; fill: currentcolor;"><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z" fill-rule="evenodd"></path></svg>
         &#160;{{ reviewScore }} &#183; &#160; <span class="review-num">{{ stay.reviews.length }} {{reviewNum}}</span>
         </div>
-      </h3>
+      </h2>
       <div class="review-category">
         <div class="category flex row align-center space-between" v-for="score in reviewScores" :key="score">
           <p>{{score.name}}</p>
@@ -244,12 +244,15 @@ export default {
     }else this.isSaved = false
     setTimeout(() => {
       this.headerObserver = new IntersectionObserver(this.onHeaderObserved, {
-        rootMargin: "-91px 0px 0px",
+        rootMargin: "-50px 0px 0px",
       });
       this.headerObserver.observe(this.$refs.header);
     }, 900);
   },
   methods: {
+    goHome(){
+      this.$router.push('/stay')
+    },
     updateReview({ target }, idx) {
       this.stay.reviews[idx].content = target.innerText;
       this.$store.dispatch({ type: "saveStay", stay: this.stay });

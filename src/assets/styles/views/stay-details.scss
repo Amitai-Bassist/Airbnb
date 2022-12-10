@@ -492,25 +492,30 @@
     .reviews{
         grid-area: reviews;
         border-top: 1px solid rgba(128, 128, 128, 0.3);
-        padding-top: 64px;
+        padding-top: 48px;
         height: fit-content;
 
         @include for-mobile-layout {
-            overflow:scroll;
+            overflow: hidden;
             .review-category{
                 display: none;
             }
-
+            
             .users-reviews{
+                overflow:scroll;
                 grid-template-columns: repeat(6,1fr) !important;
             }
-
+            
             .user-review{
-                min-width: 350px;
+                width: 85vw;
                 padding: 10px;
                 border: 1px solid rgba(0, 0, 0, 0.31);
                 border-radius: 16px;
             }
+        }
+
+        .review-header{
+            margin-bottom: 32px;
         }
         
         button{
@@ -532,7 +537,9 @@
             columns: 2;
             
             .category{
+                font-family: Airbnb-Cereal-Medium;
                 margin-right: 8.33333%;
+                margin-bottom: 18px;
             }
 
             p{
@@ -572,10 +579,10 @@
             }
 
             
-            .user-info{
-                padding-bottom: 12px;
+            // .user-info{
+            //     // padding-bottom: 5px;
                 
-            }
+            // }
             .text{
                 max-width: 60ch;
                 min-height: 50px;
@@ -588,13 +595,13 @@
 
             img{
                 margin-left: -10px;
-                width: 60px;
-                height: 60px;
+                width: 50px;
+                height: 50px;
                 border-radius: 50px;
             }
 
             .name{
-                margin-left: 20px;
+                margin-left: 10px;
 
                 .date{
                     color: gray;
