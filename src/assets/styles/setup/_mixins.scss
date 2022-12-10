@@ -6,8 +6,14 @@
     }
 }
 
+@mixin for-details-narrow-layout{
+    @media(max-width: calc($details-narrow-breakpoint)){
+        @content;
+    }
+}
+
 @mixin for-narrow-layout {
-    @media (min-width: calc($mobile-breakpoint )) {
+    @media (min-width: calc($details-narrow-breakpoint )) {
         @content;
     }
 }

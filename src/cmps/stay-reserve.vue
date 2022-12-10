@@ -2,7 +2,7 @@
   <section class="stay-reserve order-container">
     <div class="order-form-header">
       <p>
-        <span class="cost">${{ stay.price }}</span> / night
+        <span class="cost">${{ stay.price }}</span> night
       </p>
       <p class="review-score flex row align-center">
         <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 14px; width: 14px; fill: currentcolor;"><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z" fill-rule="evenodd"></path></svg>
@@ -53,9 +53,8 @@
         </svg>
         <svg
           viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" 
-          style=" display: block; fill: none;height: 16px;width: 16px;stroke: currentcolor;stroke-width: 4;overflow: visible;"
-          v-else
-          @click="guestsSelected = !guestsSelected">
+          style=" display: block; fill: none;height: 16px;width: 16px;stroke: black;stroke-width: 6;overflow: visible;"
+          v-else>
           <g fill="none">
             <path
               d="m4 20 11.2928932-11.29289322c.3905243-.39052429 1.0236893-.39052429 1.4142136 0l11.2928932 11.29289322"
@@ -72,6 +71,11 @@
         @totalPets="totalPets"
         :maxAdults="maxAdults"
         :maxKids="maxKids"
+        :number="{
+          gusetNum: this.gusetNum,
+          kidsNum:this.kidsNum,
+          infantsNum:this.infantsNum,
+          petsNum:this.petsNum}"
         v-if="guestsSelected"
       ></details-who-search>
     </div>

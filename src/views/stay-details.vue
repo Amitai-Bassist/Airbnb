@@ -1,23 +1,40 @@
 <template>
-  <section v-if="stay" class="stay-details main-container">
-    <h1>{{ stay.name }} </h1>
-    <div class="stay-review">
-      <div class="review-text">
-        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 14px; width: 14px; fill: currentcolor;"><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z" fill-rule="evenodd"></path></svg>
-        {{ reviewScore || 'new' }} &#183; &#160; <span class="review-num">{{( stay.reviews.length > 0? stay.reviews.length: 'no')}} {{reviewNum}}</span>&#160;&#160;&#183;&#160;&#160;Superhost&#160;&#160;.&#160;&#160;<span class="stay-review-loc">{{ stay.loc.city }}, {{ stay.loc.country }}</span>
-      </div>
-      <div class="share-save">
-        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 2; overflow: visible;"><g fill="none"><path d="M27 18v9a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-9"></path><path d="M16 3v23V3z"></path><path d="M6 13l9.293-9.293a1 1 0 0 1 1.414 0L26 13"></path></g></svg>
-        &#160;
-        <p class="under-line">Share</p>
-        &#160;
-        &#160;
-        &#160;
-        <svg class="heart" :class="[isSaved ? 'red' : 'white']" @click="toggleWishlist" 
-          viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 24px; width: 24px; stroke:#ffffff; stroke-width: 2; overflow: visible;"><path d="m16 28c7-4.733 14-10 14-17 0-1.792-.683-3.583-2.05-4.95-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05l-2.051 2.051-2.05-2.051c-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05-1.367 1.367-2.051 3.158-2.051 4.95 0 7 7 12.267 14 17z"></path></svg>
-          <path d="m16 28c7-4.733 14-10 14-17 0-1.792-.683-3.583-2.05-4.95-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05l-2.051 2.051-2.05-2.051c-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05-1.367 1.367-2.051 3.158-2.051 4.95 0 7 7 12.267 14 17z"></path>
-        &#160;
-        <p class="under-line">Save</p>
+  <section v-if="stay" class="stay-details">
+    <div class="stay-review flex column">
+      <h1>{{ stay.name }} </h1>
+      <div class="flex row space-between">
+        <div class="review-text flex row">
+          <div class="flex row align-center">
+            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 14px; width: 14px; fill: currentcolor;"><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z" fill-rule="evenodd"></path></svg>
+            {{ reviewScore || 'new' }} &#183; &#160; 
+            <span class="review-num">{{( stay.reviews.length > 0? stay.reviews.length: 'no')}} {{reviewNum}}</span>
+            &#160;&#160;&#183;&#160;&#160;Superhost&#160;&#160;.&#160;&#160;
+          </div>
+          <div class="need-margin-right">
+            <span class="stay-review-loc">{{ stay.loc.city }}, {{ stay.loc.country }}</span>
+          </div>
+        </div>
+        <div class="share-save flex row space-between">
+          <div class="home">
+              <div class="flex row">
+                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-label="Back" role="img" focusable="false" style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 4; overflow: visible;"><g fill="none"><path d="m20 28-11.29289322-11.2928932c-.39052429-.3905243-.39052429-1.0236893 0-1.4142136l11.29289322-11.2928932"></path></g></svg>
+                <p class="home-p">Home</p> 
+              </div>
+          </div>
+          <div class="actions flex row">
+              <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 2; overflow: visible;"><g fill="none"><path d="M27 18v9a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-9"></path><path d="M16 3v23V3z"></path><path d="M6 13l9.293-9.293a1 1 0 0 1 1.414 0L26 13"></path></g></svg>
+              &#160;
+              <p class="under-line">Share</p>
+              &#160;
+              &#160;
+              &#160;
+              <svg class="heart" :class="[isSaved ? 'red' : 'white']" @click="toggleWishlist" 
+              viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 24px; width: 24px; stroke:#ffffff; stroke-width: 2; overflow: visible;"><path d="m16 28c7-4.733 14-10 14-17 0-1.792-.683-3.583-2.05-4.95-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05l-2.051 2.051-2.05-2.051c-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05-1.367 1.367-2.051 3.158-2.051 4.95 0 7 7 12.267 14 17z"></path></svg>
+              <path d="m16 28c7-4.733 14-10 14-17 0-1.792-.683-3.583-2.05-4.95-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05l-2.051 2.051-2.05-2.051c-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05-1.367 1.367-2.051 3.158-2.051 4.95 0 7 7 12.267 14 17z"></path>
+              &#160;
+              <p class="under-line">Save</p>
+          </div>
+        </div>
       </div>
     </div>
      <div class="img-container" ref="header">
@@ -164,14 +181,13 @@
         </div>
       </div>
       <button @click="showMoreReveiw()">Show all {{stay.reviews.length}} {{reviewNum}}</button>
-      <details-map :loc="stay.loc"></details-map>
     </div>
     <div v-else>
       <p>
         No reviews
       </p>
     </div> 
-    <!-- <details-modal></details-modal> -->
+    <details-map :loc="stay.loc"></details-map>
   </section>
 
 </template>

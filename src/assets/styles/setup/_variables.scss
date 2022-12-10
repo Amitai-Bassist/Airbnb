@@ -11,6 +11,7 @@ $layoutPadding: 20px;
 
 // Breakpoints
 $mobile-breakpoint: 550px;
+$details-narrow-breakpoint: 750px;
 $narrow-breakpoint: 950px;
 $small-breakpoint: 1128px;
 $normal-breakpoint: 1640px;
@@ -18,6 +19,7 @@ $wide-breakpoint: 1880px;
 
 
 $padded-break-mobile: $mobile-breakpoint - 48px;
+$padded-details-narrow-breakpoint: $details-narrow-breakpoint - 48px;
 $padded-break-narrow: $narrow-breakpoint - 48px;
 $padded-break-small: $small-breakpoint - 80px;
 $padded-break-normal: $normal-breakpoint - 80px;

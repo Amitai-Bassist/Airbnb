@@ -31,6 +31,9 @@
     &.align-center {
         align-items: center;
     }
+    &.align-left{
+        align-items: flex-start;
+    }
     &.space-between {
         justify-content: space-between;
     }

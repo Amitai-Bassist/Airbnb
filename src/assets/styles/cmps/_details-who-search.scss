@@ -5,11 +5,37 @@
 
 .details-who-search{
     position: absolute;
-    top: 0;
     z-index: 10;
     padding: 16px;
     margin: 0px 0px 16px;
     border: 1px solid rgba(0, 0, 0, 0.189);
     background-color: white;
     border-radius: 8px;
+
+    .who-search-text{
+        h1{
+            font-size: 16px;
+        }
+        p{
+            font-size: 14px;
+        }
+    }
+
+    @include for-mobile-layout {
+        position: fixed !important;
+        bottom: 80px !important;
+        left: 0;
+        right: 0;
+    }
+
+    @include for-details-narrow-layout {
+        position: fixed !important;
+        bottom: 80px !important;
+        left: 0;
+        right: 0;
+    }
+
+    @include for-narrow-layout{
+        top: 0;
+    }
 }
