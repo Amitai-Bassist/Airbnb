@@ -28,11 +28,13 @@
           </template>
         </EasyDataTable>
       </section>
-      <section class="host-stays" :class="onStays ? 'show' : 'none'">
+      <section class="host-stays-container flex column wrap" :class="onStays ? 'show' : 'none'">
         <section class="stay-stat">
-          <h3>Avrege Price Of Product Category</h3>
-          <!-- <DoughnutChart :chartData="getRevenue" /> -->
-          <h3>Percentage Of Yoys That Are In Stock By Label</h3>
+          <h3>Monthly revenue</h3>
+          <div class="chartiel">
+            <DoughnutChart  v-if="chartData" :chartData="getData" />
+          </div>
+          <!-- <h3>orders </h3> -->
           <!-- <BarChart :chartData="getDataLabelStock" :options="options" /> -->
         </section>
         <table v-if="hostStay" class="host-stays">
@@ -61,6 +63,9 @@
 
 <script>
   import { DoughnutChart } from "vue-chart-3";
+  import { Chart, registerables } from "chart.js";
+
+Chart.register(...registerables);
 
 export default {
   data() {
@@ -82,6 +87,7 @@ export default {
       onOrders: true,
       onStays: false,
       hostId: null,
+      chartData: null
     }
   },
   created() {
@@ -92,8 +98,6 @@ export default {
     setTimeout(()=> {
       this.getRevenue()
     }, 500)
-  
-   
   },
   methods: {
     async getHostOrders(id) {
@@ -129,7 +133,7 @@ export default {
     getRevenue() {
       const date = new Date()
       const currMonth = date.getMonth()
-      // var res = [{stayName:'', stayId: '', total:0}];
+      // var data = [{stayName:'', stayId: '', total:0}];
       var res =[];
         this.orders.forEach(order =>  { 
         var stayMonth = order.startDate.slice(3,5)
@@ -137,13 +141,30 @@ export default {
          var idx = res.findIndex(stay=> stay.id ===  order.stay._id)
          var payment = parseFloat(order.totalPrice.replace(/,/g, ''))
            if(idx === -1) {
-            res.push({name: order.stay.name, id: order.stay._id, total: payment})
+            res.push({name: order.stay.name, id: order.stay._id, total: payment,})
            } else {
             res[idx].total += payment           
           }
         }
       })
       console.log('res', res)
+      var labels = []
+      res.map(stay => labels.push(stay.name))
+      var data = []
+      res.map(stay => data.push(stay.total))
+        this.chartData = {
+        labels,
+        datasets: [
+          {
+            label: '$',
+            borderRadius: 6,
+            //should be an array:
+            data,
+            backgroundColor: ["#DEF5E5", "#BCEAD5", "#9ED5C5", "#8EC3B0"],
+          },
+        ], 
+    }
+    console.log('chartData', this.chartData)
   },
     checkStatusValue(status){
       this.statusValue = ['pending','approved','declined']
@@ -191,39 +212,14 @@ export default {
       this.onStays = true
     }
   },
-
   computed: {
     loggedinUser() {
       return this.$store.getters.loggedinUser
     },
-    
-    // getDataPriceAvg() {
-    //   const data = this.labels.map(label => {
-    //     const filteredToys = this.toys.filter(toy =>
-    //       toy.labels.includes(label)
-    //     )
-    //     return filteredToys.reduce(
-    //       (avgPrice, toy) => avgPrice + (toy.price / filteredToys.length),
-    //       0
-    //     )
-    //   })
-      // console.log('data',data)
-      // return {
-      //   labels: this.labels,
-      //   datasets: [
-      //     {
-      //       label: 'Price Avg',
-      //       borderRadius: 6,
-            //should be an array:
-    //         data,
-    //         backgroundColor: ["#77CEFF", "#0079AF", "#123E6B"],
-    //       },
-    //     ],
-    //   }
-    // },
-
-
-},
+    getData() {
+      return this.chartData
+    }
+  },
 components: { 
   DoughnutChart, 
 },
@@ -352,11 +348,14 @@ font-size: 12px;
 .host-orders-list.none {
   display: none;
 }
+.host-stays-container {
+  margin-block-start: 40px;
+}
 
-.host-stays.show {
+.host-stays-container.show {
   display: block;
 }
-.host-stays.none {
+.host-stays-container.none {
   display: none;
 }
 
@@ -372,6 +371,13 @@ font-size: 12px;
   color: #222222;
   border-bottom: 3px solid #222222;
   font-family: Airbnb-Cereal-Medium;
+}
+.chartiel > * {
+  height: 30vh;
+}
+
+.stay-stat h3 {
+  font-size: 16px;
 }
 </style>
 
