@@ -49,8 +49,8 @@
         eventBus.emit('go-to-details');
         this.$router.push({ 
               path: `/stay/${this.stay._id}`, 
-              query: {txt:txt ,type:type,checkin:checkin,checkout:checkout,
-                adults:adults, children:children, infants:infants, pets:pets,inWishlist:this.inWishlist}
+              query: {txt:txt, type:type ,checkin:checkin ,checkout:checkout,
+                adults:adults, children:children, infants:infants, pets:pets, inWishlist:this.inWishlist}
             })
       },
       async addToWishlist(isAdd) {

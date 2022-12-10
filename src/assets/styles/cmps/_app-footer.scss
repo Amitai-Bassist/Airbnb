@@ -31,6 +31,9 @@ footer {
      span ol.terms li {
         // margin-inline-start: 40px;
      }
+     @include for-mobile-layout {
+       display: none; 
+    }
 }
 
 .footer-details {

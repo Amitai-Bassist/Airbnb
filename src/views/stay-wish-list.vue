@@ -1,6 +1,6 @@
 <template>
     <section class="stay-details main-container" style="margin-top:200px;" >
-      <h1>Wish list</h1>
+      <h1>Wishlist</h1>
       <div v-for="stay in loggedInUser.wishlist" :key="stay" style="margin-bottom:30px;">
         <section @click="goToDetails(stay._id)">
           <div>stay {{stay.name}}</div>
