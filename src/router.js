@@ -5,7 +5,7 @@ import chat from './views/chat.vue';
 import stayApp from './views/stay-app.vue';
 import reviewApp from './views/review-app.vue';
 import loginSignup from './views/login-signup.vue';
-import userDetails from './views/user-details.vue';
+import userPage from './views/user-page.vue';
 import stayDetails from './views/stay-details.vue';
 import stayExplore from './views/stay-explore.vue';
 import stayWishList from './views/stay-wish-list.vue';
@@ -71,8 +71,8 @@ const routes = [
   },
   {
     path: '/user/:id',
-    name: 'user-details',
-    component: userDetails,
+    name: 'user-page',
+    component: userPage,
   },
 ];
 
