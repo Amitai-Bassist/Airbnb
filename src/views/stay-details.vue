@@ -55,7 +55,7 @@
           </div>
           
           <!-- change to host img after getting json -->
-          <img src="https://a0.muscache.com/im/pictures/user/143723a2-07f4-4cb7-9754-d82d61930cf7.jpg?aki_policy=profile_large" alt="">
+          <img src="https://res.cloudinary.com/dtaiyvzq5/image/upload/v1670700573/tovimdeubexsdzmzdycu.webp" alt="">
 
         </div>
 
@@ -169,7 +169,7 @@
               <div class="user-name">
                 {{review.by.fullname}}
               </div>
-              <p class="date">{{review.at.slice(0,10)}}</p>
+              <p class="date">{{review.at.slice(0,10).split('-').reverse().join('/')}}</p>
             </div>
           </div>
           <div class="flex column">
@@ -217,24 +217,31 @@ export default {
         infants:null,
         reviewScore: this.$store.getters.reviewScore,
       },
-      headerObserver: null,
+      headerObserver: {},
       stickyNav: false,
       isShowAllImg:false,
       reviewScores: []
     };
   },
-  created() {
+  async created() {
     eventBus.emit('go-to-details')
     const { id } = this.$route.params;
-    this.$store.dispatch({ type: "getStayById" , stayId: id});
-    setTimeout(() => {
-      this.stay = this.$store.getters.currStay
+    try{
+      const stay = await this.$store.dispatch({ type: "getStayById" , stayId: id});
+      this.stay = stay
       console.log('getStay:',this.stay);
       this.getReviewScore();
-
-    }, 800);
-    this.totalDays(new Date('11/25/2022'),new Date('12/01/2022'),80)
-    this.getDemoAmenities()
+      this.totalDays(new Date('11/25/2022'),new Date('12/01/2022'),80)
+      this.getDemoAmenities()
+      setTimeout(() => {
+        this.headerObserver = new IntersectionObserver(this.onHeaderObserved, {
+          rootMargin: "-50px 0px 0px"})
+          this.headerObserver.observe(this.$refs.header)
+        }, 500);
+    }catch (err) {
+        console.log('details: Error in getStayById', err);
+        throw err;
+    }
   },
   mounted() {
     const {inWishlist} = this.$route.query
@@ -242,12 +249,6 @@ export default {
       console.log('inWishlist',inWishlist);
       this.isSaved = true
     }else this.isSaved = false
-    setTimeout(() => {
-      this.headerObserver = new IntersectionObserver(this.onHeaderObserved, {
-        rootMargin: "-50px 0px 0px",
-      });
-      this.headerObserver.observe(this.$refs.header);
-    }, 900);
   },
   methods: {
     goHome(){
