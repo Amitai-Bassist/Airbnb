@@ -93,24 +93,26 @@
             padding-right: 40px;
         }
         @include for-narrow-layout {
-            padding-left: 40px;
-            padding-right: 40px;
+            padding-left: 60px;
+            padding-right: 60px;
         }
         @include for-small-layout {
-            padding-left: 40px;
-            padding-right: 40px;
+            padding-left: 100px;
+            padding-right: 100px;
         }
         @include for-normal-layout {
-            padding-left: 150px;
-            padding-right: 150px;
+            padding-left: 120px;
+            padding-right: 120px;
         }
         @include for-wide-layout {
-            padding-left: 250px;
-            padding-right: 250px;    
+            padding-left: 165px;
+            width: 100%;
+            padding-right: 165px;    
         }
         @include for-extra-wide-layout {
-            padding-left: 350px;
-            padding-right: 350px;    
+            padding-left: calc(50% - 775px);
+            width: 100%;
+            padding-right:calc(50% - 775px) ;    
         } 
     }
 }

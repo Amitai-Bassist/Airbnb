@@ -36,10 +36,20 @@ export const stayModule = {
     stays: [],
     stayReveiwScore: null,
     demoAmenities: [],
+    filterBy: {
+      txt: '',
+      checkin: '',
+      checkout: '',
+      adults: 0, 
+      children: 0, 
+    }
   },
   getters: {
     stays({ stays }) {
       return stays;
+    },
+    filterBy({ filterBy }) {
+      return filterBy;
     },
     currStay({ currStay }) {
       return currStay;
@@ -119,6 +129,7 @@ export const stayModule = {
     },
     async loadStays({ commit, state, rootState }, { filterBy }) {
       try {
+        commit({ type: 'setFilterBy', filterBy });
         const stays = await stayService.query(filterBy);
         console.log(stays);
         commit({ type: 'setStays', stays });
