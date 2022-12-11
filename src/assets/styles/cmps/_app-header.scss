@@ -269,7 +269,7 @@ header {
     padding-right: 15px;
     font-size: 14px;
     font-family: Airbnb-Cereal-Bold;
-    @include max($for-narrow-layout) {
+    @include for-narrow-layout {
         display: none;
     }
 }
