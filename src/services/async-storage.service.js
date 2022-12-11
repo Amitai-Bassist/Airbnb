@@ -760,5 +760,21 @@ function getDemoAmenities() {
       name: 'Cooking basics',
       url: 'https://res.cloudinary.com/dtaiyvzq5/image/upload/v1669910864/airbnb%20icons/oug8b4op4x5nb7mqavnv.svg',
     },
+    {
+      name: 'Air conditioning',
+      url: 'https://res.cloudinary.com/dtaiyvzq5/image/upload/v1670699755/qyo60weptxr8qnon8b2t.svg',
+    },{
+      name: 'First aid kit',
+      url: 'https://res.cloudinary.com/dtaiyvzq5/image/upload/v1670699882/k0s7ylldzmidqicgyoyj.svg',
+    },{
+      name: 'Free parking on premises',
+      url: 'https://res.cloudinary.com/dtaiyvzq5/image/upload/v1670699959/xingda6xtsmodp8p60uy.svg',
+    },{
+      name: 'Hair dryer',
+      url: 'https://res.cloudinary.com/dtaiyvzq5/image/upload/v1670700033/gnkibto0dfdb1qee4shy.svg',
+    },{
+      name: 'Hot water',
+      url: 'https://res.cloudinary.com/dtaiyvzq5/image/upload/v1670700098/xqm3bq2nje1mgtfpjitx.svg',
+    }
   ];
 }

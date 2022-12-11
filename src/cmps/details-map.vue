@@ -6,7 +6,7 @@
       style="width: 100%; height: 500px"
       :center="center"
       class="map"
-      :zoom="10">
+      :zoom="15">
 
       <Marker 
         v-for="m in markers" 
