@@ -1,9 +1,10 @@
 <template>
     <section class="user-nav-layout user-nav-bar">
         <section v-if="loggedInUser._id">
-            <router-link @click="onlyUpearHeader()" to="/stay/wishlist">Whishlist</router-link>
+            <router-link @click="onlyUpearHeader()" :to="`/user/${loggedInUser._id}`">Trips</router-link>
+            <router-link @click="goToEdit()" to="/stay/wishlist">Whishlist</router-link>
             <div class="user-nav-border-line-between"></div>
-            <router-link @click="onlyUpearHeader()" :to="`/host`">Dreambnb your home</router-link>
+            <router-link @click="goToEdit()" :to="`/host`">Dreambnb your home</router-link>
             <router-link @click="onlyUpearHeader()" :to="`/stay/dashboard/${loggedInUser._id}`">Account dashboard</router-link>
             <div @click="goUserEdit()">Edit my account</div>
             <div class="user-nav-border-line-between"></div>
@@ -65,6 +66,9 @@
                 eventBus.emit('show-user-msg',msg)  
             },
             onlyUpearHeader(){
+                eventBus.emit('go-to-user-pages')
+            },
+            goToEdit(){
                 eventBus.emit('go-to-details')
             }
         },
