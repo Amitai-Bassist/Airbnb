@@ -7,7 +7,7 @@
 }
 
 @mixin for-details-narrow-layout{
-    @media(min-width: calc($details-narrow-breakpoint)){
+    @media(min-width: calc($mobile-breakpoint)){
         @content;
     }
 }

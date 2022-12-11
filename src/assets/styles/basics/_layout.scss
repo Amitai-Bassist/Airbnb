@@ -97,12 +97,12 @@
             padding-right: 60px;
         }
         @include for-small-layout {
-            padding-left: 100px;
-            padding-right: 100px;
+            padding-left: 80px;
+            padding-right: 80px;
         }
         @include for-normal-layout {
-            padding-left: 120px;
-            padding-right: 120px;
+            padding-left: 100px;
+            padding-right: 100px;
         }
         @include for-wide-layout {
             padding-left: 165px;

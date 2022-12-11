@@ -10,52 +10,52 @@
     background-color: white;
 
   @include for-mobile-layout {
-    position: fixed !important;
-    flex-direction: row !important;
+    position: fixed;
+    flex-direction: row;
     bottom: 0;
     right: 0;
     z-index: 100000;
 
     .order-form-header{
-      width: 30% !important;
+      width: 30%;
       margin-right: 10px;
       & p{
         display: flex;
-        flex-direction: column !important;
-        font-size: em(15px) !important;
+        flex-direction: column ;
+        font-size: em(15px);
       }
       & span{
-        font-size: em(16px) !important;
+        font-size: em(16px);
       }
     }
 
     .review-score{
-      display: none !important;
+      display: none;
     }
 
     .order-data{
       margin-bottom: 10px;
       display: flex;
-      min-width: 35% !important;
+      min-width: 35%;
       // justify-content: space-between;
-      justify-content: center !important;
+      justify-content: center;
       flex-direction: row;
-      border: none !important;
-      height: 44px !important;
+      border: none;
+      height: 44px;
     }
 
     .date-picker{
-      max-width: 50% !important;
+      max-width: 50%;
       // border: 1px solid black;
       border-radius: 8px;
 
       :nth-child(2){
-        display: none !important;
+        display: none;
       }
 
       .date-input{
         label{
-          display: none !important;
+          display: none;
         }
       }
 
@@ -67,7 +67,7 @@
     }
     
     .guest-input{
-      max-width: 50% !important;
+      max-width: 50%;
       border-top:none;
       border-radius: 8px;
 
@@ -105,7 +105,7 @@
       }
 
       .date-picker{
-        display: none !important;
+        display: none;
       }
     }
 
@@ -114,7 +114,7 @@
     }
 
     .reserve-total-price{
-      display: none !important;
+      display: none;
     }
 
     .btn-container{
@@ -123,8 +123,8 @@
       
   }
   @include for-details-narrow-layout {
-    position: fixed !important;
-    flex-direction: row !important;
+    position: fixed;
+    flex-direction: row;
     bottom: 0;
     right: 0;
     z-index: 100000;
@@ -132,38 +132,38 @@
     .order-form-header{
       margin-top: auto;
       margin-bottom: auto;
-      width: 30% !important;
+      width: 30%;
       margin-right: 10px;
       & p{
         display: flex;
-        flex-direction: column !important;
-        font-size: em(15px) !important;
+        flex-direction: column;
+        font-size: em(15px);
       }
       & span{
-        font-size: em(16px) !important;
+        font-size: em(16px);
       }
     }
 
     .review-score{
-      display: none !important;
+      display: none;
     }
 
     .order-data{
       display: flex;
-      max-width: 35% !important;
+      max-width: 35%;
       justify-content: space-between;
       flex-direction: row;
-      border: none !important;
+      border: none;
       height: 48px;
     }
 
     .date-picker{
-      max-width: 50% !important;
+      max-width: 50%;
       // border: 1px solid black;
       border-radius: 8px;
 
       :nth-child(2){
-        display: none !important;
+        display: none;
       }
 
       .date-input{
@@ -171,7 +171,7 @@
         border-radius: 8px;
         margin-right: 20px;
         label{
-          display: none !important;
+          display: none;
         }
       }
 
@@ -183,8 +183,8 @@
     }
     
     .guest-input{
-      border-top:none !important;
-      max-width: 50% !important;
+      border-top:none;
+      max-width: 50%;
       box-shadow: 0px 0px 5px rgba(0,0,0,0.3);
       border-radius: 8px;
 
@@ -207,19 +207,19 @@
         box-shadow: 0px 0px 5px rgba(0,0,0,0.4);
         // padding-left: 20%;
         position: fixed;
-        width: 100% !important;
+        width: 100%;
         bottom: 0;
         right: 0;
         left: 0;
         
         .vc-pane-layout{
-          display: flex !important;
-          flex-direction: column !important;
+          display: flex;
+          flex-direction: column;
         }
       }
 
       .date-picker{
-        display: none !important;
+        display: none;
       }
     }
 
@@ -228,16 +228,16 @@
     }
 
     .reserve-total-price{
-      display: none !important;
+      display: none;
     }
       
   }
   @include for-narrow-layout{
-    height: fit-content !important;
+    height: fit-content;
     top: 50px;
   }
   .btn-container{
-      margin-top: 15px !important;
+      margin-top: 15px;
     }
   .order-container {
     border: 1px solid #00000030;
@@ -261,13 +261,13 @@
     align-items: center;
     .order-form-header{
       flex-direction: row;
-      align-items: center !important;
+      align-items: center;
     }
   }
 
   label{
     font-family: Airbnb-Cereal-Book;
-    font-size: small !important;
+    font-size: small;
   }
 
 
