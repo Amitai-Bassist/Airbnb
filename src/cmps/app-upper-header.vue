@@ -75,6 +75,7 @@ export default {
   },
   created() {
     eventBus.on('go-to-details',this.changeToDetailsHeader)
+    eventBus.on('go-to-user-pages',this.goUserPages)
     
   },
   methods:{
@@ -91,10 +92,9 @@ export default {
       this.isWhereSearch = (chose === 'where')
       this.isWhenStart = (chose === 'when-start')
       this.isWhenEnd = (chose === 'when-end')
-      this.isWhoSearch = (chose === 'who')
-      
-      
+      this.isWhoSearch = (chose === 'who') 
     },
+
     returnToMainStay(){
       this.isDetailsHeader = false
       this.clickedScreen()
@@ -108,9 +108,9 @@ export default {
         this.resetAll()
         this.isMainFilter = true
       }
-      eventBus.emit('go-main-filter')
-      
+      eventBus.emit('go-main-filter') 
     },
+
     resetAll(){
       this.isMainFilter = false
       this.isBigFilter = false
@@ -123,6 +123,10 @@ export default {
     changeToDetailsHeader(){
       this.resetAll()
       this.isDetailsHeader = true
+    },
+    goUserPages(){
+      this.resetAll()
+      // this.isDetailsHeader = true
     },
     onClickAway(){
       this.openUserNav = false

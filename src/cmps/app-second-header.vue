@@ -28,6 +28,7 @@
             eventBus.on('back-to-main',()=>{this.mainPage = true})
             eventBus.on('go-big-filter',()=>{this.isBigFilter = true})
             eventBus.on('go-main-filter',()=>{this.isBigFilter = false})
+            eventBus.on('go-to-user-pages',()=>{this.mainPage = false})
             addEventListener('scroll', (event) => {
                 if (window.scrollY > 11) this.scrolledDown = true
                 else this.scrolledDown = false
