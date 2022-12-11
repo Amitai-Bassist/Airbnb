@@ -43,7 +43,6 @@
                     return
                 }
                 this.num += num
-                console.log('maxNum',this.maxNum);
                 if (this.num <= this.minNum){
                     this.downDisabled = true
                     // this.num = this.number
@@ -60,7 +59,6 @@
                     this.downDisabled = true
                 }
                 
-                console.log('inside',this.num);
                 this.$emit('changeNum',this.num)
             }
         },

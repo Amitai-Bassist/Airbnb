@@ -229,7 +229,6 @@ export default {
     try{
       const stay = await this.$store.dispatch({ type: "getStayById" , stayId: id});
       this.stay = stay
-      console.log('getStay:',this.stay);
       this.getReviewScore();
       this.totalDays(new Date('11/25/2022'),new Date('12/01/2022'),80)
       this.getDemoAmenities()
