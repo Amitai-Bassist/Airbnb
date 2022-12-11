@@ -115,13 +115,13 @@
             padding-right: 80px;
         }
         @include for-normal-layout {
-            padding-left: 100px;
-            padding-right: 100px;
+            padding-left: 150px;
+            padding-right: 150px;
         }
         @include for-wide-layout {
-            padding-left: 165px;
+            padding-left: 249px;
             width: 100%;
-            padding-right: 165px;    
+            padding-right: 249px;    
         }
         @include for-extra-wide-layout {
             padding-left: calc(50% - 775px);

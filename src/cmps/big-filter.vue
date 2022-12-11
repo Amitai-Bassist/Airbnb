@@ -81,11 +81,11 @@
             
             eventBus.emit('indicates-for-main-filter', {where: this.mainland, when:this.checkin, who:this.guests})
             this.$emit('clickedScreen')
-            this.$store.dispatch({ type: "loadStays", filterBy: this.filterBy });
-            this.$router.push({ 
-              path: '/stay/explore', 
-              query: this.filterBy
-            })
+            // this.$store.dispatch({ type: "loadStays", filterBy: this.filterBy });
+            // this.$router.push({ 
+            //   path: '/stay/explore', 
+            //   query: this.filterBy
+            // })
           },
           choseSearch(chose){
             this.WhereSearch= (chose === 'where')

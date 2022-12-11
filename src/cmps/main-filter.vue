@@ -1,7 +1,7 @@
 <template>
     <section @click="choseSearch('where')">
     <h1>Where to?</h1>
-    <button class="main-filter-btn"  @click="choseSearch('where')">{{where}}</button>
+    <button class="main-filter-btn" @click="choseSearch('where')">{{where}}</button>
     <div class="border-line-between" @click="choseSearch('where')"></div>
     <button class="main-filter-btn"  @click="choseSearch('when-start')">{{when}}</button>
     <div class="border-line-between" @click="choseSearch('when-start')"></div>
@@ -18,9 +18,9 @@ import { eventBus } from '../services/event-bus.service'
         },
         data() {
             return {
-                // where: 'Anywhere',
-                // when: 'Any week',
-                // who: 'Add guests'
+                where: 'Anywhere',
+                when: 'Any week',
+                who: 'Add guests',
                 whereToGo: null
             }
         },
@@ -33,26 +33,26 @@ import { eventBus } from '../services/event-bus.service'
                 this.$emit('clickedMain',chose)
             },
             putIndicates(indicates){
-                console.log('hi');
-                // this.where = 'aba'
-                // this.when = indicates.when
-                // this.who = indicates.who 
-                // console.log(this.where,this.when,this.who);
+                console.log('in main filter',indicates);
+                this.where = indicates.where
+                this.when = indicates.when
+                this.who = indicates.who 
+                console.log(this.where,this.when,this.who);
                 
-                this.whereToGo = 'aba'
+               
             }    
         },
         computed: {
-            where(){
-                console.log(this.whereToGo);
-                return this.whereToGo ||  'Anywhere'
-            },
-            when(value = ''){
-                return 'Any week'
-            },
-            who(value = ''){
-                return 'Add guests'
-            }
+            // where(){
+            //     console.log(this.whereToGo);
+            //     return this.whereToGo ||  'Anywhere'
+            // },
+            // when(value = ''){
+            //     return 'Any week'
+            // },
+            // who(value = ''){
+            //     return 'Add guests'
+            // }
         },
     }
 </script>
