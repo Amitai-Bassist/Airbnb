@@ -1,5 +1,5 @@
 <template>
-    <section style="margin-top:200px;">
+    <section style="margin-top:100px;">
       <button class="user-menu" :class="onOrders ? 'active': ''" @click="showOrders">ORDERS</button>
       <button class="user-menu" :class="onStays ? 'active': ''" @click="showStays" >MY STAYS</button>
       <section class="host-orders-list" :class="onOrders ? 'show' : 'none'">
@@ -196,7 +196,8 @@ export default {
             borderRadius: 6,
             data,
             label: 'Pending orders',
-            backgroundColor: ["#DAE2B6", "#CCD6A6", "#F4EAD5","#FFFBE9", ]
+            backgroundColor: ["#98A8F8", "#BCCEF8", "#CDFCF6","#FAF7F0", ]
+            // backgroundColor: ["#DAE2B6", "#CCD6A6", "#F4EAD5","#FFFBE9", ]
           },
         ],
       }
@@ -412,14 +413,12 @@ font-size: 12px;
   border-bottom: 3px solid #222222;
   font-family: Airbnb-Cereal-Medium;
 }
-/* .doughnut-chart > * {
-  height: 30vh;
-} */
 
 .stay-stat h3 {
   font-size: 16px;
   text-align: center;
   color: #222222;
+  margin-block-end: 20px;
 }
 
 .bar-chart, .doughnut-chart {
@@ -427,7 +426,6 @@ font-size: 12px;
 }
 
 .doughnut-chart > * {
-  height: 80%;
 }
 </style>
 
