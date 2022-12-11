@@ -1,5 +1,6 @@
 <template>
     <section @click="choseSearch('where')">
+    <h1>Where to?</h1>
     <button class="main-filter-btn"  @click="choseSearch('where')">{{where}}</button>
     <div class="border-line-between" @click="choseSearch('where')"></div>
     <button class="main-filter-btn"  @click="choseSearch('when-start')">{{when}}</button>
