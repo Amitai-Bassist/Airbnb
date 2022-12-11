@@ -32,11 +32,11 @@
         <section class="stay-stat flex row">
           <div class="doughnut-chart">
             <h3>Monthly revenue</h3>
-            <DoughnutChart  v-if="chartData" :chartData="getData" />
+            <DoughnutChart  v-if="chartData" :chartData="getData" :options="options"/>
           </div>
           <div class="bar-chart">
             <h3>Pending orders</h3> 
-            <BarChart v-if="barData" :chartData="getBarData" :options="options" />
+            <BarChart v-if="barData" :chartData="getBarData" :options="{plugins: {legend: {display: false}}}"/>
           </div>
         </section>
         <table v-if="hostStay" class="host-stays">
@@ -95,7 +95,7 @@ export default {
       options: {
         plugins: { 
           legend: {
-            display: false,
+            position: "bottom",
           },
         },
       },
@@ -424,6 +424,10 @@ font-size: 12px;
 
 .bar-chart, .doughnut-chart {
   width: 30%;
+}
+
+.doughnut-chart > * {
+  height: 80%;
 }
 </style>
 
