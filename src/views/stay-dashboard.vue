@@ -15,7 +15,7 @@
           
           <template #item-hostActions="item">
             <div class="host-actions-select">
-              <select @change="changeStatus($event,item.id)" :model="editingItem.status" class="host-actions" id="">
+              <select @change="changeStatus($event,item)" :model="editingItem.status" class="host-actions" id="">
                 <option :value="item.status">{{item.status}}</option>
                 <option :value="statusValue[0]" v-if="item.status !== statusValue[0]">{{statusValue[0]}}</option>
                 <option :value="statusValue[1]" v-if="item.status !== statusValue[1]">{{statusValue[1]}}</option>
@@ -115,7 +115,7 @@ export default {
       this.items = []
         hostOrders.forEach(order => {
           this.items.push({
-            id: order._id,
+            _id: order._id,
             status: order.status,
             guests: order.guests.adults,
             checkIn: order.startDate,
@@ -130,9 +130,12 @@ export default {
         this.headers.push({ text: "Actions", value: "hostActions" })
       }
     },
-    changeStatus(val, id){
-      const idx = this.items.findIndex(item=>item.id === id)
+    changeStatus(val, item){
+      var idx = this.items.findIndex(currItem=>currItem._id === item._id)
       this.items[idx].status = val.target.value
+      idx = this.orders.findIndex(order=>order._id === item._id)
+      this.orders[idx].status =  val.target.value
+      this.$store.dispatch({type: 'addOrder', order: this.orders[idx]})
     },
     async getHostStays(id) {
       const hostStays =  await this.$store.dispatch({type: 'getHostStays', userId: id})

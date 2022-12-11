@@ -20,6 +20,9 @@
     @include for-mobile-layout {
         min-width: rem(202px);
     }
+    @include for-details-narrow-layout {
+        min-width: rem(202px);
+    }
     @include for-narrow-layout{
         min-width: rem(239.5px);
     }
@@ -68,6 +71,10 @@ button.add-to-wishlist {
         min-width: rem(202px);
         min-height: rem(192px)
     }
+    @include for-details-narrow-layout {
+        min-width: rem(202px);
+        min-height: rem(192px)
+    }
     @include for-narrow-layout{
         min-width: rem(239.5px);
         min-height: rem(227.52px)
@@ -108,6 +115,9 @@ button.add-to-wishlist {
 section.carousel {
     height: 100%;
     @include for-mobile-layout {
+        min-width: rem(202px);
+    }
+    @include for-details-narrow-layout {
         min-width: rem(202px);
     }
     @include for-narrow-layout{
