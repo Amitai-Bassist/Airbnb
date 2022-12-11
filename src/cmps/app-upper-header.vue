@@ -11,11 +11,14 @@
       <big-filter @clickedMain="clickedMain" @clickedScreen="clickedScreen" :isWhereSearch="isWhereSearch" :isWhoSearch="isWhoSearch" :isWhenEnd="isWhenEnd" :isWhenStart="isWhenStart"
        v-if="isBigFilter" class="big-search-filter flex row"></big-filter>
       <details-header-filter @clickedMain="clickedMain" v-if="isDetailsHeader"></details-header-filter>
-      <section @click="openUserNav=!openUserNav" class="loggedin-user" >
-        <img src="https://res.cloudinary.com/dht4wwjwe/image/upload/v1669794047/airbnb/dgxtegsrfyrdcywi0vij.png" alt="">
-        <el-badge :value="1" class="item" type="primary">
-          <img :src="loggedInUser.imgUrl" />
-        </el-badge>
+      <section class="flex">
+        <router-link class="dreambnb-home-header" :to="`/host`">Dreambnb your home</router-link>
+        <section @click="openUserNav=!openUserNav" class="loggedin-user" >
+          <img src="https://res.cloudinary.com/dht4wwjwe/image/upload/v1669794047/airbnb/dgxtegsrfyrdcywi0vij.png" alt="">
+          <el-badge :value="1" class="item" type="primary">
+            <img :src="loggedInUser.imgUrl" />
+          </el-badge>
+        </section>
       </section>
   </header>
   <div class="full screen-shadow" @click="clickedScreen" v-if="isBigFilter"></div>

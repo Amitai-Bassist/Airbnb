@@ -46,7 +46,7 @@
     methods: {
       goToDetails() {
         const {txt = '' ,type = '' ,checkin = '' ,checkout = '' ,adults = 0 , children = 0 , infants = 0 , pets = 0 } = this.$route.query
-        eventBus.emit('go-to-details');
+        eventBus.emit('go-to-details')
         this.$router.push({ 
               path: `/stay/${this.stay._id}`, 
               query: {txt:txt, type:type ,checkin:checkin ,checkout:checkout,
