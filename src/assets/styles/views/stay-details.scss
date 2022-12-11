@@ -48,7 +48,7 @@
         margin-left: 0%;
         grid-template-columns: 
         minmax(110px, 1fr)
-        minmax(auto, $padded-break-normal)
+        minmax(auto, 1120px)
         minmax(110px, 1fr);
         > * {
             grid-column: 2 !important;
@@ -57,14 +57,14 @@
     @include for-wide-layout {
         grid-template-columns: 
             minmax(em(150px), 1fr)
-            minmax(auto, $padded-break-normal)
+            minmax(auto, 1120px)
             minmax(em(150px), 1fr)
     }
     @include for-extra-wide-layout {
         grid-template-columns: 
-            minmax(auto,calc($padded-break-normal /3))
-            minmax(auto,calc($padded-break-normal /3))
-            minmax(auto,calc($padded-break-normal /3))
+            minmax(250px, 1fr)
+            minmax(auto,1120px)
+            minmax(250px, 1fr)
 
     }
 
