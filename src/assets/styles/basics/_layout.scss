@@ -21,6 +21,12 @@
             minmax(auto, $padded-break-mobile)
             minmax(24px, 1fr);
     }
+    @include for-details-narrow-layout {
+        grid-template-columns: 
+        minmax(24px, 1fr)
+        minmax($padded-break-mobile, auto)
+        minmax(24px, 1fr);
+    }
     @include for-narrow-layout {
         grid-template-columns: 
             minmax(24px, 1fr)

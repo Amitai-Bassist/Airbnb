@@ -19,6 +19,17 @@
         min-height:rem(292px);
     }
 }
+
+@include for-details-narrow-layout {
+    grid-template-columns: 1fr;
+    grid-column-gap: rem(24px);
+    grid-row-gap: rem(40px);
+    justify-items: stretch;
+    .card{
+        min-width: rem(202px);
+        min-height:rem(292px);
+    }
+}
 @include for-narrow-layout {
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: rem(24px);
