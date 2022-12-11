@@ -29,13 +29,15 @@
         </EasyDataTable>
       </section>
       <section class="host-stays-container flex column wrap" :class="onStays ? 'show' : 'none'">
-        <section class="stay-stat">
-          <h3>Monthly revenue</h3>
-          <div class="chartiel">
-            <DoughnutChart  v-if="chartData" :chartData="getData" />
+        <section class="stay-stat flex row">
+          <div class="doughnut-chart">
+            <h3>Monthly revenue</h3>
+            <DoughnutChart  v-if="chartData" :chartData="getData" :options="options"/>
           </div>
-          <!-- <h3>orders </h3> -->
-          <!-- <BarChart :chartData="getDataLabelStock" :options="options" /> -->
+          <div class="bar-chart">
+            <h3>Pending orders</h3> 
+            <BarChart v-if="barData" :chartData="getBarData" :options="{plugins: {legend: {display: false}}}"/>
+          </div>
         </section>
         <table v-if="hostStay" class="host-stays">
           <thead>
@@ -63,6 +65,7 @@
 
 <script>
   import { DoughnutChart } from "vue-chart-3";
+  import { BarChart } from "vue-chart-3";
   import { Chart, registerables } from "chart.js";
 
 Chart.register(...registerables);
@@ -87,7 +90,15 @@ export default {
       onOrders: true,
       onStays: false,
       hostId: null,
-      chartData: null
+      chartData: null,
+      barData: null,
+      options: {
+        plugins: { 
+          legend: {
+            position: "bottom",
+          },
+        },
+      },
     }
   },
   async created() {
@@ -96,6 +107,7 @@ export default {
     await this.getHostOrders(id)
     await this.getHostStays(id)
     this.getRevenue()
+    this.getPendingOrders()
   },
   methods: {
     async getHostOrders(id) {
@@ -164,6 +176,31 @@ export default {
     }
     console.log('chartData', this.chartData)
   },
+  getPendingOrders() {
+      const data = this.hostStay.map(stay => {
+        return this.orders.reduce(
+          (acc, order) =>
+            order.stay._id===stay._id && order.status==="pending"
+              ? acc + 1
+              : acc,
+          0
+        )
+      })
+      var labels = []
+      this.hostStay.map(stay=> labels.push(stay.name))
+      // console.log('data', data)
+      this.barData = {
+        labels,
+        datasets: [
+          {
+            borderRadius: 6,
+            data,
+            label: 'Pending orders',
+            backgroundColor: ["#DAE2B6", "#CCD6A6", "#F4EAD5","#FFFBE9", ]
+          },
+        ],
+      }
+    },
     checkStatusValue(status){
       this.statusValue = ['pending','approved','declined']
       const idx = this.statusValue.findIndex(statu=>statu === status)
@@ -216,10 +253,14 @@ export default {
     },
     getData() {
       return this.chartData
+    },
+    getBarData() {
+      return this.barData
     }
   },
 components: { 
   DoughnutChart, 
+  BarChart
 },
   };
 
@@ -308,6 +349,7 @@ thead.vue3-easy-data-table__header {
   color: #373737;
   border-bottom: 1px solid #e0e0e0;
   height: 40px;
+  background-color: #e0e0e0;
 }
 /* .host-stays tr:not(:first-child):hover{ */
 .host-stays tbody tr:hover{
@@ -370,12 +412,22 @@ font-size: 12px;
   border-bottom: 3px solid #222222;
   font-family: Airbnb-Cereal-Medium;
 }
-.chartiel > * {
+/* .doughnut-chart > * {
   height: 30vh;
-}
+} */
 
 .stay-stat h3 {
   font-size: 16px;
+  text-align: center;
+  color: #222222;
+}
+
+.bar-chart, .doughnut-chart {
+  width: 30%;
+}
+
+.doughnut-chart > * {
+  height: 80%;
 }
 </style>
 
