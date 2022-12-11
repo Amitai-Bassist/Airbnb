@@ -77,6 +77,10 @@ header {
         margin-bottom: 0;
         color: #ff385c;
         font-family: Airbnb-Cereal-Bold;
+        display: none;
+        @include for-narrow-layout{
+            display: flex;
+        }
     }
 }
 
@@ -249,6 +253,7 @@ header {
 
 .dreambnb-home-header{
     background-color: white;
+    display: none;
     align-self: center;
     margin-right: 10px;
     color: black;
@@ -256,7 +261,7 @@ header {
     padding-top: 5px;
     text-decoration: none;
     height: 37px;
-    display: inline-table;
+    
     flex-wrap: wrap;
     align-self: center;
     margin-bottom: 4px;
@@ -269,8 +274,8 @@ header {
     padding-right: 15px;
     font-size: 14px;
     font-family: Airbnb-Cereal-Bold;
-    @include for-narrow-layout {
-        display: none;
+    @include for-small-layout {
+        display: inline-table;
     }
 }
 
