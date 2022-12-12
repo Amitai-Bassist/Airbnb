@@ -1,5 +1,5 @@
 .filter-main-nav{
-    top: 81px;
+    top: 80px;
     width: 100%;
     &.was-scrolled{
         box-shadow: 0 0 0 1px rgb(0 0 0 / 4%), 0 1px 6px rgb(0 0 0 / 20%);
@@ -70,6 +70,10 @@
             } 
             >span{
                 display: flex;
+            }
+            >svg{
+                width: 18px !important;
+                height: 18px !important;
             }
         }    
     }

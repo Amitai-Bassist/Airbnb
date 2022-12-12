@@ -7,6 +7,7 @@ header {
     z-index: 10;
     justify-content: space-between;
     border-bottom: solid 1px #dddddd;
+    transition: 1s;
     &.big-filter{
         padding-top: 16px;
         padding-bottom: 91px;
@@ -253,6 +254,10 @@ header {
       }
 }
 
+.el-badge__content.el-badge__content--primary.is-fixed {
+    background-color: #fe385c;
+}
+
 .dreambnb-home-header{
     background-color: white;
     display: none;
@@ -266,7 +271,7 @@ header {
     
     flex-wrap: wrap;
     align-self: center;
-    margin-bottom: 4px;
+    
     padding: 7px;
     justify-self: center;
     align-self: center;

@@ -24,6 +24,9 @@
 
       }
     },
+    created() {
+      eventBus.emit('go-to-details')
+    },
     computed: {
       loggedInUser() {
         const loggedinUser = this.$store.getters.loggedinUser 
