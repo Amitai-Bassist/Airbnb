@@ -31,9 +31,17 @@ footer {
      span ol.terms li {
         // margin-inline-start: 40px;
      }
-     @include for-mobile-layout {
-       display: none; 
+     &.details{
     }
+    @include for-mobile-layout {
+        display: none; 
+    }
+}
+
+.stay-footer.flex.header-layout.details{
+    bottom: 0 !important;
+    top: calc(100% - 47px);
+    position: fixed;
 }
 
 .footer-details {

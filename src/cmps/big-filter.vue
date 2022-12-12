@@ -18,7 +18,7 @@
         <button v-bind:class="resetActiveEnd" @click="resetDate()" class="reset-date">x</button>
         <div>{{checkout}}</div>
       </button>
-      <div  v-if="!WhoSearch && !whenStart" class="border-line-between"></div>
+      <div  v-if="!WhoSearch && !WhenEnd" class="border-line-between"></div>
       <div class="big-filter-btn grid" v-bind:class="{isActive:WhoSearch}" @click="choseSearch('who')">
         <button class="who-filter-btn grid column" >
           <div>Who</div>

@@ -1,6 +1,6 @@
 <template>
     <footer class="full main-container">
-        <div :class="{'is-details': isDetails}" class="flex stay-footer header-layout ">
+        <div :class="{'details': isDetails}" class="flex stay-footer header-layout " style="bottom: 0; top:none;">
         <div class="footer-details flex row nowrap">
             <span class="footer-rigths">
                 &copy; 2022 dreambnb, Inc.
@@ -34,3 +34,7 @@ export default {
     },
 }
 </script>
+
+<style>
+    
+</style>
