@@ -1,9 +1,7 @@
 <template>
     <section style="margin-top:100px;" class="user-page full">
-        <!-- <button class="user-menu">TRIPS</button> -->
         <h1 class="trips">Trips</h1>
         <section class="user-trips">
-          
             <div class="mini-card-grid mini-card grid-item-2">
               <div class="mini-card-header flex row wrap ">
                 <h1>Wishlist</h1>
@@ -85,8 +83,8 @@
 export default {
 
     created() {
-            const {id} = this.$route.params;
-            eventBus.emit('go-to-user-pages')
+        const {id} = this.$route.params;
+        eventBus.emit('go-to-user-pages')
     },
     methods: {
         goToStay() {
