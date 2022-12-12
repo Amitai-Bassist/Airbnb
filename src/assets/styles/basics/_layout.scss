@@ -162,22 +162,22 @@
         position: absolute;
         
         @include for-mobile-layout {
-            right: 40px;
+            right: 60px;
         }
         @include for-narrow-layout {
-            right: 40px;
+            right: 60px;
         }
         @include for-small-layout {
-            right: 40px;
+            right: 80px;
         }
         @include for-normal-layout {
-            right: 150px;
+            right: calc(50% - 560px);
         }
         @include for-wide-layout {
-            right: 250px;    
+            right: calc(50% - 560px);   
         }
         @include for-extra-wide-layout {
-            right: 350px;    
+            right: calc(50% - 560px);   
         } 
     }
 }
