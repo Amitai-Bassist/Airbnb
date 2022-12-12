@@ -5,7 +5,7 @@
     "stay-details img-container"
     "price-details img-container"
     "balnk btn";
-  width: 70%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   height: fit-content;
@@ -13,11 +13,72 @@
   background-color: white;
   text-align: center;
   grid-column: 2;
-  grid-template-rows: 0.5fr 1fr 1fr 0.25fr;
+  // grid-template-rows: 1fr 1fr 1fr 0.25fr;
   grid-template-columns: 0.5fr 1fr;
   color: #373737;
   font-family: Airbnb-Cereal-Book;
   font-size: 16px;
+  
+  @include for-mobile-layout {
+    padding-left: 30px;
+    padding-right: 30px;
+    .img-container{
+      display: flex !important;
+      flex-direction: column;
+    }
+    .btn-container{
+      margin-left: -30px !important;
+      width: 80% !important;
+    }
+  }
+  @include for-details-narrow-layout{
+    padding-left: 40px;
+    padding-right: 40px;
+    .img-container{
+      display: flex !important;
+      flex-direction: column;
+    }
+    .btn-container{
+      margin-left: -30px !important;
+      width: 80% !important;
+    }
+  }
+  @include for-narrow-layout {
+    padding-left: 60px;
+    padding-right: 60px;
+    .img-container{
+      display: grid !important;
+    }
+    .btn-container{
+      margin-left: 0px !important;
+      width: 50% !important;
+    }
+  }
+  @include for-small-layout {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  @include for-normal-layout {
+    padding-left: 150px;
+    width: 100%;
+    padding-right:150px ; 
+  }
+  @media (min-width: 1440px){
+    padding-left: calc(50% - 560px);
+    width: 100%;
+    padding-right:calc(50% - 560px) ;
+  }
+  @include for-wide-layout {
+    padding-left: calc(50% - 560px);
+    width: 100%;
+    padding-right:calc(50% - 560px) ;      
+  } 
+
+  @include for-extra-wide-layout {
+    padding-left: calc(50% - 560px);
+    width: 100%;
+    padding-right:calc(50% - 560px) ;    
+  } 
 
 
   >* {
@@ -39,49 +100,52 @@
     font-size: 22px;
     color: #373737;
   }
-
-  .your-trip {
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    font-size: 16px;
-    grid-area: your-trip;
+  
+  .head{
+    margin-top: 10px;
+    // margin-left: 20px;
   }
 
+  .text{
+    padding-bottom:10px;
+    // margin-left: 20px;
+  }
+
+  h4{
+    margin: 0;
+  }
+
+  .your-trip {
+    width: 90%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.162);
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    grid-area: your-trip;
+    
+    
+    
+  }
+  
   .reservation-details {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.162);
     grid-area: stay-details;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    // align-items:f;
-    height: 100%;
-    width: 100%;
-    margin-top: 10px;
-
-    .text {
-      height: em(100px);
-      text-align: start;
-
-      & p {
-        margin: 0;
-        padding: 0;
-        font-size: 16px;
-      }
-      
-      .review-text{
-        font-size: 14px;
-        line-height: 30px;
-      }
-
-    }
+    justify-content: start;
+    width: 90%;
+    margin-top: 15px;
+    
 
   }
   .img-container {
     grid-area: img-container;
     margin-left: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     grid-gap: 10px;
-    height: 106px;
-    width: 124px;
+    height: 100%;
+    width: 100%;
 
       
       img{
@@ -95,6 +159,7 @@
   }
 
   .price-details{
+    margin-top: 15px;
     justify-content: start;
     grid-area: price-details;
     display: flex;

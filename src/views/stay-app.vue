@@ -2,6 +2,25 @@
   <div>
       <stay-list :stays="stays"></stay-list>
   </div>
+  <section v-if="!stays.length" class="cards-layout">
+      <el-skeleton v-for="n in 20" :key="n" class="card" style="width: 240px" animated>
+      <template #template>
+        <el-skeleton-item variant="image" style="width: 240px; height: 240px" />
+        <div style="padding: 14px">
+          <el-skeleton-item variant="p" style="width: 50%" />
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-items: space-between;"
+          >
+            <el-skeleton-item variant="text" style="margin-right: 16px" />
+            <el-skeleton-item variant="text" style="width: 30%" />
+          </div>
+        </div>
+      </template>
+    </el-skeleton>
+  </section>
 </template>
 
 <script>

@@ -97,13 +97,18 @@
     .stay-review{
         grid-column:1/4;
         padding-bottom: em(25px);
+        font-size: 14px;
 
         .stay-review-loc{
+            font-size: 14px;
+            font-weight: 600;
             cursor: pointer;
             text-decoration-line: underline;
         }
         
         .review-num{
+            font-size: 14px;
+            font-weight: 600;
             cursor: pointer;
             text-decoration-line: underline;
         }
@@ -112,6 +117,10 @@
         }
         .need-align-center{
             line-height: 15px;
+        }
+
+        .heart{
+            margin-left: 20px;
         }
 
         @include for-mobile-layout {
@@ -359,6 +368,9 @@
                     max-width: 70%;
                     display: flex;
                     flex-direction: column;
+                    p{
+                        color: #222;
+                    }
                 }
                 border-bottom: 1px solid rgba(128, 128, 128, 0.3);
             }
@@ -370,6 +382,9 @@
             }
             
             .ferrites-main{
+                h4{
+                    font-size: 16px;
+                }
                 padding-top: 32px;
                 padding-bottom: 32px;
                 display: flex;
@@ -379,6 +394,7 @@
                 .line{
                     display: flex;
                     flex-direction: row;
+                    margin-bottom: 24px;
                     
                     .text{
                         margin-left: 16px;
@@ -413,6 +429,11 @@
                 padding-top: 32px;
                 padding-bottom: 32px;
                 grid-area: a3;
+
+                h2{
+                    margin-bottom: 24px;
+                    font-size: 22px;
+                }
                 
                 .offers{
                     columns: 2;
@@ -534,7 +555,7 @@
             columns: 2;
             
             .category{
-                font-family: Airbnb-Cereal-Medium;
+                font-family: Airbnb-Cereal-Book;
                 margin-right: 8.33333%;
                 margin-bottom: 18px;
             }
@@ -580,6 +601,7 @@
                 min-height: 50px;
 
             }
+            
             .show-more-text{
                 overflow: hidden;
                 display: -webkit-box;

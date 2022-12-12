@@ -1,9 +1,28 @@
 <template>
     <div class="stay-explore">
         <p>Over {{stays.length}} homes</p>
-        <stay-list class="stay-list-explore" :stays="stays"></stay-list>
+        <stay-list v-if="staysList" class="stay-list-explore" :stays="stays"></stay-list>
     </div>
+    <section   class="cards-layout">
+      <el-skeleton v-if="!staysList.length" v-for="n in 20" :key="n" class="card" style="width: 240px" animated>
+      <template #template>
+        <el-skeleton-item class="stay-preview" variant="image" style="width: 240px; height: 240px; border-radius: 0.625rem;" />
+        <div style="padding: 14px">
+          <el-skeleton-item variant="p" style="width: 50%" />
+          <div
+            style="display: flex;
+              align-items: center;
+              justify-items: space-between;">
+            <el-skeleton-item variant="text" style="margin-right: 16px" />
+            <el-skeleton-item variant="text" style="width: 30%" />
+          </div>
+        </div>
+      </template>
+    </el-skeleton>
+  </section>
 </template>
+
+
   
 <script>
   import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service";
@@ -14,11 +33,20 @@
     getActionAddStayMsg,
   } from "../store/modules/stay.module";
   import stayList from "../cmps/stay-list.vue";
+  import skelaton from '../cmps/list-skelaton.vue'
   export default {
     data() {
       return {
         stayToAdd: stayService.getEmptyStay(),
+        staysList:[]
       };
+    },
+     async mounted(){
+        console.log('created');
+        const {txt} = this.$route.query
+        const staysAfterSearch = await this.$store.dispatch({ type: "loadStays", filterBy: {txt: txt}})
+        this.staysList = staysAfterSearch
+      
     },
     
     computed: {
@@ -26,7 +54,7 @@
         return this.$store.getters.loggedinUser;
       },
       stays() {
-        return this.$store.getters.stays;
+        return this.staysList;
       },
     },
     created() {
@@ -78,6 +106,7 @@
     },
     components: {
       stayList,
+      skelaton,
     }
   };
 </script>

@@ -1,6 +1,6 @@
 <template>
   <section class="stay-reserve order-container">
-    <div class="order-form-header">
+    <div class="order-form-header" :data="dateStart.id !== null && dateEnd.id!==null?dateStart.id.slice(0,5)+'-'+dateEnd.id.slice(0,5): '&#9733; '+reviewScore" @click="checkstatus(event)">
       <p>
         <span class="cost">${{ stay.price }}</span> night
       </p>
@@ -266,6 +266,11 @@ export default {
     if(this.dateEnd.date !== null && this.dateStart.date !== null) this.daysPriceCalc(this.dateStart.date,this.dateEnd.date,this.stay.price)
   },
   methods: {
+    checkstatus(ev){
+      if(this.window.innerWidth <= 750){
+        this.toggleCalender()
+      };
+    },
     getReviewScore() {
       this.$store.commit({
         type: "getReviewScore",
