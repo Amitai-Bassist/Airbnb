@@ -163,7 +163,7 @@
     <div class="cell"></div>
     <div class="content">
       <button class="action-btn">
-        <span class="btn">Go to Mytrips</span>
+        <span class="btn">Go to My trips</span>
       </button>
     </div>
       </div>
