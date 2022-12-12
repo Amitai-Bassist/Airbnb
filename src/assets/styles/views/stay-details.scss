@@ -578,6 +578,9 @@
             .text{
                 max-width: 60ch;
                 min-height: 50px;
+
+            }
+            .show-more-text{
                 overflow: hidden;
                 display: -webkit-box;
                 -webkit-line-clamp: 3;

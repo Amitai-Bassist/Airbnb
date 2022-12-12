@@ -162,7 +162,7 @@
         </div>
       </div>
       <div class="users-reviews">
-        <div class="user-review" v-for="review in stay.reviews.slice(0,6)" :key="review">
+        <div class="user-review" v-for="(review,index) in stay.reviews.slice(0,reviewLength)" :key="review">
           <div class="user-info flex row">
             <img :src="review.by.imgUrl" alt="">
             <div class="name">
@@ -173,14 +173,14 @@
             </div>
           </div>
           <div class="flex column">
-            <div class="text">
+            <div class="text" :class="reviewIndex!==index?'show-more-text':''">
               {{review.txt}}
             </div>
-            <button class="show-more" @click="showMoreReveiw()" v-if="(review.txt.length>120)">Show more</button>
+            <button class="show-more" @click="reviewIndex === index?reviewIndex=null:reviewIndex= index" v-if="(review.txt.length>250)">{{reviewIndex === index?'Show less':'Show more'}}</button>
           </div>
         </div>
       </div>
-      <button @click="showMoreReveiw()">Show all {{stay.reviews.length}} {{reviewNum}}</button>
+      <button @click="showMoreReveiw()">{{reviewLength === 6?"Show all "+stay.reviews.length+' '+reviewNum:"Show less"}}</button>
     </div>
     <div v-else>
       <p>
@@ -220,7 +220,9 @@ export default {
       headerObserver: {},
       stickyNav: false,
       isShowAllImg:false,
-      reviewScores: []
+      reviewScores: [],
+      reviewLength: 6,
+      reviewIndex:null
     };
   },
   async created() {
@@ -313,6 +315,14 @@ export default {
     },
     checkAvgScore(num){
       return (100 * num)/5.0 + '%' 
+    },
+    showMoreReveiw(){
+      if(this.reviewLength !== 6){
+        this.reviewLength = 6
+      }else this.reviewLength = this.stay.reviews.length
+    },
+    showReviewText(text){
+      return text = 'hay'
     }
 
   },
