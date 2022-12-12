@@ -161,6 +161,7 @@ export default {
         }
     },
     async created(){
+        eventBus.emit('go-to-details')
         const { id } = this.$route.params
         if (id){
             const firststay = await this.getStayById(id)

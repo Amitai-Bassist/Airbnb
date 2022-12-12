@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service";
+import { showErrorMsg, showSuccessMsg, eventBus } from "../services/event-bus.service";
 import { stayService } from "../services/stay.service.local";
 import {
   getActionRemoveStay,
@@ -21,14 +21,15 @@ export default {
   },
   computed: {
     loggedInUser() {
-      return this.$store.getters.loggedinUser;
+      return this.$store.getters.loggedinUser
     },
     stays() {
-      return this.$store.getters.stays;
+      return this.$store.getters.stays
     },
   },
   created() {
-    this.$store.dispatch({ type: "loadStays" });
+    this.$store.dispatch({ type: "loadStays" })
+    eventBus.emit('return-to-main-stay')
   },
   methods: {
     // async addStay() {

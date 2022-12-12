@@ -99,12 +99,12 @@
         position: absolute;
         top: 0;
         @include for-mobile-layout {
-            padding-left: 40px;
-            padding-right: 40px;
+            padding-left: 60px;
+            padding-right: 60px;
         }
         @include for-details-narrow-layout{
-            padding-left: 40px;
-            padding-right: 40px;
+            padding-left: 60px;
+            padding-right: 60px;
         }
         @include for-narrow-layout {
             padding-left: 60px;
@@ -115,18 +115,25 @@
             padding-right: 80px;
         }
         @include for-normal-layout {
-            padding-left: 100px;
-            padding-right: 100px;
+            padding-left: 150px;
+            width: 100%;
+            padding-right:150px ; 
+        }
+        @media (min-width: 1440px){
+            padding-left: calc(50% - 560px);
+            width: 100%;
+            padding-right:calc(50% - 560px) ;
         }
         @include for-wide-layout {
-            padding-left: 165px;
+            padding-left: calc(50% - 560px);
             width: 100%;
-            padding-right: 165px;    
+            padding-right:calc(50% - 560px) ;      
         }
+       
         @include for-extra-wide-layout {
-            padding-left: calc(50% - 775px);
+            padding-left: calc(50% - 560px);
             width: 100%;
-            padding-right:calc(50% - 775px) ;    
+            padding-right:calc(50% - 560px) ;    
         } 
     }
 }
@@ -155,22 +162,22 @@
         position: absolute;
         
         @include for-mobile-layout {
-            right: 40px;
+            right: 60px;
         }
         @include for-narrow-layout {
-            right: 40px;
+            right: 60px;
         }
         @include for-small-layout {
-            right: 40px;
+            right: 80px;
         }
         @include for-normal-layout {
-            right: 150px;
+            right: calc(50% - 560px);
         }
         @include for-wide-layout {
-            right: 250px;    
+            right: calc(50% - 560px);   
         }
         @include for-extra-wide-layout {
-            right: 350px;    
+            right: calc(50% - 560px);   
         } 
     }
 }

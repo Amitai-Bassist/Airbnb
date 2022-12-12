@@ -42,11 +42,11 @@
         <table v-if="hostStay" class="host-stays">
           <thead>
             <tr class="thead">
-              <th class="start">Stay Id</th>
-              <th>Stay name</th>
-              <th>View stay</th>
-              <th>Edit stay</th>
-              <th>Remove stay</th>
+              <th class="start">Id</th>
+              <th>Name</th>
+              <th>View</th>
+              <th>Edit</th>
+              <th>Remove</th>
             </tr>
           </thead>
           <tbody>
@@ -102,6 +102,7 @@ export default {
     }
   },
   async created() {
+    eventBus.emit('go-to-user-pages')
     const {id} = this.$route.params
     this.hostId = id
     await this.getHostOrders(id)
@@ -139,6 +140,7 @@ export default {
     },
     async getHostStays(id) {
       const hostStays =  await this.$store.dispatch({type: 'getHostStays', userId: id})
+      console.log(hostStays);
       if(hostStays) {
       }
       this.hostStay = hostStays
@@ -384,6 +386,15 @@ border-radius: 4px;
 color: #373737;
 box-shadow: 0px 0px 5px rgba(0,0,0,0.12);
 font-size: 12px;
+
+}
+.edit-stay,.view-stay{
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.remove-stay{
+  padding: 5px 2px;
 }
 
 .host-orders-list.show {

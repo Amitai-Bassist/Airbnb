@@ -175,6 +175,7 @@ export const stayModule = {
         // const hostStays = stays.filter((stay) => {
         //   return stay.host._id === userId;
         // });
+        console.log('stays for host in stay module',stays);
         return stays;
       } catch (err) {
         console.log('stayStore: Error in getHostStays', err);

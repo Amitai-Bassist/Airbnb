@@ -79,8 +79,8 @@
         methods: {
           onSearch(){
             
-            eventBus.emit('indicates-for-main-filter', {where: this.mainland, when:this.checkin, who:this.guests})
             this.$emit('clickedScreen')
+            eventBus.emit('indicates-for-main-filter', {where: this.mainland, when:this.checkin, who:this.guests})
             this.$store.dispatch({ type: "loadStays", filterBy: this.filterBy });
             this.$router.push({ 
               path: '/stay/explore', 

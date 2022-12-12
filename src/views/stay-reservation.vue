@@ -3,8 +3,14 @@
       <div class="your-trip">
         <!-- <h1>Reservation Success!</h1> -->
         <h2>Your trip</h2>
-        <div class="flex row">Check-In: <span> &nbsp;{{myReservation.startDate}}</span></div>
-        <div class="flex row">Check-Out: <span> &nbsp;{{myReservation.endDate }}</span></div>
+        <div class="flex row"><h4>Dates</h4></div>
+        <span> &nbsp;{{myReservation.startDate}}-{{myReservation.endDate }}</span>
+        <h4>Guests</h4>
+        <div class="flex row">Adults: {{myReservation.guests.adults }}</div>
+        <div v-if="myReservation.guests.kids" class="flex row">Kids: {{myReservation.guests.kids}}</div>
+        <div v-if="myReservation.guests.infants" class="flex row">Infants:{{reservmyReservation.guests.infants}}</div>
+        <div v-if="myReservation.guests.pets" class="flex row">Pets: {{reservmyReservation.guests.pets}}</div>
+        
         <div class="flex row">Host: <span> &nbsp;{{myReservation.hostName}}</span></div>
         <!-- <div class="end"></div> -->
       </div>
@@ -24,10 +30,6 @@
       <!-- <div class="end"></div> -->
       <div class="price-details">
         <h2>Price details</h2>
-        <div class="flex row">Adults: {{myReservation.guests.adults }}</div>
-        <div v-if="myReservation.guests.kids" class="flex row">Kids: {{myReservation.guests.kids}}</div>
-        <div v-if="myReservation.guests.infants" class="flex row">Infants:{{reservmyReservation.guests.infants}}</div>
-        <div v-if="myReservation.guests.pets" class="flex row">Pets: {{reservmyReservation.guests.pets}}</div>
         <div class="flex row">Total price: <span> &nbsp;${{myReservation.totalPrice}}</span></div>
         <div class="flex row">Total nights: <span> &nbsp;{{myReservation.totalNights}}</span></div>
       </div>
@@ -139,9 +141,7 @@
     </div>
       </div>
       <div class="img-container">
-        <div :class="('img'+index)" alt=""  v-for="(imgUrl,index) in myReservation.stay.imgUrls.slice(0,4)" :key="imgUrl">
-          <img :src="imgUrl" >
-        </div>
+          <img :src="myReservation.stay.imgUrls[0]" >
       </div>
     </section> 
     <!-- <pre>{{myReservation}}</pre> -->
