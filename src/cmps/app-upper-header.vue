@@ -170,12 +170,19 @@ export default {
 
 <style>
   .v-enter-active{
-    /* transition: width 1.5s ease; */
+    transition: top  0.3s ease-in;
+    /* transition-delay: 1s; */
+    
   }
   .v-enter-from{
-    /* top: 5;
+    top: 5px;
+    /* right: 50%; */
+    /* width: 50px; */
     
-    width: 50px; */
+  }
+  .v-enter-to{
+    top: 80px;
+    /* right: 50%s; */
   }
   .v-leave-active{
     transition: none
