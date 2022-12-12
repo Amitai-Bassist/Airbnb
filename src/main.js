@@ -17,6 +17,7 @@ import moment from 'moment';
 
 moment().format();
 const app = createApp(rootCmp);
+app.config.globalProperties.window = window
 app.use(router);
 app.use(store);
 app.use(ElementPlus);
