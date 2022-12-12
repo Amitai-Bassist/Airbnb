@@ -6,19 +6,19 @@
             <input class="input-search-big-filter" type="search" :placeholder="wherePlaceholder" v-model="filterBy.txt" >
           </form>
       </button>
-      <div v-if="!WhereSearch && !whenStart" class="border-line-between"></div>
+      <div :class="{'no-line':(WhereSearch || whenStart)}" class="border-line-between"></div>
       <button class="big-filter-btn date grid"  v-bind:class="{isActive: whenStart}" @click="choseSearch('when-start')">
         <div>Check in</div>
         <button v-bind:class="resetActiveStart" @click="resetDate()" class="reset-date">x</button>
         <div>{{checkin}}</div>
       </button>
-      <div v-if="!WhenEnd && !whenStart" class="border-line-between"></div>
+      <div :class="{'no-line':(WhenEnd || whenStart)}" class="border-line-between"></div>
       <button class="big-filter-btn date grid"  v-bind:class="{isActive: WhenEnd}" @click="choseSearch('when-end')">
         <div>Check out</div>
         <button v-bind:class="resetActiveEnd" @click="resetDate()" class="reset-date">x</button>
         <div>{{checkout}}</div>
       </button>
-      <div  v-if="!WhoSearch && !WhenEnd" class="border-line-between"></div>
+      <div :class="{'no-line':(WhoSearch || WhenEnd)}"  class="border-line-between"></div>
       <div class="big-filter-btn grid" v-bind:class="{isActive:WhoSearch}" @click="choseSearch('who')">
         <button class="who-filter-btn grid column" >
           <div>Who</div>
