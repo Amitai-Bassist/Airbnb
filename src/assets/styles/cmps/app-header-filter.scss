@@ -157,13 +157,12 @@
     >:first-child{
         padding-left: 30px;
         &.isActive{
-            margin-right: 1px;
+            
         }
     }
     :nth-child(3){
         &.isActive{
-            margin-right: 1px;
-            margin-left: 2px !important;
+            
         }
     }
     >:last-child{
@@ -183,6 +182,9 @@
         align-self: center;
         border-left: solid 1px #dddddd;
         margin: 0;
+        &.no-line{
+            border-color: #dddddd00;
+        }
     }
 }
 
