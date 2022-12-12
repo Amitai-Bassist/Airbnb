@@ -121,15 +121,10 @@
     .mini-card-header {
     justify-content: space-between;
     align-items: center;
-    /* width: 300px;
-    height: 42px; */
-    padding: 20px 0px;
+    padding-block-end: 20px;
     align-self: flex-start;
     }
-    
-    .mini-card-header h1 {
-    
-    }
+
     .mini-card:nth-child(3)  {
         /* width: 800px; 
         height: 400px; */
@@ -169,7 +164,7 @@
             }
         }
     }
-    .next-stay, .next-stay-img {
+    .next-stay{
       padding-block-start: 20px;
     }
   
@@ -233,6 +228,7 @@ cursor:pointer;
     text-overflow: ellipsis;
     display: block;
     overflow: hidden;
+    line-height: 16px;
     height: fit-content;
    
 }

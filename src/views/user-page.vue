@@ -27,7 +27,7 @@
                 <button @click="goToStay" class="mini-card-btn">Go to stay</button>
               </div>
               <div class="next-stay-img">
-                <img src="http://res.cloudinary.com/dmtlr2viw/image/upload/v1663437349/thl7eoxar7dc7kpbahhj.jpg" alt="">
+                <img src="https://res.cloudinary.com/dtaiyvzq5/image/upload/v1670697786/irgbk6nuyw8mbkjkw1vv.jpg" alt="">
               </div>
             </div>
             <section class="old-trips grid-item-4">
@@ -48,7 +48,7 @@
                         <div class="mini-stay-img">
                             <img src="http://res.cloudinary.com/dmtlr2viw/image/upload/v1663436255/nmccht42mpd6erdeqjhi.jpg" alt="">
                         </div>
-                        <div class="mini-stay-desc flex row wrap">
+                        <div @click="goToRio" class="mini-stay-desc flex row wrap">
                             <h1>Rio De Janeiro</h1>
                             <h4>hosted by Luana</h4>
                             <h4>June 08-13, 2022</h4>
@@ -89,7 +89,10 @@ export default {
     },
     methods: {
         goToStay() {
-            this.$router.push('/stay/622f337a75c7d36e498aaaf8')
+            this.$router.push('/stay/6395df42e50eb45cdf610179')
+        },
+        goToRio() {
+            this.$router.push('/stay/639323c1db8092ca53113ee7')
         },
         goToWishlist() {
             this.$router.push('/stay/wishlist')
