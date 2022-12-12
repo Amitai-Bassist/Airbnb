@@ -442,9 +442,7 @@ font-size: 12px;
   border-bottom: 3px solid #222222;
   font-family: Airbnb-Cereal-Medium;
 }
-.stay-stat {
-  /* flex-wrap: wrap; */
-}
+
 .mini-stat-container {
   min-height: 100%;
 }
@@ -468,19 +466,14 @@ font-size: 12px;
   font-family: Airbnb-Cereal-Medium;
   line-height: 24px;
 }
-/* .mini-stat:not(:first-of-type) {
-  margin-inline-start: 20px;
-} */
+
 .mini-stat h2.desc {
   font-size: 16px;
   padding-block-start: 15px;
   border-top: 1px solid #222222;
   width:fit-content;
 }
-.bar-chart, .doughnut-chart {
-  /* height: 200px; */
-  /* width:15vw; */
-}
+
 .bar-chart, .doughnut-chart {
   border: 1px solid #e0e0e0;
   border-radius: 12px;
