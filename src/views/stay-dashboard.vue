@@ -137,7 +137,7 @@ export default {
             guests: order.guests.adults,
             checkIn: order.startDate,
             checkOut: order.endDate,
-            booked: new Date(order.createdAt).toLocaleDateString(),
+            booked: new Date(order.createdAt).toLocaleDateString("en-GB"),
             listing: order.stay.name,
             totalPrice: '$' + order.totalPrice
           })
