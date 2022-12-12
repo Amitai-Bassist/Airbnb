@@ -31,31 +31,21 @@
       <!-- <section class="host-stays-container flex column wrap" :class="onStays ? 'show' : 'none'"> -->
         <!-- <h1>Monthly stats</h1> -->
       <section class="host-stays-container" :class="onStays ? 'show' : 'none'">
-        <div class="stays-grid-3">
+        <div class="stays-grid-3 flex row wrap space-between">
           <!-- <h1>Monthly stats</h1> -->
-          <div class="flex row wrap space-between">
             <div class="mini-stat">
-              <div class="stat-info"><h2>{{this.orders.length}}</h2></div>
-              <div><h2 class="desc">Total orders</h2></div>
-
-            </div>
-            <div class="mini-stat">
-              <div class="stat-info"><h2>{{this.payment.toLocaleString()}}</h2></div>
-              <div><h2 class="desc">Total payment</h2>{{this.orders.length}}</div>
-            </div>
-            <div class="mini-stat">
-              <div class="stat-info"><h2>{{this.orders.length}}</h2></div>
+              <div v-if="orders" class="stat-info"><h2>{{this.orders.length}}</h2></div>
               <div><h2 class="desc">Total orders</h2></div>
             </div>
             <div class="mini-stat">
-              <div class="stat-info"><h2>{{this.orders.length}}</h2></div>
-              <div><h2 class="desc">Total orders</h2></div>
+              <div class="stat-info"><h2>${{this.payment}}</h2></div>
+              <div v-if="orders"><h2 class="desc">Total payment</h2></div>
+              <div class="stat-info"><h3>The most profitable month this year !</h3></div>
             </div>
             <div class="mini-stat">
-              <div class="stat-info"><h2>{{this.orders.length}}</h2></div>
-              <div><h2 class="desc">Total orders</h2></div>
+              <div v-if="orders" class="stat-info"><h2>2</h2></div>
+              <div><h2 class="desc">Occupied stays</h2></div>
             </div>
-          </div>
         </div>
         <div class="stays-grid-1">
           <table v-if="hostStay" class="host-stays">
@@ -74,7 +64,6 @@
             </tbody>
           </table>
         </div>
-
         <!-- <section class="stay-stat flex row "> -->
           <div class="doughnut-chart stays-grid-2 stay-stat">
             <h3>Monthly revenue</h3>
@@ -196,7 +185,10 @@ export default {
       res.map(stay => data.push(stay.total))
       var totalPayment = 0
       res.map(stay => totalPayment += stay.total)
-      this.payment = (totalPayment.toFixed(1))
+
+      totalPayment =parseInt(totalPayment) 
+      totalPayment =totalPayment.toLocaleString("en-US")
+      this.payment = totalPayment
         this.chartData = {
         labels,
         datasets: [
@@ -441,6 +433,7 @@ font-size: 12px;
   margin-block-end: 15px;
   margin-inline-end: 15px;
   font-size: 14px;
+  padding-bottom: 5px 0;
 }
 
 .user-menu:hover, .user-menu.active {
@@ -450,6 +443,9 @@ font-size: 12px;
 }
 .stay-stat {
   /* flex-wrap: wrap; */
+}
+.mini-stat-container {
+  min-height: 100%;
 }
 .stay-stat h3 {
   font-size: 16px;
@@ -461,9 +457,15 @@ font-size: 12px;
   border: 1px solid #e0e0e0;
   border-radius: 12px;
   padding: 20px;
+  width: 32%;
+  min-height:100%;
 }
-.stat-info h2 {
-
+.stat-info h3 {
+  font-size: 16px;
+  margin-block-start: 20px;
+  color:#373737;
+  font-family: Airbnb-Cereal-Medium;
+  line-height: 24px;
 }
 /* .mini-stat:not(:first-of-type) {
   margin-inline-start: 20px;
@@ -471,7 +473,8 @@ font-size: 12px;
 .mini-stat h2.desc {
   font-size: 16px;
   padding-block-start: 15px;
-  border-top: 1px solid #373737;
+  border-top: 1px solid #222222;
+  width:fit-content;
 }
 .bar-chart, .doughnut-chart {
   /* height: 200px; */
@@ -496,8 +499,10 @@ font-size: 12px;
 
 .stays-grid-3 {
   grid-column: 1/3;
-  grid-row: 1/2; 
+  grid-row: 1/3; 
   align-self: start;
+  justify-self: stretch;
+  min-height: 100%;
   /* background-color: antiquewhite; */
 }
 
