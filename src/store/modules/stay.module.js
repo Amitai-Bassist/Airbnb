@@ -129,10 +129,12 @@ export const stayModule = {
     },
     async loadStays({ commit, state, rootState }, { filterBy }) {
       try {
+        console.log('got to module');
         commit({ type: 'setFilterBy', filterBy });
         const stays = await stayService.query(filterBy);
         console.log(stays);
-        commit({ type: 'setStays', stays });
+        commit({ type: 'setStays', stays:stays });
+        return stays
       } catch (err) {
         console.log('stayStore: Error in loadStays', err);
         throw err;

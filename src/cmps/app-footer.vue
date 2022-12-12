@@ -1,6 +1,6 @@
 <template>
     <footer class="full main-container">
-        <div class="flex stay-footer main-container">
+        <div :class="{'is-details': isDetails}" class="flex stay-footer header-layout ">
         <div class="footer-details flex row nowrap">
             <span class="footer-rigths">
                 &copy; 2022 dreambnb, Inc.
@@ -21,6 +21,16 @@
 </template>
 
 <script>
+import { eventBus } from '../services/event-bus.service'
+
 export default {
+    data(){
+        return{
+            isDetails: false
+        }
+    },
+    created() {
+        eventBus.on('go-to-details',()=>{this.isDetails = true})
+    },
 }
 </script>
