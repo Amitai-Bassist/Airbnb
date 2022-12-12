@@ -433,7 +433,8 @@ font-size: 12px;
   margin-block-end: 15px;
   margin-inline-end: 15px;
   font-size: 14px;
-  padding-bottom: 5px 0;
+  padding-bottom: 5px;
+  width:min-content;
 }
 
 .user-menu:hover, .user-menu.active {
