@@ -1,7 +1,7 @@
 <template>
     <section style="margin-top:100px;">
-      <button class="user-menu" :class="onOrders ? 'active': ''" @click="showOrders">ORDERS</button>
-      <button class="user-menu" :class="onStays ? 'active': ''" @click="showStays" >MY STAYS</button>
+      <button class="user-menu" :class="onOrders ? 'active': ''" @click="showOrders">Orders</button>
+      <button class="user-menu" :class="onStays ? 'active': ''" @click="showStays" >Stays</button>
       <section class="host-orders-list" :class="onOrders ? 'show' : 'none'">
           <EasyDataTable class="orders-table"
           :headers="headers"
@@ -28,37 +28,63 @@
           </template>
         </EasyDataTable>
       </section>
-      <section class="host-stays-container flex column wrap" :class="onStays ? 'show' : 'none'">
-        <section class="stay-stat flex row">
-          <div class="doughnut-chart">
+      <!-- <section class="host-stays-container flex column wrap" :class="onStays ? 'show' : 'none'"> -->
+        <!-- <h1>Monthly stats</h1> -->
+      <section class="host-stays-container" :class="onStays ? 'show' : 'none'">
+        <div class="stays-grid-3">
+          <!-- <h1>Monthly stats</h1> -->
+          <div class="flex row wrap space-between">
+            <div class="mini-stat">
+              <div class="stat-info"><h2>{{this.orders.length}}</h2></div>
+              <div><h2 class="desc">Total orders</h2></div>
+
+            </div>
+            <div class="mini-stat">
+              <div class="stat-info"><h2>{{this.payment.toLocaleString()}}</h2></div>
+              <div><h2 class="desc">Total payment</h2>{{this.orders.length}}</div>
+            </div>
+            <div class="mini-stat">
+              <div class="stat-info"><h2>{{this.orders.length}}</h2></div>
+              <div><h2 class="desc">Total orders</h2></div>
+            </div>
+            <div class="mini-stat">
+              <div class="stat-info"><h2>{{this.orders.length}}</h2></div>
+              <div><h2 class="desc">Total orders</h2></div>
+            </div>
+            <div class="mini-stat">
+              <div class="stat-info"><h2>{{this.orders.length}}</h2></div>
+              <div><h2 class="desc">Total orders</h2></div>
+            </div>
+          </div>
+        </div>
+        <div class="stays-grid-1">
+          <table v-if="hostStay" class="host-stays">
+            <thead>
+              <tr class="thead">
+                <th colspan="2">Stay name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(stay) in hostStay" :key="stay._id">
+                <td>{{ stay.name }}</td>  
+                <td><button @click="goToStay(stay._id)" class="view-stay">Go to stay</button>
+                <button @click="editStay(stay._id)" class="edit-stay">Edit</button>
+               <button @click="removeStay(stay._id)" class="remove-stay">Remove</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- <section class="stay-stat flex row "> -->
+          <div class="doughnut-chart stays-grid-2 stay-stat">
             <h3>Monthly revenue</h3>
-            <DoughnutChart  v-if="chartData" :chartData="getData" :options="options"/>
+            <DoughnutChart class="chart" v-if="chartData" :chartData="getData" :options="options"/>
           </div>
-          <div class="bar-chart">
+          <div class="bar-chart stays-grid-4 stay-stat">
             <h3>Pending orders</h3> 
-            <BarChart v-if="barData" :chartData="getBarData" :options="{plugins: {legend: {display: false}}}"/>
+            <BarChart class="chart" v-if="barData" :chartData="getBarData" :options="{plugins: {legend: {display: false}}}"/>
           </div>
-        </section>
-        <table v-if="hostStay" class="host-stays">
-          <thead>
-            <tr class="thead">
-              <th class="start">Id</th>
-              <th>Name</th>
-              <th>View</th>
-              <th>Edit</th>
-              <th>Remove</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(stay) in hostStay" :key="stay._id">
-              <td class="start">{{ stay._id }}</td> 
-              <td>{{ stay.name }}</td>  
-              <td><button @click="goToStay(stay._id)" class="view-stay">Go to stay</button></td>
-              <td><button @click="editStay(stay._id)" class="edit-stay">Edit</button></td>
-              <td><button @click="removeStay(stay._id)" class="remove-stay">Remove</button></td>
-            </tr>
-          </tbody>
-        </table>
+        <!-- </section> -->
     </section>
       </section>
 </template>
@@ -67,7 +93,7 @@
   import { DoughnutChart } from "vue-chart-3";
   import { BarChart } from "vue-chart-3";
   import { Chart, registerables } from "chart.js";
-
+  import { eventBus } from '../services/event-bus.service'
 Chart.register(...registerables);
 
 export default {
@@ -92,6 +118,7 @@ export default {
       hostId: null,
       chartData: null,
       barData: null,
+      payment: 0,
       options: {
         plugins: { 
           legend: {
@@ -167,6 +194,9 @@ export default {
       res.map(stay => labels.push(stay.name))
       var data = []
       res.map(stay => data.push(stay.total))
+      var totalPayment = 0
+      res.map(stay => totalPayment += stay.total)
+      this.payment = (totalPayment.toFixed(1))
         this.chartData = {
         labels,
         datasets: [
@@ -180,8 +210,8 @@ export default {
         ], 
     }
     console.log('chartData', this.chartData)
-  },
-  getPendingOrders() {
+    },
+    getPendingOrders() {
       const data = this.hostStay.map(stay => {
         return this.orders.reduce(
           (acc, order) =>
@@ -277,7 +307,7 @@ components: {
   display: none;
 }
 
-/* // easy data table */
+/* // easy data table - orders table*/
 .host-orders-list {
   margin-block-start: 40px;
 }
@@ -304,9 +334,6 @@ components: {
 }
 
 .orders-table td:last-child, .orders-table th:last-child {
-  --easy-table-body-item-text-align: right;
-
-  text-align: right;
   padding-inline-end: 10px;
 }
 
@@ -332,32 +359,23 @@ thead.vue3-easy-data-table__header {
 }
 
 
-
-.last-col {
-  text-align: right !important;
-}
-.last-col .header-text{
-  text-align: right !important;
-  margin-inline-end: auto;
-}
-
 /* stays-table */
 .host-stays {
-  margin-block-start: 40px;
-  box-shadow: 0px 0px 5px rgba(0,0,0,0.12);
+  /* box-shadow: 0px 0px 5px rgba(0,0,0,0.12); */
   border-radius: 6px;
+  border: 1px solid #e0e0e0;
   width: 100%;
   border-collapse: collapse;
 }
 .host-stays th {
   font-size: 14px;
   text-align: left;
-  color: #373737;
+  color: #222222;
   border-bottom: 1px solid #e0e0e0;
   height: 40px;
   background-color: #e0e0e0;
 }
-/* .host-stays tr:not(:first-child):hover{ */
+
 .host-stays tbody tr:hover{
   background-color:#F2F3F5;
 } 
@@ -367,34 +385,36 @@ thead.vue3-easy-data-table__header {
   color: #373737;
   border-bottom: 1px solid #e0e0e0;
 }
-.host-stays td:last-child, .host-stays th:last-child {
-  text-align: right;
+.host-stays tr td:first-of-type, .host-stays tr th:first-of-type {
+  padding-inline-start: 10px;
+}
+.host-stays td:last-child {
+  text-align: center;
   padding-inline-end: 10px;
 }
 .host-stays .start {
   padding-inline-start: 10px;
 }
+
 button.edit-stay:hover, button.remove-stay:hover, .view-stay:hover {
-/* background-color: #e0e0e0; */
-/* background-color: aqua; */
-background-color: #F0DBDB;
+background-color: #e0e0e0;
 cursor: pointer;
 }
+.edit-stay {
+  background-color: #B8E8FC;
+}
+.view-stay {
+  background-color: #B6E2A1;
+}
+.remove-stay {
+  background-color: #F7A4A4;
+}
+
 .edit-stay, .remove-stay, .view-stay {
-background-color: transparent;
 border-radius: 4px;
-color: #373737;
+color: #222222;
 box-shadow: 0px 0px 5px rgba(0,0,0,0.12);
 font-size: 12px;
-
-}
-.edit-stay,.view-stay{
-  margin-left: 0;
-  padding-left: 0;
-}
-
-.remove-stay{
-  padding: 5px 2px;
 }
 
 .host-orders-list.show {
@@ -408,7 +428,7 @@ font-size: 12px;
 }
 
 .host-stays-container.show {
-  display: block;
+  display: grid;
 }
 .host-stays-container.none {
   display: none;
@@ -416,10 +436,11 @@ font-size: 12px;
 
 .user-menu {
   background-color: transparent;
-  border-bottom: 2px solid #373737;
-  color:#373737;
+  border-bottom: 2px solid #717171;
+  color:#717171;
   margin-block-end: 15px;
   margin-inline-end: 15px;
+  font-size: 14px;
 }
 
 .user-menu:hover, .user-menu.active {
@@ -427,19 +448,77 @@ font-size: 12px;
   border-bottom: 3px solid #222222;
   font-family: Airbnb-Cereal-Medium;
 }
-
+.stay-stat {
+  /* flex-wrap: wrap; */
+}
 .stay-stat h3 {
   font-size: 16px;
-  text-align: center;
+  text-align: left;
   color: #222222;
   margin-block-end: 20px;
 }
+.mini-stat {
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 20px;
+}
+.stat-info h2 {
 
+}
+/* .mini-stat:not(:first-of-type) {
+  margin-inline-start: 20px;
+} */
+.mini-stat h2.desc {
+  font-size: 16px;
+  padding-block-start: 15px;
+  border-top: 1px solid #373737;
+}
 .bar-chart, .doughnut-chart {
-  width: 30%;
+  /* height: 200px; */
+  /* width:15vw; */
+}
+.bar-chart, .doughnut-chart {
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 20px;
+  height: fit-content;
+}
+.chart {
+  height: 200px;
+}
+.host-stays-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-column-gap: 15px;
+  grid-row-gap: 20px;
 }
 
-.doughnut-chart > * {
+.stays-grid-3 {
+  grid-column: 1/3;
+  grid-row: 1/2; 
+  align-self: start;
+  /* background-color: antiquewhite; */
+}
+
+.stays-grid-3 h1 {
+  color: #222222;
+  font-size: 16px;
+}
+.stays-grid-1 {
+  grid-column: 1/3;
+  grid-row: 3/5; 
+  align-self: start;
+  justify-self: stretch;
+}
+.stays-grid-2 {
+  grid-column: 3/4;
+  grid-row: 1/3; 
+}
+.stays-grid-4 {
+  grid-column: 3/4;
+  grid-row: 3/5; 
+  /* border: 1px solid #e0e0e0 */
 }
 </style>
 
