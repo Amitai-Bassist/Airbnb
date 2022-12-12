@@ -62,11 +62,14 @@ export const orderModule = {
 
     async getHostOrders(context, { userId }) {
       try {
+        console.log('hostId in order.module front '.userId);
         const orders = await orderService.query({ text: '' });
         // console.log('orders', orders);
+        console.log('all orders that come back to front in order.module ',orders);
         const hostOrders = orders.filter((order) => {
           return order.hostId === userId;
         });
+        console.log('hostorders after filtering',hostOrders);
         return hostOrders;
       } catch (err) {
         console.log('stayStore: Error in getHostOrders', err);

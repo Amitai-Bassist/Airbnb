@@ -1,6 +1,6 @@
 <template>
     <div class="stay-explore">
-        <p>Over {{stays.length}} homes</p>
+        <p v-if="staysList.length > 0">Over {{stays.length}} homes</p>
         <stay-list v-if="staysList" class="stay-list-explore" :stays="stays"></stay-list>
     </div>
     <section   class="cards-layout">
@@ -10,9 +10,7 @@
         <div style="padding: 14px">
           <el-skeleton-item variant="p" style="width: 50%" />
           <div
-            style="display: flex;
-              align-items: center;
-              justify-items: space-between;">
+            style="display: flex; align-items: center; justify-items: space-between;">
             <el-skeleton-item variant="text" style="margin-right: 16px" />
             <el-skeleton-item variant="text" style="width: 30%" />
           </div>

@@ -23,7 +23,7 @@
     <div class="user-nav-border-line-between"></div>
     <div>
         <h1>Pets</h1>
-        <p>Bringing a service animal?</p>
+        <p style="text-decoration: underline;">Bringing a service animal?</p>
     </div>
     <add-guest-num :maxNum="5" :minNum="0" :number="guests.pets" @changeNum="setPetsGuests"></add-guest-num>
     </section>
