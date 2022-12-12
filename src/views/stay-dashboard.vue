@@ -102,6 +102,7 @@ export default {
     }
   },
   async created() {
+    eventBus.emit('go-to-user-pages')
     const {id} = this.$route.params
     this.hostId = id
     await this.getHostOrders(id)

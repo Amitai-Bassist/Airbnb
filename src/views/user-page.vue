@@ -86,6 +86,7 @@ export default {
 
     created() {
             const {id} = this.$route.params;
+            eventBus.emit('go-to-user-pages')
     },
     methods: {
         goToStay() {

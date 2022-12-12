@@ -99,12 +99,12 @@
         position: absolute;
         top: 0;
         @include for-mobile-layout {
-            padding-left: 40px;
-            padding-right: 40px;
+            padding-left: 60px;
+            padding-right: 60px;
         }
         @include for-details-narrow-layout{
-            padding-left: 40px;
-            padding-right: 40px;
+            padding-left: 60px;
+            padding-right: 60px;
         }
         @include for-narrow-layout {
             padding-left: 60px;
@@ -116,17 +116,24 @@
         }
         @include for-normal-layout {
             padding-left: 150px;
-            padding-right: 150px;
+            width: 100%;
+            padding-right:150px ; 
+        }
+        @media (min-width: 1440px){
+            padding-left: calc(50% - 560px);
+            width: 100%;
+            padding-right:calc(50% - 560px) ;
         }
         @include for-wide-layout {
-            padding-left: 249px;
+            padding-left: calc(50% - 560px);
             width: 100%;
-            padding-right: 249px;    
+            padding-right:calc(50% - 560px) ;      
         }
+       
         @include for-extra-wide-layout {
-            padding-left: calc(50% - 775px);
+            padding-left: calc(50% - 560px);
             width: 100%;
-            padding-right:calc(50% - 775px) ;    
+            padding-right:calc(50% - 560px) ;    
         } 
     }
 }

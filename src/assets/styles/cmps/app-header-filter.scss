@@ -1,6 +1,8 @@
 .details-filter-btns{
     width: 300px;
     height: 48px;
+    position: fixed;
+    right: calc(50% - 150px);
     border: solid 1px #dddddd;
     border-radius: 50px;
     cursor: pointer;
@@ -19,6 +21,8 @@
 .main-filter-btns{
    
     width: 352px;
+    position: fixed;
+    right: calc(50% - 176px);
     display: flex;
     height: 48px;
     border: solid 1px #dddddd;
@@ -51,6 +55,7 @@
     }
 
     @include for-mobile-layout {
+        right: calc(50% - 90px);
         width: 180px;
         justify-content: space-between;
         >.border-line-between{
@@ -92,6 +97,8 @@
 }
 
 .main-filter-search-btn{
+    position: absolute;
+    right: 2px;
     background-color: #ff385c;
     margin-top: 7px;
     border-radius: 50%;
@@ -128,6 +135,7 @@
 }
 
 .big-search-filter{
+    
     position: fixed;
     background-color: #ebebeb;
     border-radius: 50px;
@@ -297,6 +305,7 @@
             padding-left: 24px;
             font-family: Airbnb-Cereal-Bold;
             color: #222222;
+            margin-bottom: 1.6em;
         }
     }
     >:nth-child(3){
@@ -430,13 +439,17 @@
     display: grid;
     grid-template-columns: 2fr 1fr;
     grid-template-rows: 1fr 1px 1fr 1px 1fr 1px 1fr;
+    
+    
+
     >*{
         padding: 24px 0;
-        
+    
         >:first-child{
+            color: #222222;
             font-family: Airbnb-Cereal-Bold;
             font-size: 16px;
-            margin: 0;
+            margin-bottom: 6px;
         }
         >:nth-child(2){
             margin: 0;
@@ -562,7 +575,7 @@
 }
 
 .mosley-search-container{
-    margin-top: 20px;
+    margin-top: 0px;
     >*{
         // margin-bottom: 20px;
         padding: 8px;

@@ -8,8 +8,10 @@
         </router-link>
       </nav>
       <main-filter @clickedMain="clickedMain" v-if="isMainFilter" class="main-filter-btns"></main-filter>
-      <big-filter @clickedMain="clickedMain" @clickedScreen="clickedScreen" :isWhereSearch="isWhereSearch" :isWhoSearch="isWhoSearch" :isWhenEnd="isWhenEnd" :isWhenStart="isWhenStart"
-       v-if="isBigFilter" class="big-search-filter flex row"></big-filter>
+      <Transition>
+        <big-filter @clickedMain="clickedMain" @clickedScreen="clickedScreen" :isWhereSearch="isWhereSearch" :isWhoSearch="isWhoSearch" :isWhenEnd="isWhenEnd" :isWhenStart="isWhenStart"
+        v-if="isBigFilter" class="big-search-filter flex row"></big-filter>
+      </Transition>
       <details-header-filter @clickedMain="clickedMain" v-if="isDetailsHeader"></details-header-filter>
       <section class="flex">
         <router-link class="dreambnb-home-header" :to="`/host`">Dreambnb your home</router-link>
@@ -76,6 +78,7 @@ export default {
   created() {
     eventBus.on('go-to-details',this.changeToDetailsHeader)
     eventBus.on('go-to-user-pages',this.goUserPages)
+    eventBus.on('return-to-main-stay',this.returnToMainStay)
     
   },
   methods:{
@@ -164,3 +167,21 @@ export default {
   }
 }
 </script>
+
+<style>
+  .v-enter-active{
+    /* transition: width 1.5s ease; */
+  }
+  .v-enter-from{
+    /* top: 5;
+    
+    width: 50px; */
+  }
+  .v-leave-active{
+    transition: none
+  }
+  .v-leave-to {
+
+  }
+
+</style>
