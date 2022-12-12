@@ -122,7 +122,7 @@
           </div> 
         </div>
 
-        <button>Show all 68 amenities</button>
+        <!-- <button>Show all 68 amenities</button> -->
       </div>
 
       <div class="stickey-container">
