@@ -15,12 +15,11 @@
   
   type Marks = Record<number, Mark | string>
   
-  const value = ref([30, 60])
+  const value = ref([0, 600])
   const marks = reactive<Marks>({
-    0: '0°C',
-    8: '8°C',
-    37: '37°C',
-    50: {
+    
+    53: '500 homes',
+    300: {
       style: {
         color: '#1989FA',
       },

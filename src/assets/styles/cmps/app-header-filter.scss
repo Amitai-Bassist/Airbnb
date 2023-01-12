@@ -1,3 +1,5 @@
+
+
 .details-filter-btns{
     width: 300px;
     height: 48px;
@@ -60,7 +62,7 @@
 
     @include for-mobile-layout {
         right: calc(50% - 90px);
-        width: 180px;
+        width: 156px;
         justify-content: space-between;
         >.border-line-between{
             display: none;
@@ -620,3 +622,99 @@
     }
 }
 
+
+
+@media (max-width: 950px){
+    .big-search-filter{
+        width: 520px;
+        left: calc(50% - 260px);
+        
+        >.big-filter-btn{
+            width: 100px;
+        }
+        >:nth-child(1){
+            width: 165px;
+        }
+        .input-search-big-filter{
+            width: 130px;
+        }
+        .main-filter-search-btn.big{
+            width: 60px;
+            margin-bottom: 14px;
+            :nth-child(2){
+                display: none;
+            }
+        }
+    }
+    .stay-where-search{
+        width: 520px;
+        left: calc(50% - 260px);
+        padding: 16px 0px;
+        grid-template-columns: 1fr 18px 1.6fr;
+        .chose-mainland{
+            >div{
+                width: 90px;
+            }
+        }
+        .mainland-img{
+            width: 80px;
+            height: 80px;
+        }
+    }
+    .calender-container-search{
+        width: 520px;
+        left: calc(50% - 260px);
+        .vc-weeks{
+            grid-template-columns: repeat(7,24px); 
+        }
+       .vc-pane-container{
+        position: fixed;
+        left: calc(50% - 194px);
+       } 
+    }
+    .stay-who-search{
+        width: 300px;
+        right: calc(50% - 270px);
+    }
+}
+
+@include for-mobile-layout {
+    .big-search-filter{
+        width: calc(100% - 140px);
+        height: 147px;
+        padding: 10px;
+        left: 64px;
+        top: 7px;
+        gap: 5px;
+        display: grid;
+        grid-template-columns: 1fr 1px 1fr 1px;
+        grid-template-rows: 1fr 1fr;
+    }
+    .stay-where-search, .calender-container-search, .stay-who-search{
+        width: calc(100% - 48px);
+        left: 24px;
+    }
+    .stay-where-search{
+        grid-template-columns: 1fr;
+        >*{
+            display: none;
+        }
+        :nth-child(3){
+            display: grid;
+        }
+    }
+    .big-search-filter {
+        > :nth-child(1){
+            .input-search-big-filter{
+                width: 63px;
+            }
+            width: 114px
+        }
+        
+    }
+    .main-filter-search-btn.big{
+        position: fixed;
+        top: 54px;
+        right: 12px;
+    }
+}

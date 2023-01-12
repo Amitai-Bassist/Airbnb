@@ -1,23 +1,28 @@
 <template>
-    <section class="filter-modal-container">
-        <div class="flex">
+        <div class="filter-modal filter-modal-header space-between flex">
             <button>x</button>
             <h1>Filters</h1>
+            <div></div>
         </div>
+    <section class="filter-modal filter-modal-container">
         <div>
         <h1>Price range</h1>
         <div>The average nightly price is $187</div>
         </div>
             <price-slider-for-filter></price-slider-for-filter>
         <div>
-        <section class="flex">
+        <section class="price-filter flex">
             <div>
                 <div>min price</div>
-                $<input type="text" value="10">-
+                <div>
+                    $<input type="text" value="10">-
+                </div>
             </div>
             <div>
                 <div>max price</div>
-                $<input type="text"  value="410+">
+                <div>
+                    $<input type="text"  value="600+">
+                </div>
             </div>
         </section>
         </div>
@@ -64,13 +69,11 @@
         <el-checkbox v-model="checked1" label="Guest entrance wider than 32 inches" size="large" />
         <el-checkbox v-model="checked1" label="Accessible parking spot" size="large" />
         <el-checkbox v-model="checked1" label="Step-free path to the guest entrance" size="large" />
-        <div class="flex">
-            <button>Clear all</button>
-            <button>Show 4 homes</button>
-        </div>
-        
-
     </section>
+    <div class="filter-modal filter-modal-footer flex">
+        <button>Clear all</button>
+        <button>Show 4 homes</button>
+    </div>
 </template>
 
 

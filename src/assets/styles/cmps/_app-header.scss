@@ -65,6 +65,19 @@ header {
     }
    
 }
+@media (max-width: 650px){
+    .loggedin-user{
+        border: none !important;
+        width: 50px !important;
+        >img{
+            display: none;
+        }
+    }
+    .loggedin-user:hover{
+        box-shadow: none !important;
+    }
+}
+
 .router-logo-link{
     display: flex;
     >.airbnb-logo{
