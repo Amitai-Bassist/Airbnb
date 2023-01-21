@@ -143,6 +143,9 @@
     @include for-mobile-layout {
         right: 24px;
     }
+    @include for-details-narrow-layout{
+        right: 24px;
+    }
     @include for-narrow-layout {
         right: 24px;
     }
