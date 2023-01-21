@@ -12,7 +12,7 @@
         <big-filter @clickedMain="clickedMain" @clickedScreen="clickedScreen" :isWhereSearch="isWhereSearch" :isWhoSearch="isWhoSearch" :isWhenEnd="isWhenEnd" :isWhenStart="isWhenStart"
         v-if="isBigFilter" class="big-search-filter flex row"></big-filter>
       </Transition>
-      <mobile-search-modal/>
+      <mobile-search-modal v-if="isBigFilter && window.innerWidth <= 550"/>
       <details-header-filter @clickedMain="clickedMain" v-if="isDetailsHeader"></details-header-filter>
       <section class="flex">
         <router-link class="dreambnb-home-header" :to="`/host`">Dreambnb your home</router-link>
@@ -81,6 +81,7 @@ export default {
     eventBus.on('go-to-details',this.changeToDetailsHeader)
     eventBus.on('go-to-user-pages',this.goUserPages)
     eventBus.on('return-to-main-stay',this.returnToMainStay)
+    eventBus.on('go-back',this.returnToMainStay)
     
   },
   methods:{

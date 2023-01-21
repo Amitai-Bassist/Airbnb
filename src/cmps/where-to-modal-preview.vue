@@ -1,7 +1,7 @@
 <template>
     <section class="where-to-modal-preview" >
         <div>
-            <img @click="choseMainland(destination.name)" class="mainland-img" :src="destination.src" alt="">
+            <img @click="choseMainland(destination.name === 'I\'m flexible'? '':destination.name)" class="mainland-img" :src="destination.src" alt="">
             <div>{{ destination.name }}</div>
         </div>
     </section>

@@ -64,6 +64,7 @@
           eventBus.on('chose-day-end', this.setCheckout)
           eventBus.on('chose-where-mainland', this.setWhereMainland)
           eventBus.on('chose-who-guests', this.setWhoGuests)
+          eventBus.on('search-stays',this.onSearch)
         },
         computed: {
           wherePlaceholder(){
