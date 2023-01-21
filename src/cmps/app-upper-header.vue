@@ -12,6 +12,7 @@
         <big-filter @clickedMain="clickedMain" @clickedScreen="clickedScreen" :isWhereSearch="isWhereSearch" :isWhoSearch="isWhoSearch" :isWhenEnd="isWhenEnd" :isWhenStart="isWhenStart"
         v-if="isBigFilter" class="big-search-filter flex row"></big-filter>
       </Transition>
+      <mobile-search-modal/>
       <details-header-filter @clickedMain="clickedMain" v-if="isDetailsHeader"></details-header-filter>
       <section class="flex">
         <router-link class="dreambnb-home-header" :to="`/host`">Dreambnb your home</router-link>
@@ -47,6 +48,7 @@
 
 </template>
 <script>
+import mobileSearchModal from './mobile-search-modal.vue';
 import newUserMsg from './new-user-msg.vue';
 import { eventBus } from '../services/event-bus.service'
 import detailsHeaderFilter from './details-header-filter.vue';
@@ -163,7 +165,8 @@ export default {
     stayWhoSearch,
     detailsHeaderFilter,
     userLoginModal,
-    newUserMsg
+    newUserMsg,
+    mobileSearchModal
   }
 }
 </script>
