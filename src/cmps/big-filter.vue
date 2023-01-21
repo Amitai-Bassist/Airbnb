@@ -120,6 +120,7 @@
             this.mainland = (mainland) ? mainland : 'search destination'
             this.choseSearch('when-start')
             this.filterBy.txt = mainland
+            console.log('mainland', mainland)
           },
         },
     }

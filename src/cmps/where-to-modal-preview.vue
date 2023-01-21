@@ -1,7 +1,7 @@
 <template>
     <section class="where-to-modal-preview" >
         <div>
-            <img @click="choseMainland('')" class="mainland-img" :src="destination.src" alt="">
+            <img @click="choseMainland(destination.name)" class="mainland-img" :src="destination.src" alt="">
             <div>{{ destination.name }}</div>
         </div>
     </section>
@@ -9,6 +9,7 @@
 </template>
 
 <script>
+    import { eventBus } from '../services/event-bus.service'
 export default {
     props:{
         destination: Object,
@@ -21,9 +22,11 @@ export default {
     created(){
 
     },
-    methods:{
-
-    },
+    methods: {
+            choseMainland(mainland){
+                eventBus.emit('chose-where-mainland', mainland)
+            },
+        },
     computed:{
 
     }

@@ -1,6 +1,5 @@
 <template>
     <section class="mobile-search-modal">
-        <section class="where-to-modal"></section>
         <where-to-modal/>
         <section class="when-modal"></section>
         <section class="who-modal"></section>
@@ -17,7 +16,7 @@ export default {
         }
     },
     created(){
-
+        
     },
     methods:{
 
@@ -31,12 +30,3 @@ export default {
 
 }
 </script>
-<style>
-.mobile-search-modal{
-    position:absolute;
-    z-index: 100;
-    background-color: white;
-    height: 100vh;
-    width: 100%;
-}
-</style>

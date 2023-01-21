@@ -1,0 +1,14 @@
+.mobile-search-modal{
+    display: grid;
+    grid-template-columns: 1fr 80% 1fr;
+    > * {
+        grid-column: 2;
+    }
+    position:absolute;
+    z-index: 100;
+    right: 0;
+    top: 0;
+    background-color: white;
+    height: 100vh;
+    width: 100%;
+}

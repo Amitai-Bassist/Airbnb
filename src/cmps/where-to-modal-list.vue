@@ -30,10 +30,3 @@ export default {
 
 }
 </script>
-
-<style>
-    .where-to-modal-list{
-        overflow-x:scroll;
-        scrollbar-color: transparent;
-    }
-</style>
