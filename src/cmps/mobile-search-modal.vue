@@ -3,10 +3,10 @@
     <button @click="goBack" class="btn-back">Back</button>
     <where-to-modal v-if="searchTabToggle.isWhereOn"/>
     <section class="where-to-modal-close flex space-between" v-else @click="toggleSearchTab('isWhereOn')">
-      <div>Where</div> 
-      <div>{{ mainland }}</div>
+      <div class="tab-name">Where</div> 
+      <div class="tab-value">{{ mainland }}</div>
     </section>
-    <section class="when-modal" v-if="searchTabToggle.isWhenOn">hi</section>
+    <when-modal v-if="searchTabToggle.isWhenOn"/>
     <section class="who-modal"></section>
     <div class="action-container flex space-between">
         <div>
@@ -126,6 +126,7 @@
 <script>
 import { eventBus } from '../services/event-bus.service'
 import whereToModal from "./where-to-modal.vue"
+import whenModal from "./when-modal.vue"
 export default {
   data() {
     return {
@@ -161,6 +162,7 @@ export default {
   computed: {},
   components: {
     whereToModal,
+    whenModal,
   },
 };
 </script>
