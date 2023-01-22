@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import { eventBus } from '../services/event-bus.service'
 import whereToModalPreview from './where-to-modal-preview.vue'
 export default {
     props:{
@@ -17,6 +18,9 @@ export default {
     },
     created(){
 
+    },
+    mounted(){
+        
     },
     methods:{
 
