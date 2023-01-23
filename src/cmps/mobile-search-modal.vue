@@ -7,12 +7,16 @@
       <div class="tab-value">{{ mainland }}</div>
     </section>
     <when-modal v-if="searchTabToggle.isWhenOn"/>
+    <section class="when-modal-close flex space-between" v-else @click="toggleSearchTab('isWhenOn')">
+      <div class="tab-name">When</div> 
+      <div class="tab-value">hay for now</div>
+    </section>
     <section class="who-modal"></section>
     <div class="action-container flex space-between">
         <div>
             clear
         </div>
-      <div class="btn-search" @click="onSearch">
+      <div class="btn-search" @click="onSearch" v-if="!searchTabToggle.isWhenOn">
         <div class="cell"></div>
         <div class="cell"></div>
         <div class="cell"></div>
@@ -119,6 +123,7 @@
           </button>
         </div>
       </div>
+      <button class="btn-next" v-else @click="toggleSearchTab('isWhoOn')">Next</button>
     </div>
   </section>
 </template>

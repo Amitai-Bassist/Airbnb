@@ -98,6 +98,7 @@
             this.choseSearch('when-end')
           },
           setCheckout(date){
+            console.log(date);
             this.filterBy.checkout = date.id
             this.checkout = date.id
           },
