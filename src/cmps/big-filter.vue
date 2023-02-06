@@ -93,6 +93,7 @@
             this.$emit('clickedMain',chose)
           },
           setCheckin(date){
+            console.log(date);
             this.filterBy.checkin = date.id
             this.checkin = date.id
             this.choseSearch('when-end')

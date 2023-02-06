@@ -9,7 +9,7 @@
     <when-modal v-if="searchTabToggle.isWhenOn"/>
     <section class="when-modal-close flex space-between" v-else @click="toggleSearchTab('isWhenOn')">
       <div class="tab-name">When</div> 
-      <div class="tab-value">hay for now</div>
+      <div class="tab-value">{{startDate + '-' + endDate}}</div>
     </section>
     <section class="who-modal"></section>
     <div class="action-container flex space-between">
@@ -137,11 +137,15 @@ export default {
     return {
       searchTabToggle:{isWhereOn: true,isWhenOn:false,isWhoOn:false},
       mainland:'I\'m flexible',
+      startDate: '',
+      endDate: '',
     };
   },
   created() {},
   mounted(){
     eventBus.on('chose-where-mainland',this.changeMainland)
+    eventBus.on('chose-day-start', this.addStartDate)
+    eventBus.on('chose-day-end', this.addEndDate)
   },
   methods: {
     onSearch(){
@@ -161,6 +165,12 @@ export default {
         this.searchTabToggle[property] = false
       }
       this.searchTabToggle[tab] = true
+    },
+    addStartDate(date){
+      this.startDate = date.id
+    },
+    addEndDate(date){
+      this.endDate = date.id
     }
     
   },
