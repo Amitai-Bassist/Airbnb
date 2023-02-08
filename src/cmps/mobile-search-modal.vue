@@ -2,127 +2,25 @@
   <section class="mobile-search-modal">
     <button @click="goBack" class="btn-back">Back</button>
     <where-to-modal v-if="searchTabToggle.isWhereOn"/>
-    <section class="where-to-modal-close flex space-between" v-else @click="toggleSearchTab('isWhereOn')">
+    <section class="modal-close flex space-between" v-else @click="toggleSearchTab('isWhereOn')">
       <div class="tab-name">Where</div> 
       <div class="tab-value">{{ mainland }}</div>
     </section>
     <when-modal v-if="searchTabToggle.isWhenOn"/>
-    <section class="when-modal-close flex space-between" v-else @click="toggleSearchTab('isWhenOn')">
+    <section class="modal-close flex space-between" v-else @click="toggleSearchTab('isWhenOn')">
       <div class="tab-name">When</div> 
-      <div class="tab-value">{{startDate + '-' + endDate}}</div>
+      <div class="tab-value">{{dateChecker}}</div>
     </section>
-    <section class="who-modal"></section>
+    <stay-who-search v-if="searchTabToggle.isWhoOn"></stay-who-search>
+    <section class="modal-close flex space-between" v-else @click="toggleSearchTab('isWhoOn')">
+      <div class="tab-name">Who</div> 
+      <div class="tab-value">{{gusetChecker}}</div>
+    </section>
     <div class="action-container flex space-between">
         <div>
             clear
         </div>
-      <div class="btn-search" @click="onSearch" v-if="!searchTabToggle.isWhenOn">
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="content">
-          <button class="action-btn">
-            <span class="btn">Search</span>
-          </button>
-        </div>
-      </div>
+      <button class="btn-search" v-if="!searchTabToggle.isWhenOn" @click="onSearch">Search</button>
       <button class="btn-next" v-else @click="toggleSearchTab('isWhoOn')">Next</button>
     </div>
   </section>
@@ -132,6 +30,7 @@
 import { eventBus } from '../services/event-bus.service'
 import whereToModal from "./where-to-modal.vue"
 import whenModal from "./when-modal.vue"
+import stayWhoSearch from "./stay-who-search-modal.vue"
 export default {
   data() {
     return {
@@ -139,6 +38,7 @@ export default {
       mainland:'I\'m flexible',
       startDate: '',
       endDate: '',
+      guest: {adults:1, children:0, infants:0, pets:0}
     };
   },
   created() {},
@@ -146,6 +46,7 @@ export default {
     eventBus.on('chose-where-mainland',this.changeMainland)
     eventBus.on('chose-day-start', this.addStartDate)
     eventBus.on('chose-day-end', this.addEndDate)
+    eventBus.on('chose-who-guests', this.setWhoGuests)
   },
   methods: {
     onSearch(){
@@ -171,13 +72,28 @@ export default {
     },
     addEndDate(date){
       this.endDate = date.id
+    },
+    setWhoGuests({adults, children, infants, pets}){
+      this.guest.adults = adults
+      this.guest.children = children
+      this.guest.infants = infants
+      this.guest.pets = pets
     }
     
   },
-  computed: {},
+  computed: {
+    dateChecker(){
+      return this.startDate === ''?'Add Dates' : this.startDate + '-' + this.endDate
+    },
+    gusetChecker(){
+      return (this.guest.adults === 1 && this.guest.children === 0 && this.guest.infants === 0 && this.guest.pets === 0)? 
+        'Add Guests' : (this.guest.adults + this.guest.children + ' guests, ' + (this.guest.infants ? this.guest.infants + ' infants, ':'') + (this.guest.pets ? this.guest.pets + ' pets':''))
+    }
+  },
   components: {
     whereToModal,
     whenModal,
+    stayWhoSearch,
   },
 };
 </script>
